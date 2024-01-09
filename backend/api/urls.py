@@ -1,12 +1,12 @@
-from django.urls import path
+from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import UserViewSet, UserListView, TopGoalListView, DailyGoalListView
+from .views import UserViewSet, TopGoalViewSet, DailyGoalViewSet
 
-# post_router = DefaultRouter()
-# post_router.register(r'users/', UserViewSet)
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'topgoals', TopGoalViewSet)
+router.register(r'dailygoals', DailyGoalViewSet)
 
 urlpatterns = [
-  path('users/', UserListView.as_view(), name='user-list'),
-  path('top-goals/', TopGoalListView.as_view(), name='top-goal-list'),
-  path('daily-goals/', DailyGoalListView.as_view(), name='daily-goal-list'),
+  path('', include(router.urls)),
 ]
