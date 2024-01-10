@@ -3,6 +3,7 @@ import { Home, Login } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
+import PrivateRoutes from "./utils/PrivateRoutes";
 
 function App() {
   useEffect(() => {
@@ -13,8 +14,11 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} exact />
-          <Route path="/login" element={<Login />} />
+          <Route element={<PrivateRoutes />}>
+            <Route element={<Home />} path="/" exact />
+          </Route>
+
+          <Route element={<Login />} path="/login" />
         </Routes>
       </BrowserRouter>
     </div>
