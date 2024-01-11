@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { Home, Login } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import "./App.css";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import "./App.css";
+import Header from "./components/Header";
 
 function App() {
   useEffect(() => {
@@ -13,6 +14,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route element={<Home />} path="/" exact />
