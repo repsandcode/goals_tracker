@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
       ? jwtDecode(localStorage.getItem("authTokens"))
       : null
   );
+  const [loading, setLoading] = useState(true);
 
   const login = (data) => {
     try {
@@ -36,20 +37,56 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("authTokens");
   };
 
-  // useEffect(() => {
-  //   // Check if a valid JWT token is stored (you may need to adjust this logic)
-  //   const storedToken = localStorage.getItem("jwtToken");
+  const updateToken = async () => {
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/token/refresh/",
+        {
+          refresh: authTokens.refresh,
+        }
+      );
 
-  //   if (storedToken) {
-  //     // Decode and verify the token (you may use a library like `jsonwebtoken`)
-  //     // Set the user based on the decoded token
-  //     const decodedToken = /* your decoding logic */;
-  //     setUser(decodedToken);
-  //   }
-  // }, []);
+      console.log(response);
+      const data = response.data;
+
+      if (response.status === 200) {
+        setAuthTokens(data);
+        setUser(jwtDecode(data.access));
+        localStorage.setItem("authTokens", JSON.stringify(data));
+      } else {
+        logout();
+      }
+    } catch (error) {
+      console.error("Updating token failed:", error.message);
+    } finally {
+      if (loading) {
+        // Reset loading state after the request is complete
+        setLoading(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    console.log("Update token called!");
+
+    // if (loading) {
+    //   // Reset loading state after the request is complete
+    //   updateToken();
+    // }
+
+    const fourMinutes = 1000 * 60 * 4;
+
+    const interval = setInterval(() => {
+      if (authTokens) {
+        updateToken();
+      }
+    }, fourMinutes);
+
+    return () => clearInterval(interval);
+  }, [authTokens, loading]);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, authTokens, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
