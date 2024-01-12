@@ -1,12 +1,13 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext";
+import Header from "../components/Header";
 
 const HomePage = () => {
   const { user } = useAuth();
 
   return (
     <div>
-      <h1>Home</h1>
+      <Header />
 
       {user && <p>{user.username} is logged in</p>}
     </div>

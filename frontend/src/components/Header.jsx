@@ -1,14 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
-  let { user } = useAuth();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   return (
-    <div>
+    <div className="flex justify-between">
       <h1>Micro-SaaS #1</h1>
-      {user ? <a>Logout</a> : <Link to="/login">Login</Link>}
+
+      <button
+        className="cursor-pointer hover:text-green-500 hover:underline"
+        onClick={() => {
+          logout();
+          navigate("/login");
+        }}
+      >
+        logout
+      </button>
     </div>
   );
 };

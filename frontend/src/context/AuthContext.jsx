@@ -7,24 +7,33 @@ const AuthContext = createContext();
 export default AuthContext;
 
 export const AuthProvider = ({ children }) => {
-  const [authTokens, setAuthTokens] = useState(null);
-  const [user, setUser] = useState(null);
+  const [authTokens, setAuthTokens] = useState(() =>
+    localStorage.getItem("authTokens")
+      ? JSON.parse(localStorage.getItem("authTokens"))
+      : null
+  );
+  const [user, setUser] = useState(() =>
+    localStorage.getItem("authTokens")
+      ? jwtDecode(localStorage.getItem("authTokens"))
+      : null
+  );
 
   const login = (data) => {
     try {
       setAuthTokens(data);
       setUser(jwtDecode(data.access));
-      localStorage.setItem("authToken", JSON.stringify(data));
+      localStorage.setItem("authTokens", JSON.stringify(data));
     } catch (error) {
       console.error("JWT token error:", error);
     }
   };
 
   const logout = () => {
-    // Remove the JWT token from local storage
-    localStorage.removeItem("authToken");
     // Set the user to null
+    setAuthTokens(null);
     setUser(null);
+    // Remove the JWT token from local storage
+    localStorage.removeItem("authTokens");
   };
 
   // useEffect(() => {
