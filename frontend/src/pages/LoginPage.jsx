@@ -55,7 +55,7 @@ const LoginPage = () => {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="bg-slate-100 p-12 w-96">
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl">
+        <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl mb-8">
           Login to your account
         </h1>
 
@@ -72,7 +72,7 @@ const LoginPage = () => {
               name="username"
               id="username"
               className="sm:text-sm rounded-lg block w-full p-2.5 outline-none"
-              placeholder="imfeelinggud"
+              placeholder="fiorella"
               value={username}
               onChange={onChangeUsername}
             />
@@ -116,10 +116,9 @@ const LoginPage = () => {
           <p className="text-sm font-light text-neutral-500 dark:text-neutral-400">
             Don't have an account yet?
             <a
-              className="font-medium text-green-600 hover:underline dark:text-green-500"
+              className="font-medium text-green-600 hover:underline dark:text-green-500 cursor-pointer ms-1"
               onClick={() => navigate("/register")}
             >
-              {" "}
               Create one
             </a>
           </p>

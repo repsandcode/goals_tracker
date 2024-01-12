@@ -71,7 +71,7 @@ const RegisterPage = () => {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="bg-slate-100 p-12 w-96">
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl">
+        <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl mb-8">
           Create an account
         </h1>
 
@@ -191,10 +191,9 @@ const RegisterPage = () => {
           <p className="text-sm font-light text-neutral-500 dark:text-neutral-400">
             Already have an account?
             <a
-              className="font-medium text-green-600 hover:underline dark:text-green-500"
+              className="font-medium text-green-600 hover:underline dark:text-green-500 cursor-pointer ms-1"
               onClick={() => navigate("/login")}
             >
-              {" "}
               Login
             </a>
           </p>
