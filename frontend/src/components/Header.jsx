@@ -8,8 +8,7 @@ const Header = () => {
   return (
     <div>
       <h1>Micro-SaaS #1</h1>
-      {user ? <p>Logout</p> : <Link to="/login">Login</Link>}
-      {user && <p>{user.username} is logged in</p>}
+      {user ? <a>Logout</a> : <Link to="/login">Login</Link>}
     </div>
   );
 };

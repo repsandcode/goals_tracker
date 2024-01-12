@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Home, Login } from "./pages";
+import { HomePage, LoginPage, RegisterPage } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import PrivateRoutes from "./utils/PrivateRoutes";
@@ -14,13 +14,13 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Header />
         <Routes>
           <Route element={<PrivateRoutes />}>
-            <Route element={<Home />} path="/" exact />
+            <Route element={<HomePage />} path="/" exact />
           </Route>
 
-          <Route element={<Login />} path="/login" />
+          <Route element={<LoginPage />} path="/login" />
+          <Route element={<RegisterPage />} path="/register" />
         </Routes>
       </BrowserRouter>
     </div>

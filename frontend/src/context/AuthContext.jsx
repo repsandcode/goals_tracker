@@ -10,30 +10,19 @@ export const AuthProvider = ({ children }) => {
   const [authTokens, setAuthTokens] = useState(null);
   const [user, setUser] = useState(null);
 
-  const login = async (e) => {
-    e.preventDefault();
-    console.log("form submitted");
-    const response = await axios.post("http://127.0.0.1:8000/api/token/", {
-      username: e.target.username.value,
-      password: e.target.password.value,
-    });
-
-    const data = response.data;
-
-    if (response.status === 200) {
+  const login = (data) => {
+    try {
       setAuthTokens(data);
       setUser(jwtDecode(data.access));
+      localStorage.setItem("authToken", JSON.stringify(data));
+    } catch (error) {
+      console.error("JWT token error:", error);
     }
-    // Store the JWT token in local storage
-    // localStorage.setItem("jwtToken", token);
-    // // Decode and set the user based on the token (you may use a library like `jsonwebtoken`)
-    // const decodedToken = /* your decoding logic */;
-    // setUser(decodedToken);
   };
 
   const logout = () => {
     // Remove the JWT token from local storage
-    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("authToken");
     // Set the user to null
     setUser(null);
   };
