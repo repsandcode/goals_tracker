@@ -74,6 +74,7 @@ const LoginPage = () => {
               placeholder="fiorella"
               value={username}
               onChange={onChangeUsername}
+              required
             />
           </div>
 
@@ -92,6 +93,7 @@ const LoginPage = () => {
               className="sm:text-sm rounded-lg block w-full p-2.5 outline-none"
               value={password}
               onChange={onChangePassword}
+              required
             />
           </div>
 
