@@ -11,6 +11,9 @@ from .serializers import UserSerializer, TopGoalSerializer, DailyGoalSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
+
+
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
@@ -22,8 +25,11 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         return token
 
+
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
+
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
@@ -39,7 +45,6 @@ class UserViewSet(ModelViewSet):
         return Response(serializer.data)
 
 
-@permission_classes([IsAuthenticated])
 class TopGoalViewSet(ModelViewSet):
     queryset = TopGoal.objects.all()
     serializer_class = TopGoalSerializer
@@ -56,7 +61,7 @@ class TopGoalViewSet(ModelViewSet):
         return Response(serializer.data)
 
 
-@permission_classes([IsAuthenticated])
+
 class DailyGoalViewSet(ModelViewSet):
     queryset = DailyGoal.objects.all()
     serializer_class = DailyGoalSerializer

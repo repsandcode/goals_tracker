@@ -23,7 +23,7 @@ class TopGoal(models.Model):
         self.save()
 
     def __str__(self):
-        return f"[{self.user.username}] {self.name} (Top Goal {self.id})"
+        return f"[{self.user.username}] {self.name} (Top Goal {self.id}) - {self.start_date} to {self.end_date}"
     
 class DailyGoal(models.Model):
     top_goal = models.ForeignKey(TopGoal, on_delete=models.CASCADE, related_name="daily_goals")
@@ -31,11 +31,10 @@ class DailyGoal(models.Model):
     completed = models.BooleanField(default=False)
     start_time = models.TimeField(auto_now=False, auto_now_add=False)
     end_time = models.TimeField(auto_now=False, auto_now_add=False)
-    completed = models.BooleanField(default=False)
 
     def complete(self):
         self.completed = True
         self.save()
 
     def __str__(self):
-        return f"[{self.top_goal.user.username}] {self.name} (Daily Goal {self.id}) -> {self.top_goal.name} (Top Goal {self.top_goal.id})"
+        return f"[{self.top_goal.user.username}] {self.name} (Daily Goal {self.id}) - {self.start_time} to {self.end_time} -> {self.top_goal.name} (Top Goal {self.top_goal.id})"

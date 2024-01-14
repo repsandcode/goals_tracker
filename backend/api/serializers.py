@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from base.models import User, TopGoal, DailyGoal
+from django.contrib.auth.hashers import make_password
 
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
