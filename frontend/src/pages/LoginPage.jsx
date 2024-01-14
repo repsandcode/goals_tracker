@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, authTokens } = useAuth();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -30,11 +30,10 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/token/", {
-        username: e.target.username.value,
-        password: e.target.password.value,
+        username,
+        password,
       });
 
-      console.log(response);
       const data = response.data;
 
       if (response.status === 200) {
@@ -45,7 +44,7 @@ const LoginPage = () => {
       }
     } catch (error) {
       setErrorMessage("An error occurred during Login");
-      console.error("Login failed:", error.message);
+      console.error("Login failed:", error);
     } finally {
       // Reset loading state after the request is complete
       setLoading(false);

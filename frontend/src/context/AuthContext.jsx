@@ -46,7 +46,6 @@ export const AuthProvider = ({ children }) => {
         }
       );
 
-      console.log(response);
       const data = response.data;
 
       if (response.status === 200) {
@@ -67,8 +66,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("Update token called!");
-
     // if (loading) {
     //   // Reset loading state after the request is complete
     //   updateToken();
@@ -78,6 +75,7 @@ export const AuthProvider = ({ children }) => {
 
     const interval = setInterval(() => {
       if (authTokens) {
+        console.log("Update token called!");
         updateToken();
       }
     }, fourMinutes);

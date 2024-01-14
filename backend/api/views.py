@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 from base.models import User, TopGoal, DailyGoal
 from .serializers import UserSerializer, TopGoalSerializer, DailyGoalSerializer
@@ -37,12 +39,15 @@ class UserViewSet(ModelViewSet):
         return Response(serializer.data)
 
 
+@permission_classes([IsAuthenticated])
 class TopGoalViewSet(ModelViewSet):
     queryset = TopGoal.objects.all()
     serializer_class = TopGoalSerializer
     
     def list(self, request):
-        serializer = TopGoalSerializer(self.queryset, many=True)
+        user = request.user
+        user_top_goals = user.goals.all()
+        serializer = TopGoalSerializer(user_top_goals, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
@@ -51,6 +56,7 @@ class TopGoalViewSet(ModelViewSet):
         return Response(serializer.data)
 
 
+@permission_classes([IsAuthenticated])
 class DailyGoalViewSet(ModelViewSet):
     queryset = DailyGoal.objects.all()
     serializer_class = DailyGoalSerializer
