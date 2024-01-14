@@ -15,12 +15,10 @@ const LoginPage = () => {
 
   const onChangeUsername = (e) => {
     setUsername(e.target.value);
-    console.log(username);
   };
 
   const onChangePassword = (e) => {
     setPassword(e.target.value);
-    console.log(password);
   };
 
   const handleLogin = async (e) => {
