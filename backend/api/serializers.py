@@ -41,11 +41,32 @@ class UserSerializer(serializers.ModelSerializer):
     return user
 
 class TopGoalSerializer(serializers.ModelSerializer):
+  formatted_start_date = serializers.SerializerMethodField()
+  formatted_end_date = serializers.SerializerMethodField()
+
   class Meta:
     model = TopGoal
     fields = '__all__'
+  
+  def get_formatted_start_date(self, obj):
+        return obj.formatted_start_date()
+
+  def get_formatted_end_date(self, obj):
+        return obj.formatted_end_date()
+
 
 class DailyGoalSerializer(serializers.ModelSerializer):
+
+  formatted_start_date = serializers.SerializerMethodField()
+  formatted_end_date = serializers.SerializerMethodField()
+
+
   class Meta:
     model = DailyGoal
     fields = '__all__'
+  
+  def get_formatted_start_date(self, obj):
+    return obj.start_date.strftime("%b %d, %Y")
+
+  def get_formatted_end_date(self, obj):
+    return obj.end_date.strftime("%b %d, %Y")

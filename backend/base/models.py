@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from django.conf import settings
 
 class User(AbstractUser):
     bio = models.TextField(max_length=500, blank=True, null=True)
@@ -26,8 +26,14 @@ class TopGoal(models.Model):
         self.mark_as_complete = True
         self.save()
 
+    def formatted_start_date(self):
+        return self.start_date.strftime("%b %d, %Y")
+
+    def formatted_end_date(self):
+        return self.end_date.strftime("%b %d, %Y")
+
     def __str__(self):
-        return f"[{self.user.username}] {self.name} (Top Goal {self.id}) - {self.start_date} to {self.end_date}"
+        return f"[{self.user.username}] {self.name} (Top Goal {self.id}) - {self.formatted_start_date()} to {self.formatted_end_date()}"
     
 class DailyGoal(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="daily_goals", related_query_name="daily_goal", null=True)
