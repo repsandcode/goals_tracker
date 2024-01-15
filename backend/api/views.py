@@ -18,7 +18,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 class RegisterView(APIView):
-    def post(self, request):
+    def post(self, request, format='json'):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
