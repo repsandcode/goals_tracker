@@ -76,28 +76,8 @@ class UserViewSet(ModelViewSet):
 class TopGoalViewSet(ModelViewSet):
     queryset = TopGoal.objects.all()
     serializer_class = TopGoalSerializer
-    
-    def list(self, request):
-        user = request.user
-        user_top_goals = user.goals.all()
-        serializer = TopGoalSerializer(user_top_goals, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, pk=None):
-        item = get_object_or_404(self.queryset, pk=pk)
-        serializer = TopGoalSerializer(item)
-        return Response(serializer.data)
 
 
 class DailyGoalViewSet(ModelViewSet):
     queryset = DailyGoal.objects.all()
     serializer_class = DailyGoalSerializer
-    
-    def list(self, request):
-        serializer = DailyGoalSerializer(self.queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, pk=None):
-        item = get_object_or_404(self.queryset, pk=pk)
-        serializer = DailyGoalSerializer(item)
-        return Response(serializer.data)
