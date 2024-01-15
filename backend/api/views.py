@@ -27,7 +27,29 @@ class RegisterView(APIView):
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
             }, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Customizing error messages based on validation errors
+        errors = serializer.errors
+        response_data = {}
+
+        print(errors)
+
+        if 'email' in errors:
+            email_error_code = errors['email'][0].code
+            
+            if email_error_code == 'unique':
+                response_data['email'] = ["Email already exists."]
+            else:
+                response_data['email'] = errors['email'][0]
+        
+        if 'username' in errors:
+            username_error_code = errors['username'][0].code
+            if username_error_code == 'unique':
+                response_data['username'] = ["Username already exists."]
+            else:
+                response_data['username'] = errors['username'][0]
+
+        return Response(response_data, status=status.HTTP_400_BAD_REQUEST)
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):

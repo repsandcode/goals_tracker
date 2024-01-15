@@ -9,20 +9,20 @@ class LoginSerializer(serializers.Serializer):
 
 class UserSerializer(serializers.ModelSerializer):
   username = serializers.CharField(
-            required=True,
-            validators=[UniqueValidator(queryset=User.objects.all())],
-            min_length=5,
-            max_length=20
+              required=True,
+              validators=[UniqueValidator(queryset=User.objects.all())],
+              min_length=5,
+              max_length=20,
             )
   password = serializers.CharField(
-            required=True,
-            max_length=256,
-            write_only=True  # Make sure password is write-only
+              required=True,
+              max_length=256,
+              write_only=True  # Make sure password is write-only
             )
   email = serializers.EmailField(
-        required=True,
-        validators=[UniqueValidator(queryset=User.objects.all())]
-    )
+            required=True,
+            validators=[UniqueValidator(queryset=User.objects.all())],
+          )
   first_name = serializers.CharField(max_length=30, required=True)
   last_name = serializers.CharField(max_length=30, required=True)
   

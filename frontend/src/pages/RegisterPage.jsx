@@ -20,7 +20,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessages, setErrorMessages] = useState([]);
 
   const onChangeFirstName = (e) => {
     setFirstName(e.target.value);
@@ -46,8 +46,10 @@ const RegisterPage = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const closeErrorMessage = () => {
-    setErrorMessage("");
+  const closeErrorMessage = (errorMessage) => {
+    setErrorMessages((prevErrorMessages) =>
+      prevErrorMessages.filter((msg) => msg !== errorMessage)
+    );
   };
 
   const resetForm = () => {
@@ -65,14 +67,14 @@ const RegisterPage = () => {
     setLoading(true);
 
     if (!isValidEmailFormat(email)) {
-      setErrorMessage("Invalid email format");
+      setErrorMessages((prev) => [...prev, "Invalid email format"]);
       setEmail("");
       setLoading(false);
       return;
     }
 
     if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match");
+      setErrorMessages((prev) => [...prev, "Passwords do not match"]);
       setPassword("");
       setConfirmPassword("");
       setLoading(false);
@@ -89,17 +91,37 @@ const RegisterPage = () => {
       });
 
       console.log(response);
+      console.log(response.config.data);
 
       if (response.status === 200 || response.status === 201) {
         navigate("/");
       } else {
-        setErrorMessage("Response error");
+        setErrorMessages((prev) => [...prev, "Response error"]);
         resetForm();
       }
     } catch (error) {
-      setErrorMessage("An error occurred when creating account");
-      resetForm();
-      console.error(error.message);
+      console.error(error);
+
+      if (error.response && error.response.data) {
+        // Extract and set error messages and keys from the backend response
+        const errorData = error.response.data;
+
+        Object.keys(errorData).forEach((key) => {
+          if (key === "email") {
+            setEmail("");
+          }
+          if (key === "username") {
+            setUsername("");
+          }
+
+          setErrorMessages((prev) => [...prev, errorData[key]]);
+        });
+      } else {
+        setErrorMessages((prev) => [
+          ...prev,
+          "An error occurred when creating your account",
+        ]);
+      }
     } finally {
       // Reset loading state after the request is complete
       setLoading(false);
@@ -245,21 +267,23 @@ const RegisterPage = () => {
             {loading ? "Creating your account..." : "Create account"}
           </button>
 
-          <div className="fixed bottom-4 right-4 z-50" id="errorMessage">
-            {errorMessage && (
-              <div
-                className="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 flex items-center justify-between"
-                role="alert"
-              >
-                <span>{errorMessage}</span>
-                <button
-                  onClick={closeErrorMessage}
-                  className="ml-2 focus:outline-none "
+          <div className="fixed top-0 right-5 z-50" id="errorMessage">
+            {errorMessages &&
+              errorMessages.map((errorMessage) => (
+                <div
+                  className="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 flex items-center justify-between mb-2"
+                  role="alert"
+                  key={errorMessage}
                 >
-                  <IoClose />
-                </button>
-              </div>
-            )}
+                  <span>{errorMessage}</span>
+                  <button
+                    onClick={() => closeErrorMessage(errorMessage)}
+                    className="ml-2 focus:outline-none "
+                  >
+                    <IoClose />
+                  </button>
+                </div>
+              ))}
           </div>
 
           <p className="text-sm font-light text-neutral-500 dark:text-neutral-400">
