@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <div className="flex justify-between">
-      <h1>Micro-SaaS #1</h1>
+      <h1>Goal Tracker</h1>
 
       <button
         className="cursor-pointer hover:text-green-500 hover:underline"
