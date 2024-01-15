@@ -13,7 +13,7 @@ const HomePage = () => {
   }, []);
 
   const getTopGoals = async () => {
-    const response = await axios.get("http://127.0.0.1:8000/api/goals/top/", {
+    const response = await axios.get("http://127.0.0.1:8000/api/top-goals/", {
       headers: {
         Authorization: "Bearer " + String(authTokens.access), //the token is a variable which holds the token
       },

@@ -77,7 +77,25 @@ class TopGoalViewSet(ModelViewSet):
     queryset = TopGoal.objects.all()
     serializer_class = TopGoalSerializer
 
+    def get_queryset(self):
+        # Get the user from the request
+        user = self.request.user
+
+        # Filter the queryset based on the user
+        queryset = user.top_goals.all()
+
+        return queryset
+
 
 class DailyGoalViewSet(ModelViewSet):
     queryset = DailyGoal.objects.all()
     serializer_class = DailyGoalSerializer
+
+    def get_queryset(self):
+        # Get the user from the request
+        user = self.request.user
+
+        # Filter the queryset based on the user
+        queryset = DailyGoal.objects.filter(user=user)
+
+        return queryset
