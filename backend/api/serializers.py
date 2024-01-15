@@ -1,15 +1,30 @@
 from rest_framework import serializers
 from base.models import User, TopGoal, DailyGoal
 from django.contrib.auth.hashers import make_password
+from rest_framework.validators import UniqueValidator
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=255, required=True)
     password = serializers.CharField(max_length=128, write_only=True, required=True)
 
 class UserSerializer(serializers.ModelSerializer):
+  username = serializers.CharField(
+            required=True,
+            validators=[UniqueValidator(queryset=User.objects.all())],
+            min_length=5,
+            max_length=20
+            ),
+  password = serializers.CharField(
+            required=True,
+            max_length=256
+            )
   class Meta:
     model = User
     fields = '__all__'
+  
+  def create(self, validated_data):
+    user = User.objects.create_user(validated_data['username'], validated_data['password'])
+    return user
 
 class TopGoalSerializer(serializers.ModelSerializer):
   class Meta:
