@@ -13,16 +13,18 @@ export const AuthProvider = ({ children }) => {
       : null
   );
   const [user, setUser] = useState(() =>
-    localStorage.getItem("authTokens")
-      ? jwtDecode(localStorage.getItem("authTokens"))
-      : null
+    localStorage.getItem("authTokens") ? jwtDecode(authTokens.access) : null
   );
   const [loading, setLoading] = useState(true);
 
   const login = (data) => {
     try {
       setAuthTokens(data);
-      setUser(jwtDecode(data.access));
+
+      const decodedUser = jwtDecode(data.access);
+
+      setUser(decodedUser);
+
       localStorage.setItem("authTokens", JSON.stringify(data));
     } catch (error) {
       console.error("JWT token error:", error);

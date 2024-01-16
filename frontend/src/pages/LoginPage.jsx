@@ -36,7 +36,8 @@ const LoginPage = () => {
 
       if (response.status === 200) {
         login(data);
-        navigate("/");
+
+        navigate(`/${username}`);
       } else {
         setErrorMessage("Response error");
       }

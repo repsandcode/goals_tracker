@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<PrivateRoutes />}>
-            <Route element={<HomePage />} path="/" exact />
+            <Route element={<HomePage />} path="/:username" exact />
           </Route>
 
           <Route element={<LoginPage />} path="/login" />
