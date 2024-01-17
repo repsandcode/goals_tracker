@@ -15,9 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<PrivateRoutes />}>
-            <Route
-              element={<Navigate to="/:username" path="/" replace={true} />}
-            />
+            <Route element={<HomePage />} path="/" />
             <Route element={<HomePage />} path="/:username" />
           </Route>
 

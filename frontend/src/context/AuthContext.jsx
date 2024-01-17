@@ -32,19 +32,18 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    // Set the user to null
     setAuthTokens(null);
     setUser(null);
-    // Remove the JWT token from local storage
     localStorage.removeItem("authTokens");
   };
 
   const updateToken = async () => {
+    console.log("Updated Token!");
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/token/refresh/",
         {
-          refresh: authTokens.refresh,
+          refresh: authTokens?.refresh,
         }
       );
 
@@ -68,10 +67,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    // if (loading) {
-    //   // Reset loading state after the request is complete
-    //   updateToken();
-    // }
+    if (loading) {
+      // Reset loading state after the request is complete
+      updateToken();
+    }
 
     const fourMinutes = 1000 * 60 * 4;
 
@@ -87,7 +86,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, authTokens, login, logout }}>
-      {children}
+      {loading ? null : children}
     </AuthContext.Provider>
   );
 };

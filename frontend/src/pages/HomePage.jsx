@@ -3,10 +3,12 @@ import { useAuth } from "../context/AuthContext";
 import Header from "../components/Header";
 import axios from "axios";
 import { IoAdd } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const { user, authTokens } = useAuth();
+  const { user, authTokens, logout } = useAuth();
   const [topGoals, setTopGoals] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getTopGoals();
@@ -26,14 +28,29 @@ const HomePage = () => {
   };
 
   const getTopGoals = async () => {
-    const response = await axios.get("http://127.0.0.1:8000/api/top-goals/", {
-      headers: {
-        Authorization: "Bearer " + String(authTokens.access), //the token is a variable which holds the token
-      },
-    });
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/top-goals/", {
+        headers: {
+          Authorization: "Bearer " + String(authTokens.access),
+        },
+      });
 
-    console.log(response.data);
-    setTopGoals(response.data);
+      const data = response.data;
+
+      if (response.status === 200) {
+        setTopGoals(data);
+      } else {
+        // Handle other success status codes here if needed
+        console.log("Unexpected status code:", response.status);
+      }
+    } catch (error) {
+      // Handle errors, including 401 Unauthorized
+      // console.error("Error fetching top goals:", error);
+      if (error.response && error.response.status === 401) {
+        logout();
+        navigate("/login");
+      }
+    }
   };
 
   return (
