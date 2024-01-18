@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.decorators import permission_classes
+from rest_framework.decorators import permission_classes, action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import authenticate
 
@@ -15,6 +15,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
+import jwt
+from decouple import config
 
 
 class RegisterView(APIView):
@@ -71,6 +73,16 @@ class MyTokenObtainPairView(TokenObtainPairView):
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    # @action(detail=True, methods=['get'])
+    # def user_details(self, request):
+    #     # Get the user from the request
+    #     user = self.request.user
+
+    #     # Serialize the user data and return it in the response
+    #     serializer = UserSerializer(user)
+
+    #     return Response(serializer.data)
 
 
 class TopGoalViewSet(ModelViewSet):

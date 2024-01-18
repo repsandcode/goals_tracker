@@ -2,15 +2,20 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const Header = () => {
+const Header = ({ firstName }) => {
   const navigate = useNavigate();
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
+  // Check if firstName is defined before using slice
+  const name = firstName
+    ? `${firstName.slice(0, 1).toUpperCase()}${firstName.slice(1)}`
+    : "";
 
   return (
-    <div className="flex justify-between">
-      <h1>Goal Tracker</h1>
+    <div className="">
+      <h1 className="text-2xl tracking-wide">Hello, {name}</h1>
+      <p>Track your progress. You got this! 💪</p>
 
-      <button
+      {/* <button
         className="cursor-pointer hover:text-green-500 hover:underline"
         onClick={() => {
           logout();
@@ -18,7 +23,7 @@ const Header = () => {
         }}
       >
         logout
-      </button>
+      </button> */}
     </div>
   );
 };
