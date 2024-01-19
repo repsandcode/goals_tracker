@@ -94,9 +94,22 @@ class TopGoalViewSet(ModelViewSet):
         user = self.request.user
 
         # Filter the queryset based on the user
-        queryset = user.top_goals.all()
+        queryset = TopGoal.objects.filter(user=user)
 
         return queryset
+    
+    def create(self, request, *args, **kwargs):
+        # Get the user from the request
+        user = request.user
+
+        # Validate and serialize the incoming data
+        serializer = TopGoalSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # Save the new goal with the user
+        serializer.save(user=user)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class DailyGoalViewSet(ModelViewSet):

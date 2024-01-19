@@ -6,7 +6,9 @@ import axios from "axios";
 import { IoAdd } from "react-icons/io5";
 import TopGoalBox from "../components/TopGoalBox";
 
-const TopGoalForm = ({ authTokens }) => {
+const TopGoalForm = () => {
+  const { authTokens } = useAuth();
+
   const [topGoal, setTopGoal] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -24,45 +26,31 @@ const TopGoalForm = ({ authTokens }) => {
   const handleAddTopGoal = async (e) => {
     e.preventDefault();
 
-    if (topGoal === "") {
-      setErrorMsgs((prev) => ({
-        ...prev,
-        topGoal: "Input your desired goal",
-      }));
-    }
+    if (topGoal === "" || startDate === "" || endDate === "") {
+      setErrorMsgs({
+        topGoal: topGoal === "" ? "Input your desired goal" : "",
+        startDate: startDate === "" ? "Enter a start date" : "",
+        endDate: endDate === "" ? "Enter an end date" : "",
+      });
 
-    if (startDate === "") {
-      setErrorMsgs((prev) => ({
-        ...prev,
-        startDate: "Enter a start date",
-      }));
-    }
-
-    if (endDate === "") {
-      setErrorMsgs((prev) => ({
-        ...prev,
-        endDate: "Enter an end date",
-      }));
-    }
-
-    if (errorMsgs.topGoal || errorMsgs.startDate || errorMsgs.endDate) {
       return;
     }
 
     setLoading(true);
 
     try {
+      const data = {
+        name: topGoal,
+        start_date: startDate,
+        end_date: endDate,
+      };
+
       const response = await axios.post(
         "http://127.0.0.1:8000/api/top-goals/",
-        {
-          name: topGoal,
-          start_date: startDate,
-          end_date: endDate,
-        },
+        data,
         {
           headers: {
-            Authorization: `Bearer ${authTokens.access}`, // Include your authentication token here
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${authTokens.access}`,
           },
         }
       );
@@ -70,7 +58,7 @@ const TopGoalForm = ({ authTokens }) => {
       console.log(response);
       console.log(response.data);
     } catch (error) {
-      console.error("Login failed:", error.message);
+      console.error("Error adding top goal:", error.response || error.message);
     } finally {
       setLoading(false);
     }
@@ -123,7 +111,7 @@ const TopGoalForm = ({ authTokens }) => {
           </label>
           <input
             type="date"
-            name="endData"
+            name="endDate"
             id="endDate"
             className="sm:text-sm rounded-lg block w-full p-2.5 outline-none"
             value={endDate}
@@ -134,7 +122,6 @@ const TopGoalForm = ({ authTokens }) => {
 
       {/* if there is a button in form, it will close the modal */}
       <div className="modal-action">
-        <button className="btn bg-red-400">Close</button>
         <button type="submit" className="btn bg-green-400">
           {loading ? "Adding..." : "Add Top Goal"}
         </button>
@@ -151,13 +138,13 @@ const TopGoals = () => {
 
   useEffect(() => {
     getTopGoals();
-  }, []);
+  }, [authTokens]);
 
   const getTopGoals = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:8000/api/top-goals/", {
         headers: {
-          Authorization: "Bearer " + String(authTokens.access),
+          Authorization: `Bearer ${authTokens.access}`,
         },
       });
 
@@ -176,6 +163,7 @@ const TopGoals = () => {
       //   logout();
       //   navigate("/login");
       // }
+      console.log(error.message);
     }
   };
 
@@ -200,7 +188,7 @@ const TopGoals = () => {
               <h3 className="font-bold text-lg">
                 What's a top goal you want to achieve?
               </h3>
-              <TopGoalForm authTokens={authTokens} />
+              <TopGoalForm />
             </div>
           </dialog>
         </div>
