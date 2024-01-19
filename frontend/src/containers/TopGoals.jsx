@@ -9,6 +9,7 @@ import TopGoalBox from "../components/TopGoalBox";
 const TopGoals = () => {
   const { authTokens, logout } = useAuth();
   const [topGoals, setTopGoals] = useState([]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,10 +35,10 @@ const TopGoals = () => {
     } catch (error) {
       // Handle errors, including 401 Unauthorized
       // console.error("Error fetching top goals:", error);
-      if (error.response && error.response.status === 401) {
-        logout();
-        navigate("/login");
-      }
+      // if (error.response && error.response.status === 401) {
+      //   logout();
+      //   navigate("/login");
+      // }
     }
   };
 
@@ -48,10 +49,32 @@ const TopGoals = () => {
         <div className="mb-2 flex justify-between items-center font-light">
           <h2 className="text-2xl">Top Goals ({topGoals.length})</h2>
 
-          <button className="flex items-center rounded-2xl py-3 px-4 border">
+          <button
+            className="flex items-center rounded-2xl py-3 px-4 border"
+            id="addNewTopGoalButton"
+            onClick={() => document.getElementById("addTopGoal").showModal()}
+          >
             <IoAdd />
             <span className="ml-1">Add</span>
           </button>
+
+          <dialog
+            id="addTopGoal"
+            className="modal modal-bottom sm:modal-middle"
+          >
+            <div className="modal-box">
+              <h3 className="font-bold text-lg">Hello!</h3>
+              <p className="py-4">
+                Press ESC key or click the button below to close
+              </p>
+              <div className="modal-action">
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button className="btn">Close</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
