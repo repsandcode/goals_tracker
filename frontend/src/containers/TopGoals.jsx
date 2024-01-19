@@ -6,9 +6,7 @@ import axios from "axios";
 import { IoAdd } from "react-icons/io5";
 import TopGoalBox from "../components/TopGoalBox";
 
-const TopGoalForm = () => {
-  const { authTokens } = useAuth();
-
+const TopGoalForm = ({ access, getTopGoals }) => {
   const [topGoal, setTopGoal] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -19,12 +17,27 @@ const TopGoalForm = () => {
     endDate: "",
   });
 
+  const { authTokens } = useAuth();
+  const [accessToken, setAccessToken] = useState(authTokens.access);
+
+  useEffect(() => {
+    // Update the access token whenever it changes
+    setAccessToken(authTokens.access);
+  }, [authTokens]);
+
   const onChangeTopGoal = (e) => setTopGoal(e.target.value);
   const onChangeStartDate = (e) => setStartDate(e.target.value);
   const onChangeEndDate = (e) => setEndDate(e.target.value);
 
   const handleAddTopGoal = async (e) => {
     e.preventDefault();
+    const tokens = JSON.parse(localStorage.getItem("authTokens"));
+    console.log("Both tokens in TopGoals.jsx -> ", access === accessToken);
+    console.log(
+      "Against localStorage access token? ",
+      accessToken === tokens.access
+    );
+    console.log("Access Token:", accessToken); // Log access token
 
     if (topGoal === "" || startDate === "" || endDate === "") {
       setErrorMsgs({
@@ -50,13 +63,21 @@ const TopGoalForm = () => {
         data,
         {
           headers: {
-            Authorization: `Bearer ${authTokens.access}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
 
       console.log(response);
       console.log(response.data);
+
+      if (response.status === 200 || response.status === 201) {
+        // Close the modal
+        document.getElementById("addTopGoal").close();
+
+        // Fetch the updated list of top goals and update the state
+        getTopGoals();
+      }
     } catch (error) {
       console.error("Error adding top goal:", error.response || error.message);
     } finally {
@@ -87,15 +108,15 @@ const TopGoalForm = () => {
       <div className="flex gap-x-2.5 mt-5">
         <div className="grow">
           <label
-            htmlFor="startDate"
+            htmlFor="start_date"
             className="block mb-2 text-sm font-medium text-black"
           >
             Start Date
           </label>
           <input
             type="date"
-            name="startDate"
-            id="startDate"
+            name="start_date"
+            id="start_date"
             className="sm:text-sm rounded-lg block w-full p-2.5 outline-none"
             value={startDate}
             onChange={onChangeStartDate}
@@ -104,15 +125,15 @@ const TopGoalForm = () => {
 
         <div className="grow">
           <label
-            htmlFor="endDate"
+            htmlFor="end_date"
             className="block mb-2 text-sm font-medium text-black"
           >
             End Date
           </label>
           <input
             type="date"
-            name="endDate"
-            id="endDate"
+            name="end_date"
+            id="end_date"
             className="sm:text-sm rounded-lg block w-full p-2.5 outline-none"
             value={endDate}
             onChange={onChangeEndDate}
@@ -152,6 +173,7 @@ const TopGoals = () => {
 
       if (response.status === 200) {
         setTopGoals(data);
+        console.log("Access Token to get all ->", authTokens.access);
       } else {
         // Handle other success status codes here if needed
         console.log("Unexpected status code:", response.status);
@@ -188,7 +210,10 @@ const TopGoals = () => {
               <h3 className="font-bold text-lg">
                 What's a top goal you want to achieve?
               </h3>
-              <TopGoalForm />
+              <TopGoalForm
+                access={authTokens.access}
+                getTopGoals={getTopGoals}
+              />
             </div>
           </dialog>
         </div>

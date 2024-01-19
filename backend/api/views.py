@@ -99,17 +99,24 @@ class TopGoalViewSet(ModelViewSet):
         return queryset
     
     def create(self, request, *args, **kwargs):
-        # Get the user from the request
-        user = request.user
+        try:
+            # Validate and serialize the incoming data
+            serializer = TopGoalSerializer(data=request.data, context={'request': request})
+            serializer.is_valid(raise_exception=True)
 
-        # Validate and serialize the incoming data
-        serializer = TopGoalSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+            # Save the new goal with the user
+            self.perform_create(serializer)
 
-        # Save the new goal with the user
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            # Log the error
+            print(f"Error creating TopGoal: {e}")
+            return Response({'error': 'Internal Server Error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def perform_create(self, serializer):
+        # Perform the creation and set the user
+        user = self.request.user
         serializer.save(user=user)
-
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class DailyGoalViewSet(ModelViewSet):

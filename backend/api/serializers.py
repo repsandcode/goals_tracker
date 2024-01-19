@@ -47,12 +47,23 @@ class TopGoalSerializer(serializers.ModelSerializer):
   class Meta:
     model = TopGoal
     fields = '__all__'
+    read_only_fields = ('user',)  # Make the 'user' field read-only
   
   def get_formatted_start_date(self, obj):
         return obj.formatted_start_date()
 
   def get_formatted_end_date(self, obj):
         return obj.formatted_end_date()
+  
+  def create(self, validated_data):
+        # Extract user from the context
+        user = self.context['request'].user
+
+        # Add user to the validated data
+        validated_data['user'] = user
+
+        # Create and return the new top goal
+        return super().create(validated_data)
 
 
 class DailyGoalSerializer(serializers.ModelSerializer):

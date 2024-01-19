@@ -15,7 +15,7 @@ const Header = ({ firstName }) => {
       <h1 className="text-2xl tracking-wide">Hello, {name}</h1>
       <p>Track your progress. You got this! 💪</p>
 
-      {/* <button
+      <button
         className="cursor-pointer hover:text-green-500 hover:underline"
         onClick={() => {
           logout();
@@ -23,7 +23,7 @@ const Header = ({ firstName }) => {
         }}
       >
         logout
-      </button> */}
+      </button>
     </div>
   );
 };
