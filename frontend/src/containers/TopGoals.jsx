@@ -98,14 +98,17 @@ const TopGoalForm = ({ access, getTopGoals }) => {
           type="text"
           name="topGoal"
           id="topGoal"
-          className="sm:text-sm rounded-lg block w-full p-2.5 outline-none"
+          className="sm:text-sm rounded-lg block w-full p-2.5 outline-none border"
           placeholder="Create a micro-SAAS product"
           value={topGoal}
           onChange={onChangeTopGoal}
         />
+        {errorMsgs.topGoal && (
+          <span className="text-rose-500 text-sm">{errorMsgs.topGoal}</span>
+        )}
       </div>
 
-      <div className="flex gap-x-2.5 mt-5">
+      <div className="flex gap-x-5 mt-5">
         <div className="grow">
           <label
             htmlFor="start_date"
@@ -117,10 +120,13 @@ const TopGoalForm = ({ access, getTopGoals }) => {
             type="date"
             name="start_date"
             id="start_date"
-            className="sm:text-sm rounded-lg block w-full p-2.5 outline-none"
+            className="sm:text-sm rounded-lg block w-full p-2.5 outline-none border"
             value={startDate}
             onChange={onChangeStartDate}
           />
+          {errorMsgs.startDate && (
+            <span className="text-rose-500 text-sm">{errorMsgs.startDate}</span>
+          )}
         </div>
 
         <div className="grow">
@@ -134,10 +140,13 @@ const TopGoalForm = ({ access, getTopGoals }) => {
             type="date"
             name="end_date"
             id="end_date"
-            className="sm:text-sm rounded-lg block w-full p-2.5 outline-none"
+            className="sm:text-sm rounded-lg block w-full p-2.5 outline-none border"
             value={endDate}
             onChange={onChangeEndDate}
           />
+          {errorMsgs.endDate && (
+            <span className="text-rose-500 text-sm">{errorMsgs.endDate}</span>
+          )}
         </div>
       </div>
 
