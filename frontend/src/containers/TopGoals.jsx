@@ -21,6 +21,7 @@ const TopGoals = () => {
 
     const handleCloseDialog = (event) => {
       if (event.target === addTopGoalDialog) {
+        console.log("closed");
         addTopGoalDialog.close();
       }
     };

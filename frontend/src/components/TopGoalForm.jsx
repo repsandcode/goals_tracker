@@ -48,17 +48,6 @@ const TopGoalForm = ({ access, getTopGoals }) => {
     setAccessToken(authTokens.access);
   }, [authTokens]);
 
-  useEffect(() => {
-    setTopGoal("");
-    setStartDate("");
-    setEndDate("");
-    setErrorMsgs({
-      topGoal: "",
-      startDate: "",
-      endDate: "",
-    });
-  }, []);
-
   const cleanDateErrorMsgs = () => {
     setErrorMsgs((prev) => ({
       ...prev,
