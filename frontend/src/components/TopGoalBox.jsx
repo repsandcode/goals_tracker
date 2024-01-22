@@ -34,7 +34,9 @@ const TopGoalBox = ({ goal }) => {
         </div>
       </div>
 
-      <div className="text-sm">{getRemainingDays(goal.end_date)} days left</div>
+      <div className="text-sm">
+        {getRemainingDays(goal.end_date)} days left until End Date
+      </div>
     </div>
   );
 };
