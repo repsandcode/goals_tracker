@@ -16,6 +16,26 @@ const TopGoals = () => {
     getTopGoals();
   }, [authTokens]);
 
+  useEffect(() => {
+    const addTopGoalDialog = document.getElementById("addTopGoal");
+
+    const handleCloseDialog = (event) => {
+      if (event.target === addTopGoalDialog) {
+        addTopGoalDialog.close();
+      }
+    };
+
+    document.addEventListener("click", handleCloseDialog);
+
+    return () => {
+      document.removeEventListener("click", handleCloseDialog);
+    };
+  }, []);
+
+  const openDialog = () => {
+    document.getElementById("addTopGoal").showModal();
+  };
+
   const getTopGoals = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:8000/api/top-goals/", {
@@ -54,7 +74,7 @@ const TopGoals = () => {
           <button
             className="flex items-center rounded-2xl py-3 px-4 border"
             id="addNewTopGoalButton"
-            onClick={() => document.getElementById("addTopGoal").showModal()}
+            onClick={openDialog}
           >
             <IoAdd />
             <span className="ml-1">Add</span>

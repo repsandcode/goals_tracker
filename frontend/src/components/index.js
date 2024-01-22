@@ -1,5 +1,6 @@
+import DateInput from "./DateInput";
 import Header from "./Header";
 import TopGoalBox from "./TopGoalBox";
 import TopGoalForm from "./TopGoalForm";
 
-export { Header, TopGoalBox, TopGoalForm };
+export { DateInput, Header, TopGoalBox, TopGoalForm };

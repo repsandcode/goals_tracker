@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
+import DateInput from "./DateInput";
 
 const compareDates = (startDate, endDate) => {
   // Convert date strings to Date objects
@@ -46,6 +47,17 @@ const TopGoalForm = ({ access, getTopGoals }) => {
     // Update the access token whenever it changes
     setAccessToken(authTokens.access);
   }, [authTokens]);
+
+  useEffect(() => {
+    setTopGoal("");
+    setStartDate("");
+    setEndDate("");
+    setErrorMsgs({
+      topGoal: "",
+      startDate: "",
+      endDate: "",
+    });
+  }, []);
 
   const cleanDateErrorMsgs = () => {
     setErrorMsgs((prev) => ({
@@ -97,13 +109,15 @@ const TopGoalForm = ({ access, getTopGoals }) => {
 
   const handleAddTopGoal = async (e) => {
     e.preventDefault();
-    const tokens = JSON.parse(localStorage.getItem("authTokens"));
-    console.log("Both tokens in TopGoals.jsx -> ", access === accessToken);
-    console.log(
-      "Against localStorage access token? ",
-      accessToken === tokens.access
-    );
-    console.log("Access Token:", accessToken); // Log access token
+
+    if (!topGoal || !startDate || !endDate) {
+      setErrorMsgs({
+        topGoal: !topGoal && "Input your top goal",
+        startDate: !startDate && "Input your start date",
+        endDate: !endDate && "Input your end date",
+      });
+      return; // Return early if there are errors
+    }
 
     setLoading(true);
 
@@ -169,56 +183,21 @@ const TopGoalForm = ({ access, getTopGoals }) => {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-y-8 sm:gap-5 mt-8">
-        <div className="grow">
-          <label
-            htmlFor="start_date"
-            className="block mb-2 text-sm font-medium text-black"
-          >
-            Start Date
-          </label>
+        <DateInput
+          name={"start_date"}
+          label={"Start Date"}
+          value={startDate}
+          onChange={onChangeStartDate}
+          errorMsg={errorMsgs.startDate}
+        />
 
-          <div className="relative">
-            <input
-              type="date"
-              name="start_date"
-              id="start_date"
-              className="sm:text-sm rounded-lg block w-full p-2.5 outline-none border"
-              value={startDate}
-              onChange={(e) => onChangeStartDate(e.target.value)}
-            />
-
-            {errorMsgs.startDate && (
-              <span className="absolute text-rose-500 text-sm">
-                {errorMsgs.startDate}
-              </span>
-            )}
-          </div>
-        </div>
-
-        <div className="grow">
-          <label
-            htmlFor="end_date"
-            className="block mb-2 text-sm font-medium text-black"
-          >
-            End Date
-          </label>
-
-          <div className="relative">
-            <input
-              type="date"
-              name="end_date"
-              id="end_date"
-              className="sm:text-sm rounded-lg block w-full p-2.5 outline-none border"
-              value={endDate}
-              onChange={(e) => onChangeEndDate(e.target.value)}
-            />
-            {errorMsgs.endDate && (
-              <span className="absolute text-rose-500 text-sm">
-                {errorMsgs.endDate}
-              </span>
-            )}
-          </div>
-        </div>
+        <DateInput
+          name={"end_date"}
+          label={"End Date"}
+          value={endDate}
+          onChange={onChangeEndDate}
+          errorMsg={errorMsgs.endDate}
+        />
       </div>
 
       {/* if there is a button in form, it will close the modal */}
