@@ -1,4 +1,6 @@
 import React from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const getRemainingDays = (endDate) => {
   const deadline = new Date(endDate); // Replace with your end date
@@ -14,8 +16,20 @@ const getRemainingDays = (endDate) => {
 };
 
 const TopGoalBox = ({ goal }) => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleTopGoalClick = (name) => {
+    const username = user.username;
+    console.log(username);
+    navigate(`/${username}/top/goals/${name}`);
+  };
+
   return (
-    <div className="bg-slate-100 p-4 rounded-xl">
+    <div
+      className="bg-slate-100 p-4 rounded-xl"
+      onClick={() => handleTopGoalClick(goal.name)}
+    >
       <p className="text-xl">{goal.name}</p>
 
       <div className="flex gap-x-3 mb-2">

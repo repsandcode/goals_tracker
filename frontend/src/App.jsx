@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { HomePage, LoginPage, RegisterPage } from "./pages";
+import { HomePage, LoginPage, RegisterPage, TopGoalPage } from "./pages";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import PrivateRoutes from "./utils/PrivateRoutes";
@@ -17,6 +17,10 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route element={<HomePage />} path="/" />
             <Route element={<HomePage />} path="/:username" />
+            <Route
+              element={<TopGoalPage />}
+              path="/:username/top/goals/:goal"
+            />
           </Route>
 
           <Route element={<LoginPage />} path="/login" />
