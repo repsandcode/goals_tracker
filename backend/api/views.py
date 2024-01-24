@@ -89,6 +89,27 @@ class TopGoalViewSet(ModelViewSet):
     queryset = TopGoal.objects.all()
     serializer_class = TopGoalSerializer
 
+    @action(detail=False, methods=['GET'])
+    def get_top_goal(self, request):
+        # Get parameters from the request
+        username = request.query_params.get('username', None)
+        name = request.query_params.get('name', None)
+
+        # Validate parameters
+        if not username or not name:
+            return Response({"error": "Both username and top_goal_name are required."}, status=400)
+
+        # Get the user
+        user = User.objects.get(username=username)
+
+        # Get the specific top goal based on user and name
+        try:
+            top_goal = TopGoal.objects.get(user=user, name=name)
+            serializer = TopGoalSerializer(top_goal)
+            return Response(serializer.data)
+        except TopGoal.DoesNotExist:
+            return Response({"error": "Top goal not found."}, status=404)
+
     def get_queryset(self):
         # Get the user from the request
         user = self.request.user
@@ -117,7 +138,6 @@ class TopGoalViewSet(ModelViewSet):
         # Perform the creation and set the user
         user = self.request.user
         serializer.save(user=user)
-
 
 class DailyGoalViewSet(ModelViewSet):
     queryset = DailyGoal.objects.all()

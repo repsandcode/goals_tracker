@@ -22,7 +22,7 @@ const TopGoalBox = ({ goal }) => {
   const handleTopGoalClick = (name) => {
     const username = user.username;
     console.log(username);
-    navigate(`/${username}/top/goals/${name}`);
+    navigate(`/${username}/top/${name}`);
   };
 
   return (

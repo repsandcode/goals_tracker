@@ -17,10 +17,7 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route element={<HomePage />} path="/" />
             <Route element={<HomePage />} path="/:username" />
-            <Route
-              element={<TopGoalPage />}
-              path="/:username/top/goals/:goal"
-            />
+            <Route element={<TopGoalPage />} path="/:username/top/:goal" />
           </Route>
 
           <Route element={<LoginPage />} path="/login" />
