@@ -108,6 +108,10 @@ const TopGoalForm = ({ access, getTopGoals }) => {
       return; // Return early if there are errors
     }
 
+    if (errorMsgs.topGoal || errorMsgs.startDate || errorMsgs.endDate) {
+      return;
+    }
+
     setLoading(true);
 
     try {
