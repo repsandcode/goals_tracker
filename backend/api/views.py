@@ -93,10 +93,10 @@ class TopGoalViewSet(ModelViewSet):
     def get_top_goal(self, request):
         # Get parameters from the request
         username = request.query_params.get('username', None)
-        name = request.query_params.get('name', None)
+        id = request.query_params.get('id', None)
 
         # Validate parameters
-        if not username or not name:
+        if not username or not id:
             return Response({"error": "Both username and top_goal_name are required."}, status=400)
 
         # Get the user
@@ -104,7 +104,7 @@ class TopGoalViewSet(ModelViewSet):
 
         # Get the specific top goal based on user and name
         try:
-            top_goal = TopGoal.objects.get(user=user, name=name)
+            top_goal = TopGoal.objects.get(user=user, id=id)
             serializer = TopGoalSerializer(top_goal)
             return Response(serializer.data)
         except TopGoal.DoesNotExist:

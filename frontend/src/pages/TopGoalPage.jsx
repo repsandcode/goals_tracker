@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Header } from "../components";
 
 const TopGoalPage = () => {
-  const { username, goal } = useParams();
+  const { username, id } = useParams();
   const [topGoal, setTopGoal] = useState({});
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const TopGoalPage = () => {
   const getTopGoal = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/top-goals/get_top_goal/?username=${username}&name=${goal}`
+        `http://127.0.0.1:8000/api/top-goals/get_top_goal/?username=${username}&id=${id}`
       );
       console.log(response);
       setTopGoal(response.data);
@@ -29,7 +29,7 @@ const TopGoalPage = () => {
     <div>
       <Header />
       {Object.keys(topGoal).map((key, i) => (
-        <p>
+        <p key={key}>
           {key}: {topGoal[key]}
         </p>
       ))}
