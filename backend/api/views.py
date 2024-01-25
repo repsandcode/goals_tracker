@@ -96,7 +96,6 @@ class TopGoalViewSet(ModelViewSet):
         name = request.query_params.get('name', None)
         
         print(username)
-        print(name)
 
         # Validate parameters
         if not username or not name:
@@ -104,7 +103,8 @@ class TopGoalViewSet(ModelViewSet):
 
         formatted_name = name.replace("-", " ").lower()
 
-        print(formatted_name)
+        print("url:", name)
+        print("formatted url:", formatted_name)
 
         # Get the user
         user = User.objects.get(username=username)

@@ -18,11 +18,14 @@ const getRemainingDays = (endDate) => {
 const TopGoalBox = ({ goal }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const goalName = goal.name;
 
   const handleTopGoalClick = (name) => {
     const username = user.username;
+    const hyphenedName = name.split(" ").join("-");
     console.log(username);
-    navigate(`/${username}/top/${name}`);
+    console.log(hyphenedName);
+    navigate(`/${username}/top/${hyphenedName}`);
   };
 
   return (
@@ -30,7 +33,9 @@ const TopGoalBox = ({ goal }) => {
       className="bg-slate-100 p-4 rounded-xl"
       onClick={() => handleTopGoalClick(goal.name)}
     >
-      <p className="text-xl">{goal.name}</p>
+      <p className="text-xl">
+        {goalName.charAt(0).toUpperCase() + goalName.slice(1)}
+      </p>
 
       <div className="flex gap-x-3 mb-2">
         <div>
