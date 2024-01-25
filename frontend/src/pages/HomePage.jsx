@@ -45,7 +45,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="md:container md:mx-auto">
+    <div className="">
       <Header firstName={userDetails.first_name} />
 
       <TopGoals />

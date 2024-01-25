@@ -18,6 +18,11 @@ class TopGoal(models.Model):
     end_date = models.DateField(auto_now=False, auto_now_add=False)
     mark_as_complete = models.BooleanField(default=False)
 
+    def save(self, *args, **kwargs):
+        # Convert the name to lowercase before saving
+        self.name = self.name.lower()
+        super().save(*args, **kwargs)
+
     def save_with_user(self, user):
         self.user = user
         self.save()

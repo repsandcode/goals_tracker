@@ -19,16 +19,16 @@ const TopGoalBox = ({ goal }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const handleTopGoalClick = (id) => {
+  const handleTopGoalClick = (name) => {
     const username = user.username;
     console.log(username);
-    navigate(`/${username}/top/${id}`);
+    navigate(`/${username}/top/${name}`);
   };
 
   return (
     <div
       className="bg-slate-100 p-4 rounded-xl"
-      onClick={() => handleTopGoalClick(goal.id)}
+      onClick={() => handleTopGoalClick(goal.name)}
     >
       <p className="text-xl">{goal.name}</p>
 

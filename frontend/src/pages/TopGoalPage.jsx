@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Header } from "../components";
+import DailyGoals from "../containers/DailyGoals";
 
 const TopGoalPage = () => {
-  const { username, id } = useParams();
+  const { username, name } = useParams();
   const [topGoal, setTopGoal] = useState({});
 
   useEffect(() => {
@@ -14,7 +15,7 @@ const TopGoalPage = () => {
   const getTopGoal = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/top-goals/get_top_goal/?username=${username}&id=${id}`
+        `http://127.0.0.1:8000/api/top-goals/get_top_goal/?username=${username}&name=${name}`
       );
       console.log(response);
       setTopGoal(response.data);
@@ -27,7 +28,7 @@ const TopGoalPage = () => {
 
   return (
     <div>
-      <Header />
+      <DailyGoals />
       {Object.keys(topGoal).map((key, i) => (
         <p key={key}>
           {key}: {topGoal[key]}

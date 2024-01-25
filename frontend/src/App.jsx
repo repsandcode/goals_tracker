@@ -11,13 +11,13 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="md:container md:mx-auto p-3">
       <BrowserRouter>
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route element={<HomePage />} path="/" />
             <Route element={<HomePage />} path="/:username" />
-            <Route element={<TopGoalPage />} path="/:username/top/:id" />
+            <Route element={<TopGoalPage />} path="/:username/top/:name" />
           </Route>
 
           <Route element={<LoginPage />} path="/login" />
