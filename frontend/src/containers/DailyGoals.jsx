@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DailyGoalForm } from "../components";
+import { DailyGoalBox, DailyGoalForm } from "../components";
 import axios from "axios";
 
 const DailyGoals = () => {
@@ -10,9 +10,14 @@ const DailyGoals = () => {
   };
 
   return (
-    <div>
-      <DailyGoalForm />
-    </div>
+    <section>
+      <div>
+        <DailyGoalForm />
+      </div>
+      <div>
+        <DailyGoalBox />
+      </div>
+    </section>
   );
 };
 

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Header } from "../components";
 import DailyGoals from "../containers/DailyGoals";
+import TopGoalHero from "../containers/TopGoalHero";
 
 const TopGoalPage = () => {
   const { username, name } = useParams();
@@ -27,13 +28,10 @@ const TopGoalPage = () => {
   };
 
   return (
-    <div>
+    <div className="flex">
       <DailyGoals />
-      {Object.keys(topGoal).map((key, i) => (
-        <p key={key}>
-          {key}: {topGoal[key]}
-        </p>
-      ))}
+
+      <TopGoalHero topGoal={topGoal} />
     </div>
   );
 };
