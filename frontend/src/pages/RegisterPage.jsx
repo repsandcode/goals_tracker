@@ -2,13 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { IoClose } from "react-icons/io5";
+import { isValidEmailFormat } from "../utils/utils";
 import axios from "axios";
-
-// email validation function using a regular expression
-const isValidEmailFormat = (email) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
 
 const RegisterPage = () => {
   const navigate = useNavigate();

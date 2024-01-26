@@ -1,19 +1,7 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-
-const getRemainingDays = (endDate) => {
-  const deadline = new Date(endDate); // Replace with your end date
-  const currentDate = new Date();
-
-  // Calculate the difference in milliseconds
-  const timeDifference = deadline - currentDate;
-
-  // Convert milliseconds to days
-  const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-
-  return daysRemaining;
-};
+import { getRemainingDays } from "../utils/utils";
 
 const TopGoalBox = ({ goal }) => {
   const { user } = useAuth();

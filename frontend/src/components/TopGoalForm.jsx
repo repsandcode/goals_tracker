@@ -3,31 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import DateInput from "./DateInput";
 
-const compareDates = (startDate, endDate) => {
-  // Convert date strings to Date objects
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-
-  // Get the time in milliseconds using .getTime()
-  const startTime = start.getTime();
-  const endTime = end.getTime();
-
-  let errorMsg = {
-    start: "",
-    end: "",
-  };
-
-  // Compare the two dates
-  if (startTime > endTime) {
-    errorMsg.start = `Must be before end date.`;
-    errorMsg.end = `Must be after start date.`;
-  } else if (startTime === endTime) {
-    errorMsg.start = `Dates must be different.`;
-    errorMsg.end = `Dates must be different.`;
-  }
-
-  return errorMsg;
-};
+import { compareDates } from "../utils/utils";
 
 const TopGoalForm = ({ access, getTopGoals }) => {
   const [topGoal, setTopGoal] = useState("");
