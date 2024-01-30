@@ -40,7 +40,7 @@ const TopGoals = () => {
 
   const getTopGoals = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/api/top-goals/", {
+      const response = await axios.get("http://127.0.0.1:8000/api/top/", {
         headers: {
           Authorization: `Bearer ${authTokens.access}`,
         },

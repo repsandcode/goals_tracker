@@ -67,17 +67,7 @@ class TopGoalSerializer(serializers.ModelSerializer):
 
 
 class DailyGoalSerializer(serializers.ModelSerializer):
-
-  formatted_start_date = serializers.SerializerMethodField()
-  formatted_end_date = serializers.SerializerMethodField()
-
-
   class Meta:
     model = DailyGoal
     fields = '__all__'
-  
-  def get_formatted_start_date(self, obj):
-    return obj.start_date.strftime("%b %d, %Y")
-
-  def get_formatted_end_date(self, obj):
-    return obj.end_date.strftime("%b %d, %Y")
+    read_only_fields = ('user',)  # Make the 'user' field read-only

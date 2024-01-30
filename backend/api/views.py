@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 
 from rest_framework import status
 from rest_framework.views import APIView
@@ -15,8 +16,26 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-import jwt
+import jwt, traceback
 from decouple import config
+
+
+def get_top_goal(user, name):
+    print("user is:", user)
+
+    # Validate parameters
+    if not user or not name:
+        return Response({"error": "Both username and name are required."}, status=400)
+
+    formatted_name = name.replace("-", " ").lower()
+
+    # Get the specific top goal based on user and name
+    try:
+        top_goal = TopGoal.objects.get(user=user, name=formatted_name)
+        return top_goal
+    except TopGoal.DoesNotExist:
+        return None
+
 
 
 class RegisterView(APIView):
@@ -54,6 +73,7 @@ class RegisterView(APIView):
         return Response(response_data, status=status.HTTP_400_BAD_REQUEST)
 
 
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
@@ -66,8 +86,10 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         return token
 
 
+
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
 
 
 class UserViewSet(ModelViewSet):
@@ -85,47 +107,40 @@ class UserViewSet(ModelViewSet):
     #     return Response(serializer.data)
 
 
+
 class TopGoalViewSet(ModelViewSet):
     queryset = TopGoal.objects.all()
     serializer_class = TopGoalSerializer
-
+   
     @action(detail=False, methods=['GET'])
-    def get_top_goal(self, request):
+    def goal(self, request):
         # Get parameters from the request
         username = request.query_params.get('username', None)
         name = request.query_params.get('name', None)
-        
-        print(username)
 
-        # Validate parameters
-        if not username or not name:
-            return Response({"error": "Both username and name are required."}, status=400)
-
-        formatted_name = name.replace("-", " ").lower()
-
-        print("url:", name)
-        print("formatted url:", formatted_name)
-
-        # Get the user
-        user = User.objects.get(username=username)
-
-        # Get the specific top goal based on user and name
         try:
-            top_goal = TopGoal.objects.get(user=user, name=formatted_name)
+            user = User.objects.get(username=username)
+            top_goal = get_top_goal(user, name)
             serializer = TopGoalSerializer(top_goal)
             return Response(serializer.data)
+        except User.DoesNotExist:
+            return Response({"error": "User not found."}, status=404)
         except TopGoal.DoesNotExist:
-            return Response({"error": "Top goal not found."}, status=404)
-
-    def get_queryset(self):
+            return Response({"error": "Top Goal not found."}, status=404)
+    
+    def list(self, request):
         # Get the user from the request
-        user = self.request.user
+        user = request.user
+
+        print(user)
 
         # Filter the queryset based on the user
-        queryset = TopGoal.objects.filter(user=user)
+        top_goals = TopGoal.objects.filter(user=user)
 
-        return queryset
-    
+        serialized_data = self.serializer_class(top_goals, many=True).data
+
+        return Response(serialized_data)
+
     def create(self, request, *args, **kwargs):
         try:
             # Validate and serialize the incoming data
@@ -146,15 +161,43 @@ class TopGoalViewSet(ModelViewSet):
         user = self.request.user
         serializer.save(user=user)
 
+         # Save the new TopGoal
+        top_goal = serializer.save()
+
+        # Optionally, create related DailyGoals
+        # Example: Create a DailyGoal associated with the newly created TopGoal
+        daily_goal_data = {
+            'user': self.request.user,
+            'top_goal': top_goal.id,
+            'name': 'Sample Daily Goal',
+            # Add other fields as needed
+        }
+        daily_goal_serializer = DailyGoalSerializer(data=daily_goal_data)
+        if daily_goal_serializer.is_valid():
+            daily_goal_serializer.save()
+
+
+
 class DailyGoalViewSet(ModelViewSet):
     queryset = DailyGoal.objects.all()
     serializer_class = DailyGoalSerializer
 
-    def get_queryset(self):
+    def list(self, request):
         # Get the user from the request
-        user = self.request.user
+        user = request.user
+        top_goal_url = request.query_params.get('top-goal', None)
+        top_goal = get_top_goal(user, top_goal_url)
+
+        print(top_goal_url)
+        print(user, top_goal)
 
         # Filter the queryset based on the user
-        queryset = DailyGoal.objects.filter(user=user)
+        daily_goals = DailyGoal.objects.filter(user=user, top_goal=top_goal)
 
-        return queryset
+        print(daily_goals)
+
+        serialized_data = self.serializer_class(daily_goals, many=True).data
+
+        print(serialized_data)
+
+        return Response(serialized_data)
