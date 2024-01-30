@@ -23,7 +23,7 @@ const TopGoalHero = () => {
   };
 
   return (
-    <section>
+    <section className="w-full lg:w-2/3 border border-blue-400 rounded-2xl">
       {Object.keys(topGoal).map((key, i) => (
         <p key={key}>
           {key}: {topGoal[key]}

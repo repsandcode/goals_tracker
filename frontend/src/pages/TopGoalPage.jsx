@@ -6,7 +6,7 @@ import TopGoalHero from "../containers/TopGoalPage/TopGoalHero";
 
 const TopGoalPage = () => {
   return (
-    <div className="flex">
+    <div className="flex flex-col-reverse lg:flex-row gap-5">
       <DailyGoals />
       <TopGoalHero />
     </div>

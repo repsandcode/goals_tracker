@@ -37,7 +37,7 @@ const DailyGoals = () => {
   };
 
   return (
-    <section>
+    <section className="w-full lg:w-1/3 border border-red-400 rounded-2xl">
       <div>
         <DailyGoalForm />
       </div>
