@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
 import { IoAdd } from "react-icons/io5";
-import { TopGoalBox, TopGoalForm } from "../components";
+import { TopGoalBox, TopGoalForm } from "../../components";
 
 const TopGoals = () => {
   const navigate = useNavigate();

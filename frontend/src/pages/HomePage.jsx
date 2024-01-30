@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 import Header from "../components/Header";
-import TopGoals from "../containers/TopGoals";
+import TopGoals from "../containers/HomePage/TopGoals";
 
 import axios from "axios";
 

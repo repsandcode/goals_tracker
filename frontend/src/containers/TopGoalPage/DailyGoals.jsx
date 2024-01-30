@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { DailyGoalBox, DailyGoalForm } from "../components";
+import { DailyGoalBox, DailyGoalForm } from "../../components";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 const DailyGoals = () => {
   const { username, name } = useParams();
