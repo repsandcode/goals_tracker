@@ -37,19 +37,18 @@ const DailyGoals = () => {
   };
 
   return (
-    <section className="w-full lg:w-1/3 border border-red-400 rounded-2xl">
-      <div>
+    <section className="w-full lg:w-1/3 border border-red-400 rounded-2xl p-4">
+      <div className="mb-4">
         <DailyGoalForm />
       </div>
-      <div>
-        {loading ? (
-          <p>Loading...</p>
-        ) : error ? (
-          <p>{error}</p>
-        ) : (
-          dailyGoals.map((goal) => <DailyGoalBox key={goal.id} goal={goal} />)
-        )}
-      </div>
+
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        dailyGoals.map((goal) => <DailyGoalBox key={goal.id} goal={goal} />)
+      )}
     </section>
   );
 };
