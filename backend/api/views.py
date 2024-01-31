@@ -21,8 +21,6 @@ from decouple import config
 
 
 def get_top_goal(user, name):
-    print("user is:", user)
-
     # Validate parameters
     if not user or not name:
         return Response({"error": "Both username and name are required."}, status=400)
@@ -188,16 +186,9 @@ class DailyGoalViewSet(ModelViewSet):
         top_goal_url = request.query_params.get('top-goal', None)
         top_goal = get_top_goal(user, top_goal_url)
 
-        print(top_goal_url)
-        print(user, top_goal)
-
         # Filter the queryset based on the user
         daily_goals = DailyGoal.objects.filter(user=user, top_goal=top_goal)
 
-        print(daily_goals)
-
         serialized_data = self.serializer_class(daily_goals, many=True).data
-
-        print(serialized_data)
 
         return Response(serialized_data)
