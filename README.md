@@ -20,4 +20,4 @@ This section alone should consist of several paragraphs, before you even begin t
 
 <!-- How to run your application. -->
 
-<!-- Check the requirements.txt file for any python packages to install before running -->
+Check the requirements.txt file for any python packages to install before running
