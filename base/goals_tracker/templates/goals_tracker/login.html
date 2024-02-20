@@ -19,7 +19,7 @@
     {% endif %}
 
     <div class="mb-4">
-      <form action="{% url 'login' %}" method="post">
+      <form action="{% url 'goals_tracker:login' %}" method="post">
         {% csrf_token %}
         <div class="form-group mb-4">
           <input
@@ -48,7 +48,9 @@
     </div>
     <div class="fs-5">
       Don't have an account?
-      <a href="{% url 'register' %}" class="text-decoration-none">Register</a>
+      <a href="{% url 'goals_tracker:register' %}" class="text-decoration-none"
+        >Register</a
+      >
     </div>
   </div>
 </div>

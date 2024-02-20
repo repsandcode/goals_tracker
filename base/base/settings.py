@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'goals_tracker'
+    'goals_tracker.apps.GoalsTrackerConfig',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +82,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = "goals_tracker.User"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
