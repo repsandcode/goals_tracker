@@ -11,7 +11,6 @@ from .models import User
 
 # Create your views here.
 def index(request, username):
-  print(request.user)
   if request.user.is_authenticated:
     return render(request, "goals_tracker/index.html", {
       "username": username.capitalize()
