@@ -21,14 +21,4 @@ class Migration(migrations.Migration):
             name='points',
             field=models.IntegerField(default=0),
         ),
-        migrations.AlterField(
-            model_name='user',
-            name='groups',
-            field=models.ManyToManyField(related_name='user_groups_%(class)s', to='auth.group'),
-        ),
-        migrations.AlterField(
-            model_name='user',
-            name='user_permissions',
-            field=models.ManyToManyField(related_name='user_permissions_set_%(class)s', to='auth.permission'),
-        ),
     ]

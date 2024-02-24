@@ -9,14 +9,16 @@ from django.urls import reverse
 
 from .models import User
 
-# Create your views here.
+@login_required
 def index(request, username):
-  if request.user.is_authenticated:
-    return render(request, "goals_tracker/index.html", {
-      "username": username.capitalize()
-    })
-  else:
-    return HttpResponseRedirect(reverse("goals_tracker:login"))
+    # Ensure that the username in the URL matches the logged-in user's username
+    if request.user.is_authenticated:
+    # if request.user.username == username:
+        return render(request, "goals_tracker/index.html", {"username": username.capitalize()})
+    else:
+        # If the username in the URL does not match the logged-in user's username,
+        # redirect to the appropriate URL or display an error message
+        return HttpResponseRedirect(reverse("goals_tracker:login"))
 
 
 @login_required
