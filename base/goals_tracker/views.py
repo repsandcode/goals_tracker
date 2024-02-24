@@ -3,7 +3,7 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.db import IntegrityError
 from django.urls import reverse
 
@@ -11,9 +11,15 @@ from .models import User
 
 @login_required
 def index(request, username):
-    # Ensure that the username in the URL matches the logged-in user's username
-    if request.user.is_authenticated:
-    # if request.user.username == username:
+    try:  
+      get_user = get_object_or_404(User, username=username)
+    except:
+      # Handle the case where the user does not exist
+      # For example, return a custom error message or redirect the user
+      return HttpResponse(f"{username} not found", status=404)
+
+    
+    if get_user.is_authenticated:
         return render(request, "goals_tracker/index.html", {"username": username.capitalize()})
     else:
         # If the username in the URL does not match the logged-in user's username,
