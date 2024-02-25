@@ -50,7 +50,7 @@ def register(request):
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         if password != confirmation:
-            return render(request, "network/register.html", {
+            return render(request, "goals_tracker/register.html", {
                 "message": "Passwords must match."
             })
 
@@ -59,10 +59,10 @@ def register(request):
             user = User.objects.create_user(username, email, password)
             user.save()
         except IntegrityError:
-            return render(request, "network/register.html", {
+            return render(request, "goals_tracker/register.html", {
                 "message": "Username already taken."
             })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "network/register.html")
+        return render(request, "goals_tracker/register.html")
