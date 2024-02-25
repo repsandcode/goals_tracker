@@ -9,7 +9,6 @@ from django.urls import reverse
 
 from .models import User
 
-@login_required
 def index(request):  
     if request.user.is_authenticated:
         return render(request, "goals_tracker/index.html", {"first_name": request.user.first_name.capitalize()})
@@ -22,6 +21,7 @@ def login_view(request):
     # Attempt to sign user in
     username = request.POST["username"]
     password = request.POST["password"]
+    print(username, password)
     user = authenticate(request, username=username, password=password)
       
     # Check if authentication successful
