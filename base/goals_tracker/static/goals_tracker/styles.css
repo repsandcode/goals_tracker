@@ -18,5 +18,5 @@ html {
 
 /* HEADER */
 .header-height {
-  max-height: 150px;
+  height: 60px;
 }

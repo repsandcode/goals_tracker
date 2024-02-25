@@ -9,30 +9,19 @@ from django.urls import reverse
 
 from .models import User
 
-@login_required
-def index(request, username):
-    try:  
-      get_user = get_object_or_404(User, username=username)
-    except:
-      # Handle the case where the user does not exist
-      # For example, return a custom error message or redirect the user
-      return HttpResponse(f"{username} not found", status=404)
-
-    
-    if get_user.is_authenticated:
-        return render(request, "goals_tracker/index.html", {"first_name": get_user.first_name.capitalize()})
+def index(request):  
+    if request.user.is_authenticated:
+        return render(request, "goals_tracker/index.html", {"first_name": request.user.first_name.capitalize()})
     else:
-        # If the username in the URL does not match the logged-in user's username,
-        # redirect to the appropriate URL or display an error message
         return HttpResponseRedirect(reverse("goals_tracker:login"))
 
 
-@login_required
 def login_view(request):
   if request.method == "POST":
     # Attempt to sign user in
     username = request.POST["username"]
     password = request.POST["password"]
+    print(username, password)
     user = authenticate(request, username=username, password=password)
       
     # Check if authentication successful
@@ -61,7 +50,7 @@ def register(request):
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         if password != confirmation:
-            return render(request, "network/register.html", {
+            return render(request, "goals_tracker/register.html", {
                 "message": "Passwords must match."
             })
 
@@ -70,10 +59,10 @@ def register(request):
             user = User.objects.create_user(username, email, password)
             user.save()
         except IntegrityError:
-            return render(request, "network/register.html", {
+            return render(request, "goals_tracker/register.html", {
                 "message": "Username already taken."
             })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "network/register.html")
+        return render(request, "goals_tracker/register.html")
