@@ -3,25 +3,25 @@
 {% block title %}Home - Goal Tracker{% endblock %}
 
 {% block body %}
-<header class="header-height d-flex mb-5 justify-content-between mh-50 border border-primary">
-  <div>
-    <h1 class="fw-light m-0">Goal Tracker</h1>
-  </div>
+<div class="container-xl p-4">
+  <header class="justify-content-between border border-primary">
+    <div class="align-self-center">
+      <h1 class="display-6 m-0">Goal Tracker</h1>
+    </div>
 
-  <div class="border border-primary align-self-center">
-    <button class="border-0 bg-transparent fs-4">
-      <i class="fa-solid fa-arrow-right-from-bracket"></i>
-    </button>
-  </div>
-</header>
+    <div class="border border-primary align-self-center">
+      <button class="border-0 bg-transparent fs-4">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </button>
+    </div>
+  </header>
 
-<section>
-  Welcome, {{ first_name }}!
-</section>
+  <section>Welcome, {{ first_name }}!</section>
 
-<main class="py-1">
-  <div id="home" class="mb-5"></div>
+  <main class="py-1">
+    <div id="home" class="mb-5"></div>
 
-  <div id="top-goal" class="mb-5"></div>
-</main>
+    <div id="top-goal" class="mb-5"></div>
+  </main>
+</div>
 {% endblock %}
