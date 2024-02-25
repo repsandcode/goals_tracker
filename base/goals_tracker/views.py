@@ -20,7 +20,7 @@ def index(request, username):
 
     
     if get_user.is_authenticated:
-        return render(request, "goals_tracker/index.html", {"username": username.capitalize()})
+        return render(request, "goals_tracker/index.html", {"first_name": get_user.first_name.capitalize()})
     else:
         # If the username in the URL does not match the logged-in user's username,
         # redirect to the appropriate URL or display an error message

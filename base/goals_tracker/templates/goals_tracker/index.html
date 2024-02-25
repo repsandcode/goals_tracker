@@ -1,9 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home - {{username}}</title>
-  </head>
-  <body>
-    <h1>Hello, {{username}}!</h1>
-  </body>
-</html>
+{% extends "goals_tracker/layout.html" %}
+
+{% block title %}Home - Goal Tracker{% endblock %}
+
+{% block body %}
+<header class="header-height d-flex mb-5 justify-content-between mh-50 border border-primary">
+  <div>
+    <h1 class="fw-light m-0">Goal Tracker</h1>
+  </div>
+
+  <div class="border border-primary align-self-center">
+    <button class="border-0 bg-transparent fs-4">
+      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    </button>
+  </div>
+</header>
+
+<section>
+  Welcome, {{ first_name }}!
+</section>
+
+<main class="py-1">
+  <div id="home" class="mb-5"></div>
+
+  <div id="top-goal" class="mb-5"></div>
+</main>
+{% endblock %}
