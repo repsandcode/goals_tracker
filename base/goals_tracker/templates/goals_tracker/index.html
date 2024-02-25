@@ -4,19 +4,25 @@
 
 {% block body %}
 <div class="container-xl p-4">
-  <header class="justify-content-between border border-primary">
+  <header class="d-flex justify-content-between mb-5 header-height">
     <div class="align-self-center">
-      <h1 class="display-6 m-0">Goal Tracker</h1>
+      <p class="display-6 m-0">Goal Tracker</p>
     </div>
 
-    <div class="border border-primary align-self-center">
-      <button class="border-0 bg-transparent fs-4">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-      </button>
+    <div class="align-self-center">
+      <a href="{% url 'goals_tracker:logout' %}">
+        <button class="border-0 bg-transparent fs-2">
+          <i class="bi bi-box-arrow-right"></i>
+        </button>
+      </a>
     </div>
   </header>
 
-  <section>Welcome, {{ first_name }}!</section>
+  <section>
+    <h1>
+      Welcome, {{ first_name }}!
+    </h1>
+  </section>
 
   <main class="py-1">
     <div id="home" class="mb-5"></div>

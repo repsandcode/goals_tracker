@@ -17,3 +17,6 @@ html {
 }
 
 /* HEADER */
+.header-height {
+  height: 60px;
+}

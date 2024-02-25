@@ -10,24 +10,13 @@ from django.urls import reverse
 from .models import User
 
 @login_required
-def index(request, username):
-    try:  
-      get_user = get_object_or_404(User, username=username)
-    except:
-      # Handle the case where the user does not exist
-      # For example, return a custom error message or redirect the user
-      return HttpResponse(f"{username} not found", status=404)
-
-    
-    if get_user.is_authenticated:
-        return render(request, "goals_tracker/index.html", {"first_name": get_user.first_name.capitalize()})
+def index(request):  
+    if request.user.is_authenticated:
+        return render(request, "goals_tracker/index.html", {"first_name": request.user.first_name.capitalize()})
     else:
-        # If the username in the URL does not match the logged-in user's username,
-        # redirect to the appropriate URL or display an error message
         return HttpResponseRedirect(reverse("goals_tracker:login"))
 
 
-@login_required
 def login_view(request):
   if request.method == "POST":
     # Attempt to sign user in
