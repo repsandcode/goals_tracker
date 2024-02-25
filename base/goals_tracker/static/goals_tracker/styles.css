@@ -16,6 +16,28 @@ html {
   line-height: 1.8;
 }
 
+/* Custom styling for error message banner */
+.error-banner {
+  position: fixed;
+  top: 1rem;
+  right: 0;
+  width: 350px;
+  z-index: 1000; /* Ensure the banner appears above other elements */
+}
+
+.error-alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.error-close {
+  margin-left: 10px; /* Adjust margin as needed */
+  align-self: center;
+}
+
 /* HEADER */
 .header-height {
   height: 60px;

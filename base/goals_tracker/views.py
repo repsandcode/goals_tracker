@@ -11,7 +11,7 @@ from .models import User
 
 def index(request):  
     if request.user.is_authenticated:
-        return render(request, "goals_tracker/index.html", {"first_name": request.user.first_name.capitalize()})
+        return render(request, "goals_tracker/index.html", {"username": request.user.username})
     else:
         return HttpResponseRedirect(reverse("goals_tracker:login"))
 
@@ -43,26 +43,39 @@ def logout_view(request):
 
 def register(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        email = request.POST["email"]
+        email = request.POST.get("email")
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        confirmation = request.POST.get("confirmation")
+        
+         # Dictionary to hold error messages
+        errors = {}
 
-        # Ensure password matches confirmation
-        password = request.POST["password"]
-        confirmation = request.POST["confirmation"]
+        # Check if email is taken
+        if User.objects.filter(email=email).exists():
+            errors["email"] = f"{email} is already in use."
+
+        # Check if username is taken
+        if User.objects.filter(username=username).exists():
+            errors["username"] = f"{username} is already taken."
+
+        # Check if password matches confirmation
         if password != confirmation:
-            return render(request, "goals_tracker/register.html", {
-                "message": "Passwords must match."
-            })
+            errors["password"] = "Passwords do not match."
+
+        # If any errors exist, render the registration form with error messages
+        if errors:
+            return render(request, "goals_tracker/register.html", {"errors": errors})
 
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
+            login(request, user)
+            return HttpResponseRedirect(reverse("goals_tracker:index"))
         except IntegrityError:
-            return render(request, "goals_tracker/register.html", {
-                "message": "Username already taken."
-            })
-        login(request, user)
-        return HttpResponseRedirect(reverse("index"))
+            # Database integrity error (e.g., username already exists)
+            errors["message"] = "An error occurred. Please try again later."
+            return render(request, "goals_tracker/register.html", {"errors": errors})
     else:
         return render(request, "goals_tracker/register.html")
