@@ -16,29 +16,39 @@ def index(request):
         return HttpResponseRedirect(reverse("goals_tracker:login"))
 
 
-def login_view(request):
-  if request.method == "POST":
-    # Attempt to sign user in
-    username = request.POST["username"]
-    password = request.POST["password"]
-    print(username, password)
-    user = authenticate(request, username=username, password=password)
-      
-    # Check if authentication successful
-    if user is not None:
-      login(request, user)
-      return HttpResponseRedirect(reverse("goals_tracker:index"))
-    else:
-      return render(request, "goals_tracker/login.html", {
-        "message": "Invalid username and/or password."
-      })
-  else:
-    return render(request, "goals_tracker/login.html")
-
-
 def logout_view(request):
   logout(request)
   return HttpResponseRedirect(reverse("goals_tracker:login"))
+
+
+def login_view(request):
+  if request.method == "POST":
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+
+    # Dictionary to hold error messages
+    errors = {}
+
+    # Check if username exists
+    if not User.objects.filter(username=username).exists():
+       errors["username"] = f"'{username}' does not exist."
+      
+    # authenticate user
+    user = authenticate(request, username=username, password=password)
+
+    # Check if authentication failed
+    if user is None:
+       errors["password"] = "Invalid password."
+
+    # If there are errors, render the login page with error messages
+    if errors:
+       return render(request, "goals_tracker/login.html", {"errors": errors})
+    # Login user if no auth is successful
+    else:
+      login(request, user)
+      return HttpResponseRedirect(reverse("goals_tracker:index"))
+  else:
+    return render(request, "goals_tracker/login.html")
 
 
 def register(request):
@@ -48,16 +58,16 @@ def register(request):
         password = request.POST.get("password")
         confirmation = request.POST.get("confirmation")
         
-         # Dictionary to hold error messages
+        # Dictionary to hold error messages
         errors = {}
 
         # Check if email is taken
         if User.objects.filter(email=email).exists():
-            errors["email"] = f"{email} is already in use."
+            errors["email"] = f"'{email}' is already in use."
 
         # Check if username is taken
         if User.objects.filter(username=username).exists():
-            errors["username"] = f"{username} is already taken."
+            errors["username"] = f"'{username}' is already taken."
 
         # Check if password matches confirmation
         if password != confirmation:
