@@ -1,8 +1,5 @@
-{% extends "goals_tracker/layout.html" %}
-
-{% block title %} Home - Goal Tracker {%endblock %}
-
-{% block body %}
+{% extends "goals_tracker/layout.html" %} {% block title %} Home - Goal Tracker
+{%endblock %} {% block body %}
 <div class="container-xl p-4">
   <header class="d-flex justify-content-between mb-5 header-height">
     <div class="align-self-center">
@@ -19,7 +16,9 @@
   </header>
 
   <section>
-    <h1>Welcome, {{ username }}!</h1>
+    <h1 class="text-body-tertiary fs-3">
+      <span id="greetings"></span>, {{ username }}
+    </h1>
   </section>
 
   <main class="py-1">
