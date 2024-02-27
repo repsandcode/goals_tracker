@@ -26,6 +26,25 @@ def big_goal(request):
 
 # HOME
 def big_goals(request):
+   if request.method == "GET":
+        user = request.user
+
+        # Retrieve all Big Goals of the user
+        big_goals_queryset = BigGoal.objects.filter(user=user)
+
+        # Serialize queryset into JSON format
+        big_goals = []
+        for big_goal in big_goals_queryset:
+           data = {
+              "id": big_goal.id,
+              "title": big_goal.title,
+              "description": big_goal.description,
+              "deadline": big_goal.deadline,
+           }
+           big_goals.append(data)
+        
+        return JsonResponse({"big_goals": big_goals}, safe=False)
+
    if request.method == "POST":
       data = json.loads(request.body)
       print(data)
@@ -49,13 +68,8 @@ def big_goals(request):
 
 def index(request):
     if request.user.is_authenticated:
-        user = request.user
-        # Retrieve all Big Goals of the user
-        user_big_goals = BigGoal.objects.filter(user=user)
-
         return render(request, "goals_tracker/index.html", {
            "username": request.user.username,
-           "big_goals": user_big_goals,
         })
     else:
         return HttpResponseRedirect(reverse("goals_tracker:login"))
