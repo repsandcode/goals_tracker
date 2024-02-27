@@ -11,7 +11,7 @@ urlpatterns = [
 
   # dashboard
   path("", views.index, name="index"),
-  # path("create-big-goal", views.create_biggoal, name="create_biggoal"),
+  path("create-big-goal", views.big_goal, name="create_big_goal"),
 
   # big goal page
   # path("<str:biggoal>", views.biggoal, name="biggoal"),

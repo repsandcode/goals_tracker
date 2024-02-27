@@ -3,7 +3,7 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django.db import IntegrityError
 from django.urls import reverse
 
@@ -26,11 +26,37 @@ def big_goal(request):
 
 # HOME
 def big_goals(request):
-   pass
+   if request.method == "POST":
+      data = json.loads(request.body)
+      print(data)
 
-def index(request):  
+      # get content of post
+      title = data.get("content", "")
+      description = data.get("description", "")
+      deadline = data.get("deadline", "")
+
+      # insert post to the Post Model
+      big_goal = BigGoal(
+         user = request.user,
+         title = title,
+         description = description,
+         deadline = deadline,
+      ) 
+      big_goal.save()
+
+      return JsonResponse({"message": "Big Goal created successfully."}, status=201)
+
+
+def index(request):
     if request.user.is_authenticated:
-        return render(request, "goals_tracker/index.html", {"username": request.user.username})
+        user = request.user
+        # Retrieve all Big Goals of the user
+        user_big_goals = BigGoal.objects.filter(user=user)
+
+        return render(request, "goals_tracker/index.html", {
+           "username": request.user.username,
+           "big_goals": user_big_goals,
+        })
     else:
         return HttpResponseRedirect(reverse("goals_tracker:login"))
 

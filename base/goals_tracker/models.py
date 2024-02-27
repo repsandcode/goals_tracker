@@ -8,19 +8,22 @@ class User(AbstractUser):
   def __str__(self):
     return self.username
 
-
-class BigGoal(models.Model):
+class BaseModel(models.Model):
     title = models.CharField(max_length=300)
     description = models.TextField()
+
+    class Meta:
+        abstract = True
+
+class BigGoal(BaseModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     deadline = models.DateField()
 
     def __str__(self):
         return self.title
 
-class CheckpointGoal(models.Model):
+class CheckpointGoal(BaseModel):
     big_goal = models.ForeignKey(BigGoal, on_delete=models.CASCADE)
-    title = models.CharField(max_length=300)
-    description = models.TextField()
     deadline = models.DateField()
 
     def __str__(self):
