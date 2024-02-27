@@ -10,6 +10,24 @@ from django.urls import reverse
 from .models import User, BigGoal, CheckpointGoal, DailySystems, AntiGoal
 
 
+# BIG GOAL PAGE
+def anti_goal(request):
+   pass
+
+def daily_system(request):
+   pass
+
+def checkpoint_goal(request):
+   pass
+
+def big_goal(request):
+   pass
+
+
+# HOME
+def big_goals(request):
+   pass
+
 def index(request):  
     if request.user.is_authenticated:
         return render(request, "goals_tracker/index.html", {"username": request.user.username})
@@ -17,10 +35,10 @@ def index(request):
         return HttpResponseRedirect(reverse("goals_tracker:login"))
 
 
+# AUTHENTICATION
 def logout_view(request):
   logout(request)
   return HttpResponseRedirect(reverse("goals_tracker:login"))
-
 
 def login_view(request):
   if request.method == "POST":
@@ -50,7 +68,6 @@ def login_view(request):
       return HttpResponseRedirect(reverse("goals_tracker:index"))
   else:
     return render(request, "goals_tracker/login.html")
-
 
 def register(request):
     if request.method == "POST":
