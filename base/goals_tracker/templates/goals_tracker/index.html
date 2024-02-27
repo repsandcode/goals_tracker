@@ -15,16 +15,25 @@
     </div>
   </header>
 
-  <section>
-    <h1 class="text-body-tertiary fs-3">
+  <section class="mb-5">
+    <div class="text-body-tertiary fs-2">
       <span id="greetings"></span>, {{ username }}
-    </h1>
+    </div>
   </section>
 
   <main class="py-1">
-    <div id="home" class="mb-5"></div>
+    {% comment %} Big Goals Box {% endcomment %}
+    <section>
+      <div class="d-flex justify-content-between">
+        <h2>Big Goals</h2>
+        <button class="border bg-transparent py-2 px-3 fs-5 rounded-circle">
+          <i class="bi bi-plus-lg"></i>
+        </button>
+      </div>
+      <div id="all-big-goals"></div>
+    </section>
 
-    <div id="top-goal" class="mb-5"></div>
+    <section id="big-goal" class="mb-5"></section>
   </main>
 </div>
 {% endblock %}

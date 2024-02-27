@@ -9,6 +9,7 @@ from django.urls import reverse
 
 from .models import User
 
+
 def index(request):  
     if request.user.is_authenticated:
         return render(request, "goals_tracker/index.html", {"username": request.user.username})
