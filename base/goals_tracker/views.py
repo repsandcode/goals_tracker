@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.db import IntegrityError
 from django.urls import reverse
 
-from .models import User
+from .models import User, BigGoal, CheckpointGoal, DailySystems, AntiGoal
 
 
 def index(request):  
