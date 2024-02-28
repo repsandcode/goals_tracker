@@ -16,6 +16,10 @@ html {
   line-height: 1.8;
 }
 
+.d-none {
+  display: none;
+}
+
 /* Custom styling for error message banner */
 .error-banner {
   position: fixed;

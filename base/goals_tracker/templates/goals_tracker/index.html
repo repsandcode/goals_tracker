@@ -26,10 +26,61 @@
     <section>
       <div class="d-flex justify-content-between">
         <h2>Big Goals</h2>
-        <button class="border bg-transparent py-2 px-3 fs-5 rounded-circle">
+        <button
+          class="border bg-transparent py-2 px-3 fs-5 rounded-circle"
+          id="show-big-goal-form"
+        >
           <i class="bi bi-plus-lg"></i>
         </button>
       </div>
+
+      <div class="border p-4 d-none" id="big-goal-form">
+        <form class="">
+          {% csrf_token %}
+          <div class="d-flex mb-4 gap-4">
+            <div class="flex-grow-1">
+              <label for="title" class="form-label fs-3">Title</label>
+              <input
+                autofocus
+                class="form-control p-4 fs-4"
+                type="text"
+                id="title"
+                name="username"
+                required
+              />
+            </div>
+            <div>
+              <label for="big-goal-deadline" class="form-label fs-3"
+                >Deadline</label
+              >
+              <input
+                class="form-control p-4 fs-4"
+                type="date"
+                id="big-goal-deadline"
+                name="big-goal-deadline"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="big-goal-description" class="form-label fs-3"
+              >Description</label
+            >
+            <textarea
+              class="form-control p-4 fs-4"
+              id="big-goal-description"
+              placeholder="What's happening?"
+              required
+            ></textarea>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <input type="submit" class="fs-3" value="Create Big Goal" />
+          </div>
+        </form>
+      </div>
+
       <div id="all-big-goals"></div>
     </section>
 

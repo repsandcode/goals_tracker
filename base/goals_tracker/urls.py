@@ -9,9 +9,10 @@ urlpatterns = [
   path("logout", views.logout_view, name="logout"),
   path("register", views.register, name="register"),  
 
-  # dashboard
+  # home
   path("", views.index, name="index"),
-  path("create-big-goal", views.big_goal, name="create_big_goal"),
+  path("big-goals", views.big_goals, name="big_goals"),
+  path("create-big-goal", views.big_goals, name="create_big_goal"),
 
   # big goal page
   # path("<str:biggoal>", views.biggoal, name="biggoal"),

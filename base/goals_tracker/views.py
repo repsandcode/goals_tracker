@@ -26,6 +26,7 @@ def big_goal(request):
 
 # HOME
 def big_goals(request):
+   # get all big goals
    if request.method == "GET":
         user = request.user
 
@@ -45,6 +46,7 @@ def big_goals(request):
         
         return JsonResponse({"big_goals": big_goals}, safe=False)
 
+   # create a big goal
    if request.method == "POST":
       data = json.loads(request.body)
       print(data)
@@ -64,7 +66,6 @@ def big_goals(request):
       big_goal.save()
 
       return JsonResponse({"message": "Big Goal created successfully."}, status=201)
-
 
 def index(request):
     if request.user.is_authenticated:
