@@ -16,19 +16,52 @@ html {
   line-height: 1.8;
 }
 
-.d-none {
+/* Global Classes */
+.modal {
   display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.close {
+  color: red;
+  cursor: pointer;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
 }
 
-/* Custom styling for error message banner */
+/* Custom Modals */
+.big-goal-modal-content {
+  background-color: #fefefe;
+  padding: 4rem 3rem;
+  border: 1px solid #888;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Error message banner */
 .error-banner {
   position: fixed;
   top: 1rem;
   right: 0;
   width: 350px;
-  z-index: 1000; /* Ensure the banner appears above other elements */
+  z-index: 1000;
 }
-
 .error-alert {
   display: flex;
   align-items: center;
@@ -36,9 +69,8 @@ html {
   padding: 1rem;
   border-radius: 10px;
 }
-
 .error-close {
-  margin-left: 10px; /* Adjust margin as needed */
+  margin-left: 10px;
   align-self: center;
 }
 
