@@ -26,7 +26,7 @@ html {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.119);
 }
 .modal-center {
   display: flex;
@@ -34,24 +34,18 @@ html {
   align-items: center;
   height: 100%;
 }
-.close {
-  color: red;
-  cursor: pointer;
-}
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
+.box-radius {
+  border-radius: 1.4rem;
 }
 
 /* Custom Modals */
 .big-goal-modal-content {
   background-color: #fefefe;
-  padding: 4rem 3rem;
-  border: 1px solid #888;
-  border-radius: 20px;
-  width: 100%;
+  border: none;
+  border-radius: 1.4rem;
+  padding: 3rem;
   max-width: 600px;
+  width: 100%;
 }
 
 /* Error message banner */

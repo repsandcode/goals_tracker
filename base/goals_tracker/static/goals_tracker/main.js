@@ -1,38 +1,46 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // show welcome banner
-  addGreeting();
-
-  // modals
+  /*************************/
+  //   GLOBAL VARIABLES   //
+  /***********************/
   const modalCenter = document.querySelector(".modal-center");
   const bigGoalModal = document.querySelector("#big-goal-modal");
+  const bigGoalDeadline = document.querySelector("#big-goal-deadline");
 
-  // function to show the modal
-  const showBigGoalModal = () => {
-    console.log("clicked");
-    bigGoalModal.style.display = "block";
-  };
+  /*************************/
+  // AUTOMATIC RENDERINGS //
+  /***********************/
+  addGreeting(); // user greetings
+  // default deadline dates
+  bigGoalDeadline.value = defaultDeadlineDate();
+  bigGoalDeadline.min = defaultDeadlineDate();
 
-  // function to hide the modal
-  const hideBigGoalModal = () => {
-    bigGoalModal.style.display = "none";
-  };
-
-  // attach event listener to the button
+  /*************************/
+  //    EVENT LISTENERS   //
+  /***********************/
   document
-    .querySelector("#open-big-goal-form")
+    .querySelector("#open-big-goal-modal")
     .addEventListener("click", () => showBigGoalModal());
-
-  // attach event listener to the close button
   document
-    .querySelector(".close")
+    .querySelector("#close-big-goal-modal")
     .addEventListener("click", () => hideBigGoalModal());
 
-  // any clicks
+  /*************************/
+  //    CLICK LISTENER    //
+  /***********************/
   window.onclick = function (event) {
     // when the user clicks anywhere outside of the modal or its child elements, close it
     if (event.target == modalCenter) {
-      console.log("click");
       hideBigGoalModal();
     }
+  };
+
+  /*************************/
+  //  FUNCTIONS TO CALL   //
+  /***********************/
+  const showBigGoalModal = () => {
+    bigGoalModal.style.display = "block";
+  };
+  const hideBigGoalModal = () => {
+    bigGoalModal.style.display = "none";
   };
 });
