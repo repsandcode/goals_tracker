@@ -41,17 +41,17 @@
             <h3 class="fw-normal mb-5">Create your next Big Goal</h3>
 
             {% comment %} Body {% endcomment %}
-            <form class="">
+            <form id="big-goal-form">
               {% csrf_token %}
               <div class="d-flex mb-4 gap-4 modal-flex-direction">
                 <div class="flex-grow-1">
-                  <label for="title" class="form-label fs-4">Title</label>
+                  <label for="big-goal-title" class="form-label fs-4">Title</label>
                   <input
                     autofocus
                     class="form-control p-4 fs-4 bg-body-tertiary box-radius"
                     type="text"
-                    id="title"
-                    name="username"
+                    id="big-goal-title"
+                    name="big-goal-title"
                     required
                   />
                 </div>
@@ -76,6 +76,7 @@
                 <textarea
                   class="form-control p-4 fs-4 bg-body-tertiary box-radius"
                   id="big-goal-description"
+                  name="big-goal-description"
                   placeholder=""
                   required
                 ></textarea>

@@ -51,12 +51,12 @@ def big_goals(request):
       data = json.loads(request.body)
       print(data)
 
-      # get content of post
-      title = data.get("content", "")
-      description = data.get("description", "")
+      # get contents from Big Goal Form
+      title = data.get("title", "")
       deadline = data.get("deadline", "")
+      description = data.get("description", "")
 
-      # insert post to the Post Model
+      # insert contents to the BigGoal Model
       big_goal = BigGoal(
          user = request.user,
          title = title,
