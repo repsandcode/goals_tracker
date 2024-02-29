@@ -34,6 +34,9 @@ html {
   align-items: center;
   height: 100%;
 }
+.modal-flex-direction {
+  flex-direction: column;
+}
 .box-radius {
   border-radius: 1.4rem;
 }
@@ -71,4 +74,11 @@ html {
 /* HEADER */
 .header-height {
   height: 60px;
+}
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 450px) {
+  .modal-flex-direction {
+    flex-direction: row;
+  }
 }
