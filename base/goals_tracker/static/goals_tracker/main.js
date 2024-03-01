@@ -20,13 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
   /*************************/
   //    EVENT LISTENERS   //
   /***********************/
-  // big goal modal and form
+  // big goal modal
   document
     .querySelector("#open-big-goal-modal")
     .addEventListener("click", () => showBigGoalModal());
   document
     .querySelector("#close-big-goal-modal")
     .addEventListener("click", () => hideBigGoalModal());
+  // big goals
+  document.querySelector("#all-big-goals");
 
   /*************************/
   //    CLICK LISTENER    //
