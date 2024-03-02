@@ -44,7 +44,7 @@ def big_goals(request):
            }
            big_goals.append(data)
         
-        return JsonResponse({"big_goals": big_goals}, safe=False)
+        return JsonResponse(big_goals, safe=False)
 
    # create a big goal
    if request.method == "POST":

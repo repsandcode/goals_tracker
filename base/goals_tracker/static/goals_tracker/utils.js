@@ -43,3 +43,4 @@ const getCookie = (name) => {
 // Attach the function to the window object
 window.addGreeting = addGreeting;
 window.defaultDeadlineDate = defaultDeadlineDate;
+window.getCookie = getCookie(name);
