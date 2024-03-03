@@ -44,6 +44,8 @@ def big_goals(request):
            }
            big_goals.append(data)
         
+        big_goals.reverse()
+
         return JsonResponse(big_goals, safe=False)
 
    # create a big goal

@@ -102,10 +102,15 @@ const fetchAllBigGoals = () => {
         bigGoals.forEach((goal) => {
           const bigGoalBox = document.createElement("div");
 
-          bigGoalBox.classList.add("shadow", "p-4", "mb-5", "bg-body-tertiary");
+          bigGoalBox.classList.add(
+            "p-4",
+            "mt-4",
+            "bg-success-subtle",
+            "box-radius"
+          );
 
           bigGoalBox.innerHTML = `
-          <h1>${goal.title}</h1>
+          <h4>${goal.title}</h4>
           <p>${goal.description}</p>
           <p>${goal.deadline}</p>
           `;
