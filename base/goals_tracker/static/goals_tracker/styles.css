@@ -81,6 +81,11 @@ html {
   padding: 2.5rem;
 }
 
+/* DAILY SYSTEMS SECTION */
+.daily-systems {
+  padding: 2.5rem;
+}
+
 /* MEDIA QUERIES */
 @media screen and (min-width: 450px) {
   .modal-flex-direction {
