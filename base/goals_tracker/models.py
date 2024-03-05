@@ -10,7 +10,7 @@ class User(AbstractUser):
 
 class BaseModel(models.Model):
     title = models.CharField(max_length=300)
-    description = models.TextField()
+    description = models.TextField(blank=True)
 
     class Meta:
         abstract = True
