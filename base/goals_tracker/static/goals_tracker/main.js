@@ -2,6 +2,9 @@
 //   GLOBAL VARIABLES   //
 /***********************/
 const modalCenter = document.querySelector(".modal-center");
+// pages
+const homePage = document.querySelector("#home-page");
+const bigGoalPage = document.querySelector("#big-goal-page");
 // big goal form
 const bigGoalModal = document.querySelector("#big-goal-modal");
 const bigGoalTitle = document.querySelector("#big-goal-title");
@@ -9,21 +12,35 @@ const bigGoalDeadline = document.querySelector("#big-goal-deadline");
 const bigGoalDescription = document.querySelector("#big-goal-description");
 // big goals section
 const allBigGoals = document.querySelector("#all-big-goals");
-const bigGoalBox = document.querySelectorAll(".box-radius.big-goal-box");
 
 document.addEventListener("DOMContentLoaded", () => {
   /*************************/
   // AUTOMATIC RENDERINGS //
   /***********************/
+
   addGreeting(); // user greetings
 
-  // default deadline dates
-  bigGoalDeadline.value = defaultDeadlineDate();
-  bigGoalDeadline.min = defaultDeadlineDate();
+  showHomePage(); // home page contents
 
   /*************************/
-  //    EVENT LISTENERS   //
+  //    CLICK LISTENER    //
   /***********************/
+  window.onclick = function (event) {
+    // when the user clicks anywhere outside of the modal or its child elements, close it
+    if (event.target == modalCenter) {
+      bigGoalModal.style.display = "none";
+    }
+  };
+
+  /*************************/
+  //  FUNCTIONS TO CALL   //
+  /***********************/
+});
+
+// show pages
+const showHomePage = () => {
+  fetchAllBigGoals(); // get all big goals asap
+
   // create a big goal
   document
     .querySelector("#open-big-goal-modal")
@@ -32,23 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .querySelector("#close-big-goal-modal")
     .addEventListener("click", () => hideBigGoalModal());
 
-  /*************************/
-  //    CLICK LISTENER    //
-  /***********************/
-  window.onclick = function (event) {
-    // when the user clicks anywhere outside of the modal or its child elements, close it
-    if (event.target == modalCenter) {
-      hideBigGoalModal();
-    }
-  };
-
-  /*************************/
-  //  FUNCTIONS TO CALL   //
-  /***********************/
-  const showBigGoalPage = () => {
-    const bigGoalTitle = this.dataset.title;
-    console.log(bigGoalTitle);
-  };
   const createBigGoal = (event) => {
     event.preventDefault();
 
@@ -85,15 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const hideBigGoalModal = () => {
     bigGoalModal.style.display = "none";
   };
+};
 
-  fetchAllBigGoals(); // get all big goals asap
-
-  Array.from(bigGoalBox).forEach((bigGoal) => {
-    alert(bigGoal);
-    // bigGoal.addEventListener("click", () => {
-    // });
-  });
-});
+const showBigGoalPage = () => {
+  homePage.style.display = "none";
+  bigGoalPage.style.display = "block";
+};
 
 // fetch apis
 const fetchAllBigGoals = () => {
@@ -129,6 +126,14 @@ const fetchAllBigGoals = () => {
           `;
 
           allBigGoals.append(bigGoalBox);
+        });
+      })
+      .then(() => {
+        const bigGoalBox = document.querySelectorAll(".big-goal-box");
+        Array.from(bigGoalBox).forEach((bigGoal) => {
+          bigGoal.addEventListener("click", () => {
+            showBigGoalPage();
+          });
         });
       });
   } catch (error) {
