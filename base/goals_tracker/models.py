@@ -29,7 +29,7 @@ class CheckpointGoal(BaseModel):
     def __str__(self):
         return self.title
 
-class DailySystems(models.Model):
+class DailySystem(models.Model):
     big_goal = models.ForeignKey(BigGoal, on_delete=models.CASCADE)
     action = models.CharField(max_length=300)
 
@@ -38,7 +38,7 @@ class DailySystems(models.Model):
 
 class DailySystemCheckIn(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    daily_system = models.ForeignKey('DailySystems', on_delete=models.CASCADE)
+    daily_system = models.ForeignKey(DailySystem, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
 
     class Meta:

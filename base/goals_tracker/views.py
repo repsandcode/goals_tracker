@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from django.db import IntegrityError
 from django.urls import reverse
 
-from .models import User, BigGoal, CheckpointGoal, DailySystems, AntiGoal
+from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal
 
 
 # BIG GOAL PAGE
@@ -20,8 +20,20 @@ def daily_system(request):
 def checkpoint_goal(request):
    pass
 
-def big_goal(request):
-   pass
+def big_goal(request, title):
+   if request.method == "GET":
+
+      # Retrieve the Big Goal
+      big_goal = get_object_or_404(BigGoal, user=request.user, title=title)
+
+      # Retrieve related Checkpoint Goals
+      checkpoint_goals = CheckpointGoal.objects.filter(big_goal=big_goal)
+
+      # Retrieve related Daily Systems
+      daily_systems = DailySystems.objects.filter(big_goal=big_goal)
+
+      # Retrieve related Anti-Goals
+      anti_goals = AntiGoal.objects.filter(big_goal=big_goal)
 
 
 # HOME
