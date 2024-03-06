@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /*************************/
   //    EVENT LISTENERS   //
   /***********************/
-  // big goal modal
+  // create a big goal
   document
     .querySelector("#open-big-goal-modal")
     .addEventListener("click", () => showBigGoalModal());
@@ -44,6 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
   /*************************/
   //  FUNCTIONS TO CALL   //
   /***********************/
+  const showBigGoalPage = () => {
+    const bigGoalTitle = this.dataset.title;
+    console.log(bigGoalTitle);
+  };
   const createBigGoal = (event) => {
     event.preventDefault();
 
@@ -82,6 +86,13 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   fetchAllBigGoals(); // get all big goals asap
+
+  const bigGoalBox = document.querySelectorAll(".big-goal-box");
+  Array.from(bigGoalBox).forEach((bigGoal) => {
+    bigGoal.addEventListener("click", () => {
+      console.log(bigGoal);
+    });
+  });
 });
 
 // fetch apis
@@ -101,13 +112,17 @@ const fetchAllBigGoals = () => {
 
         bigGoals.forEach((goal) => {
           const bigGoalBox = document.createElement("div");
+          const title = goal.title;
 
           bigGoalBox.classList.add(
             "p-4",
             "mt-4",
             "bg-success-subtle",
-            "box-radius"
+            "box-radius",
+            "big-goal-box"
           );
+
+          bigGoalBox.dataset.title = title.split(" ").join("-");
 
           bigGoalBox.innerHTML = `
           <h4>${goal.title}</h4>

@@ -22,15 +22,18 @@ def checkpoint_goal(request):
 
 def big_goal(request, title):
    if request.method == "GET":
+      original_title = title.replace('-', ' ')
+      
+      print(title)
 
       # Retrieve the Big Goal
-      big_goal = get_object_or_404(BigGoal, user=request.user, title=title)
+      big_goal = get_object_or_404(BigGoal, user=request.user, title=original_title)
 
       # Retrieve related Checkpoint Goals
       checkpoint_goals = CheckpointGoal.objects.filter(big_goal=big_goal)
 
       # Retrieve related Daily Systems
-      daily_systems = DailySystems.objects.filter(big_goal=big_goal)
+      daily_systems = DailySystem.objects.filter(big_goal=big_goal)
 
       # Retrieve related Anti-Goals
       anti_goals = AntiGoal.objects.filter(big_goal=big_goal)
