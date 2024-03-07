@@ -17,9 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /*************************/
   // AUTOMATIC RENDERINGS //
   /***********************/
-
   addGreeting(); // user greetings
-
   showHomePage(); // home page contents
 
   /*************************/
@@ -31,13 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
       bigGoalModal.style.display = "none";
     }
   };
-
-  /*************************/
-  //  FUNCTIONS TO CALL   //
-  /***********************/
 });
 
-// show pages
+// PAGES
 const showHomePage = () => {
   fetchAllBigGoals(); // get all big goals asap
 
@@ -92,7 +86,7 @@ const showBigGoalPage = () => {
   bigGoalPage.style.display = "block";
 };
 
-// fetch apis
+// FETCH APIS
 const fetchAllBigGoals = () => {
   try {
     fetch("/big-goals")
