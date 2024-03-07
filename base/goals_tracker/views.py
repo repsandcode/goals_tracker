@@ -86,7 +86,7 @@ def big_goals(request):
 
 def index(request):
     if request.user.is_authenticated:
-        return render(request, "goals_tracker/index.html", {
+        return render(request, "goals_tracker/home_page.html", {
            "username": request.user.username,
         })
     else:
