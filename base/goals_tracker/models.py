@@ -21,6 +21,15 @@ class BigGoal(BaseModel):
 
     def __str__(self):
         return self.title
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": self.user,
+            "title": self.title,
+            "description": self.description,
+            "deadline": self.deadline,
+        }
 
 class CheckpointGoal(BaseModel):
     big_goal = models.ForeignKey(BigGoal, on_delete=models.CASCADE)
@@ -28,6 +37,15 @@ class CheckpointGoal(BaseModel):
 
     def __str__(self):
         return self.title
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "big_goal": self.big_goal,
+            "title": self.title,
+            "description": self.description,
+            "deadline": self.deadline,
+        }
 
 class DailySystem(models.Model):
     big_goal = models.ForeignKey(BigGoal, on_delete=models.CASCADE)
@@ -35,6 +53,13 @@ class DailySystem(models.Model):
 
     def __str__(self):
         return self.action
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "big_goal": self.big_goal,
+            "action": self.action,
+        }
 
 class DailySystemCheckIn(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -47,9 +72,24 @@ class DailySystemCheckIn(models.Model):
     def __str__(self):
         return f"{self.user.username}'s check-in for {self.daily_system.action} on {self.date}"
     
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": self.user,
+            "daily_system": self.daily_system,
+            "date": self.date,
+        }
+    
 class AntiGoal(models.Model):
     big_goal = models.ForeignKey(BigGoal, on_delete=models.CASCADE)
     description = models.TextField()
 
     def __str__(self):
         return self.description
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "big_goal": self.big_goal,
+            "description": self.description,
+        }

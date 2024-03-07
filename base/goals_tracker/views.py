@@ -22,13 +22,7 @@ def checkpoint_goal(request):
 
 def big_goal(request, title):
    if request.method == "GET":
-      return render(request, "goals_tracker/big_goal_page.html", {
-         "title": title,
-      })
-   
       original_title = title.replace('-', ' ')
-      
-      print(title)
 
       # Retrieve the Big Goal
       big_goal = get_object_or_404(BigGoal, user=request.user, title=original_title)
@@ -41,6 +35,10 @@ def big_goal(request, title):
 
       # Retrieve related Anti-Goals
       anti_goals = AntiGoal.objects.filter(big_goal=big_goal)
+
+      return render(request, "goals_tracker/big_goal_page.html", {
+         "title": original_title,
+      })
 
 
 # HOME
