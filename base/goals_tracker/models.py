@@ -25,7 +25,7 @@ class BigGoal(BaseModel):
     def serialize(self):
         return {
             "id": self.id,
-            "user": self.user,
+            "user": self.user.username,
             "title": self.title,
             "description": self.description,
             "deadline": self.deadline,
@@ -41,7 +41,7 @@ class CheckpointGoal(BaseModel):
     def serialize(self):
         return {
             "id": self.id,
-            "big_goal": self.big_goal,
+            "big_goal": self.big_goal.title,
             "title": self.title,
             "description": self.description,
             "deadline": self.deadline,
@@ -57,7 +57,7 @@ class DailySystem(models.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "big_goal": self.big_goal,
+            "big_goal": self.big_goal.title,
             "action": self.action,
         }
 
@@ -75,8 +75,8 @@ class DailySystemCheckIn(models.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "user": self.user,
-            "daily_system": self.daily_system,
+            "user": self.user.username,
+            "daily_system": self.daily_system.action,
             "date": self.date,
         }
     
@@ -90,6 +90,6 @@ class AntiGoal(models.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "big_goal": self.big_goal,
+            "big_goal": self.big_goal.title,
             "description": self.description,
         }
