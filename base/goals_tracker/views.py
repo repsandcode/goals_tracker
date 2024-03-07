@@ -22,6 +22,10 @@ def checkpoint_goal(request):
 
 def big_goal(request, title):
    if request.method == "GET":
+      return render(request, "goals_tracker/big_goal_page.html", {
+         "title": title,
+      })
+   
       original_title = title.replace('-', ' ')
       
       print(title)

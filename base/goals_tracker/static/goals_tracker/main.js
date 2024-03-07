@@ -81,9 +81,14 @@ const showHomePage = () => {
   };
 };
 
-const showBigGoalPage = () => {
-  homePage.style.display = "none";
-  bigGoalPage.style.display = "block";
+const showBigGoalPage = (title) => {
+  console.log(title);
+
+  // Construct the URL for the big_goal page
+  const url = `/big-goal/${title}`;
+
+  // Redirect to the constructed URL
+  window.location.href = url;
 };
 
 // FETCH APIS
@@ -125,8 +130,9 @@ const fetchAllBigGoals = () => {
       .then(() => {
         const bigGoalBox = document.querySelectorAll(".big-goal-box");
         Array.from(bigGoalBox).forEach((bigGoal) => {
+          const bigGoalTitle = bigGoal.dataset.title;
           bigGoal.addEventListener("click", () => {
-            showBigGoalPage();
+            showBigGoalPage(bigGoalTitle);
           });
         });
       });
