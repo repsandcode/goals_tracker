@@ -28,6 +28,7 @@
 
   <body>
     <div class="container-xl p-4">
+      {% block header %}
       <header class="d-flex justify-content-between mb-5 header-height">
         <div class="align-self-center">
           <p class="display-6 m-0">Goal Tracker</p>
@@ -42,7 +43,7 @@
         </div>
       </header>
 
-      {% block body %} {% endblock %}
+      {% endblock %} {% block body %} {% endblock %}
     </div>
 
     <script
