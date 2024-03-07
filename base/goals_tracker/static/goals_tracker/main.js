@@ -9,6 +9,7 @@ const bigGoalDeadline = document.querySelector("#big-goal-deadline");
 const bigGoalDescription = document.querySelector("#big-goal-description");
 // big goals section
 const allBigGoals = document.querySelector("#all-big-goals");
+const bigGoalBox = document.querySelectorAll(".box-radius.big-goal-box");
 
 document.addEventListener("DOMContentLoaded", () => {
   /*************************/
@@ -87,11 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchAllBigGoals(); // get all big goals asap
 
-  const bigGoalBox = document.querySelectorAll(".big-goal-box");
   Array.from(bigGoalBox).forEach((bigGoal) => {
-    bigGoal.addEventListener("click", () => {
-      console.log(bigGoal);
-    });
+    alert(bigGoal);
+    // bigGoal.addEventListener("click", () => {
+    // });
   });
 });
 
@@ -115,8 +115,6 @@ const fetchAllBigGoals = () => {
           const title = goal.title;
 
           bigGoalBox.classList.add(
-            "p-4",
-            "mt-4",
             "bg-success-subtle",
             "box-radius",
             "big-goal-box"

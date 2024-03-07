@@ -80,6 +80,11 @@ html {
 .big-goals {
   padding: 2.5rem;
 }
+.big-goal-box {
+  padding: 2rem;
+  margin-top: 2rem;
+  cursor: pointer;
+}
 
 /* DAILY SYSTEMS SECTION */
 .daily-systems {
