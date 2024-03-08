@@ -2,22 +2,25 @@
 Tracker{%endblock %} {% block body %}
 
 <main class="py-1" id="big-goal-page">
-  <h1>I will make Jehovah happy.</h1>
-  <h1>I will defend His Name.</h1>
-  <h1>I will give Him glory.</h1>
-  {{title}} {% comment %} Big Goal Data Section {% endcomment %}
-  <section>
-    <div>{{big_goal}}</div>
-  </section>
-  <section>
-    <div>{{checkpoint_goals}}</div>
-  </section>
-  <section>
-    <div>{{daily_systems}}</div>
-  </section>
-  <section>
-    <div>{{anti_goals}}</div>
-  </section>
+  {% comment %} Big Goal Data Section {% endcomment %}
+  <div class="big-goal--upper">
+    <section class="big-goal-box">
+      <div>{{ big_goal }}</div>
+    </section>
+    <section class="daily-systems-box">
+      <div>{{ daily_systems }}</div>
+    </section>
+  </div>
+
+  <div class="big-goal--lower">
+    <section class="checkpoint-goals-box">
+      <div>{{ checkpoint_goals }}</div>
+    </section>
+
+    <section class="anti-goals-box">
+      <div>{{ anti_goals }}</div>
+    </section>
+  </div>
 </main>
 
 {% endblock %}
