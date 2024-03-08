@@ -1,6 +1,7 @@
 :root {
   /* add the colors */
-
+  --body-bg: #f0f1f1;
+  --white-bg: #ffffff;
   /* add fonts */
 }
 
@@ -14,6 +15,7 @@ body,
 html {
   font-size: 62.5%;
   line-height: 1.8;
+  background-color: var(--body-bg);
 }
 
 /* Global Classes */
@@ -79,6 +81,7 @@ html {
 /* BIG GOALS SECTION */
 .big-goals {
   padding: 2.5rem;
+  background-color: var(--white-bg);
 }
 .big-goal-box {
   padding: 2rem;
@@ -89,6 +92,7 @@ html {
 /* DAILY SYSTEMS SECTION */
 .daily-systems {
   padding: 2.5rem;
+  background-color: var(--white-bg);
 }
 
 /* MEDIA QUERIES */
