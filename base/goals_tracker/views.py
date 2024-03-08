@@ -26,19 +26,37 @@ def big_goal(request, title):
 
       # Retrieve the Big Goal
       big_goal = get_object_or_404(BigGoal, user=request.user, title=original_title)
+      # Serialize queryset into JSON format
+      big_goal_data = big_goal.serialize()
 
       # Retrieve related Checkpoint Goals
       checkpoint_goals = CheckpointGoal.objects.filter(big_goal=big_goal)
+      checkpoint_goals_data = []
+      for cp_goal in checkpoint_goals:
+         data = cp_goal.serialize()
+         checkpoint_goals_data.append(data)
 
       # Retrieve related Daily Systems
       daily_systems = DailySystem.objects.filter(big_goal=big_goal)
+      daily_systems_data = []
+      for system in daily_systems:
+         data = system.serialize()
+         daily_systems_data.append(data)
 
       # Retrieve related Anti-Goals
       anti_goals = AntiGoal.objects.filter(big_goal=big_goal)
+      anti_goals_data = []
+      for anti_goal in anti_goals:
+         data = anti_goal.serialize()
+         anti_goals_data.append(data)
 
-      return render(request, "goals_tracker/big_goal_page.html", {
+      return JsonResponse({
          "title": original_title,
-      })
+         "big_goal": big_goal_data,
+         "checkpoint_goals": checkpoint_goals_data.reverse(),
+         "daily_systems": daily_systems_data.reverse(),
+         "anti_goals": anti_goals_data.reverse(),
+      }, safe=False)
 
 
 # HOME

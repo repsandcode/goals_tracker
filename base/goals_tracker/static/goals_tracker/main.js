@@ -89,9 +89,29 @@ const showBigGoalPage = (title) => {
 
   // Redirect to the constructed URL
   window.location.href = url;
+
+  fetchBigGoalPage(title);
 };
 
 // FETCH APIS
+const fetchBigGoalPage = (title) => {
+  try {
+    fetch(`/big-goal/${title}`)
+      .then((res) => {
+        if (res.ok) {
+          console.log("success");
+        } else {
+          console.log("failed");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  } catch (error) {
+    console.log("error", error);
+  }
+};
 const fetchAllBigGoals = () => {
   try {
     fetch("/big-goals")
