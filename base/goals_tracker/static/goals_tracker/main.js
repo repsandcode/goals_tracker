@@ -82,11 +82,8 @@ const showHomePage = () => {
 };
 
 const showBigGoalPage = (title) => {
-  console.log(title);
-
   // Construct the URL for the big_goal page
   const url = `/big-goal/${title}`;
-
   // Redirect to the constructed URL
   window.location.href = url;
 

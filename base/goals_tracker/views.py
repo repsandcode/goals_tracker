@@ -50,13 +50,13 @@ def big_goal(request, title):
          data = anti_goal.serialize()
          anti_goals_data.append(data)
 
-      return JsonResponse({
+      return render(request, "goals_tracker/big_goal_page.html", {
          "title": original_title,
          "big_goal": big_goal_data,
          "checkpoint_goals": checkpoint_goals_data.reverse(),
          "daily_systems": daily_systems_data.reverse(),
          "anti_goals": anti_goals_data.reverse(),
-      }, safe=False)
+      })
 
 
 # HOME
