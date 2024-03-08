@@ -78,21 +78,24 @@ html {
   height: 60px;
 }
 
-/* BIG GOALS SECTION */
+/* HOME PAGE - BIG GOALS */
 .big-goals {
   padding: 2.5rem;
   background-color: var(--white-bg);
 }
 .big-goal-box {
-  padding: 2rem;
-  margin-top: 2rem;
+  padding: 2.5rem;
   cursor: pointer;
 }
 
-/* DAILY SYSTEMS SECTION */
+/* HOME PAGE - DAILY SYSTEMS */
 .daily-systems {
   padding: 2.5rem;
   background-color: var(--white-bg);
+}
+
+/* BIG GOAL PAGE - BIG GOAL */
+.big-goal-section {
 }
 
 /* MEDIA QUERIES */

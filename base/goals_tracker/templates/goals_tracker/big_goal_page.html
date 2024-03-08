@@ -4,20 +4,28 @@ Tracker{%endblock %} {% block body %}
 <main class="py-1" id="big-goal-page">
   {% comment %} Big Goal Data Section {% endcomment %}
   <div class="big-goal--upper">
-    <section class="big-goal-box">
-      <div>{{ big_goal }}</div>
+    <section class="big-goal-section">
+      {% comment %} header {% endcomment %}
+      <div class="d-flex justify-content-between">
+        <h1>{{ big_goal.title }}</h1>
+        <span>ends in {{ big_goal.deadline }}</span>
+      </div>
+      {% comment %} body {% endcomment %}
+      <div>
+        <p>{{ big_goal.description }}</p>
+      </div>
     </section>
-    <section class="daily-systems-box">
+    <section class="daily-systems-section">
       <div>{{ daily_systems }}</div>
     </section>
   </div>
 
   <div class="big-goal--lower">
-    <section class="checkpoint-goals-box">
+    <section class="checkpoint-goals-section">
       <div>{{ checkpoint_goals }}</div>
     </section>
 
-    <section class="anti-goals-box">
+    <section class="anti-goals-section">
       <div>{{ anti_goals }}</div>
     </section>
   </div>
