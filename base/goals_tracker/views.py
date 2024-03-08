@@ -53,10 +53,7 @@ def big_goals(request):
         # Serialize queryset into JSON format
         big_goals = []
         for big_goal in big_goals_queryset:
-           print(big_goal)
            data = big_goal.serialize()
-           
-           print(data)
            big_goals.append(data)
         
         big_goals.reverse()
