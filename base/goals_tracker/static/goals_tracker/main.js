@@ -74,6 +74,8 @@ const showHomePage = () => {
   };
   const showBigGoalModal = () => {
     bigGoalModal.style.display = "block";
+    document.querySelector("#big-goal-deadline").min = defaultDeadlineDate();
+    document.querySelector("#big-goal-deadline").value = defaultDeadlineDate();
     document.querySelector("#big-goal-form").onsubmit = createBigGoal;
   };
   const hideBigGoalModal = () => {
