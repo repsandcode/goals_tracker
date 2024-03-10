@@ -6,6 +6,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django.db import IntegrityError
 from django.urls import reverse
+from django.utils import timezone
+from datetime import timedelta
 
 from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal
 
@@ -98,6 +100,21 @@ def big_goals(request):
       big_goal.save()
 
       return JsonResponse({"message": "Big Goal created successfully."}, status=201)
+
+   # delete old big goal
+   if request.method == "DELETE":
+        data = json.loads(request.body)
+
+        # get contents from Big Goal Form
+        title = data.get("title", "")
+        deadline = data.get("deadline", "")
+        description = data.get("description", "")
+
+        old_goal = BigGoal.objects.filter(user=request.user, title=title, description=description, deadline=deadline)
+
+        old_goal.delete()
+
+        return JsonResponse({'message': f"{old_goal} deleted successfully"})
 
 def index(request):
     if request.user.is_authenticated:

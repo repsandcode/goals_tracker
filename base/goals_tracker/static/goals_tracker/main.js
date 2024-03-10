@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // PAGES
 const showHomePage = () => {
-  fetchAllBigGoals(); // get all big goals asap
+  getAllBigGoals(); // get all big goals asap
 
   // create a big goal
   document
@@ -89,11 +89,42 @@ const showBigGoalPage = (title) => {
   // Redirect to the constructed URL
   window.location.href = url;
 
-  fetchBigGoalPage(title);
+  getBigGoalPage(title);
 };
 
 // FETCH APIS
-const fetchBigGoalPage = (title) => {
+const deleteOldGoal = (goal) => {
+  try {
+    // Deadline has passed, delete old goals
+    fetch("/delete-old-goal", {
+      method: "DELETE",
+      body: JSON.stringify({
+        title: goal.title,
+        description: goal.description,
+        deadline: goal.deadline,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCookie("csrftoken"), // Ensure to include CSRF token
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Old Big goals deleted successfully");
+          // Optionally, you can perform further actions here
+        } else {
+          console.error("Failed to delete old goals");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getBigGoalPage = (title) => {
   try {
     fetch(`/big-goal/${title}`)
       .then((res) => {
@@ -111,7 +142,8 @@ const fetchBigGoalPage = (title) => {
     console.log("error", error);
   }
 };
-const fetchAllBigGoals = () => {
+
+const getAllBigGoals = () => {
   try {
     fetch("/big-goals")
       .then((res) => {
@@ -129,6 +161,11 @@ const fetchAllBigGoals = () => {
           const bigGoalBox = document.createElement("div");
           const title = goal.title;
 
+          const currentDate = new Date();
+          const deadline = new Date(goal.deadline);
+          const thirty_after_deadline = new Date(deadline);
+          thirty_after_deadline.setDate(deadline.getDate() + 30);
+
           bigGoalBox.classList.add(
             "bg-success-subtle",
             "box-radius",
@@ -140,10 +177,17 @@ const fetchAllBigGoals = () => {
           bigGoalBox.innerHTML = `
           <h4>${goal.title}</h4>
           <p>${goal.description}</p>
-          <p>${goal.deadline}</p>
+          <p class="${currentDate >= deadline ? "text-danger" : ""}">
+            ${currentDate >= deadline ? "This goal is past your deadline" : ""}
+            ${goal.deadline}
+          </p>
           `;
 
           allBigGoals.append(bigGoalBox);
+
+          if (currentDate >= thirty_after_deadline) {
+            deleteOldGoal(goal);
+          }
         });
       })
       .then(() => {
