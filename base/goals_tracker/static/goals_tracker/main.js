@@ -165,6 +165,9 @@ const getAllBigGoals = () => {
           const deadline = new Date(goal.deadline);
           const thirty_after_deadline = new Date(deadline);
           thirty_after_deadline.setDate(deadline.getDate() + 30);
+          const daysLeft = Math.ceil(
+            (thirty_after_deadline - currentDate) / (1000 * 60 * 60 * 24)
+          );
 
           bigGoalBox.classList.add(
             "bg-success-subtle",
@@ -177,9 +180,17 @@ const getAllBigGoals = () => {
           bigGoalBox.innerHTML = `
           <h4>${goal.title}</h4>
           <p>${goal.description}</p>
-          <p class="${currentDate >= deadline ? "text-danger" : ""}">
-            ${currentDate >= deadline ? "This goal is past your deadline" : ""}
+          <p class="m-0">Deadline: 
+            <span class="${currentDate >= deadline ? "text-danger" : ""}">
             ${goal.deadline}
+          </span>
+          </p>
+          <p class="m-0">
+          ${
+            currentDate >= deadline
+              ? "This goal would be deleted in " + daysLeft + " days"
+              : ""
+          }
           </p>
           `;
 
