@@ -3,7 +3,7 @@ Tracker{%endblock %} {% block body %}
 
 <main class="py-1" id="big-goal-page">
   {% comment %} Big Goal Data Section {% endcomment %}
-  <div class="big-goal--upper">
+  <div class="">
     <section class="big-goal-section">
       {% comment %} header {% endcomment %}
       <div class="d-flex justify-content-between">
@@ -15,12 +15,13 @@ Tracker{%endblock %} {% block body %}
         <p>{{ big_goal.description }}</p>
       </div>
     </section>
+
     <section class="daily-systems-section">
       <div>{{ daily_systems }}</div>
     </section>
   </div>
 
-  <div class="big-goal--lower">
+  <div class="d-flex flex-direction-column flex-md-row gap-5">
     <section class="checkpoint-goals-section">
       <div>{{ checkpoint_goals }}</div>
     </section>

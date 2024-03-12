@@ -94,8 +94,22 @@ html {
   background-color: var(--white-bg);
 }
 
-/* BIG GOAL PAGE - BIG GOAL */
+/* BIG GOAL PAGE */
+.big-goal-section,
+.daily-systems-section,
+.checkpoint-goals-section,
+.anti-goals-section {
+  padding: 2rem;
+  background-color: var(--white-bg);
+}
+
 .big-goal-section {
+}
+.daily-systems-section {
+}
+.checkpoint-goals-section {
+}
+.anti-goals-section {
 }
 
 /* MEDIA QUERIES */
