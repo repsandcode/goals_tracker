@@ -16,18 +16,30 @@ Tracker{%endblock %} {% block body %}
       </div>
     </section>
 
-    <section class="daily-systems-section box-radius">
-      <div>{{ daily_systems }}</div>
+    <section class="daily-systems-section box-radius mt-4">
+      {% for system in daily_systems %}
+      <div>{{ system }}</div>
+      {% empty %}
+      <div>No Daily Systems. Create One Now.</div>
+      {% endfor %}
     </section>
   </div>
 
-  <div class="d-flex flex-direction-column flex-md-row gap-5">
-    <section class="checkpoint-goals-section box-radius">
-      <div>{{ checkpoint_goals }}</div>
+  <div class="row g-0 gap-4 mt-4">
+    <section class="col-md checkpoint-goals-section box-radius">
+      {% for goal in checkpoint_goals %}
+      <div>{{ goal }}</div>
+      {% empty %}
+      <div>No Checkpoint Goals. Create One Now.</div>
+      {% endfor %}
     </section>
 
-    <section class="anti-goals-section box-radius">
-      <div>{{ anti_goals }}</div>
+    <section class="col-md anti-goals-section box-radius">
+      {% for goal in anti_goals %}
+      <div>{{ goal }}</div>
+      {% empty %}
+      <div>No Anti Goals. Create One Now.</div>
+      {% endfor %}
     </section>
   </div>
 </main>
