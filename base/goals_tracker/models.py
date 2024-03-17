@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from datetime import date
 
 class User(AbstractUser):
   bio = models.TextField(blank=True)
@@ -17,6 +18,7 @@ class BaseModel(models.Model):
 
 class BigGoal(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    start = models.DateField(default=date.today)
     deadline = models.DateField()
 
     def __str__(self):
@@ -33,7 +35,7 @@ class BigGoal(BaseModel):
 
 class CheckpointGoal(BaseModel):
     big_goal = models.ForeignKey(BigGoal, on_delete=models.CASCADE)
-    deadline = models.DateField()
+    date = models.DateField(default=date.today)
 
     def __str__(self):
         return self.title
