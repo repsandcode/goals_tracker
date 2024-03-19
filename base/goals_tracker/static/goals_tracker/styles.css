@@ -112,6 +112,16 @@ html {
 .anti-goals-section {
 }
 
+/* Custom CSS for the timeline */
+.timeline {
+  position: relative;
+  margin: 20px 0;
+  padding: 0;
+  list-style-type: none;
+  background-color: #f4f4f4;
+  overflow: hidden;
+}
+
 /* MEDIA QUERIES */
 @media screen and (min-width: 450px) {
   .modal-flex-direction {
