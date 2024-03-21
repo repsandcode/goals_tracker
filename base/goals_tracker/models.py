@@ -30,6 +30,7 @@ class BigGoal(BaseModel):
             "user": self.user.username,
             "title": self.title,
             "description": self.description,
+            "start": self.start,
             "deadline": self.deadline,
         }
 

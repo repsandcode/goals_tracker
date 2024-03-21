@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from django.db import IntegrityError
 from django.urls import reverse
 from django.utils import timezone
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal
 
@@ -23,6 +23,15 @@ def checkpoint_goal(request):
    pass
 
 def big_goal(request, title):
+   def getTotalDays(start, deadline):
+      # Convert the date strings to datetime objects
+      start_datetime = datetime.strptime(start, "%B %d, %Y")
+      end_datetime = datetime.strptime(deadline, "%B %d, %Y")
+      # Calculate the difference between the two datetime objects
+      difference = end_datetime - start_datetime
+      # Extract the number of days from the difference
+      return difference.days
+
    if request.method == "GET":
       original_title = title.replace('-', ' ')
 
@@ -31,6 +40,12 @@ def big_goal(request, title):
       # Serialize queryset into JSON format
       big_goal_data = big_goal.serialize()
 
+      # Total days from start to deadline
+      # Convert date objects to strings
+      start_date_str = big_goal.start.strftime("%B %d, %Y")
+      deadline_date_str = big_goal.deadline.strftime("%B %d, %Y")
+      total_days = getTotalDays(start_date_str, deadline_date_str)
+      
       # Retrieve related Checkpoint Goals
       checkpoint_goals = CheckpointGoal.objects.filter(big_goal=big_goal)
       checkpoint_goals_data = []
@@ -58,6 +73,7 @@ def big_goal(request, title):
          "checkpoint_goals": checkpoint_goals_data.reverse(),
          "daily_systems": daily_systems_data.reverse(),
          "anti_goals": anti_goals_data.reverse(),
+         "total_days": total_days,
       })
 
 
