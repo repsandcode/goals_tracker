@@ -97,11 +97,38 @@ const showBigGoalPage = (title) => {
   const url = `/big-goal/${title}`;
   // Redirect to the constructed URL
   window.location.href = url;
-
-  getBigGoalPage(title);
 };
 
 // FETCH APIS
+const generateTimeline = (title) => {
+  const timeline = document.querySelector("#timeline");
+
+  try {
+    fetch(`/big-goal/${title}/show-timeline`)
+      .then((res) => {
+        if (res.ok) {
+          console.log("success!");
+        } else {
+          console.log("failed");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+
+  // const days = getDaysDifference(startDate, endDate);
+
+  // for (let i = 0; i < days; i++) {
+  //   const dot = document.createElement("div");
+  //   dot.classList.add("timeline-item");
+  //   timeline.appendChild(dot);
+  // }
+};
+
 const deleteOldGoal = (goal) => {
   try {
     // Deadline has passed, delete old goals
@@ -204,34 +231,3 @@ const getAllBigGoals = () => {
     console.log(error);
   }
 };
-
-// Function to generate timeline items
-function generateTimelineItems(goals) {
-  const timeline = document.getElementById("timeline");
-  timeline.innerHTML = "";
-
-  goals.forEach((goal) => {
-    const item = document.createElement("li");
-    item.classList.add("timeline-item");
-    item.innerHTML = `
-      <h3>${goal.name}</h3>
-      <p><strong>Start Date:</strong> ${goal.startDate}</p>
-      <p><strong>Deadline:</strong> ${goal.deadline}</p>
-    `;
-    timeline.appendChild(item);
-  });
-}
-
-function getNumberOfDays(startDate, endDate) {
-  // Convert both dates to milliseconds
-  const startMs = startDate.getTime();
-  const endMs = endDate.getTime();
-
-  // Calculate the difference in milliseconds
-  const differenceMs = endMs - startMs;
-
-  // Convert milliseconds to days
-  const daysDifference = Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
-
-  return daysDifference;
-}

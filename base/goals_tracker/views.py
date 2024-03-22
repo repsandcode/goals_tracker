@@ -22,16 +22,21 @@ def daily_system(request):
 def checkpoint_goal(request):
    pass
 
-def big_goal(request, title):
-   def getTotalDays(start, deadline):
-      # Convert the date strings to datetime objects
-      start_datetime = datetime.strptime(start, "%B %d, %Y")
-      end_datetime = datetime.strptime(deadline, "%B %d, %Y")
-      # Calculate the difference between the two datetime objects
-      difference = end_datetime - start_datetime
-      # Extract the number of days from the difference
-      return difference.days
+def big_goal_timeline(request, title):
+   # Retrieve the Big Goal
+   original_title = title.replace('-', ' ')
+   big_goal = get_object_or_404(BigGoal, user=request.user, title=original_title)
+   # Total days from start to deadline
+   start_date_str = big_goal.start.strftime("%B %d, %Y")
+   deadline_date_str = big_goal.deadline.strftime("%B %d, %Y")
+   
+   return JsonResponse({
+      "start": start_date_str,
+      "deadline": deadline_date_str,
+   })
 
+
+def big_goal(request, title):
    if request.method == "GET":
       original_title = title.replace('-', ' ')
 
@@ -39,12 +44,6 @@ def big_goal(request, title):
       big_goal = get_object_or_404(BigGoal, user=request.user, title=original_title)
       # Serialize queryset into JSON format
       big_goal_data = big_goal.serialize()
-
-      # Total days from start to deadline
-      # Convert date objects to strings
-      start_date_str = big_goal.start.strftime("%B %d, %Y")
-      deadline_date_str = big_goal.deadline.strftime("%B %d, %Y")
-      total_days = getTotalDays(start_date_str, deadline_date_str)
       
       # Retrieve related Checkpoint Goals
       checkpoint_goals = CheckpointGoal.objects.filter(big_goal=big_goal)
@@ -73,7 +72,6 @@ def big_goal(request, title):
          "checkpoint_goals": checkpoint_goals_data.reverse(),
          "daily_systems": daily_systems_data.reverse(),
          "anti_goals": anti_goals_data.reverse(),
-         "total_days": total_days,
       })
 
 
