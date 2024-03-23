@@ -24,6 +24,7 @@ def checkpoint_goal(request):
 
 def big_goal_timeline(request, title):
    # Retrieve the Big Goal
+   print("asdasdas")
    original_title = title.replace('-', ' ')
    big_goal = get_object_or_404(BigGoal, user=request.user, title=original_title)
    # Total days from start to deadline
@@ -67,6 +68,7 @@ def big_goal(request, title):
          anti_goals_data.append(data)
 
       return render(request, "goals_tracker/big_goal_page.html", {
+         "title_unedited": title,
          "title": original_title,
          "big_goal": big_goal_data,
          "checkpoint_goals": checkpoint_goals_data.reverse(),

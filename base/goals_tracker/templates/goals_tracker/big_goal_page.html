@@ -1,5 +1,5 @@
-{% extends "goals_tracker/layout.html" %} {% block title %} Home - Goal
-Tracker{%endblock %} {% block body %}
+{% extends "goals_tracker/layout.html" %} {% load static %} {% block title %}
+Home - Goal Tracker{%endblock %} {% block body %}
 
 <main class="py-1" id="big-goal-page">
   {% comment %} Big Goal Data Section {% endcomment %}
@@ -76,5 +76,11 @@ Tracker{%endblock %} {% block body %}
     </section>
   </div>
 </main>
-
 {% endblock %}
+
+<script>
+  const pageTitle = "{{ title_unedited }}";
+</script>
+
+<!-- Load main.js script at the end of the body -->
+<script src="{% static 'goals_tracker/main.js' %}"></script>

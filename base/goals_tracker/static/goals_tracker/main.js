@@ -38,6 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
       bigGoalModal.style.display = "none";
     }
   };
+
+  console.log(window.pageTitle);
+  // Access the pageTitle variable rendered in the Django template
+  var title = window.pageTitle;
+
+  // Check if the title is defined and not empty
+  if (title) {
+    // Call generateTimeline function or do anything else with the title
+    console.log(title);
+  }
 });
 
 // PAGES
