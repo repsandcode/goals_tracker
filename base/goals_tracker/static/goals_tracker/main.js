@@ -113,6 +113,8 @@ const showBigGoalPage = (title) => {
 const generateTimeline = (title) => {
   const timeline = document.querySelector("#timeline");
 
+  console.log("timeline");
+
   try {
     fetch(`/big-goal/${title}/show-timeline`)
       .then((res) => {
