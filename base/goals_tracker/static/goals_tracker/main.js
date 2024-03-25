@@ -22,6 +22,22 @@ const dailySystemModal = document.querySelector("#daily-system-modal");
 // anti goals form
 const antiGoalModal = document.querySelector("#anti-goal-modal");
 
+// state
+let insideBigGoalPage = false;
+
+// Get the current URL of the webpage
+const currentURL = window.location.href.toString();
+console.log(currentURL);
+
+// Check if "big-goal" is present in the URL
+if (currentURL.includes("big-goal")) {
+  insideBigGoalPage = true;
+  generateTimeline;
+} else {
+  insideBigGoalPage = false;
+}
+console.log(insideBigGoalPage);
+
 document.addEventListener("DOMContentLoaded", () => {
   /*************************/
   // AUTOMATIC RENDERINGS //
@@ -38,16 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
       bigGoalModal.style.display = "none";
     }
   };
-
-  console.log(window.pageTitle);
-  // Access the pageTitle variable rendered in the Django template
-  var title = window.pageTitle;
-
-  // Check if the title is defined and not empty
-  if (title) {
-    // Call generateTimeline function or do anything else with the title
-    console.log(title);
-  }
 });
 
 // PAGES
@@ -103,6 +109,7 @@ const showHomePage = () => {
 };
 
 const showBigGoalPage = (title) => {
+  insideBigGoalPage = true;
   // Construct the URL for the big_goal page
   const url = `/big-goal/${title}`;
   // Redirect to the constructed URL
@@ -110,9 +117,11 @@ const showBigGoalPage = (title) => {
 };
 
 // FETCH APIS
-const generateTimeline = (title) => {
+const generateTimeline = () => {
+  const title = document.querySelector("#hidden-title").value;
   const timeline = document.querySelector("#timeline");
 
+  console.log(title);
   console.log("timeline");
 
   try {

@@ -36,7 +36,6 @@ def big_goal_timeline(request, title):
       "deadline": deadline_date_str,
    })
 
-
 def big_goal(request, title):
    if request.method == "GET":
       original_title = title.replace('-', ' ')

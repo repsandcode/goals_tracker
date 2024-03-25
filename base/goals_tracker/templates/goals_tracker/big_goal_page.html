@@ -15,6 +15,7 @@ Home - Goal Tracker{%endblock %} {% block body %}
         <p>{{ big_goal.description }}</p>
         <p>days</p>
 
+        <input type="hidden" id="title-hidden" value="{{title_unedited}}" />
         <ul class="timeline" id="timeline"></ul>
       </div>
     </section>
