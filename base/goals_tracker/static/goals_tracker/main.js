@@ -22,22 +22,6 @@ const dailySystemModal = document.querySelector("#daily-system-modal");
 // anti goals form
 const antiGoalModal = document.querySelector("#anti-goal-modal");
 
-// state
-let insideBigGoalPage = false;
-
-// Get the current URL of the webpage
-const currentURL = window.location.href.toString();
-console.log(currentURL);
-
-// Check if "big-goal" is present in the URL
-if (currentURL.includes("big-goal")) {
-  insideBigGoalPage = true;
-  generateTimeline;
-} else {
-  insideBigGoalPage = false;
-}
-console.log(insideBigGoalPage);
-
 document.addEventListener("DOMContentLoaded", () => {
   /*************************/
   // AUTOMATIC RENDERINGS //
@@ -117,38 +101,6 @@ const showBigGoalPage = (title) => {
 };
 
 // FETCH APIS
-const generateTimeline = () => {
-  const title = document.querySelector("#hidden-title").value;
-  const timeline = document.querySelector("#timeline");
-
-  console.log(title);
-  console.log("timeline");
-
-  try {
-    fetch(`/big-goal/${title}/show-timeline`)
-      .then((res) => {
-        if (res.ok) {
-          console.log("success!");
-        } else {
-          console.log("failed");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-      });
-  } catch (error) {
-    console.log(error);
-  }
-
-  // const days = getDaysDifference(startDate, endDate);
-
-  // for (let i = 0; i < days; i++) {
-  //   const dot = document.createElement("div");
-  //   dot.classList.add("timeline-item");
-  //   timeline.appendChild(dot);
-  // }
-};
 
 const deleteOldGoal = (goal) => {
   try {
