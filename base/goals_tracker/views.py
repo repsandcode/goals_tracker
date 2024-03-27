@@ -22,20 +22,6 @@ def daily_system(request):
 def checkpoint_goal(request):
    pass
 
-def big_goal_timeline(request, title):
-   # Retrieve the Big Goal
-   print("asdasdas")
-   original_title = title.replace('-', ' ')
-   big_goal = get_object_or_404(BigGoal, user=request.user, title=original_title)
-   # Total days from start to deadline
-   start_date_str = big_goal.start.strftime("%B %d, %Y")
-   deadline_date_str = big_goal.deadline.strftime("%B %d, %Y")
-   
-   return JsonResponse({
-      "start": start_date_str,
-      "deadline": deadline_date_str,
-   })
-
 def big_goal(request, title):
    if request.method == "GET":
       original_title = title.replace('-', ' ')
