@@ -114,12 +114,8 @@ html {
 
 /* Custom CSS for the timeline */
 .timeline {
-  position: relative;
-  margin: 20px 0;
-  padding: 0;
-  list-style-type: none;
   background-color: #f4f4f4;
-  overflow-x: scroll;
+  overflow: scroll;
   white-space: nowrap;
 }
 .timeline-item {
@@ -128,7 +124,7 @@ html {
   height: 10px; /* Adjust the height of the dot */
   background-color: #007bff; /* Dot color */
   border-radius: 50%; /* Make it round */
-  margin: 0 5px; /* Adjust space between dots */
+  margin: 0 2rem; /* Adjust space between dots */
 }
 
 /* MEDIA QUERIES */
