@@ -13,10 +13,16 @@ Home - Goal Tracker{%endblock %} {% block body %}
       {% comment %} body {% endcomment %}
       <div>
         <p>{{ big_goal.description }}</p>
-        <p>days</p>
+        <p>{{ timeline.range_days }}days</p>
+        <p>Start: {{timeline.start}}</p>
+        <p>Deadline: {{timeline.deadline}}</p>
 
         <input type="hidden" id="title-hidden" value="{{title_unedited}}" />
-        <ul class="timeline" id="timeline"></ul>
+        <div class="timeline" id="timeline">
+          {% for day in timeline.range_days %}
+          <div class="timeline-item"></div>
+          {% endfor %}
+        </div>
       </div>
     </section>
 

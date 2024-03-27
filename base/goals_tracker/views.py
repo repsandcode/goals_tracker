@@ -28,8 +28,18 @@ def big_goal(request, title):
 
       # Retrieve the Big Goal
       big_goal = get_object_or_404(BigGoal, user=request.user, title=original_title)
-      # Serialize queryset into JSON format
+      # Serialize Big Goal query into JSON format
       big_goal_data = big_goal.serialize()
+
+      # Create timeline
+      start_date = datetime.strptime(big_goal_data["start"], "%Y-%m-%d")
+      end_date = datetime.strptime(big_goal_data["deadline"], "%Y-%m-%d")
+      range_days = range((end_date - start_date).days + 1)
+      timeline = {
+         "start": start_date.strftime('%B %d, %Y'),
+         "deadline": end_date.strftime('%B %d, %Y'),
+         "range_days": range_days,
+      }
       
       # Retrieve related Checkpoint Goals
       checkpoint_goals = CheckpointGoal.objects.filter(big_goal=big_goal)
@@ -56,6 +66,7 @@ def big_goal(request, title):
          "title_unedited": title,
          "title": original_title,
          "big_goal": big_goal_data,
+         "timeline": timeline,
          "checkpoint_goals": checkpoint_goals_data.reverse(),
          "daily_systems": daily_systems_data.reverse(),
          "anti_goals": anti_goals_data.reverse(),
