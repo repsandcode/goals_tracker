@@ -114,17 +114,17 @@ html {
 
 /* Custom CSS for the timeline */
 .timeline {
-  background-color: #f4f4f4;
+  background-color: transparent;
   overflow: scroll;
   white-space: nowrap;
 }
 .timeline-item {
   display: inline-block;
-  width: 10px; /* Adjust the width of the dot */
-  height: 10px; /* Adjust the height of the dot */
-  background-color: #007bff; /* Dot color */
-  border-radius: 50%; /* Make it round */
-  margin: 0 2rem; /* Adjust space between dots */
+  width: 21rem; /* Adjust the width of the dot */
+  height: 38rem; /* Adjust the height of the dot */
+  background-color: #f4f4f4; /* Dot color */
+  border-radius: 1rem;
+  overflow: scroll;
 }
 
 /* MEDIA QUERIES */
