@@ -127,10 +127,11 @@ def big_goals(request):
 
         # get contents from Big Goal Form
         title = data.get("title", "")
+        start = data.get("start", "")
         deadline = data.get("deadline", "")
         description = data.get("description", "")
 
-        old_goal = BigGoal.objects.filter(user=request.user, title=title, description=description, deadline=deadline)
+        old_goal = BigGoal.objects.filter(user=request.user, title=title, description=description, start=start, deadline=deadline)
 
         old_goal.delete()
 

@@ -14,15 +14,6 @@ const bigGoalDescription = document.querySelector("#big-goal-description");
 // big goals section
 const allBigGoals = document.querySelector("#all-big-goals");
 
-// checkpoint goal form
-const checkpointGoalModal = document.querySelector("#checkpoint-goal-modal");
-
-// daily system form
-const dailySystemModal = document.querySelector("#daily-system-modal");
-
-// anti goals form
-const antiGoalModal = document.querySelector("#anti-goal-modal");
-
 document.addEventListener("DOMContentLoaded", () => {
   /*************************/
   // AUTOMATIC RENDERINGS //
@@ -107,7 +98,6 @@ const showBigGoalPage = (title) => {
 };
 
 // FETCH APIS
-
 const deleteOldGoal = (goal) => {
   try {
     // Deadline has passed, delete old goals
@@ -116,6 +106,7 @@ const deleteOldGoal = (goal) => {
       body: JSON.stringify({
         title: goal.title,
         description: goal.description,
+        start: goal.start,
         deadline: goal.deadline,
       }),
       headers: {
