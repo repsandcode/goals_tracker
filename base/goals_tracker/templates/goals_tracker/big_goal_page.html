@@ -20,7 +20,46 @@ Home - Goal Tracker{%endblock %} {% block body %}
           <div class="timeline" id="timeline">
             {% for date in timeline.all_dates %}
             <div class="timeline-item">
-              <div class="timeline-item--head">{{date}}</div>
+              <div class="timeline-item--head">
+                <!-- MONTH -->
+                <h4>
+                  {% with month_number=date|slice:":2" %}
+                  {% if month_number == "01" %}
+                  January
+                  {% elif month_number == "02" %}
+                  February
+                  {% elif month_number == "03" %}
+                  March
+                  {% elif month_number == "04" %}
+                  April
+                  {% elif month_number == "05" %}
+                  May
+                  {% elif month_number == "06" %}
+                  June
+                  {% elif month_number == "07" %}
+                  July
+                  {% elif month_number == "08" %}
+                  August
+                  {% elif month_number == "09" %}
+                  September
+                  {% elif month_number == "10" %}
+                  October
+                  {% elif month_number == "11" %}
+                  November
+                  {% elif month_number == "12" %}
+                  December
+                  {% endif %}
+                  {% endwith %}
+                </h4>
+                <!-- DATE -->
+                <h5 class="text-center">
+                  {% if date|length >= 8 %}
+                  {{ date|slice:"3:" }}
+                  {% else %}
+                  {{ date }}
+                  {% endif %}
+                </h5>
+              </div>
               <div class="timeline-item--body"></div>
             </div>
             {% endfor %}
@@ -32,10 +71,7 @@ Home - Goal Tracker{%endblock %} {% block body %}
     <section class="daily-systems-section box-radius mt-4">
       <div class="d-flex justify-content-between mb-4">
         <h2>Daily Systems</h2>
-        <button
-          class="border bg-transparent py-2 px-3 fs-5 rounded-circle"
-          id="open-daily-system-modal"
-        >
+        <button class="border bg-transparent py-2 px-3 fs-5 rounded-circle" id="open-daily-system-modal">
           <i class="bi bi-plus-lg"></i>
         </button>
       </div>
@@ -52,10 +88,7 @@ Home - Goal Tracker{%endblock %} {% block body %}
     <section class="col-md checkpoint-goals-section box-radius">
       <div class="d-flex justify-content-between mb-4">
         <h2>Checkpoint Goals</h2>
-        <button
-          class="border bg-transparent py-2 px-3 fs-5 rounded-circle"
-          id="open-checkpoint-goal-modal"
-        >
+        <button class="border bg-transparent py-2 px-3 fs-5 rounded-circle" id="open-checkpoint-goal-modal">
           <i class="bi bi-plus-lg"></i>
         </button>
       </div>
@@ -70,10 +103,7 @@ Home - Goal Tracker{%endblock %} {% block body %}
     <section class="col-md anti-goals-section box-radius">
       <div class="d-flex justify-content-between mb-4">
         <h2>Anti Goals</h2>
-        <button
-          class="border bg-transparent py-2 px-3 fs-5 rounded-circle"
-          id="open-anti-goal-modal"
-        >
+        <button class="border bg-transparent py-2 px-3 fs-5 rounded-circle" id="open-anti-goal-modal">
           <i class="bi bi-plus-lg"></i>
         </button>
       </div>

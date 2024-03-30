@@ -34,12 +34,16 @@ def big_goal(request, title):
       # Create timeline
       start_date = datetime.strptime(big_goal_data["start"], "%Y-%m-%d")
       end_date = datetime.strptime(big_goal_data["deadline"], "%Y-%m-%d")
-      range_days = range((end_date - start_date).days + 1)
-      all_dates = [(start_date + timedelta(days=i)).strftime('%Y-%m-%d') for i in range((end_date - start_date).days + 1)]
+      all_dates = []
+      for i in range((end_date - start_date).days + 1):
+         current_date = start_date + timedelta(days=i)
+         if current_date.day == 1:
+            all_dates.append(current_date.strftime('%m %a %d'))
+         else:
+            all_dates.append(current_date.strftime('%a %d'))
       timeline = {
          "start": start_date.strftime('%B %d, %Y'),
          "deadline": end_date.strftime('%B %d, %Y'),
-         "range_days": range_days,
          "all_dates": all_dates,
       }
       
