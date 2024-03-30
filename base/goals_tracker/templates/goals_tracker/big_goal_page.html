@@ -2,6 +2,7 @@
 Home - Goal Tracker{%endblock %} {% block body %}
 
 <main class="py-1" id="big-goal-page">
+  <!-- Go back to HOME -->
   <div class="align-self-center mb-5">
     <a href="{% url 'goals_tracker:index' %}">
       <button class="border-0 bg-transparent fs-2">
@@ -9,6 +10,7 @@ Home - Goal Tracker{%endblock %} {% block body %}
       </button>
     </a>
   </div>
+
   {% comment %} Big Goal Data Section {% endcomment %}
   <div class="">
     <section class="big-goal-section box-radius">
