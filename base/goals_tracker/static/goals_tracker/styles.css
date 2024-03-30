@@ -120,9 +120,20 @@ html {
 }
 .timeline-item {
   display: inline-block;
-  width: 21rem; /* Adjust the width of the dot */
-  height: 38rem; /* Adjust the height of the dot */
-  background-color: #f4f4f4; /* Dot color */
+  /* width: 21rem;
+  height: 38rem; */
+  /* background-color: #f4f4f4;
+  border-radius: 1rem;
+  overflow: scroll; */
+}
+.timeline-item--head {
+  text-align: center;
+}
+.timeline-item--body {
+  /* display: inline-block; */
+  width: 21rem;
+  height: 38rem;
+  background-color: #f4f4f4;
   border-radius: 1rem;
   overflow: scroll;
 }
