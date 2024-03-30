@@ -105,6 +105,7 @@ def big_goals(request):
 
       # get contents from Big Goal Form
       title = data.get("title", "")
+      start = data.get("start", "")
       deadline = data.get("deadline", "")
       description = data.get("description", "")
 
@@ -113,6 +114,7 @@ def big_goals(request):
          user = request.user,
          title = title,
          description = description,
+         start = start,
          deadline = deadline,
       ) 
       big_goal.save()

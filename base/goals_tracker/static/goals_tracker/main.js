@@ -8,6 +8,7 @@ const bigGoalPage = document.querySelector("#big-goal-page");
 // big goal form
 const bigGoalModal = document.querySelector("#big-goal-modal");
 const bigGoalTitle = document.querySelector("#big-goal-title");
+const bigGoalStart = document.querySelector("#big-goal-start");
 const bigGoalDeadline = document.querySelector("#big-goal-deadline");
 const bigGoalDescription = document.querySelector("#big-goal-description");
 // big goals section
@@ -59,6 +60,7 @@ const showHomePage = () => {
       method: "POST",
       body: JSON.stringify({
         title: bigGoalTitle.value,
+        start: bigGoalStart.value,
         deadline: bigGoalDeadline.value,
         description: bigGoalDescription.value,
       }),
@@ -83,8 +85,12 @@ const showHomePage = () => {
   };
   const showBigGoalModal = () => {
     bigGoalModal.style.display = "block";
-    document.querySelector("#big-goal-deadline").min = defaultDeadlineDate();
-    document.querySelector("#big-goal-deadline").value = defaultDeadlineDate();
+    // start date
+    bigGoalStart.min = defaultStartDate();
+    bigGoalStart.value = defaultStartDate();
+    // deadline
+    bigGoalDeadline.min = defaultDeadlineDate();
+    bigGoalDeadline.value = defaultDeadlineDate();
     document.querySelector("#big-goal-form").onsubmit = createBigGoal;
   };
   const hideBigGoalModal = () => {

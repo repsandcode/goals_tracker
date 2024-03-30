@@ -13,8 +13,16 @@ const addGreeting = () => {
   document.querySelector("#greetings").textContent = greeting;
 };
 
+const defaultStartDate = () => {
+  const today = new Date();
+
+  // Format today's date as YYYY-MM-DD
+  const formattedToday = today.toISOString().split("T")[0];
+
+  return formattedToday;
+};
+
 const defaultDeadlineDate = () => {
-  // Get tomorrow's date
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
