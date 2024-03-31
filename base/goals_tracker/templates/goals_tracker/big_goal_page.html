@@ -91,13 +91,14 @@ Home - Goal Tracker{%endblock %} {% block body %}
         <div class="modal-center">
           <div class="daily-system-modal-content" id="daily-system-modal-content">
             {% comment %} Header {% endcomment %}
-            <h3 class="fw-normal mb-5">What would you daily to make it a reality?</h3>
+            <h3 class="fw-light mb-5">What would you do <span class="fst-italic fw-normal">
+                daily</span> to make it a
+              reality?</h3>
 
             {% comment %} Body {% endcomment %}
             <form id="daily-system-form">
               {% csrf_token %}
               <div class="mb-5">
-                <label for="daily-system-title" class="form-label fs-4">Action</label>
                 <input autofocus class="form-control p-4 fs-4 bg-body-tertiary box-radius" type="text"
                   id="daily-system-title" name="daily-system-title" required />
               </div>

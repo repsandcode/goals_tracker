@@ -5,6 +5,13 @@ const checkpointGoalModal = document.querySelector("#checkpoint-goal-modal");
 // anti goals form
 const antiGoalModal = document.querySelector("#anti-goal-modal");
 
+document
+  .querySelector("#open-daily-system-modal")
+  .addEventListener("click", () => showDailySystemModal());
+document
+  .querySelector("#close-daily-system-modal")
+  .addEventListener("click", () => hideDailySystemModal());
+
 const showDailySystemModal = () => {
   dailySystemModal.style.display = "block";
   document.querySelector("#daily-system-form").onsubmit = createDailySystem;

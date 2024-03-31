@@ -1,6 +1,3 @@
-/*************************/
-//   GLOBAL VARIABLES   //
-/***********************/
 const modalCenter = document.querySelector(".modal-center");
 // pages
 const homePage = document.querySelector("#home-page");
@@ -14,22 +11,36 @@ const bigGoalDescription = document.querySelector("#big-goal-description");
 // big goals section
 const allBigGoals = document.querySelector("#all-big-goals");
 
+/*************************/
+//    CLICK LISTENER    //
+/***********************/
+window.onclick = function (event) {
+  // when the user clicks anywhere outside of the modal or its child elements, close it
+  if (event.target == modalCenter) {
+    if (bigGoalModal && bigGoalModal.style.diplay === "block") {
+      bigGoalModal.style.display = "none";
+    }
+
+    if (dailySystemModal && dailySystemModal.style.display === "block") {
+      dailySystemModal.style.display = "none";
+    }
+
+    if (checkpointGoalModal && checkpointGoalModal.style.display === "block") {
+      checkpointGoalModal.style.diplay = "none";
+    }
+
+    if (antiGoalModal && antiGoalModal.style.display === "block") {
+      antiGoalModal.style.diplay = "none";
+    }
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   /*************************/
   // AUTOMATIC RENDERINGS //
   /***********************/
   addGreeting(); // user greetings
   showHomePage(); // home page contents
-
-  /*************************/
-  //    CLICK LISTENER    //
-  /***********************/
-  window.onclick = function (event) {
-    // when the user clicks anywhere outside of the modal or its child elements, close it
-    if (event.target == modalCenter) {
-      bigGoalModal.style.display = "none";
-    }
-  };
 });
 
 // PAGES
