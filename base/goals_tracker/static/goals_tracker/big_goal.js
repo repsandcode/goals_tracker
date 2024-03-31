@@ -8,8 +8,11 @@ const checkpointGoalModal = document.querySelector("#checkpoint-goal-modal");
 const antiGoalModal = document.querySelector("#anti-goal-modal");
 
 // titles
-const uneditedTitle = document.querySelector("#no-edit-title-hidden");
-const title = document.querySelector("#title");
+const uneditedTitle = document.querySelector("#no-edit-title-hidden").value;
+const title = document.querySelector("#title-hidden").value;
+
+console.log(uneditedTitle);
+console.log(title);
 
 // DAILY SYSTEM MODAL
 document
@@ -29,7 +32,7 @@ const hideDailySystemModal = () => {
 const createDailySystem = (event) => {
   event.preventDefault();
 
-  fetch(`${uneditedTitle}/create-daily-system`, {
+  fetch(`/big-goal/${uneditedTitle}/create-daily-system`, {
     method: "POST",
     body: JSON.stringify({
       bigGoal: title,

@@ -1,5 +1,5 @@
-{% extends "goals_tracker/layout.html" %} {% block title %}
-Home - Goal Tracker{%endblock %} {% block body %}
+{% extends "goals_tracker/layout.html" %} {% block title %} Home - Goal
+Tracker{%endblock %} {% block body %}
 
 <main class="py-1" id="big-goal-page">
   <!-- Go back to HOME -->
@@ -23,7 +23,11 @@ Home - Goal Tracker{%endblock %} {% block body %}
       <div>
         <p>{{ big_goal.description }}</p>
 
-        <input type="hidden" id="no-edit-title-hidden" value="{{unedited_title}}" />
+        <input
+          type="hidden"
+          id="no-edit-title-hidden"
+          value="{{title_unedited}}"
+        />
         <input type="hidden" id="title-hidden" value="{{title}}" />
 
         <div class="mt-5">
@@ -33,40 +37,28 @@ Home - Goal Tracker{%endblock %} {% block body %}
               <div class="timeline-item--head">
                 <!-- MONTH -->
                 <h4>
-                  {% with month_number=date|slice:":2" %}
-                  {% if month_number == "01" %}
-                  January
-                  {% elif month_number == "02" %}
-                  February
-                  {% elif month_number == "03" %}
-                  March
-                  {% elif month_number == "04" %}
-                  April
-                  {% elif month_number == "05" %}
-                  May
-                  {% elif month_number == "06" %}
-                  June
-                  {% elif month_number == "07" %}
-                  July
-                  {% elif month_number == "08" %}
-                  August
-                  {% elif month_number == "09" %}
-                  September
-                  {% elif month_number == "10" %}
-                  October
-                  {% elif month_number == "11" %}
-                  November
-                  {% elif month_number == "12" %}
-                  December
-                  {% endif %}
+                  {% with month_number=date|slice:":2" %} 
+                    {% if month_number == "01" %} January 
+                    {% elif month_number == "02" %} February 
+                    {% elif month_number == "03" %} March 
+                    {% elif month_number == "04" %} April 
+                    {% elif month_number == "05" %} May 
+                    {% elif month_number == "06" %} June 
+                    {% elif month_number == "07" %} July 
+                    {% elif month_number == "08" %} August 
+                    {% elif month_number == "09" %} September 
+                    {% elif month_number == "10"%} October 
+                    {% elif month_number == "11" %} November 
+                    {% elif month_number == "12" %} December 
+                    {% endif %} 
                   {% endwith %}
                 </h4>
                 <!-- DATE -->
                 <h5 class="text-center">
-                  {% if date|length >= 8 %}
-                  {{ date|slice:"3:" }}
-                  {% else %}
-                  {{ date }}
+                  {% if date|length >= 8 %} 
+                    {{ date|slice:"3:" }} 
+                  {% else %} 
+                    {{ date }} 
                   {% endif %}
                 </h5>
               </div>
@@ -82,7 +74,10 @@ Home - Goal Tracker{%endblock %} {% block body %}
     <section class="daily-systems-section box-radius mt-4">
       <div class="d-flex justify-content-between mb-4">
         <h2>Daily Systems</h2>
-        <button class="border bg-transparent py-2 px-3 fs-5 rounded-circle" id="open-daily-system-modal">
+        <button
+          class="border bg-transparent py-2 px-3 fs-5 rounded-circle"
+          id="open-daily-system-modal"
+        >
           <i class="bi bi-plus-lg"></i>
         </button>
       </div>
@@ -90,25 +85,43 @@ Home - Goal Tracker{%endblock %} {% block body %}
       <!-- Daily System Modal -->
       <div id="daily-system-modal" class="modal">
         <div class="modal-center">
-          <div class="daily-system-modal-content" id="daily-system-modal-content">
+          <div
+            class="daily-system-modal-content"
+            id="daily-system-modal-content"
+          >
             {% comment %} Header {% endcomment %}
-            <h3 class="fw-light mb-5">What would you do <span class="fst-italic fw-normal">
-                daily</span> to make it a
-              reality?</h3>
+            <h3 class="fw-light mb-5">
+              What would you do <span class="fst-italic fw-normal"> daily</span> to make it a reality?
+            </h3>
 
             {% comment %} Body {% endcomment %}
             <form id="daily-system-form">
               {% csrf_token %}
               <div class="mb-5">
-                <input autofocus class="form-control p-4 fs-4 bg-body-tertiary box-radius" type="text"
-                  id="daily-system-title" name="daily-system-title" required />
+                <input
+                  autofocus
+                  class="form-control p-4 fs-4 bg-body-tertiary box-radius"
+                  type="text"
+                  id="daily-system-title"
+                  name="daily-system-title"
+                  required
+                />
               </div>
 
               <div class="d-flex justify-content-end gap-4">
-                <button type="button" id="close-daily-system-modal"
-                  class="p-4 border-0 bg-transparent fs-4 box-radius">Close</button>
-                <button type="submit" class="p-4 border-0 bg-success-subtle fs-4 box-radius">Create Daily
-                  System</button>
+                <button
+                  type="button"
+                  id="close-daily-system-modal"
+                  class="p-4 border-0 bg-transparent fs-4 box-radius"
+                >
+                  Close
+                </button>
+                <button
+                  type="submit"
+                  class="p-4 border-0 bg-success-subtle fs-4 box-radius"
+                >
+                  Create Daily System
+                </button>
               </div>
             </form>
           </div>
@@ -116,9 +129,9 @@ Home - Goal Tracker{%endblock %} {% block body %}
       </div>
 
       {% for system in daily_systems %}
-      <div>{{ system }}</div>
+        <div>{{ system.action }}</div>
       {% empty %}
-      <div>No Daily Systems. Create One Now.</div>
+        <div>No Daily Systems. Create One Now.</div>
       {% endfor %}
     </section>
   </div>
@@ -127,7 +140,10 @@ Home - Goal Tracker{%endblock %} {% block body %}
     <section class="col-md checkpoint-goals-section box-radius">
       <div class="d-flex justify-content-between mb-4">
         <h2>Checkpoint Goals</h2>
-        <button class="border bg-transparent py-2 px-3 fs-5 rounded-circle" id="open-checkpoint-goal-modal">
+        <button
+          class="border bg-transparent py-2 px-3 fs-5 rounded-circle"
+          id="open-checkpoint-goal-modal"
+        >
           <i class="bi bi-plus-lg"></i>
         </button>
       </div>
@@ -142,7 +158,10 @@ Home - Goal Tracker{%endblock %} {% block body %}
     <section class="col-md anti-goals-section box-radius">
       <div class="d-flex justify-content-between mb-4">
         <h2>Anti Goals</h2>
-        <button class="border bg-transparent py-2 px-3 fs-5 rounded-circle" id="open-anti-goal-modal">
+        <button
+          class="border bg-transparent py-2 px-3 fs-5 rounded-circle"
+          id="open-anti-goal-modal"
+        >
           <i class="bi bi-plus-lg"></i>
         </button>
       </div>
