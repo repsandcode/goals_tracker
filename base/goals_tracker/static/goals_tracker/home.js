@@ -101,7 +101,6 @@ const showHomePage = () => {
 };
 
 const showBigGoalPage = (title) => {
-  insideBigGoalPage = true;
   // Construct the URL for the big_goal page
   const url = `/big-goal/${title}`;
   // Redirect to the constructed URL

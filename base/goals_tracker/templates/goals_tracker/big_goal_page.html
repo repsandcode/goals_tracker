@@ -23,7 +23,8 @@ Home - Goal Tracker{%endblock %} {% block body %}
       <div>
         <p>{{ big_goal.description }}</p>
 
-        <input type="hidden" id="title-hidden" value="{{title_unedited}}" />
+        <input type="hidden" id="no-edit-title-hidden" value="{{unedited_title}}" />
+        <input type="hidden" id="title-hidden" value="{{title}}" />
 
         <div class="mt-5">
           <div class="timeline" id="timeline">
