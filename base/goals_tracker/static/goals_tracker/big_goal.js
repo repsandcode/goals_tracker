@@ -8,17 +8,17 @@ const checkpointGoalModal = document.querySelector("#checkpoint-goal-modal");
 const checkpointGoalModalContent = document.querySelector("#checkpoint-goal-modal-content");
 const checkpointGoalForm = document.querySelector("#checkpoint-goal-form");
 const checkpointGoalTitle = document.querySelector("#checkpoint-goal-title");
-const checkpointGoalDate = document.querySelector("#checkpoint-goal-start");
+const checkpointGoalDate = document.querySelector("#checkpoint-goal-date");
 const checkpointGoalDescription = document.querySelector("#checkpoint-goal-description");
 // anti goals form
 const antiGoalModal = document.querySelector("#anti-goal-modal");
 
-// titles
+// hidden values
 const uneditedTitle = document.querySelector("#no-edit-title-hidden").value;
 const title = document.querySelector("#title-hidden").value;
+const startDate = document.querySelector("#start-hidden").value;
+const deadlineDate = document.querySelector("#deadline-hidden").value;
 
-console.log(uneditedTitle);
-console.log(title);
 
 
 
@@ -78,6 +78,10 @@ document
 
 const showCheckpointGoalModal = () => {
   checkpointGoalModal.style.display = "block";
+  // modify min and max for checkpoint goal date
+  checkpointGoalDate.min = formatDate(startDate);
+  checkpointGoalDate.max = formatDate(deadlineDate);
+
   checkpointGoalForm.onsubmit = createCheckpointGoal;
 };
 const hideCheckpointGoalModal = () => {

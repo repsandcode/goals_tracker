@@ -29,6 +29,8 @@ Tracker{%endblock %} {% block body %}
           value="{{title_unedited}}"
         />
         <input type="hidden" id="title-hidden" value="{{title}}" />
+        <input type="hidden" id="start-hidden" value="{{timeline.start}}" />
+        <input type="hidden" id="deadline-hidden" value="{{timeline.deadline}}" />
 
         <div class="mt-5">
           <div class="timeline" id="timeline">

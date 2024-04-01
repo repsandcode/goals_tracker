@@ -97,7 +97,6 @@ const showHomePage = () => {
     bigGoalStart.value = defaultStartDate();
     // deadline
     bigGoalDeadline.min = defaultDeadlineDate();
-    bigGoalDeadline.value = defaultDeadlineDate();
     document.querySelector("#big-goal-form").onsubmit = createBigGoal;
   };
   const hideBigGoalModal = () => {

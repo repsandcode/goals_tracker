@@ -48,7 +48,15 @@ const getCookie = (name) => {
   return cookieValue;
 };
 
+const formatDate = (strDate) => {
+  const date = new Date(strDate);
+  const formattedDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+  return formattedDate;
+}
+
 // Attach the function to the window object
 window.addGreeting = addGreeting;
+window.defaultStartDate = defaultStartDate;
 window.defaultDeadlineDate = defaultDeadlineDate;
 window.getCookie = getCookie(name);
+window.formatDate = formatDate(strDate);
