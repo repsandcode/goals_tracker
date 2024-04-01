@@ -132,11 +132,13 @@ Tracker{%endblock %} {% block body %}
         </div>
       </div>
 
-      {% for system in daily_systems %}
-        <div>{{ system.action }}</div>
-      {% empty %}
+      <div class="d-flex flex-wrap gap-4">
+        {% for system in daily_systems %}
+        <div class="daily-action-box">{{ system.action }}</div>
+        {% empty %}
         <div>No Daily Systems. Create One Now.</div>
-      {% endfor %}
+        {% endfor %}
+      </div>
     </section>
   </div>
 
