@@ -11,6 +11,7 @@ urlpatterns = [
 
   # home
   path("", views.index, name="index"),
+  path("daily-systems", views.daily_systems, name="daily_systems"),
   path("big-goals", views.big_goals, name="big_goals"),
   path("create-big-goal", views.big_goals, name="create_big_goal"),
   path('delete-old-goal', views.big_goals, name='delete_old_goal'),

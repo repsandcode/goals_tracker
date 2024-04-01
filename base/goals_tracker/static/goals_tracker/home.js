@@ -1,15 +1,18 @@
 // pages
 const homePage = document.querySelector("#home-page");
 const bigGoalPage = document.querySelector("#big-goal-page");
-// big goal form
+
+// big goals section
+const allBigGoals = document.querySelector("#all-big-goals");
 const bigGoalModal = document.querySelector("#big-goal-modal");
 const bigGoalModalContent = document.querySelector("#big-goal-modal-content");
 const bigGoalTitle = document.querySelector("#big-goal-title");
 const bigGoalStart = document.querySelector("#big-goal-start");
 const bigGoalDeadline = document.querySelector("#big-goal-deadline");
 const bigGoalDescription = document.querySelector("#big-goal-description");
-// big goals section
-const allBigGoals = document.querySelector("#all-big-goals");
+
+// daily systems section
+const allDailySystems = document.querySelector("#all-daily-systems");
 
 /*************************/
 //    CLICK LISTENER    //
@@ -50,7 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // PAGES
 const showHomePage = () => {
-  getAllBigGoals(); // get all big goals asap
+  getAllBigGoals();
+  getAllDailySystems(); 
 
   // create a big goal
   document
@@ -215,3 +219,41 @@ const getAllBigGoals = () => {
     console.log(error);
   }
 };
+
+const getAllDailySystems = () => {
+  try {
+    fetch("/daily-systems")
+      .then((res) => {
+        if (res.ok) {
+          console.log("success! retrieved all daily systems");
+        } else {
+          console.log("failed to retrieve all daily systems");
+        }
+        return res.json();
+      })
+      .then((dailySystems) => {
+        console.log(dailySystems);
+
+        dailySystems.forEach((daily) => {
+          const dailySystemBox = document.createElement("div");
+
+          dailySystemBox.classList.add(
+            "bg-success-subtle",
+            "box-radius",
+            "daily-system-box"
+          );
+
+          dailySystemBox.innerHTML = `
+          <p class="m-0">${daily.action}</p>
+          `;
+
+          allDailySystems.append(dailySystemBox);
+        });
+      })
+      .then(() => {
+        
+      });
+  } catch (error) {
+    console.log(error);
+  }
+}

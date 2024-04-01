@@ -96,6 +96,10 @@ html {
   padding: 2.5rem;
   background-color: var(--white-bg);
 }
+.daily-system-box {
+  padding: 1rem;
+  cursor: pointer;
+}
 
 /* BIG GOAL PAGE */
 .big-goal-section,

@@ -140,6 +140,31 @@ def big_goal(request, title):
       })
 
 # HOME
+def daily_systems(request):
+   # get all daily systems
+   if request.method == "GET":
+        print("adasdasdsa")
+        user = request.user
+
+        container = []
+        # Retrieve all Big Goals of the user
+        big_goals_queryset = BigGoal.objects.filter(user=user)
+        for big_goal in big_goals_queryset:
+           # Retrieve all Daily Systems of the user
+           big_goal_actions = DailySystem.objects.filter(big_goal=big_goal)
+           for action in big_goal_actions:
+              container.append(action)
+
+        container.reverse()
+
+        # Serialize queryset into JSON format
+        daily_systems = []
+        for action in container:
+           data = action.serialize()
+           daily_systems.append(data)
+
+        return JsonResponse(daily_systems, safe=False) 
+
 def big_goals(request):
    # get all big goals
    if request.method == "GET":
