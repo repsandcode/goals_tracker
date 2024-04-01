@@ -62,7 +62,11 @@ Tracker{%endblock %} {% block body %}
                   {% endif %}
                 </h5>
               </div>
-              <div class="timeline-item--body"></div>
+              <div class="timeline-item--body">
+                {% for system in daily_systems %}
+                  <div>{{ system.action }}</div>
+                {% endfor %}
+              </div>
             </div>
             {% endfor %}
           </div>
