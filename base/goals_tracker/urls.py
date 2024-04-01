@@ -20,5 +20,5 @@ urlpatterns = [
   path("big-goal/<str:title>", views.big_goal, name="big_goal"),
   path("big-goal/<str:title>/create-checkpoint-goal", views.checkpoint_goal, name="create_checkpoint_goal"),
   path("big-goal/<str:title>/create-daily-system", views.daily_system, name="create_daily_system"),
-  # path("<str:biggoal>/create-anti-goals", views.create_antigoals, name="create_antigoals"),
+  path("big-goal/<str:title>/create-anti-goal", views.anti_goal, name="create_anti_goal"),
 ]

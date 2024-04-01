@@ -12,13 +12,14 @@ const checkpointGoalDate = document.querySelector("#checkpoint-goal-date");
 const checkpointGoalDescription = document.querySelector("#checkpoint-goal-description");
 // anti goals form
 const antiGoalModal = document.querySelector("#anti-goal-modal");
+const antiGoalForm = document.querySelector("#anti-goal-form");
+const antiGoalDescription = document.querySelector("#anti-goal-description");
 
 // hidden values
 const uneditedTitle = document.querySelector("#no-edit-title-hidden").value;
 const title = document.querySelector("#title-hidden").value;
 const startDate = document.querySelector("#start-hidden").value;
 const deadlineDate = document.querySelector("#deadline-hidden").value;
-
 
 
 
@@ -119,8 +120,13 @@ const createCheckpointGoal = (event) => {
 };
 
 
-
-
+// ANTI GOAL MODAL
+document
+  .querySelector("#open-anti-goal-modal")
+  .addEventListener("click", () => showAntiGoalModal());
+document
+  .querySelector("#close-anti-goal-modal")
+  .addEventListener("click", () => hideAntiGoalModal());
 
 const showAntiGoalModal = () => {
   antiGoalModal.style.display = "block";
@@ -128,4 +134,32 @@ const showAntiGoalModal = () => {
 };
 const hideAntiGoalModal = () => {
   antiGoalModal.style.display = "none";
+};
+const createAntiGoal = (event) => {
+  event.preventDefault();
+
+  fetch(`/big-goal/${uneditedTitle}/create-anti-goal`, {
+    method: "POST",
+    body: JSON.stringify({
+      bigGoal: title,
+      description: antiGoalDescription.value,
+    }),
+    credentials: "same-origin",
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken"),
+    },
+  })
+    .then((response) => {
+      response.json();
+      console.log("--->", response.status, "<---");
+      if (response.ok) {
+        console.log("Anti Goal created succesfully");
+        location.reload();
+      }
+      console.log("Failed creating Anti Goal");
+    })
+    .catch((error) => {
+      // Handle network errors or exceptions here
+      console.error("Error:", error);
+    });
 };

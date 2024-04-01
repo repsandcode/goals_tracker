@@ -231,8 +231,48 @@ Tracker{%endblock %} {% block body %}
         </button>
       </div>
 
-      {% for goal in anti_goals %}
-      <div>{{ goal }}</div>
+      <!-- Anti Goal Modal -->
+      <div id="anti-goal-modal" class="modal">
+        <div class="modal-center">
+          <div
+            class="anti-goal-modal-content"
+            id="anti-goal-modal-content"
+          >
+            {% comment %} Header {% endcomment %}
+            <h3 class="fw-light mb-5">
+              What would you <span class="fst-italic fw-normal">not allow to happen</span> as you work towards your Big Goal?
+            </h3>
+
+            {% comment %} Body {% endcomment %}
+            <form id="anti-goal-form">
+              {% csrf_token %}
+              <div class="mb-5">
+                <textarea class="form-control p-4 fs-4 bg-body-tertiary box-radius" id="anti-goal-description"
+                  name="anti-goal-description" required></textarea>
+              </div>
+
+              <div class="d-flex justify-content-end gap-4">
+                <button
+                  type="button"
+                  id="close-anti-goal-modal"
+                  class="p-4 border-0 bg-transparent fs-4 box-radius"
+                >
+                  Close
+                </button>
+                <button
+                  type="submit"
+                  class="p-4 border-0 bg-success-subtle fs-4 box-radius"
+                >
+                  Create Anti Goal
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {% for xgoal in anti_goals %}
+      <div>{{ xgoal.description }}</div>
       {% empty %}
       <div>No Anti Goals. Create One Now.</div>
       {% endfor %}
