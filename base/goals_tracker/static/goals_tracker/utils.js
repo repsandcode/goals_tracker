@@ -59,4 +59,4 @@ window.addGreeting = addGreeting;
 window.defaultStartDate = defaultStartDate;
 window.defaultDeadlineDate = defaultDeadlineDate;
 window.getCookie = getCookie(name);
-window.formatDate = formatDate(strDate);
+window.formatDate = formatDate();

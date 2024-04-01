@@ -209,8 +209,12 @@ Tracker{%endblock %} {% block body %}
         </div>
       </div>
 
-      {% for goal in checkpoint_goals %}
-      <div>{{ goal }}</div>
+      {% for cp_goal in checkpoint_goals %}
+      <div>
+        <p>{{ cp_goal.title }}</p>
+        <p>{{ cp_goal.description }}</p>
+        <p>{{ cp_goal.date }}</p>
+      </div>
       {% empty %}
       <div>No Checkpoint Goals. Create One Now.</div>
       {% endfor %}
