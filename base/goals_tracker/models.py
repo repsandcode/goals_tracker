@@ -47,7 +47,7 @@ class CheckpointGoal(BaseModel):
             "big_goal": self.big_goal.title,
             "title": self.title,
             "description": self.description,
-            "deadline": self.deadline,
+            "date": self.date,
         }
 
 class DailySystem(models.Model):

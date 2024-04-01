@@ -16,8 +16,31 @@ from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal
 def anti_goal(request):
    pass
 
-def checkpoint_goal(request):
-   pass
+def checkpoint_goal(request, title):
+   # create checkpoint goal
+   if request.method == "POST":
+      data = json.loads(request.body)
+      print(data)
+      print(title)
+
+      # get contents from Checkpoint Goal Form submission
+      big_goal = data.get("bigGoal", "")
+      cp_goal = data.get("checkpointGoal", "")
+      description = data.get("description", "")
+      date = data.get("date", "")
+
+      big_goal = get_object_or_404(BigGoal, user=request.user, title=big_goal)
+
+      # insert contents to the CheckpointGoal Model
+      checkpoint_goal = CheckpointGoal(
+         big_goal = big_goal,
+         title = cp_goal,
+         description = description,
+         date = date,
+      )
+      checkpoint_goal.save()
+
+      return JsonResponse({"message": "Checkpoint Goal created successfully."}, status=201)
 
 def daily_system(request, title):
    # create daily system
@@ -26,7 +49,7 @@ def daily_system(request, title):
       print(data)
       print(title)
 
-      # get contents from Daily System Form submit
+      # get contents from Daily System Form submission
       big_goal = data.get("bigGoal", "")
       action = data.get("action", "")
 

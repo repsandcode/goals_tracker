@@ -1,9 +1,9 @@
-const modalCenter = document.querySelector(".modal-center");
 // pages
 const homePage = document.querySelector("#home-page");
 const bigGoalPage = document.querySelector("#big-goal-page");
 // big goal form
 const bigGoalModal = document.querySelector("#big-goal-modal");
+const bigGoalModalContent = document.querySelector("#big-goal-modal-content");
 const bigGoalTitle = document.querySelector("#big-goal-title");
 const bigGoalStart = document.querySelector("#big-goal-start");
 const bigGoalDeadline = document.querySelector("#big-goal-deadline");
@@ -14,26 +14,31 @@ const allBigGoals = document.querySelector("#all-big-goals");
 /*************************/
 //    CLICK LISTENER    //
 /***********************/
-window.onclick = function (event) {
-  // when the user clicks anywhere outside of the modal or its child elements, close it
-  if (event.target == modalCenter) {
-    if (bigGoalModal && bigGoalModal.style.diplay === "block") {
-      bigGoalModal.style.display = "none";
-    }
+const modalCenters = document.querySelectorAll(".modal-center");
+// when the user clicks anywhere outside of the modal or its child elements, close it    
+modalCenters.forEach((modalCenter) => {
+  modalCenter.addEventListener('click', (event) => {
 
-    if (dailySystemModal && dailySystemModal.style.display === "block") {
-      dailySystemModal.style.display = "none";
+    if (event.target === modalCenter) {      
+      if (bigGoalModal && bigGoalModal.style.display === "block") {
+        bigGoalModal.style.display = "none";
+      } 
+      
+      if (dailySystemModal && dailySystemModal.style.display === "block") {   
+        dailySystemModal.style.display = "none";
+      }
+      
+      if (checkpointGoalModal && checkpointGoalModal.style.display === "block") {
+        checkpointGoalModal.style.display = "none";
+      }
+      
+      if (antiGoalModal && antiGoalModal.style.display === "block") {
+        antiGoalModal.style.display = "none";
+      }
     }
+  });
+});
 
-    if (checkpointGoalModal && checkpointGoalModal.style.display === "block") {
-      checkpointGoalModal.style.diplay = "none";
-    }
-
-    if (antiGoalModal && antiGoalModal.style.display === "block") {
-      antiGoalModal.style.diplay = "none";
-    }
-  }
-};
 
 document.addEventListener("DOMContentLoaded", () => {
   /*************************/
