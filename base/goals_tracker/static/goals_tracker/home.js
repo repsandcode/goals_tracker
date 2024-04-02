@@ -134,10 +134,10 @@ const deleteOldGoal = (goal) => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log("Old Big goals deleted successfully");
-          // Optionally, you can perform further actions here
+          console.log("Big Goal deleted successfully");
+          window.location.href = "/";
         } else {
-          console.error("Failed to delete old goals");
+          console.error("Failed to delete Big Goal");
         }
       })
       .catch((error) => {
@@ -198,7 +198,6 @@ const getAllBigGoals = () => {
           }
           </p>
           `;
-
           allBigGoals.append(bigGoalBox);
 
           if (currentDate >= thirty_after_deadline) {

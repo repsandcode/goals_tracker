@@ -14,12 +14,27 @@ const checkpointGoalDescription = document.querySelector("#checkpoint-goal-descr
 const antiGoalModal = document.querySelector("#anti-goal-modal");
 const antiGoalForm = document.querySelector("#anti-goal-form");
 const antiGoalDescription = document.querySelector("#anti-goal-description");
-
 // hidden values
-const uneditedTitle = document.querySelector("#no-edit-title-hidden").value;
-const title = document.querySelector("#title-hidden").value;
-const startDate = document.querySelector("#start-hidden").value;
-const deadlineDate = document.querySelector("#deadline-hidden").value;
+const uneditedTitle = document.querySelector("#no-edit-title-hidden");
+const title = document.querySelector("#title-hidden");
+const description = document.querySelector("#description-hidden");
+const startDate = document.querySelector("#start-hidden");
+const deadlineDate = document.querySelector("#deadline-hidden");
+
+
+
+// DELETE BIG GOAL
+document.querySelector("#delete-now-btn").addEventListener("click", () => {
+  const big_goal = {
+    "title": title.value,
+    "description": description.value,
+    "start": formatDate(startDate.value),
+    "deadline": formatDate(deadlineDate.value),
+  }
+  
+  deleteOldGoal(big_goal);
+})
+
 
 
 
@@ -41,10 +56,10 @@ const hideDailySystemModal = () => {
 const createDailySystem = (event) => {
   event.preventDefault();
 
-  fetch(`/big-goal/${uneditedTitle}/create-daily-system`, {
+  fetch(`/big-goal/${uneditedTitle.value}/create-daily-system`, {
     method: "POST",
     body: JSON.stringify({
-      bigGoal: title,
+      bigGoal: title.value,
       action: dailySystemTitle.value,
     }),
     credentials: "same-origin",
@@ -80,8 +95,8 @@ document
 const showCheckpointGoalModal = () => {
   checkpointGoalModal.style.display = "block";
   // modify min and max for checkpoint goal date
-  checkpointGoalDate.min = formatDate(startDate);
-  checkpointGoalDate.max = formatDate(deadlineDate);
+  checkpointGoalDate.min = formatDate(startDate.value);
+  checkpointGoalDate.max = formatDate(deadlineDate.value);
 
   checkpointGoalForm.onsubmit = createCheckpointGoal;
 };
@@ -91,10 +106,10 @@ const hideCheckpointGoalModal = () => {
 const createCheckpointGoal = (event) => {
   event.preventDefault();
 
-  fetch(`/big-goal/${uneditedTitle}/create-checkpoint-goal`, {
+  fetch(`/big-goal/${uneditedTitle.value}/create-checkpoint-goal`, {
     method: "POST",
     body: JSON.stringify({
-      bigGoal: title,
+      bigGoal: title.value,
       checkpointGoal: checkpointGoalTitle.value,
       description: checkpointGoalDescription.value,
       date: checkpointGoalDate.value,
@@ -138,10 +153,10 @@ const hideAntiGoalModal = () => {
 const createAntiGoal = (event) => {
   event.preventDefault();
 
-  fetch(`/big-goal/${uneditedTitle}/create-anti-goal`, {
+  fetch(`/big-goal/${uneditedTitle.value}/create-anti-goal`, {
     method: "POST",
     body: JSON.stringify({
-      bigGoal: title,
+      bigGoal: title.value,
       description: antiGoalDescription.value,
     }),
     credentials: "same-origin",

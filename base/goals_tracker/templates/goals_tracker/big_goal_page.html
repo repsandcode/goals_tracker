@@ -3,12 +3,18 @@ Tracker{%endblock %} {% block body %}
 
 <main class="py-1" id="big-goal-page">
   <!-- Go back to HOME -->
-  <div class="align-self-center mb-5">
-    <a href="{% url 'goals_tracker:index' %}">
-      <button class="border-0 bg-transparent fs-2">
-        <i class="bi bi-arrow-left"></i>
-      </button>
-    </a>
+  <div class="d-flex justify-content-between mb-5">
+    <div class="align-self-center">
+      <a href="{% url 'goals_tracker:index' %}">
+        <button class="border-0 bg-transparent fs-2">
+          <i class="bi bi-arrow-left"></i>
+        </button>
+      </a>
+    </div>
+
+    <div>
+      <button id="delete-now-btn" class="delete-now-btn">Delete now</button>`
+    </div>
   </div>
 
   <div class="">
@@ -23,12 +29,9 @@ Tracker{%endblock %} {% block body %}
       <div>
         <p>{{ big_goal.description }}</p>
 
-        <input
-          type="hidden"
-          id="no-edit-title-hidden"
-          value="{{title_unedited}}"
-        />
-        <input type="hidden" id="title-hidden" value="{{title}}" />
+        <input type="hidden" id="no-edit-title-hidden" value="{{title_unedited}}" />
+        <input type="hidden" id="title-hidden" value="{{big_goal.title}}" />
+        <input type="hidden" id="description-hidden" value="{{big_goal.description}}" />
         <input type="hidden" id="start-hidden" value="{{timeline.start}}" />
         <input type="hidden" id="deadline-hidden" value="{{timeline.deadline}}" />
 

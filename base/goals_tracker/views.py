@@ -131,7 +131,6 @@ def big_goal(request, title):
 
       return render(request, "goals_tracker/big_goal_page.html", {
          "title_unedited": title,
-         "title": original_title,
          "big_goal": big_goal_data,
          "timeline": timeline,
          "checkpoint_goals": checkpoint_goals_data,
@@ -216,11 +215,16 @@ def big_goals(request):
         deadline = data.get("deadline", "")
         description = data.get("description", "")
 
-        old_goal = BigGoal.objects.filter(user=request.user, title=title, description=description, start=start, deadline=deadline)
+        print(data)
 
-        old_goal.delete()
-
-        return JsonResponse({'message': f"{old_goal} deleted successfully"})
+        try: 
+            old_goal = get_object_or_404(BigGoal, user=request.user, title=title, description=description, start=start, deadline=deadline)
+            old_goal.delete()
+            return JsonResponse({'message': 'Old goal deleted successfully'})
+        except Http404:
+            return JsonResponse({'message': 'Old goal not found'}, status=404)
+        except Exception as e:
+            return JsonResponse({'message': f'An error occurred: {str(e)}'}, status=500)
 
 def index(request):
     if request.user.is_authenticated:

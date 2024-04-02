@@ -92,6 +92,12 @@ html {
 }
 
 /* HOME PAGE - DAILY SYSTEMS */
+.delete-now-btn {
+  background-color: var(--white-bg);
+  border: 1px solid rgb(230, 71, 71);
+  color: rgb(230, 71, 71);
+  padding: 1rem;
+}
 .daily-systems {
   padding: 2.5rem;
   background-color: var(--white-bg);
