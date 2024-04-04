@@ -11,6 +11,60 @@ from datetime import timedelta, datetime
 
 from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal
 
+# GLOBAL FUNCTION
+def big_goal_data(request, title):
+   original_title = title.replace('-', ' ')
+   # Retrieve the Big Goal
+   big_goal = get_object_or_404(BigGoal, user=request.user, title=original_title)
+   # Serialize Big Goal query into JSON format
+   big_goal_data = big_goal.serialize()
+
+   # Create timeline
+   start_date = datetime.strptime(big_goal_data["start"], "%Y-%m-%d")
+   end_date = datetime.strptime(big_goal_data["deadline"], "%Y-%m-%d")
+   all_dates = []
+   for i in range((end_date - start_date).days + 1):
+      current_date = start_date + timedelta(days=i)
+      if current_date.day == 1:
+         all_dates.append(current_date.strftime('%m %a %d'))
+      else:
+         all_dates.append(current_date.strftime('%a %d'))
+   timeline = {
+      "start": start_date.strftime('%B %d, %Y'),
+      "deadline": end_date.strftime('%B %d, %Y'),
+      "all_dates": all_dates,
+   }
+      
+   # Retrieve related Checkpoint Goals
+   checkpoint_goals = CheckpointGoal.objects.filter(big_goal=big_goal)
+   checkpoint_goals_data = []
+   for cp_goal in checkpoint_goals:
+      data = cp_goal.serialize()
+      checkpoint_goals_data.append(data)
+
+   # Retrieve related Daily Systems
+   daily_systems = DailySystem.objects.filter(big_goal=big_goal)
+   daily_systems_data = []
+   for system in daily_systems:
+      data = system.serialize()
+      daily_systems_data.append(data)
+
+   # Retrieve related Anti-Goals
+   anti_goals = AntiGoal.objects.filter(big_goal=big_goal)
+   anti_goals_data = []
+   for anti_goal in anti_goals:
+      data = anti_goal.serialize()
+      anti_goals_data.append(data)
+      
+   return {
+      "title_unedited": title,
+      "big_goal": big_goal_data,
+      "timeline": timeline,
+      "checkpoint_goals": checkpoint_goals_data,
+      "daily_systems": daily_systems_data,
+      "anti_goals": anti_goals_data,
+   }
+
 
 # BIG GOAL PAGE
 def anti_goal(request, title):
@@ -85,58 +139,10 @@ def daily_system(request, title):
 
 def big_goal(request, title):
    if request.method == "GET":
-      original_title = title.replace('-', ' ')
+      big_goal_page = big_goal_data(request, title)
 
-      # Retrieve the Big Goal
-      big_goal = get_object_or_404(BigGoal, user=request.user, title=original_title)
-      # Serialize Big Goal query into JSON format
-      big_goal_data = big_goal.serialize()
+      return render(request, "goals_tracker/big_goal_page.html", big_goal_page)
 
-      # Create timeline
-      start_date = datetime.strptime(big_goal_data["start"], "%Y-%m-%d")
-      end_date = datetime.strptime(big_goal_data["deadline"], "%Y-%m-%d")
-      all_dates = []
-      for i in range((end_date - start_date).days + 1):
-         current_date = start_date + timedelta(days=i)
-         if current_date.day == 1:
-            all_dates.append(current_date.strftime('%m %a %d'))
-         else:
-            all_dates.append(current_date.strftime('%a %d'))
-      timeline = {
-         "start": start_date.strftime('%B %d, %Y'),
-         "deadline": end_date.strftime('%B %d, %Y'),
-         "all_dates": all_dates,
-      }
-      
-      # Retrieve related Checkpoint Goals
-      checkpoint_goals = CheckpointGoal.objects.filter(big_goal=big_goal)
-      checkpoint_goals_data = []
-      for cp_goal in checkpoint_goals:
-         data = cp_goal.serialize()
-         checkpoint_goals_data.append(data)
-
-      # Retrieve related Daily Systems
-      daily_systems = DailySystem.objects.filter(big_goal=big_goal)
-      daily_systems_data = []
-      for system in daily_systems:
-         data = system.serialize()
-         daily_systems_data.append(data)
-
-      # Retrieve related Anti-Goals
-      anti_goals = AntiGoal.objects.filter(big_goal=big_goal)
-      anti_goals_data = []
-      for anti_goal in anti_goals:
-         data = anti_goal.serialize()
-         anti_goals_data.append(data)
-
-      return render(request, "goals_tracker/big_goal_page.html", {
-         "title_unedited": title,
-         "big_goal": big_goal_data,
-         "timeline": timeline,
-         "checkpoint_goals": checkpoint_goals_data,
-         "daily_systems": daily_systems_data,
-         "anti_goals": anti_goals_data,
-      })
 
 # HOME
 def daily_systems(request):
@@ -176,7 +182,8 @@ def big_goals(request):
         big_goals = []
         for big_goal in big_goals_queryset:
            data = big_goal.serialize()
-           big_goals.append(data)
+           big_goal = big_goal_data(request, data["title"])
+           big_goals.append(big_goal)
         
         big_goals.reverse()
 

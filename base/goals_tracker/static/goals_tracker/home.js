@@ -162,12 +162,12 @@ const getAllBigGoals = () => {
       .then((bigGoals) => {
         console.log(bigGoals);
 
-        bigGoals.forEach((goal) => {
+        bigGoals.forEach((data) => {
           const bigGoalBox = document.createElement("div");
-          const title = goal.title;
+          const title = data.big_goal.title;
 
           const currentDate = new Date();
-          const deadline = new Date(goal.deadline);
+          const deadline = new Date(data.timeline.deadline);
           const thirty_after_deadline = new Date(deadline);
           thirty_after_deadline.setDate(deadline.getDate() + 30);
           const daysLeft = Math.ceil(
@@ -183,11 +183,11 @@ const getAllBigGoals = () => {
           bigGoalBox.dataset.title = title.split(" ").join("-");
 
           bigGoalBox.innerHTML = `
-          <h4>${goal.title}</h4>
-          <p>${goal.description}</p>
+          <h4>${data.big_goal.title}</h4>
+          <p>${data.big_goal.description}</p>
           <p class="m-0">Deadline: 
             <span class="${currentDate >= deadline ? "text-danger" : ""}">
-            ${goal.deadline}
+            ${data.timeline.deadline}
           </span>
           </p>
           <p class="m-0">
@@ -201,7 +201,7 @@ const getAllBigGoals = () => {
           allBigGoals.append(bigGoalBox);
 
           if (currentDate >= thirty_after_deadline) {
-            deleteOldGoal(goal);
+            deleteOldGoal(data.big_goal);
           }
         });
       })
