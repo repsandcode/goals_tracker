@@ -82,13 +82,16 @@ html {
 }
 
 /* HOME PAGE - BIG GOALS */
-.big-goals {
+.big-goals-section {
   padding: 2.5rem;
   background-color: var(--white-bg);
 }
 .big-goal-box {
   padding: 2.5rem;
   cursor: pointer;
+  width: 250px;
+  width: 300px;
+  height: 180px;
 }
 
 /* HOME PAGE - DAILY SYSTEMS */
