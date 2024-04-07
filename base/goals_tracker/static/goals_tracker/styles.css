@@ -89,7 +89,8 @@ html {
 .big-goal-box {
   padding: 2rem;
   cursor: pointer;
-  width: 250px;
+  width: 100%;
+  min-width: 250px;
   max-width: 300px;
 }
 .big-goal-box--title {

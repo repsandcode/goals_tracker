@@ -187,7 +187,7 @@ const getAllBigGoals = () => {
           bigGoalBox.classList.add(
             "bg-success-subtle",
             "box-radius",
-            "big-goal-box"
+            "big-goal-box",
           );
 
           bigGoalBox.dataset.title = title.split(" ").join("-");

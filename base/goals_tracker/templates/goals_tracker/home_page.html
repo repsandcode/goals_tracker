@@ -12,7 +12,15 @@
     </div>
   </section>
 
-  <section class="d-flex flex-column-reverse flex-md-row gap-5">
+   {% comment %} All Daily Systems {% endcomment %}
+   <section class="box-radius daily-systems mb-5">
+    <div class="mb-4">
+      <h2>All tasks today</h2>
+    </div>
+      
+    <div id="all-daily-systems" class="d-flex flex-column row-gap-4"></div>
+  </section>
+  
     {% comment %} All Big Goals {% endcomment %}
     <section class="box-radius big-goals-section flex-grow-1">
       <div class="d-flex justify-content-between mb-5">
@@ -68,18 +76,9 @@
         </div>
       </div>
 
-      <div id="all-big-goals" class="d-flex flex-wrap gap-4"></div>
+      <div id="all-big-goals" class="d-flex flex-wrap gap-3 margin-0"></div>
     </section>
-
-    {% comment %} All Daily Systems {% endcomment %}
-    <section class="box-radius daily-systems">
-      <div class="mb-4">
-        <h2>All tasks today</h2>
-      </div>
-        
-      <div id="all-daily-systems" class="d-flex flex-column row-gap-4"></div>
-    </section>
-  </section>
+  
 </main>
 
 {% endblock %}
