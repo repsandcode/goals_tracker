@@ -164,10 +164,10 @@ const getAllBigGoals = () => {
 
         bigGoals.forEach((data) => {
           const bigGoalBox = document.createElement("div");
-          const bigGoal = data.big_goal;
+          const bigGoalData = data.big_goal;
           
           const titleUnedited = data.title_unedited;
-          const title = bigGoal.title;
+          const title = bigGoalData.title;
           const antiGoals = data.anti_goals;
           const dailySystems = data.daily_systems;
           const checkpointGoals = data.checkpoint_goals;
@@ -185,33 +185,35 @@ const getAllBigGoals = () => {
           );
 
           bigGoalBox.classList.add(
-            "bg-success-subtle",
-            "box-radius",
-            "big-goal-box",
+            "col-sm-6",
+            "col-md-4",
+            "col-lg-3",
           );
 
           bigGoalBox.dataset.title = title.split(" ").join("-");
 
           bigGoalBox.innerHTML = `
-          <h5 class="big-goal-box--title">${title}</h5>
-          <div class="big-goal-box--content">
-            <span class=""><i class="bi bi-dot"></i> ${dailySystems.length} daily systems</span>
-            <span class=""><i class="bi bi-dot"></i> ${checkpointGoals.length} checkpoint goals</span>
-            <span class=""><i class="bi bi-dot"></i> ${antiGoals.length} anti goals</span>
-            <span class=""><i class="bi bi-dot"></i> 
-              ${
-                currentDate <= deadline 
-                ? `${daysLeftBeforeDeadline} days left`
-                : `<span class="text-danger">Auto-delete in ${daysLeftAfterDeadline} days</span> `
-              }
-            </span>
+          <div class="big-goal-box box-radius bg-success-subtle">
+            <h5 class="big-goal-box--title">${title}</h5>
+            <div class="big-goal-box--content">
+              <span class=""><i class="bi bi-dot"></i> ${dailySystems.length} daily systems</span>
+              <span class=""><i class="bi bi-dot"></i> ${checkpointGoals.length} checkpoint goals</span>
+              <span class=""><i class="bi bi-dot"></i> ${antiGoals.length} anti goals</span>
+              <span class=""><i class="bi bi-dot"></i> 
+                ${
+                  currentDate <= deadline 
+                  ? `${daysLeftBeforeDeadline} days left`
+                  : `<span class="text-danger">Auto-delete in ${daysLeftAfterDeadline} days</span> `
+                }
+              </span>
+            </div>
           </div>
           `;
 
           allBigGoals.append(bigGoalBox);
 
           if (currentDate >= thirty_after_deadline) {
-            deleteOldGoal(bigGoal);
+            deleteOldGoal(bigGoalData);
           }
         });
       })
