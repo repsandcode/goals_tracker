@@ -219,8 +219,8 @@ const getAllBigGoals = () => {
       })
       .then(() => {
         const bigGoalBox = document.querySelectorAll(".big-goal-box");
-        Array.from(bigGoalBox).forEach((bigGoal) => {
-          const bigGoalTitle = bigGoal.dataset.title;
+        Array.from(bigGoalBox).forEach((bigGoal) => {      
+          const bigGoalTitle = bigGoal.parentElement.dataset.title
           bigGoal.addEventListener("click", () => {
             showBigGoalPage(bigGoalTitle);
           });
