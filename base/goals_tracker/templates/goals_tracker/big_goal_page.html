@@ -1,7 +1,7 @@
 {% extends "goals_tracker/layout.html" %} {% block title %} Home - Goal
 Tracker{%endblock %} {% block body %}
 
-<main class="py-1" id="big-goal-page">
+<main class="py-5" id="big-goal-page">
   <!-- Go back to HOME -->
   <div class="d-flex justify-content-between mb-5">
     <div class="align-self-center">
@@ -13,7 +13,7 @@ Tracker{%endblock %} {% block body %}
     </div>
 
     <div>
-      <button id="delete-now-btn" class="delete-now-btn">Delete now</button>
+      <button id="delete-now-btn" class="delete-now-btn box-radius">Delete now</button>
     </div>
   </div>
 
@@ -22,8 +22,8 @@ Tracker{%endblock %} {% block body %}
     <section class="big-goal-section box-radius">
       {% comment %} header {% endcomment %}
       <div class="d-flex justify-content-between">
-        <h1>{{ big_goal.title }}</h1>
-        <span>ends in {{ big_goal.deadline }}</span>
+        <h3 class="fw-normal">{{ big_goal.title }}</h3>
+        <span>ends in {{ timeline.deadline }}</span>
       </div>
       {% comment %} body {% endcomment %}
       <div>
