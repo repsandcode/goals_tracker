@@ -2,6 +2,7 @@
   /* add the colors */
   --body-bg: #f0f1f1;
   --white-bg: #ffffff;
+  --dark-bg: rgb(36, 37, 41);	
   /* add fonts */
 }
 
@@ -89,9 +90,6 @@ html {
 .big-goal-box {
   padding: 2rem;
   cursor: pointer;
-  /* width: 80%; */
-  /* min-width: 250px;
-  max-width: 300px; */
 }
 .big-goal-box--title {
   margin-bottom: 1rem;

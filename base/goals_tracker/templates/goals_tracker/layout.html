@@ -27,23 +27,28 @@
   </head>
 
   <body>
+    <header class="header d-flex align-items-center border-bottom">
+      <div class="container-xl px-4 px-xl-0">
+        {% block header %}
+        <div class="d-flex justify-content-between">
+          <div class="align-self-center">
+            <p class="display-6 m-0">Goal Tracker</p>
+          </div>
+
+          <div class="align-self-center">
+            <a href="{% url 'goals_tracker:logout' %}">
+              <button class="border-0 bg-transparent fs-2">
+                <i class="bi bi-box-arrow-right"></i>
+              </button>
+            </a>
+          </div>
+        </div>
+        {% endblock %}
+      </div>
+    </header>
+
     <div class="container-xl px-4 px-xl-0">
-      {% block header %}
-      <header class="d-flex justify-content-between border-bottom header">
-        <div class="align-self-center">
-          <p class="display-6 m-0">Goal Tracker</p>
-        </div>
-
-        <div class="align-self-center">
-          <a href="{% url 'goals_tracker:logout' %}">
-            <button class="border-0 bg-transparent fs-2">
-              <i class="bi bi-box-arrow-right"></i>
-            </button>
-          </a>
-        </div>
-      </header>
-
-      {% endblock %} {% block body %} {% endblock %}
+       {% block body %} {% endblock %}
     </div>
 
     <script src="{% static 'goals_tracker/utils.js' %}"></script>
