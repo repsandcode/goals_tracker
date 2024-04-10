@@ -117,7 +117,7 @@ html {
   background-color: var(--white-bg);
 }
 .daily-system-box {
-  padding: 1rem;
+  padding: 2rem;
   cursor: pointer;
 }
 

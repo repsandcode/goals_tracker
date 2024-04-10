@@ -249,13 +249,13 @@ const getAllDailySystems = () => {
           const dailySystemBox = document.createElement("div");
 
           dailySystemBox.classList.add(
-            "bg-success-subtle",
+            "bg-dark-subtle",
             "box-radius",
             "daily-system-box"
           );
 
           dailySystemBox.innerHTML = `
-          <p class="m-0">${daily.action}</p>
+          <h5 class="m-0 fw-normal">${daily.action}</h5>
           `;
 
           allDailySystems.append(dailySystemBox);
