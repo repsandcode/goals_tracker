@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /*************************/
   // AUTOMATIC RENDERINGS //
   /***********************/
+  getUserData();
   addGreeting(); // user greetings
   showHomePage(); // home page contents
 });
@@ -116,6 +117,31 @@ const showBigGoalPage = (title) => {
 };
 
 // FETCH APIS
+const getUserData = () => {
+  try {
+    fetch("/get-user-data")
+      .then((res) => {
+        if (res.ok) {
+          console.log("success! retrieved user data");
+        } else {
+          console.log("failed to retrieve user data");
+        }
+        return res.json();
+      })
+      .then((user) => {
+        console.log(user);
+        const profile_header = document.querySelector("#profile-header");
+        profile_header.innerHTML = 
+          `
+            <h5>${user.first_name !== "" ? user.first_name + user.last_name : user.username}</h5>
+            <span>${user.email}</span>
+          `;
+      })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const deleteOldGoal = (goal) => {
   try {
     // Deadline has passed, delete old goals

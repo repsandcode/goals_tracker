@@ -145,6 +145,21 @@ def big_goal(request, title):
 
 
 # HOME
+def user_data(request):
+   user = request.user
+   user_obj = get_object_or_404(User, username=user.username)
+
+   # Serialize only necessary user data
+   user_data = {
+        'id': user_obj.id,
+        'username': user_obj.username,
+        'first_name': user_obj.first_name,
+        'last_name': user_obj.last_name,
+        'email': user_obj.email,
+    }
+   
+   return JsonResponse(user_data, status=201) 
+
 def daily_systems(request):
    # get all daily systems
    if request.method == "GET":
