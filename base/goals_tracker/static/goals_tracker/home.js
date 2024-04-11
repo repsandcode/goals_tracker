@@ -133,8 +133,8 @@ const getUserData = () => {
         const profile_header = document.querySelector("#profile-header");
         profile_header.innerHTML = 
           `
-            <h5>${user.first_name !== "" ? user.first_name + user.last_name : user.username}</h5>
-            <span>${user.email}</span>
+            <h5 class="fw-normal mb-1">${user.first_name !== "" ? user.first_name + user.last_name : user.username}</h5>
+            <span class="fw-light">${user.email}</span>
           `;
       })
   } catch (error) {
