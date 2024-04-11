@@ -3,6 +3,7 @@
   --body-bg: #f0f1f1;
   --white-bg: #ffffff;
   --dark-bg: rgb(36, 37, 41);	
+  --gray-bg: rgb(243, 245, 248);	
   /* add fonts */
 }
 
@@ -80,6 +81,26 @@ html {
 /* HEADER */
 .header {
   height: 90px;
+}
+.profile-btn {
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: .5rem 1rem;
+}
+.profile-header-dropdown {
+  width: 200px;
+  padding: 1rem;
+}
+.profile-header-dropdown--item {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+.profile-header-dropdown--item:is(:focus, :hover) {
+  border-radius: 1rem;
+  background-color: var(--gray-bg);
 }
 
 /* HOME PAGE - BIG GOALS */
