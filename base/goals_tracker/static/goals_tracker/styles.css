@@ -93,10 +93,10 @@ html {
   padding: 1rem;
 }
 .profile-header-dropdown--item {
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
-  padding: 0 1rem;
+  padding: .5rem 1rem;
 }
 .profile-header-dropdown--item:is(:focus, :hover) {
   border-radius: 1rem;
