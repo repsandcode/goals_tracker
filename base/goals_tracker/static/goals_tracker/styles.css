@@ -139,7 +139,7 @@ html {
   background-color: var(--white-bg);
 }
 .daily-system-box {
-  padding: 2rem;
+  padding: 1.2rem;
   cursor: pointer;
 }
 
@@ -184,6 +184,7 @@ html {
   background-color: #f4f4f4;
   border-radius: 1rem;
   overflow: scroll;
+  padding: 1.4rem;
 }
 
 /* MEDIA QUERIES */
