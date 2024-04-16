@@ -20,6 +20,14 @@ const title = document.querySelector("#title-hidden");
 const description = document.querySelector("#description-hidden");
 const startDate = document.querySelector("#start-hidden");
 const deadlineDate = document.querySelector("#deadline-hidden");
+const dateToday = document.querySelector("#today-hidden");
+// timeline
+const timelineItem = document.querySelector("#timeline-item");
+
+// TIMELINE
+if (checkDateIfToday(dateToday.value)) {
+  
+}
 
 
 
@@ -34,7 +42,6 @@ document.querySelector("#delete-now-btn").addEventListener("click", () => {
   
   deleteOldGoal(big_goal);
 })
-
 
 
 

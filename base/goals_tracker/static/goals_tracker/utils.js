@@ -54,9 +54,20 @@ const formatDate = (strDate) => {
   return formattedDate;
 }
 
+const checkDateIfToday = (strDate) => {
+  const today = new Date();
+
+  const formattedDate = today.toLocaleDateString('en', { month: 'long', day: '2-digit', year: 'numeric' });
+
+  const providedDateString = strDate;
+
+  return formattedDate === providedDateString;
+}
+
 // Attach the function to the window object
 window.addGreeting = addGreeting;
 window.defaultStartDate = defaultStartDate;
 window.defaultDeadlineDate = defaultDeadlineDate;
-window.getCookie = getCookie(name);
+window.getCookie = getCookie();
 window.formatDate = formatDate();
+window.checkDateIfToday = checkDateIfToday();

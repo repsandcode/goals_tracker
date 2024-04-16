@@ -22,6 +22,7 @@ def big_goal_data(request, title):
    # Create timeline
    start_date = datetime.strptime(big_goal_data["start"], "%Y-%m-%d")
    end_date = datetime.strptime(big_goal_data["deadline"], "%Y-%m-%d")
+   today_date = datetime.now().strftime('%B %d, %Y')
    all_dates = []
    for i in range((end_date - start_date).days + 1):
       current_date = start_date + timedelta(days=i)
@@ -33,6 +34,7 @@ def big_goal_data(request, title):
       "start": start_date.strftime('%B %d, %Y'),
       "deadline": end_date.strftime('%B %d, %Y'),
       "all_dates": all_dates,
+      "today": today_date,
    }
       
    # Retrieve related Checkpoint Goals
