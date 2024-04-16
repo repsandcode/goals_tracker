@@ -22,7 +22,7 @@ Tracker{%endblock %} {% block body %}
     <section class="big-goal-section box-radius">
       {% comment %} header {% endcomment %}
       <div class="d-flex justify-content-between">
-        <h3 class="fw-normal m-0">{{ big_goal.title }}</h3>
+        <h1 class="fw-normal m-0">{{ big_goal.title }}</h1>
         <span class="align-self-end">ends in {{ timeline.deadline }}</span>
       </div>
       {% comment %} body {% endcomment %}
@@ -44,7 +44,7 @@ Tracker{%endblock %} {% block body %}
             <div class="timeline-item" id="timeline-item">
               <div class="timeline-item--head">
                 <!-- MONTH -->
-                <h4>
+                <p class="m-0 mb-3 fs-2">
                   {% with month_number=date|slice:":2" %} 
                     {% if month_number == "01" %} January 
                     {% elif month_number == "02" %} February 
@@ -60,15 +60,11 @@ Tracker{%endblock %} {% block body %}
                     {% elif month_number == "12" %} December 
                     {% endif %} 
                   {% endwith %}
-                </h4>
+                </p>
                 <!-- DATE -->
-                <h5 class="text-center">
-                  {% if date|length >= 8 %} 
-                    {{ date|slice:"3:" }} 
-                  {% else %} 
-                    {{ date }} 
-                  {% endif %}
-                </h5>
+                <p class="text-center m-0 fs-3">
+                  {{ date }} 
+                </p>
               </div>
               <div class="timeline-item--body">
                 {% for system in daily_systems %}
