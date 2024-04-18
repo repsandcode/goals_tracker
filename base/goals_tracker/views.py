@@ -24,8 +24,12 @@ def big_goal_data(request, title):
    end_date = datetime.strptime(big_goal_data["deadline"], "%Y-%m-%d")
    today_date = datetime.now().strftime('%B %d, %Y')
    all_dates = []
+   count = 0
    for i in range((end_date - start_date).days + 1):
       current_date = start_date + timedelta(days=i)
+      if count == 0:
+         all_dates.append(current_date.strftime('%m %a %d'))
+         count+=1
       if current_date.day == 1:
          all_dates.append(current_date.strftime('%m %a %d'))
       else:

@@ -44,7 +44,7 @@ Tracker{%endblock %} {% block body %}
             <div class="timeline-item" id="timeline-item">
               <div class="timeline-item--head">
                 <!-- MONTH -->
-                <p class="m-0 mb-3 fs-2">
+                <p class="m-0 mb-3 fs-2" id="month-year">
                   {% with month_number=date|slice:":2" %} 
                     {% if month_number == "01" %} January 
                     {% elif month_number == "02" %} February 
@@ -63,7 +63,11 @@ Tracker{%endblock %} {% block body %}
                 </p>
                 <!-- DATE -->
                 <p class="text-center m-0 fs-3">
-                  {{ date }} 
+                  {% if date|length >= 8 %}
+                    {{ date|slice:"3:" }}
+                  {% else %}
+                    {{ date }} 
+                  {% endif %}
                 </p>
               </div>
               <div class="timeline-item--body">
