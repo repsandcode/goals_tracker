@@ -60,11 +60,14 @@ Tracker{%endblock %} {% block body %}
                     {% elif month_number == "12" %} December 
                     {% endif %} 
                   {% endwith %}
+                  {% if date|length >= 8 %}
+                    {{ date|slice:"-4:" }}
+                  {% endif %}
                 </p>
                 <!-- DATE -->
                 <p class="text-center m-0 fs-3">
                   {% if date|length >= 8 %}
-                    {{ date|slice:"3:" }}
+                    {{ date|slice:"3:9" }}
                   {% else %}
                     {{ date }} 
                   {% endif %}
