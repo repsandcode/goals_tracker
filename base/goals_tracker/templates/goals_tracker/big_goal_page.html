@@ -44,26 +44,28 @@ Tracker{%endblock %} {% block body %}
             <div class="timeline-item" id="timeline-item">
               <div class="timeline-item--head">
                 <!-- MONTH -->
-                <p class="m-0 mb-3 fs-2" id="month-year">
-                  {% with month_number=date|slice:":2" %} 
-                    {% if month_number == "01" %} January 
-                    {% elif month_number == "02" %} February 
-                    {% elif month_number == "03" %} March 
-                    {% elif month_number == "04" %} April 
-                    {% elif month_number == "05" %} May 
-                    {% elif month_number == "06" %} June 
-                    {% elif month_number == "07" %} July 
-                    {% elif month_number == "08" %} August 
-                    {% elif month_number == "09" %} September 
-                    {% elif month_number == "10"%} October 
-                    {% elif month_number == "11" %} November 
-                    {% elif month_number == "12" %} December 
-                    {% endif %} 
-                  {% endwith %}
+                <div class="m-0 mb-4 fs-2" id="month-year">
+                  <span class="m-0 fw-medium">
+                    {% with month_number=date|slice:":2" %} 
+                      {% if month_number == "01" %} January 
+                      {% elif month_number == "02" %} February 
+                      {% elif month_number == "03" %} March 
+                      {% elif month_number == "04" %} April 
+                      {% elif month_number == "05" %} May 
+                      {% elif month_number == "06" %} June 
+                      {% elif month_number == "07" %} July 
+                      {% elif month_number == "08" %} August 
+                      {% elif month_number == "09" %} September 
+                      {% elif month_number == "10"%} October 
+                      {% elif month_number == "11" %} November 
+                      {% elif month_number == "12" %} December 
+                      {% endif %} 
+                    {% endwith %}
+                  </span>
                   {% if date|length >= 8 %}
-                    {{ date|slice:"-4:" }}
+                    <span class="fs-3"> {{ date|slice:"-4:" }} <span>
                   {% endif %}
-                </p>
+                </div>
                 <!-- DATE -->
                 <p class="text-center m-0 fs-3">
                   {% if date|length >= 8 %}
