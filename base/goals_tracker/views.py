@@ -28,13 +28,13 @@ def big_goal_data(request, title):
    for i in range((end_date - start_date).days + 1):
       current_date = start_date + timedelta(days=i)
       if count == 0:
-         all_dates.append(current_date.strftime('%m %a %d %Y'))
+         all_dates.append(current_date.strftime('%m-%a-%d-%Y'))
          count+=1
+         continue
       if current_date.day == 1:
-         all_dates.append(current_date.strftime('%m %a %d %Y'))
+         all_dates.append(current_date.strftime('%m-%a-%d-%Y'))
       else:
-         all_dates.append(current_date.strftime('%a %d'))
-   print(all_dates)
+         all_dates.append(current_date.strftime('%a-%d'))
    timeline = {
       "start": start_date.strftime('%B %d, %Y'),
       "deadline": end_date.strftime('%B %d, %Y'),

@@ -41,10 +41,11 @@ Tracker{%endblock %} {% block body %}
         <div class="mt-5">
           <div class="timeline" id="timeline">
             {% for date in timeline.all_dates %}
-            <div class="timeline-item" id="timeline-item">
-              <div class="timeline-item--head">
+            <div class="timeline-item">
+              <div class="timeline-item--head" data-date={{date}}>
                 <!-- MONTH -->
-                <div class="m-0 mb-4 fs-2" id="month-year">
+                {% if date|length >= 8 %}
+                <div class="m-0 mb-4 fs-2">
                   <span class="m-0 fw-medium">
                     {% with month_number=date|slice:":2" %} 
                       {% if month_number == "01" %} January 
@@ -62,16 +63,17 @@ Tracker{%endblock %} {% block body %}
                       {% endif %} 
                     {% endwith %}
                   </span>
-                  {% if date|length >= 8 %}
-                    <span class="fs-3"> {{ date|slice:"-4:" }} <span>
-                  {% endif %}
+                  <span class="fs-3"> {{ date|slice:"-4:" }} <span>
                 </div>
+                {% endif %}
                 <!-- DATE -->
                 <p class="text-center m-0 fs-3">
                   {% if date|length >= 8 %}
-                    {{ date|slice:"3:9" }}
+                    {{ date|slice:"3:6" }}
+                    {{ date|slice:"7:9" }}
                   {% else %}
-                    {{ date }} 
+                    {{ date|slice:":3" }} 
+                    {{ date|slice:"4:" }}
                   {% endif %}
                 </p>
               </div>
