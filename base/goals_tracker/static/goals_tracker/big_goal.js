@@ -41,6 +41,10 @@ const showTodaysTimelineItem = (currentDate) => {
   const getTodaysTimeline = Array.from(timelineItems).filter(item => item.dataset.date == currentDate);
 
   const currentDateDiv = getTodaysTimeline[0];
+  const timelineHeadDiv = currentDateDiv.children[0];
+  const day = timelineHeadDiv.children[0];
+  day.classList.add("timeline-item--head-day");
+  
   
   // Scroll the timeline container to the current date div
   if (currentDateDiv) {

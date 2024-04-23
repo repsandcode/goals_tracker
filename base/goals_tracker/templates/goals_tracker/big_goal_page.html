@@ -43,16 +43,14 @@ Tracker{%endblock %} {% block body %}
           <div class="timeline" id="timeline">
             {% for date in timeline.all_dates %}
             <div class="timeline-item" data-date={{date}}>
-              <div class="timeline-item--head">
-                <p class="text-center m-0 fs-3">
-                  {% if date|length >= 8 %}
-                    {{ date|slice:"3:6" }}
-                    {{ date|slice:"7:9" }}
-                  {% else %}
-                    {{ date|slice:":3" }} 
-                    {{ date|slice:"4:" }}
-                  {% endif %}
-                </p>
+              <div class="timeline-item--head fs-3 fw-light">
+                {% if date|length >= 8 %}
+                {{ date|slice:"3:6" }}
+                <span>{{ date|slice:"7:9" }}</span>
+                {% else %}
+                {{ date|slice:":3" }}
+                <span>{{ date|slice:"4:" }}</span>
+                {% endif %}
               </div>
               <div class="timeline-item--body">
                 {% for system in daily_systems %}

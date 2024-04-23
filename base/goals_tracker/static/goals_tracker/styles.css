@@ -4,6 +4,7 @@
   --white-bg: #ffffff;
   --dark-bg: rgb(36, 37, 41);	
   --gray-bg: rgb(243, 245, 248);	
+  --red-bg: rgb(238, 108, 98);
   /* add fonts */
 }
 
@@ -176,6 +177,13 @@ html {
   overflow: scroll; */
 }
 .timeline-item--head {
+  text-align: center;
+}
+.timeline-item--head-day {
+  background-color: var(--red-bg);
+  color: var(--white-bg);
+  padding: .20rem .35rem;
+  border-radius: .35rem;
 }
 .timeline-item--body {
   /* display: inline-block; */
