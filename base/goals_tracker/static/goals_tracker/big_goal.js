@@ -22,12 +22,9 @@ const startDate = document.querySelector("#start-hidden");
 const deadlineDate = document.querySelector("#deadline-hidden");
 const dateToday = document.querySelector("#today-hidden");
 // timeline
-const timelineItem = document.querySelector("#timeline-item");
+const timeline = document.querySelector("#timeline");
 
 // TIMELINE
-if (checkDateIfToday(dateToday.value)) {
-  
-}
 
 
 

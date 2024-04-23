@@ -44,7 +44,7 @@ Tracker{%endblock %} {% block body %}
             <div class="timeline-item">
               <div class="timeline-item--head" data-date={{date}}>
                 <!-- MONTH -->
-                {% if date|length >= 8 %}
+                {% comment %} {% if date|length >= 8 %}
                 <div class="m-0 mb-4 fs-2">
                   <span class="m-0 fw-medium">
                     {% with month_number=date|slice:":2" %} 
@@ -65,7 +65,8 @@ Tracker{%endblock %} {% block body %}
                   </span>
                   <span class="fs-3"> {{ date|slice:"-4:" }} <span>
                 </div>
-                {% endif %}
+                {% endif %} {% endcomment %}
+                <div id="month-year"></div>
                 <!-- DATE -->
                 <p class="text-center m-0 fs-3">
                   {% if date|length >= 8 %}
