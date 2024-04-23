@@ -25,7 +25,7 @@ def big_goal_data(request, title):
    all_dates = []
    for i in range((end_date - start_date).days + 1):
       current_date = start_date + timedelta(days=i)
-      all_dates.append(current_date.strftime('%B-%a-%d-%Y'))
+      all_dates.append(current_date.strftime('%m-%a-%d-%Y'))
 
    timeline = {
       "start": start_date.strftime('%B %d, %Y'),

@@ -23,8 +23,37 @@ const deadlineDate = document.querySelector("#deadline-hidden");
 const dateToday = document.querySelector("#today-hidden");
 // timeline
 const timeline = document.querySelector("#timeline");
+const monthYear = document.querySelector("#month-year");
 
 // TIMELINE
+const getTodaysDate = () => {
+  const today = new Date();
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const formattedDate =  ("0" + (today.getMonth() + 1)).slice(-2) + "-" + days[today.getDay()] + "-" + ("0" + today.getDate()).slice(-2) + "-" + today.getFullYear();
+
+  return formattedDate;
+}
+
+const showTodaysTimelineItem = (currentDate) => {
+  const timelineItems = document.querySelectorAll(".timeline-item");
+
+  const getTodaysTimeline = Array.from(timelineItems).filter(item => item.dataset.date == currentDate);
+
+  const currentDateDiv = getTodaysTimeline[0];
+  
+  // Scroll the timeline container to the current date div
+  if (currentDateDiv) {
+      // Calculate the scrollLeft position to center the current date div
+      const scrollLeftPos = currentDateDiv.offsetLeft - (window.innerWidth / 2) + (currentDateDiv.offsetWidth / 2);
+      
+      // Scroll the timeline container
+      timeline.scrollLeft = scrollLeftPos;
+  }
+}
+
+showTodaysTimelineItem(getTodaysDate());
+
 
 
 

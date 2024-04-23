@@ -39,35 +39,11 @@ Tracker{%endblock %} {% block body %}
         <input type="hidden" id="today-hidden" value="{{timeline.today}}" />
 
         <div class="mt-5">
+          <div id="month-year"></div>
           <div class="timeline" id="timeline">
             {% for date in timeline.all_dates %}
-            <div class="timeline-item">
-              <div class="timeline-item--head" data-date={{date}}>
-                <!-- MONTH -->
-                {% comment %} {% if date|length >= 8 %}
-                <div class="m-0 mb-4 fs-2">
-                  <span class="m-0 fw-medium">
-                    {% with month_number=date|slice:":2" %} 
-                      {% if month_number == "01" %} January 
-                      {% elif month_number == "02" %} February 
-                      {% elif month_number == "03" %} March 
-                      {% elif month_number == "04" %} April 
-                      {% elif month_number == "05" %} May 
-                      {% elif month_number == "06" %} June 
-                      {% elif month_number == "07" %} July 
-                      {% elif month_number == "08" %} August 
-                      {% elif month_number == "09" %} September 
-                      {% elif month_number == "10"%} October 
-                      {% elif month_number == "11" %} November 
-                      {% elif month_number == "12" %} December 
-                      {% endif %} 
-                    {% endwith %}
-                  </span>
-                  <span class="fs-3"> {{ date|slice:"-4:" }} <span>
-                </div>
-                {% endif %} {% endcomment %}
-                <div id="month-year"></div>
-                <!-- DATE -->
+            <div class="timeline-item" data-date={{date}}>
+              <div class="timeline-item--head">
                 <p class="text-center m-0 fs-3">
                   {% if date|length >= 8 %}
                     {{ date|slice:"3:6" }}
