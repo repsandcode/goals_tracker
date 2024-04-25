@@ -178,12 +178,18 @@ html {
 }
 .timeline-item--head {
   text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 .timeline-item--head-day {
+  margin-left: -5px;
+  padding: .15rem .4rem;
+  border-radius: .45rem;
+}
+.timeline-item--head-today {
+  margin-left: -3px;
   background-color: var(--red-bg);
   color: var(--white-bg);
-  padding: .20rem .35rem;
-  border-radius: .35rem;
 }
 .timeline-item--body {
   /* display: inline-block; */
