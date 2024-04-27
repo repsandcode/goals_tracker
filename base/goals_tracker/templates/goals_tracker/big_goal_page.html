@@ -26,9 +26,9 @@ Tracker{%endblock %} {% block body %}
         <span class="align-self-end">ends in {{ timeline.deadline }}</span>
       </div>
       {% comment %} body {% endcomment %}
-      <div>
+      <div class="mt-4">
         {% if big_goal.description %}
-          <p>{{big_goal.description}}</p>
+          <p class="fs-4">{{big_goal.description}}</p>
         {% endif %}
 
         <input type="hidden" id="no-edit-title-hidden" value="{{title_unedited}}" />
@@ -69,7 +69,7 @@ Tracker{%endblock %} {% block body %}
     <!-- Daily System -->
     <section class="daily-systems-section box-radius mt-4">
       <div class="d-flex justify-content-between mb-4">
-        <h2>Daily Systems</h2>
+        <h2 class="fw-normal m-0">Daily Systems</h2>
         <button
           class="border bg-transparent py-2 px-3 fs-5 rounded-circle"
           id="open-daily-system-modal"
@@ -137,7 +137,7 @@ Tracker{%endblock %} {% block body %}
   <div class="row g-0 gap-4 mt-4">
     <section class="col-md checkpoint-goals-section box-radius">
       <div class="d-flex justify-content-between mb-4">
-        <h2>Checkpoint Goals</h2>
+        <h2 class="fw-normal">Checkpoint Goals</h2>
         <button
           class="border bg-transparent py-2 px-3 fs-5 rounded-circle"
           id="open-checkpoint-goal-modal"
@@ -212,7 +212,7 @@ Tracker{%endblock %} {% block body %}
 
     <section class="col-md anti-goals-section box-radius">
       <div class="d-flex justify-content-between mb-4">
-        <h2>Anti Goals</h2>
+        <h2 class="fw-normal">Anti Goals</h2>
         <button
           class="border bg-transparent py-2 px-3 fs-5 rounded-circle"
           id="open-anti-goal-modal"
