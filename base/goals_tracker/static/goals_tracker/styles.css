@@ -139,7 +139,10 @@ html {
   padding: 2.5rem;
   background-color: var(--white-bg);
 }
-.daily-system-box {
+.daily-system-box,
+.checkpoint-goal-box,
+.anti-goal-box {
+  background-color: var(--gray-bg);
   padding: 1.2rem;
   cursor: pointer;
 }
@@ -155,10 +158,17 @@ html {
 
 .big-goal-section {
 }
+
 .daily-systems-section {
 }
+
 .checkpoint-goals-section {
 }
+.checkpoint-goal-box {
+  background-color: var(--gray-bg);
+  padding: 1.2rem;
+}
+
 .anti-goals-section {
 }
 
@@ -195,10 +205,13 @@ html {
   color: var(--white-bg);
 }
 .timeline-item--body {
-  /* display: inline-block; */
+  display: flex;
+  flex-direction: column;
+  row-gap: .8rem;
+
   width: 21rem;
   height: 38rem;
-  background-color: #f4f4f4;
+  background-color: var(--gray-bg);
   border-radius: 1rem;
   overflow: scroll;
   padding: 1.4rem;

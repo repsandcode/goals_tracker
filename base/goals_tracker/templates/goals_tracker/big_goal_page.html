@@ -3,7 +3,7 @@ Tracker{%endblock %} {% block body %}
 
 <main class="py-5" id="big-goal-page">
   <!-- Go back to HOME -->
-  <div class="d-flex justify-content-between mb-5">
+  <section class="d-flex justify-content-between">
     <div class="align-self-center">
       <a href="{% url 'goals_tracker:index' %}">
         <button class="border-0 bg-transparent fs-2">
@@ -15,11 +15,10 @@ Tracker{%endblock %} {% block body %}
     <div>
       <button id="delete-now-btn" class="delete-now-btn box-radius">Delete now</button>
     </div>
-  </div>
+  </section>
 
-  <div class="">
     {% comment %} Big Goal Data Section {% endcomment %}
-    <section class="big-goal-section box-radius">
+    <section class="big-goal-section box-radius mt-4">
       {% comment %} header {% endcomment %}
       <div class="d-flex justify-content-between">
         <h1 class="fw-normal m-0">{{ big_goal.title }}</h1>
@@ -124,18 +123,18 @@ Tracker{%endblock %} {% block body %}
         </div>
       </div>
 
-      <div class="d-flex flex-wrap gap-4">
+      <div class="d-flex flex-wrap gap-3">
         {% for system in daily_systems %}
-        <div class="daily-action-box">{{ system.action }}</div>
+        <div class="box-radius daily-system-box">
+          <p class="m-0 fs-5">{{ system.action }}</p>
+        </div>
         {% empty %}
         <div>No Daily Systems. Create One Now.</div>
         {% endfor %}
       </div>
     </section>
-  </div>
 
-  <div class="row g-0 gap-4 mt-4">
-    <section class="col-md checkpoint-goals-section box-radius">
+    <section class="checkpoint-goals-section box-radius mt-4">
       <div class="d-flex justify-content-between mb-4">
         <h2 class="fw-normal">Checkpoint Goals</h2>
         <button
@@ -199,18 +198,20 @@ Tracker{%endblock %} {% block body %}
         </div>
       </div>
 
+      <div class="d-flex flex-wrap gap-3">
       {% for cp_goal in checkpoint_goals %}
-      <div>
-        <p>{{ cp_goal.title }}</p>
-        <p>{{ cp_goal.description }}</p>
-        <p>{{ cp_goal.date }}</p>
-      </div>
-      {% empty %}
-      <div>No Checkpoint Goals. Create One Now.</div>
+        <div class="box-radius checkpoint-goal-box">
+          <p class="m-0 fs-5">{{ cp_goal.title }}</p>
+          <p class="m-0 fs-5">{{ cp_goal.description }}</p>
+          <p class="m-0 fs-5">{{ cp_goal.date }}</p>
+        </div>
+        {% empty %}
+        <div>No Checkpoint Goals. Create One Now.</div>
       {% endfor %}
+      </div>
     </section>
 
-    <section class="col-md anti-goals-section box-radius">
+    <section class="anti-goals-section box-radius mt-4">
       <div class="d-flex justify-content-between mb-4">
         <h2 class="fw-normal">Anti Goals</h2>
         <button
@@ -261,13 +262,17 @@ Tracker{%endblock %} {% block body %}
         </div>
       </div>
 
-      {% for xgoal in anti_goals %}
-      <div>{{ xgoal.description }}</div>
-      {% empty %}
-      <div>No Anti Goals. Create One Now.</div>
-      {% endfor %}
+      <div class="d-flex flex-wrap gap-3">
+        {% for xgoal in anti_goals %}
+        <div class="box-radius anti-goal-box">
+          <p class="m-0 fs-5">{{ xgoal.description }}</p>
+        </div>
+        {% empty %}
+        <div>No Anti Goals. Create One Now.</div>
+        {% endfor %}
+      </div>
     </section>
-  </div>
+
 </main>
 
 {% endblock %}
