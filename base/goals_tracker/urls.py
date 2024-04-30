@@ -23,4 +23,8 @@ urlpatterns = [
   path("big-goal/<str:title>/create-checkpoint-goal", views.checkpoint_goal, name="create_checkpoint_goal"),
   path("big-goal/<str:title>/create-daily-system", views.daily_system, name="create_daily_system"),
   path("big-goal/<str:title>/create-anti-goal", views.anti_goal, name="create_anti_goal"),
+
+
+  # complete a daily action
+  path("complete-daily-system", views.complete_daily_system, name="complete_daily_system"),
 ]

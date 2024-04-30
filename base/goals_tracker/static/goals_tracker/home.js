@@ -186,8 +186,6 @@ const getAllBigGoals = () => {
         return res.json();
       })
       .then((bigGoals) => {
-        console.log(bigGoals);
-
         bigGoals.forEach((data) => {
           const bigGoalBox = document.createElement("div");
           const bigGoalData = data.big_goal;
@@ -269,8 +267,6 @@ const getAllDailySystems = () => {
         return res.json();
       })
       .then((dailySystems) => {
-        console.log(dailySystems);
-
         dailySystems.forEach((daily) => {
           const dailySystemBox = document.createElement("div");
 
@@ -288,7 +284,43 @@ const getAllDailySystems = () => {
         });
       })
       .then(() => {
-        
+        const allDailySystemBox = document.querySelectorAll(".daily-system-box");
+        Array.from(allDailySystemBox).forEach((dailySystem) => {
+          dailySystem.addEventListener("click", () => {
+            console.log(dailySystem.innerText);
+          })
+        });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const completeDailySystem = (dailySystem) => {
+  try {
+    fetch(`/complete-daily-system`, {
+      method: "POST",
+      body: JSON.stringify({
+        bigGoal: "",
+        dailySystem: "",
+        date: "",
+      }),
+      credentials: "same-origin",
+      headers: {
+        "X-CSRFToken": getCookie("csrftoken"),
+      },
+    })
+      .then((response) => {
+        response.json();
+        console.log("--->", response.status, "<---");
+        if (response.ok) {
+          console.log(`Completed ${dailySystem} - ${date}`);
+          location.reload();
+        }
+        console.log(`Failed completing ${dailySystem} - ${date}`);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
       });
   } catch (error) {
     console.log(error);

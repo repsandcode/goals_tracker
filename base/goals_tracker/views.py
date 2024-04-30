@@ -12,6 +12,9 @@ from datetime import timedelta, datetime
 from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal
 
 # GLOBAL FUNCTION
+def complete_daily_system(request):
+   pass
+
 def big_goal_data(request, title):
    original_title = title.replace('-', ' ')
    # Retrieve the Big Goal

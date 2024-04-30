@@ -25,7 +25,18 @@ const dateToday = document.querySelector("#today-hidden");
 const timeline = document.querySelector("#timeline");
 const monthYear = document.querySelector("#month-year");
 
-// TIMELINE
+
+
+// COMPLETING A DAILY ACTION
+const allDailySystemBox = document.querySelectorAll(".daily-system-box");
+Array.from(allDailySystemBox).forEach((dailySystem) => {
+  dailySystem.addEventListener("click", () => {
+    console.log(dailySystem.innerText);
+  })
+});
+
+
+// TIMELIN
 const getTodaysDate = () => {
   const today = new Date();
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -34,7 +45,6 @@ const getTodaysDate = () => {
 
   return formattedDate;
 }
-
 const showTodaysTimelineItem = (currentDate) => {
   const timelineItems = document.querySelectorAll(".timeline-item");
 
@@ -57,9 +67,7 @@ const showTodaysTimelineItem = (currentDate) => {
       timeline.scrollLeft = scrollLeftPos;
   }
 }
-
 showTodaysTimelineItem(getTodaysDate());
-
 
 
 
@@ -74,7 +82,6 @@ document.querySelector("#delete-now-btn").addEventListener("click", () => {
   
   deleteOldGoal(big_goal);
 })
-
 
 
 // DAILY SYSTEM MODAL
