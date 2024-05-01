@@ -36,13 +36,13 @@ Array.from(allDailySystemBox).forEach((dailySystem) => {
 });
 
 
-// TIMELIN
+// TIMELINE
 const getTodaysDate = () => {
   const today = new Date();
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const formattedDate =  ("0" + (today.getMonth() + 1)).slice(-2) + "-" + days[today.getDay()] + "-" + ("0" + today.getDate()).slice(-2) + "-" + today.getFullYear();
-
+  const formattedDate =  days[today.getDay()] + "-" + (months[(today.getMonth())]) +  "-" + ("0" + today.getDate()).slice(-2) + "-" + today.getFullYear();
+  
   return formattedDate;
 }
 const showTodaysTimelineItem = (currentDate) => {

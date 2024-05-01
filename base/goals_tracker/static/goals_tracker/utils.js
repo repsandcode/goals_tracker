@@ -64,6 +64,10 @@ const checkDateIfToday = (strDate) => {
   return formattedDate === providedDateString;
 }
 
+const getDateToday = () => {
+  const today = new Date();
+}
+
 // Attach the function to the window object
 window.addGreeting = addGreeting;
 window.defaultStartDate = defaultStartDate;
