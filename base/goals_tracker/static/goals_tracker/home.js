@@ -257,6 +257,8 @@ const getAllBigGoals = () => {
 
 const getAllDailySystems = () => {
   try {
+    allDailySystems.dataset.today = getTodaysDate();
+
     fetch("/daily-systems")
       .then((res) => {
         if (res.ok) {

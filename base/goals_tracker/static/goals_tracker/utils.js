@@ -64,8 +64,13 @@ const checkDateIfToday = (strDate) => {
   return formattedDate === providedDateString;
 }
 
-const getDateToday = () => {
+const getTodaysDate = () => {
   const today = new Date();
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const formattedDate =  days[today.getDay()] + "-" + (months[(today.getMonth())]) +  "-" + ("0" + today.getDate()).slice(-2) + "-" + today.getFullYear();
+  
+  return formattedDate;
 }
 
 // Attach the function to the window object
@@ -75,3 +80,4 @@ window.defaultDeadlineDate = defaultDeadlineDate;
 window.getCookie = getCookie();
 window.formatDate = formatDate();
 window.checkDateIfToday = checkDateIfToday();
+// window.getTodaysDate = getTodaysDate();

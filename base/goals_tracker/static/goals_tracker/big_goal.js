@@ -37,14 +37,6 @@ Array.from(allDailySystemBox).forEach((dailySystem) => {
 
 
 // TIMELINE
-const getTodaysDate = () => {
-  const today = new Date();
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const formattedDate =  days[today.getDay()] + "-" + (months[(today.getMonth())]) +  "-" + ("0" + today.getDate()).slice(-2) + "-" + today.getFullYear();
-  
-  return formattedDate;
-}
 const showTodaysTimelineItem = (currentDate) => {
   const timelineItems = document.querySelectorAll(".timeline-item");
 
