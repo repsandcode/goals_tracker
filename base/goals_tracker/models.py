@@ -75,7 +75,6 @@ class DailySystemCheckIn(models.Model):
     
     def serialize(self):
         return {
-            "id": self.id,
             "user": self.user.username,
             "big_goal": self.big_goal.title,
             "daily_system": self.daily_system.action,

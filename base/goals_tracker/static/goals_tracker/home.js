@@ -271,12 +271,13 @@ const getAllDailySystems = () => {
       .then((dailySystems) => {
         dailySystems.forEach((daily) => {
           const dailySystemBox = document.createElement("div");
-
+                  
           dailySystemBox.classList.add(
             "bg-dark-subtle",
             "box-radius",
             "daily-system-box"
           );
+          dailySystemBox.dataset.bigGoal = daily.big_goal;
 
           dailySystemBox.innerHTML = `
           <h5 class="m-0 fw-normal">${daily.action}</h5>
@@ -287,9 +288,14 @@ const getAllDailySystems = () => {
       })
       .then(() => {
         const allDailySystemBox = document.querySelectorAll(".daily-system-box");
+        const dateToday = allDailySystems.dataset.today;
+
         Array.from(allDailySystemBox).forEach((dailySystem) => {
+          const bigGoal = dailySystem.dataset.bigGoal;
+          const action = dailySystem.innerText;
+          
           dailySystem.addEventListener("click", () => {
-            console.log(dailySystem.innerText);
+            completeDailySystem(bigGoal, action, dateToday);
           })
         });
       });
@@ -298,14 +304,14 @@ const getAllDailySystems = () => {
   }
 }
 
-const completeDailySystem = (dailySystem) => {
+const completeDailySystem = (bigGoal, dailySystem, date) => {
   try {
     fetch(`/complete-daily-system`, {
       method: "POST",
       body: JSON.stringify({
-        bigGoal: "",
-        dailySystem: "",
-        date: "",
+        bigGoal: bigGoal,
+        dailySystem: dailySystem,
+        date: date,
       }),
       credentials: "same-origin",
       headers: {

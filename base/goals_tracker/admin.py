@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, BigGoal, CheckpointGoal, DailySystem, DailySystemCheckIn, AntiGoal
+from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal, DailySystemCheckIn
 
 admin.site.register(User)
 admin.site.register(BigGoal)

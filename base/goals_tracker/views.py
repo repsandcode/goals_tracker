@@ -9,11 +9,34 @@ from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta, datetime
 
-from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal
+from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal, DailySystemCheckIn
 
 # GLOBAL FUNCTION
 def complete_daily_system(request):
-   pass
+   data = json.loads(request.body)
+
+   # get contents from Checkpoint Goal Form submission
+   big_goal = data.get("bigGoal", "")
+   daily_system = data.get("dailySystem", "")
+   date = data.get("date", "")
+   parsed_date = datetime.strptime(date, "%a-%b-%d-%Y").date()
+
+   big_goal_obj = get_object_or_404(BigGoal, user=request.user, title=big_goal)
+   daily_system_obj = get_object_or_404(DailySystem, big_goal=big_goal_obj, action=daily_system)
+
+   try:
+      daily_system_checkin = DailySystemCheckIn(
+         user = request.user,
+         big_goal = big_goal_obj,
+         daily_system = daily_system_obj,
+         date = parsed_date,
+      )
+      daily_system_checkin.save()
+      return JsonResponse({"message": f"{daily_system} completed at {parsed_date}"}, status=201)
+   except Exception as e:
+      print(e)
+      return JsonResponse({'message': f'An error occurred: {str(e)}'}, status=500)
+
 
 def big_goal_data(request, title):
    original_title = title.replace('-', ' ')
@@ -164,7 +187,6 @@ def user_data(request):
 def daily_systems(request):
    # get all daily systems
    if request.method == "GET":
-        print("adasdasdsa")
         user = request.user
 
         container = []
