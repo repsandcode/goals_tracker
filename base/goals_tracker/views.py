@@ -12,6 +12,27 @@ from datetime import timedelta, datetime
 from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal, DailySystemCheckIn
 
 # GLOBAL FUNCTION
+def all_completed_daily_systems(request):
+   completed_daily_systems = DailySystemCheckIn.objects.filter(user=request.user)
+
+   completed_daily_systems_data = {}
+
+   for completed in completed_daily_systems:
+      data = completed.serialize()
+      date = data.get('date').strftime('%a-%b-%d-%Y')  # Get date first
+      big_goal = data.get('big_goal')
+      daily_system = data.get('daily_system')
+
+      if date in completed_daily_systems_data:
+         if big_goal not in completed_daily_systems_data[date]:
+            completed_daily_systems_data[date][big_goal] = {}
+         if daily_system not in completed_daily_systems_data[date][big_goal]:
+            completed_daily_systems_data[date][big_goal] = daily_system
+      else:
+         completed_daily_systems_data[date] = {big_goal: daily_system}
+
+   return JsonResponse(completed_daily_systems_data, safe=False) 
+
 def complete_daily_system(request):
    data = json.loads(request.body)
 
@@ -36,7 +57,6 @@ def complete_daily_system(request):
    except Exception as e:
       print(e)
       return JsonResponse({'message': f'An error occurred: {str(e)}'}, status=500)
-
 
 def big_goal_data(request, title):
    original_title = title.replace('-', ' ')

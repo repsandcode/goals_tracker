@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   getUserData();
   addGreeting(); // user greetings
   showHomePage(); // home page contents
+  getAllCompletedDailySystems();
 });
 
 // PAGES
@@ -269,6 +270,8 @@ const getAllDailySystems = () => {
         return res.json();
       })
       .then((dailySystems) => {
+        console.log(dailySystems);
+        
         dailySystems.forEach((daily) => {
           const dailySystemBox = document.createElement("div");
                   
@@ -293,6 +296,7 @@ const getAllDailySystems = () => {
         Array.from(allDailySystemBox).forEach((dailySystem) => {
           const bigGoal = dailySystem.dataset.bigGoal;
           const action = dailySystem.innerText;
+          console.log(dailySystem.firstElementChild);
           
           dailySystem.addEventListener("click", () => {
             completeDailySystem(bigGoal, action, dateToday);
@@ -333,4 +337,27 @@ const completeDailySystem = (bigGoal, dailySystem, date) => {
   } catch (error) {
     console.log(error);
   }
+}
+
+const getAllCompletedDailySystems = () => {
+  try {
+    fetch("/all-completed-daily-systems")
+      .then((res) => {
+        if (res.ok) {
+          console.log("success! retrieved all completed daily systems");
+        } else {
+          console.log("failed to retrieve all completed daily systems");
+        }
+        return res.json();
+      })
+      .then((all) => {
+        console.log(all)
+      })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const isDailySystemChecked = () => {
+  
 }

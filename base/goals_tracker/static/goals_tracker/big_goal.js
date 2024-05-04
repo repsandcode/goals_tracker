@@ -31,7 +31,10 @@ const monthYear = document.querySelector("#month-year");
 const allDailySystemBox = document.querySelectorAll(".daily-system-box");
 Array.from(allDailySystemBox).forEach((dailySystem) => {
   dailySystem.addEventListener("click", () => {
-    console.log(dailySystem.innerText);
+    const bigGoal = title.value;
+    const action = dailySystem.innerText;
+    const date = dailySystem.parentElement.parentElement.dataset.date;
+    completeDailySystem(bigGoal, action, date);
   })
 });
 

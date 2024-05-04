@@ -48,7 +48,7 @@ Tracker{%endblock %} {% block body %}
               </div>
               <div class="timeline-item--body">
                 {% for system in daily_systems %}
-                  <div class="bg-dark-subtle box-radius daily-system-box">
+                  <div class="bg-dark-subtle box-radius daily-system-box" data-big-goal={{system.big_goal}}>
                     <p class="fs-5 m-0"> {{ system.action }} </p>
                   </div>
                 {% endfor %}
