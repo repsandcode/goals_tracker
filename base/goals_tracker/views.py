@@ -211,21 +211,38 @@ def daily_systems(request):
 
         container = []
         # Retrieve all Big Goals of the user
-        big_goals_queryset = BigGoal.objects.filter(user=user)
+        big_goals_queryset = BigGoal.objects.filter(user=user).order_by("-start")
         for big_goal in big_goals_queryset:
            deadline = big_goal.deadline
            if deadline > date.today():
             # Retrieve all Daily Systems of the user
             big_goal_actions = DailySystem.objects.filter(big_goal=big_goal)
+
             for action in big_goal_actions:
                container.append(action)
 
         container.reverse()
 
+        completed_daily_systems_content = all_completed_daily_systems(request).content.decode('utf-8')
+        completed_daily_systems_data = json.loads(completed_daily_systems_content)
+        today = date.today().strftime('%a-%b-%d-%Y')
+        completed_today = 0
+
+        if today in completed_daily_systems_data:
+           completed_today = completed_daily_systems_data[today]
+         
         # Serialize queryset into JSON format
         daily_systems = []
         for action in container:
            data = action.serialize()
+           big_goal = data["big_goal"]
+           action = data["action"]
+
+           if completed_today and completed_today.get(big_goal) == action:
+              data["completed"] = True
+           else:
+              data["completed"] = False
+
            daily_systems.append(data)
 
         return JsonResponse(daily_systems, safe=False) 

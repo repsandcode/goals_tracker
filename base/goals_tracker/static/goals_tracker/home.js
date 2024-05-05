@@ -13,6 +13,7 @@ const bigGoalDescription = document.querySelector("#big-goal-description");
 
 // daily systems section
 const allDailySystems = document.querySelector("#all-daily-systems");
+let allCompletedDailySystems = {};
 
 /*************************/
 //    CLICK LISTENER    //
@@ -48,9 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // AUTOMATIC RENDERINGS //
   /***********************/
   getUserData();
+  getAllCompletedDailySystems();
   addGreeting(); // user greetings
   showHomePage(); // home page contents
-  getAllCompletedDailySystems();
 });
 
 // PAGES
@@ -271,19 +272,22 @@ const getAllDailySystems = () => {
       })
       .then((dailySystems) => {
         console.log(dailySystems);
+
+        const todayInCompletedDailySystems = allCompletedDailySystems.hasOwnProperty(allDailySystems.dataset.today);
+        const completedToday = allCompletedDailySystems[allDailySystems.dataset.today];
         
         dailySystems.forEach((daily) => {
           const dailySystemBox = document.createElement("div");
-                  
-          dailySystemBox.classList.add(
-            "bg-dark-subtle",
-            "box-radius",
-            "daily-system-box"
-          );
-          dailySystemBox.dataset.bigGoal = daily.big_goal;
+          const classesToAdd = ["bg-dark-subtle", "box-radius", "daily-system-box"];
 
+          if (daily.completed) {
+            classesToAdd.push("text-decoration-line-through");
+          } 
+
+          dailySystemBox.classList.add(...classesToAdd);
+          dailySystemBox.dataset.bigGoal = daily.big_goal;
           dailySystemBox.innerHTML = `
-          <h5 class="m-0 fw-normal">${daily.action}</h5>
+            <h5 class="m-0 fw-normal">${daily.action}</h5>
           `;
 
           allDailySystems.append(dailySystemBox);
@@ -296,10 +300,12 @@ const getAllDailySystems = () => {
         Array.from(allDailySystemBox).forEach((dailySystem) => {
           const bigGoal = dailySystem.dataset.bigGoal;
           const action = dailySystem.innerText;
-          console.log(dailySystem.firstElementChild);
           
           dailySystem.addEventListener("click", () => {
-            completeDailySystem(bigGoal, action, dateToday);
+            if (!dailySystem.classList.contains("text-decoration-line-through")) {
+              completeDailySystem(bigGoal, action, dateToday);
+              dailySystem.classList.add("text-decoration-line-through");
+            }
           })
         });
       });
@@ -327,7 +333,6 @@ const completeDailySystem = (bigGoal, dailySystem, date) => {
         console.log("--->", response.status, "<---");
         if (response.ok) {
           console.log(`Completed ${dailySystem} - ${date}`);
-          location.reload();
         }
         console.log(`Failed completing ${dailySystem} - ${date}`);
       })
@@ -351,7 +356,9 @@ const getAllCompletedDailySystems = () => {
         return res.json();
       })
       .then((all) => {
-        console.log(all)
+        console.log(all);
+        
+        allCompletedDailySystems = all;
       })
   } catch (error) {
     console.log(error);
