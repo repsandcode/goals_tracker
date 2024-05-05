@@ -26,6 +26,8 @@ const timeline = document.querySelector("#timeline");
 const monthYear = document.querySelector("#month-year");
 
 
+getAllCompletedDailySystems();
+
 
 // COMPLETING A DAILY ACTION
 const allDailySystemBox = document.querySelectorAll(".daily-system-box");

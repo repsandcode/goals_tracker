@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from django.db import IntegrityError
 from django.urls import reverse
 from django.utils import timezone
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, date
 
 from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal, DailySystemCheckIn
 
@@ -213,10 +213,12 @@ def daily_systems(request):
         # Retrieve all Big Goals of the user
         big_goals_queryset = BigGoal.objects.filter(user=user)
         for big_goal in big_goals_queryset:
-           # Retrieve all Daily Systems of the user
-           big_goal_actions = DailySystem.objects.filter(big_goal=big_goal)
-           for action in big_goal_actions:
-              container.append(action)
+           deadline = big_goal.deadline
+           if deadline > date.today():
+            # Retrieve all Daily Systems of the user
+            big_goal_actions = DailySystem.objects.filter(big_goal=big_goal)
+            for action in big_goal_actions:
+               container.append(action)
 
         container.reverse()
 
