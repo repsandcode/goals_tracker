@@ -60,24 +60,18 @@ def complete_daily_system(request):
 
 def big_goal_data(request, title):
    original_title = title.replace('-', ' ')
+
    # Retrieve the Big Goal
    big_goal = get_object_or_404(BigGoal, user=request.user, title=original_title)
    # Serialize Big Goal query into JSON format
    big_goal_data = big_goal.serialize()
-
-   # Create timeline
-   start_date = datetime.strptime(big_goal_data["start"], "%Y-%m-%d")
-   end_date = datetime.strptime(big_goal_data["deadline"], "%Y-%m-%d")
-   all_dates = []
-   for i in range((end_date - start_date).days + 1):
-      current_date = start_date + timedelta(days=i)
-      all_dates.append(current_date.strftime('%a-%b-%d-%Y'))
-
-   timeline = {
-      "start": start_date.strftime('%B %d, %Y'),
-      "deadline": end_date.strftime('%B %d, %Y'),
-      "all_dates": all_dates,
-   }
+   
+   # Retrieve related Daily Systems
+   daily_systems = DailySystem.objects.filter(big_goal=big_goal)
+   daily_systems_data = []
+   for system in daily_systems:
+      data = system.serialize()
+      daily_systems_data.append(data)
       
    # Retrieve related Checkpoint Goals
    checkpoint_goals = CheckpointGoal.objects.filter(big_goal=big_goal)
@@ -86,13 +80,6 @@ def big_goal_data(request, title):
       data = cp_goal.serialize()
       checkpoint_goals_data.append(data)
 
-   # Retrieve related Daily Systems
-   daily_systems = DailySystem.objects.filter(big_goal=big_goal)
-   daily_systems_data = []
-   for system in daily_systems:
-      data = system.serialize()
-      daily_systems_data.append(data)
-
    # Retrieve related Anti-Goals
    anti_goals = AntiGoal.objects.filter(big_goal=big_goal)
    anti_goals_data = []
@@ -100,6 +87,40 @@ def big_goal_data(request, title):
       data = anti_goal.serialize()
       anti_goals_data.append(data)
       
+
+   # Create timeline
+   start_date = datetime.strptime(big_goal_data["start"], "%Y-%m-%d")
+   end_date = datetime.strptime(big_goal_data["deadline"], "%Y-%m-%d")
+   all_dates = []
+   
+   completed_daily_systems_content = all_completed_daily_systems(request).content.decode('utf-8')
+   completed_daily_systems_data = json.loads(completed_daily_systems_content)
+
+   for i in range((end_date - start_date).days + 1):
+      current_date = (start_date + timedelta(days=i)).strftime('%a-%b-%d-%Y')
+      current_date_data = {
+         "current": current_date,
+         "actions": [],
+      }
+
+      if current_date in completed_daily_systems_data:
+         completed_on_date = completed_daily_systems_data[current_date]
+         
+         for daily in daily_systems_data:
+           goal = daily["big_goal"]
+           action = daily["action"]
+           if goal in completed_on_date and completed_on_date.get(goal) == action:
+              current_date_data["actions"].append(action)
+      
+      print(current_date_data)
+      all_dates.append(current_date_data)
+
+   timeline = {
+      "start": start_date.strftime('%B %d, %Y'),
+      "deadline": end_date.strftime('%B %d, %Y'),
+      "all_dates": all_dates,
+   }
+
    return {
       "title_unedited": title,
       "big_goal": big_goal_data,
@@ -230,7 +251,7 @@ def daily_systems(request):
 
         if today in completed_daily_systems_data:
            completed_today = completed_daily_systems_data[today]
-         
+
         # Serialize queryset into JSON format
         daily_systems = []
         for action in container:
