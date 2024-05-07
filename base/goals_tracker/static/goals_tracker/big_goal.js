@@ -36,7 +36,11 @@ Array.from(allDailySystemBox).forEach((dailySystem) => {
     const bigGoal = title.value;
     const action = dailySystem.innerText;
     const date = dailySystem.parentElement.parentElement.dataset.date;
-    completeDailySystem(bigGoal, action, date);
+
+    if (!dailySystem.classList.contains("text-decoration-line-through")) {
+      completeDailySystem(bigGoal, action, date);
+      dailySystem.classList.add("text-decoration-line-through");
+    }
   })
 });
 

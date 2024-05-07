@@ -68,7 +68,7 @@ class DailySystemCheckIn(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     big_goal = models.ForeignKey(BigGoal, on_delete=models.CASCADE, default="")
     daily_system = models.ForeignKey(DailySystem, on_delete=models.CASCADE)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField()
 
     def __str__(self):
         return f"{self.user.username}'s check-in for {self.daily_system.action} on {self.date}"

@@ -333,8 +333,7 @@ const completeDailySystem = (bigGoal, dailySystem, date) => {
         console.log("--->", response.status, "<---");
         if (response.ok) {
           console.log(`Completed ${dailySystem} - ${date}`);
-        }
-        console.log(`Failed completing ${dailySystem} - ${date}`);
+        } else console.log(`Failed completing ${dailySystem} - ${date}`);
       })
       .catch((error) => {
         console.error("Error:", error);

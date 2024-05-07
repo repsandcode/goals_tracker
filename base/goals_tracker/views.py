@@ -112,7 +112,6 @@ def big_goal_data(request, title):
            if goal in completed_on_date and completed_on_date.get(goal) == action:
               current_date_data["actions"].append(action)
       
-      print(current_date_data)
       all_dates.append(current_date_data)
 
    timeline = {
