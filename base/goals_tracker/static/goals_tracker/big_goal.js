@@ -20,7 +20,6 @@ const title = document.querySelector("#title-hidden");
 const description = document.querySelector("#description-hidden");
 const startDate = document.querySelector("#start-hidden");
 const deadlineDate = document.querySelector("#deadline-hidden");
-const dateToday = document.querySelector("#today-hidden");
 // timeline
 const timeline = document.querySelector("#timeline");
 const monthYear = document.querySelector("#month-year");
@@ -35,10 +34,13 @@ Array.from(allDailySystemBox).forEach((dailySystem) => {
   dailySystem.addEventListener("click", () => {
     const bigGoal = title.value;
     const action = dailySystem.innerText;
-    const date = dailySystem.parentElement.parentElement.dataset.date;
+    const date = dailySystem.parentElement.parentElement.dataset.date || getTodaysDate();
 
-    if (!dailySystem.classList.contains("text-decoration-line-through")) {
-      completeDailySystem(bigGoal, action, date);
+    if (dailySystem.classList.contains("text-decoration-line-through")) {
+      markIncompleteDailySystem(bigGoal, action, date);
+      dailySystem.classList.remove("text-decoration-line-through");
+    } else {
+      markCompleteDailySystem(bigGoal, action, date);
       dailySystem.classList.add("text-decoration-line-through");
     }
   })

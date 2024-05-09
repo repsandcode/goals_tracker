@@ -302,8 +302,11 @@ const getAllDailySystems = () => {
           const action = dailySystem.innerText;
           
           dailySystem.addEventListener("click", () => {
-            if (!dailySystem.classList.contains("text-decoration-line-through")) {
-              completeDailySystem(bigGoal, action, dateToday);
+            if (dailySystem.classList.contains("text-decoration-line-through")) {
+              markIncompleteDailySystem(bigGoal, action, dateToday);
+              dailySystem.classList.remove("text-decoration-line-through");
+            } else {
+              markCompleteDailySystem(bigGoal, action, dateToday);
               dailySystem.classList.add("text-decoration-line-through");
             }
           })
@@ -314,9 +317,9 @@ const getAllDailySystems = () => {
   }
 }
 
-const completeDailySystem = (bigGoal, dailySystem, date) => {
+const markCompleteDailySystem = (bigGoal, dailySystem, date) => {
   try {
-    fetch(`/complete-daily-system`, {
+    fetch(`/mark-complete-daily-system`, {
       method: "POST",
       body: JSON.stringify({
         bigGoal: bigGoal,
@@ -334,6 +337,35 @@ const completeDailySystem = (bigGoal, dailySystem, date) => {
         if (response.ok) {
           console.log(`Completed ${dailySystem} - ${date}`);
         } else console.log(`Failed completing ${dailySystem} - ${date}`);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const markIncompleteDailySystem = (bigGoal, dailySystem, date) => {
+  try {
+    fetch(`/mark-incomplete-daily-system`, {
+      method: "DELETE",
+      body: JSON.stringify({
+        bigGoal: bigGoal,
+        dailySystem: dailySystem,
+        date: date,
+      }),
+      credentials: "same-origin",
+      headers: {
+        "X-CSRFToken": getCookie("csrftoken"),
+      },
+    })
+      .then((response) => {
+        response.json();
+        console.log("--->", response.status, "<---");
+        if (response.ok) {
+          console.log(`Deleted ${dailySystem} - ${date}`);
+        } else console.log(`Failed deleting ${dailySystem} - ${date}`);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -362,8 +394,4 @@ const getAllCompletedDailySystems = () => {
   } catch (error) {
     console.log(error);
   }
-}
-
-const isDailySystemChecked = () => {
-  
 }

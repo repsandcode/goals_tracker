@@ -33,29 +33,66 @@ def all_completed_daily_systems(request):
 
    return JsonResponse(completed_daily_systems_data, safe=False) 
 
-def complete_daily_system(request):
-   data = json.loads(request.body)
-
-   # get contents from Checkpoint Goal Form submission
-   big_goal = data.get("bigGoal", "")
-   daily_system = data.get("dailySystem", "")
-   date = data.get("date", "")
-   parsed_date = datetime.strptime(date, "%a-%b-%d-%Y").date()
-
-   big_goal_obj = get_object_or_404(BigGoal, user=request.user, title=big_goal)
-   daily_system_obj = get_object_or_404(DailySystem, big_goal=big_goal_obj, action=daily_system)
-
+def mark_incomplete_daily_system(request):
    try:
+      data = json.loads(request.body)
+      big_goal_title = data.get("bigGoal")
+      daily_system_action = data.get("dailySystem")
+      date_str = data.get("date")
+
+      if not all([big_goal_title, daily_system_action, date_str]):
+          return JsonResponse({"message": "Missing required fields"}, status=400) 
+      
+      parsed_date = datetime.strptime(date_str, "%a-%b-%d-%Y").date()
+      big_goal_obj = get_object_or_404(BigGoal, user=request.user, title=big_goal_title)
+      daily_system_obj = get_object_or_404(DailySystem, big_goal=big_goal_obj, action=daily_system_action)
+      daily_system_checkins = DailySystemCheckIn.objects.filter(user=request.user, big_goal=big_goal_obj, daily_system=daily_system_obj, date=parsed_date)
+
+      for checkin in daily_system_checkins:
+         checkin.delete()
+
+      return JsonResponse({"message": f"All {daily_system_action} entries for {parsed_date} deleted"}, status=201)
+   
+   except ValueError:
+      return JsonResponse({"message": "Invalid date format"}, status=400)
+   except Exception as e:
+      return JsonResponse({'message': f'An error occurred: {str(e)}'}, status=500)
+
+def mark_complete_daily_system(request):
+   try:
+      data = json.loads(request.body)
+      big_goal_title = data.get("bigGoal")
+      daily_system_action = data.get("dailySystem")
+      date_str = data.get("date")
+
+      if not all([big_goal_title, daily_system_action, date_str]):
+         return JsonResponse({"message": "Missing required fields"}, status=400)
+      
+      parsed_date = datetime.strptime(date_str, "%a-%b-%d-%Y").date()
+      big_goal_obj = get_object_or_404(BigGoal, user=request.user, title=big_goal_title)
+      daily_system_obj = get_object_or_404(DailySystem, big_goal=big_goal_obj, action=daily_system_action)
+
+      # Check if DailySystemCheckIn already exists for the given date
+      existing_checkin = DailySystemCheckIn.objects.filter(user=request.user,
+                                                              big_goal=big_goal_obj,
+                                                              daily_system=daily_system_obj,
+                                                              date=parsed_date).exists()
+      if existing_checkin:
+         return JsonResponse({"message": f"{daily_system_action} already completed at {parsed_date}"}, status=400)
+
+      # Create and save DailySystemCheckIn
       daily_system_checkin = DailySystemCheckIn(
-         user = request.user,
-         big_goal = big_goal_obj,
-         daily_system = daily_system_obj,
-         date = parsed_date,
+         user=request.user,
+         big_goal=big_goal_obj,
+         daily_system=daily_system_obj,
+         date=parsed_date,
       )
       daily_system_checkin.save()
-      return JsonResponse({"message": f"{daily_system} completed at {parsed_date}"}, status=201)
+
+      return JsonResponse({"message": f"{daily_system_action} completed at {parsed_date}"}, status=201)
+   except ValueError:
+      return JsonResponse({"message": "Invalid date format"}, status=400)
    except Exception as e:
-      print(e)
       return JsonResponse({'message': f'An error occurred: {str(e)}'}, status=500)
 
 def big_goal_data(request, title):

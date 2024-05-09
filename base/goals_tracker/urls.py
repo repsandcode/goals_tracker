@@ -27,5 +27,6 @@ urlpatterns = [
 
   # complete a daily action
   path("all-completed-daily-systems", views.all_completed_daily_systems, name="all_completed_daily_systems"),
-  path("complete-daily-system", views.complete_daily_system, name="complete_daily_system"),
+  path("mark-complete-daily-system", views.mark_complete_daily_system, name="mark_complete_daily_system"),
+  path("mark-incomplete-daily-system", views.mark_incomplete_daily_system, name="mark_incomplete_daily_system"),
 ]
