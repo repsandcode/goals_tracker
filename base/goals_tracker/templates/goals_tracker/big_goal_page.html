@@ -124,7 +124,11 @@ Tracker{%endblock %} {% block body %}
       <div class="d-flex flex-wrap gap-3">
         {% for system in daily_systems %}
         <div class="box-radius daily-system-box">
-          <p class="m-0 fs-5">{{ system.action }}</p>
+          {% if system.completed %}
+            <p class="m-0 fs-5 text-decoration-line-through">{{ system.action }}</p>
+          {% else %}
+            <p class="m-0 fs-5">{{ system.action }}</p>
+          {% endif %}
         </div>
         {% empty %}
         <div>No Daily Systems. Create One Now.</div>

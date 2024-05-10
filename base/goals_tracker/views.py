@@ -98,40 +98,40 @@ def mark_complete_daily_system(request):
 def big_goal_data(request, title):
    original_title = title.replace('-', ' ')
 
-   # Retrieve the Big Goal
+   # Big Goal
    big_goal = get_object_or_404(BigGoal, user=request.user, title=original_title)
-   # Serialize Big Goal query into JSON format
    big_goal_data = big_goal.serialize()
-   
+
+   # Completed Daily Systems
+   completed_daily_systems_content = all_completed_daily_systems(request).content.decode('utf-8')
+   completed_daily_systems_data = json.loads(completed_daily_systems_content)
+   today = date.today().strftime('%a-%b-%d-%Y')
+   completed_today = 0
+
+   if today in completed_daily_systems_data:
+      completed_today = completed_daily_systems_data[today]
+ 
    # Retrieve related Daily Systems
    daily_systems = DailySystem.objects.filter(big_goal=big_goal)
    daily_systems_data = []
    for system in daily_systems:
       data = system.serialize()
-      daily_systems_data.append(data)
-      
-   # Retrieve related Checkpoint Goals
-   checkpoint_goals = CheckpointGoal.objects.filter(big_goal=big_goal)
-   checkpoint_goals_data = []
-   for cp_goal in checkpoint_goals:
-      data = cp_goal.serialize()
-      checkpoint_goals_data.append(data)
+      goal = data["big_goal"]
+      action = data["action"]
 
-   # Retrieve related Anti-Goals
-   anti_goals = AntiGoal.objects.filter(big_goal=big_goal)
-   anti_goals_data = []
-   for anti_goal in anti_goals:
-      data = anti_goal.serialize()
-      anti_goals_data.append(data)
-      
+      if completed_today and completed_today.get(goal) == action:
+         data["completed"] = True
+      else:
+         data["completed"] = False
+
+      daily_systems_data.append(data)
+
+   print(daily_systems_data)
 
    # Create timeline
    start_date = datetime.strptime(big_goal_data["start"], "%Y-%m-%d")
    end_date = datetime.strptime(big_goal_data["deadline"], "%Y-%m-%d")
    all_dates = []
-   
-   completed_daily_systems_content = all_completed_daily_systems(request).content.decode('utf-8')
-   completed_daily_systems_data = json.loads(completed_daily_systems_content)
 
    for i in range((end_date - start_date).days + 1):
       current_date = (start_date + timedelta(days=i)).strftime('%a-%b-%d-%Y')
@@ -156,6 +156,20 @@ def big_goal_data(request, title):
       "deadline": end_date.strftime('%B %d, %Y'),
       "all_dates": all_dates,
    }
+
+   # Retrieve related Checkpoint Goals
+   checkpoint_goals = CheckpointGoal.objects.filter(big_goal=big_goal)
+   checkpoint_goals_data = []
+   for cp_goal in checkpoint_goals:
+      data = cp_goal.serialize()
+      checkpoint_goals_data.append(data)
+
+   # Retrieve related Anti-Goals
+   anti_goals = AntiGoal.objects.filter(big_goal=big_goal)
+   anti_goals_data = []
+   for anti_goal in anti_goals:
+      data = anti_goal.serialize()
+      anti_goals_data.append(data)  
 
    return {
       "title_unedited": title,

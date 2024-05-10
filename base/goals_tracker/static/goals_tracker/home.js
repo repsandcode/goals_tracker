@@ -13,7 +13,6 @@ const bigGoalDescription = document.querySelector("#big-goal-description");
 
 // daily systems section
 const allDailySystems = document.querySelector("#all-daily-systems");
-let allCompletedDailySystems = {};
 
 /*************************/
 //    CLICK LISTENER    //
@@ -49,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // AUTOMATIC RENDERINGS //
   /***********************/
   getUserData();
-  getAllCompletedDailySystems();
   addGreeting(); // user greetings
   showHomePage(); // home page contents
 });
@@ -272,9 +270,6 @@ const getAllDailySystems = () => {
       })
       .then((dailySystems) => {
         console.log(dailySystems);
-
-        const todayInCompletedDailySystems = allCompletedDailySystems.hasOwnProperty(allDailySystems.dataset.today);
-        const completedToday = allCompletedDailySystems[allDailySystems.dataset.today];
         
         dailySystems.forEach((daily) => {
           const dailySystemBox = document.createElement("div");
@@ -385,11 +380,6 @@ const getAllCompletedDailySystems = () => {
           console.log("failed to retrieve all completed daily systems");
         }
         return res.json();
-      })
-      .then((all) => {
-        console.log(all);
-        
-        allCompletedDailySystems = all;
       })
   } catch (error) {
     console.log(error);

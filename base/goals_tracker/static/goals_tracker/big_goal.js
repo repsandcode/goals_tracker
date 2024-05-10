@@ -24,8 +24,8 @@ const deadlineDate = document.querySelector("#deadline-hidden");
 const timeline = document.querySelector("#timeline");
 const monthYear = document.querySelector("#month-year");
 
-
-getAllCompletedDailySystems();
+const allCompletedDailySystems = getAllCompletedDailySystems();
+console.log(allCompletedDailySystems)
 
 
 // COMPLETING A DAILY ACTION
@@ -37,11 +37,11 @@ Array.from(allDailySystemBox).forEach((dailySystem) => {
     const date = dailySystem.parentElement.parentElement.dataset.date || getTodaysDate();
 
     if (dailySystem.classList.contains("text-decoration-line-through")) {
-      markIncompleteDailySystem(bigGoal, action, date);
       dailySystem.classList.remove("text-decoration-line-through");
+      markIncompleteDailySystem(bigGoal, action, date);
     } else {
-      markCompleteDailySystem(bigGoal, action, date);
       dailySystem.classList.add("text-decoration-line-through");
+      markCompleteDailySystem(bigGoal, action, date);
     }
   })
 });
