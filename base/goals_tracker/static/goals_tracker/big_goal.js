@@ -3,6 +3,7 @@ const dailySystemModal = document.querySelector("#daily-system-modal");
 const dailySystemModalContent = document.querySelector("#daily-system-modal-content");
 const dailySystemForm = document.querySelector("#daily-system-form");
 const dailySystemTitle = document.querySelector("#daily-system-title");
+const dailySystemMsg = document.querySelector("#daily-system-message");
 // checkpoint goal section
 const checkpointGoalModal = document.querySelector("#checkpoint-goal-modal");
 const checkpointGoalModalContent = document.querySelector("#checkpoint-goal-modal-content");
@@ -20,13 +21,10 @@ const title = document.querySelector("#title-hidden");
 const description = document.querySelector("#description-hidden");
 const startDate = document.querySelector("#start-hidden");
 const deadlineDate = document.querySelector("#deadline-hidden");
+const bgDailySystems = document.querySelector("#bg-daily-systems").value.split(",");
 // timeline
 const timeline = document.querySelector("#timeline");
 const monthYear = document.querySelector("#month-year");
-
-const allCompletedDailySystems = getAllCompletedDailySystems();
-console.log(allCompletedDailySystems)
-
 
 // COMPLETING A DAILY ACTION
 const allDailySystemBox = document.querySelectorAll(".daily-system-box");
@@ -105,30 +103,35 @@ const hideDailySystemModal = () => {
 const createDailySystem = (event) => {
   event.preventDefault();
 
-  fetch(`/big-goal/${uneditedTitle.value}/create-daily-system`, {
-    method: "POST",
-    body: JSON.stringify({
-      bigGoal: title.value,
-      action: dailySystemTitle.value,
-    }),
-    credentials: "same-origin",
-    headers: {
-      "X-CSRFToken": getCookie("csrftoken"),
-    },
-  })
-    .then((response) => {
-      response.json();
-      console.log("--->", response.status, "<---");
-      if (response.ok) {
-        console.log("Daily System created succesfully");
-        location.reload();
-      }
-      console.log("Failed creating Daily System");
+  if (bgDailySystems.includes(dailySystemTitle.value)) {
+    dailySystemMsg.innerText = "You already have this Daily System."
+  } else {
+    fetch(`/big-goal/${uneditedTitle.value}/create-daily-system`, {
+      method: "POST",
+      body: JSON.stringify({
+        bigGoal: title.value,
+        action: dailySystemTitle.value,
+      }),
+      credentials: "same-origin",
+      headers: {
+        "X-CSRFToken": getCookie("csrftoken"),
+      },
     })
-    .catch((error) => {
-      // Handle network errors or exceptions here
-      console.error("Error:", error);
-    });
+      .then((response) => {
+        response.json();
+        console.log("--->", response.status, "<---");
+        if (response.ok) {
+          console.log("Daily System created succesfully");
+          location.reload();
+        }
+        console.log("Failed creating Daily System");
+      })
+      .catch((error) => {
+        // Handle network errors or exceptions here
+        console.error("Error:", error);
+      });
+  }
+
 };
 
 

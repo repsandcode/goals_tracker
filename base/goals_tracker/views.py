@@ -114,6 +114,7 @@ def big_goal_data(request, title):
    # Retrieve related Daily Systems
    daily_systems = DailySystem.objects.filter(big_goal=big_goal)
    daily_systems_data = []
+   daily_systems_actions = ''
    for system in daily_systems:
       data = system.serialize()
       goal = data["big_goal"]
@@ -124,9 +125,8 @@ def big_goal_data(request, title):
       else:
          data["completed"] = False
 
+      daily_systems_actions += action + ","
       daily_systems_data.append(data)
-
-   print(daily_systems_data)
 
    # Create timeline
    start_date = datetime.strptime(big_goal_data["start"], "%Y-%m-%d")
@@ -178,6 +178,7 @@ def big_goal_data(request, title):
       "checkpoint_goals": checkpoint_goals_data,
       "daily_systems": daily_systems_data,
       "anti_goals": anti_goals_data,
+      "actions": daily_systems_actions,
    }
 
 

@@ -29,6 +29,7 @@ Tracker{%endblock %} {% block body %}
         <input type="hidden" id="description-hidden" value="{{big_goal.description}}" />
         <input type="hidden" id="start-hidden" value="{{timeline.start}}" />
         <input type="hidden" id="deadline-hidden" value="{{timeline.deadline}}" />
+        <input type="hidden" id="bg-daily-systems" value="{{actions}}" />
 
         <!-- Daily System Modal -->
         <div id="daily-system-modal" class="modal">
@@ -41,6 +42,8 @@ Tracker{%endblock %} {% block body %}
               <h3 class="fw-light mb-5">
                 What would you do <span class="fst-italic fw-normal"> daily</span> to make it a reality?
               </h3>
+
+              <span id="daily-system-message" class="text-danger fs-5 fw-light"></span>
   
               {% comment %} Body {% endcomment %}
               <form id="daily-system-form">
