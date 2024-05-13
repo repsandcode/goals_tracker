@@ -1,5 +1,6 @@
 import json
 
+from collections import defaultdict
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, get_object_or_404
@@ -15,7 +16,7 @@ from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal, DailyS
 def all_completed_daily_systems(request):
    completed_daily_systems = DailySystemCheckIn.objects.filter(user=request.user)
 
-   completed_daily_systems_data = {}
+   completed_daily_systems_data = defaultdict(lambda: defaultdict(list))
 
    for completed in completed_daily_systems:
       data = completed.serialize()
@@ -23,13 +24,10 @@ def all_completed_daily_systems(request):
       big_goal = data.get('big_goal')
       daily_system = data.get('daily_system')
 
-      if date in completed_daily_systems_data:
-         if big_goal not in completed_daily_systems_data[date]:
-            completed_daily_systems_data[date][big_goal] = {}
-         if daily_system not in completed_daily_systems_data[date][big_goal]:
-            completed_daily_systems_data[date][big_goal] = daily_system
-      else:
-         completed_daily_systems_data[date] = {big_goal: daily_system}
+      if daily_system not in completed_daily_systems_data[date][big_goal]:
+         completed_daily_systems_data[date][big_goal].append(daily_system)
+
+   completed_daily_systems_data = {date: dict(goals) for date, goals in completed_daily_systems_data.items()}
 
    return JsonResponse(completed_daily_systems_data, safe=False) 
 
@@ -42,6 +40,8 @@ def mark_incomplete_daily_system(request):
 
       if not all([big_goal_title, daily_system_action, date_str]):
           return JsonResponse({"message": "Missing required fields"}, status=400) 
+      
+      print(big_goal_title, daily_system_action, date_str)
       
       parsed_date = datetime.strptime(date_str, "%a-%b-%d-%Y").date()
       big_goal_obj = get_object_or_404(BigGoal, user=request.user, title=big_goal_title)
@@ -105,11 +105,6 @@ def big_goal_data(request, title):
    # Completed Daily Systems
    completed_daily_systems_content = all_completed_daily_systems(request).content.decode('utf-8')
    completed_daily_systems_data = json.loads(completed_daily_systems_content)
-   today = date.today().strftime('%a-%b-%d-%Y')
-   completed_today = 0
-
-   if today in completed_daily_systems_data:
-      completed_today = completed_daily_systems_data[today]
  
    # Retrieve related Daily Systems
    daily_systems = DailySystem.objects.filter(big_goal=big_goal)
@@ -117,15 +112,7 @@ def big_goal_data(request, title):
    daily_systems_actions = ''
    for system in daily_systems:
       data = system.serialize()
-      goal = data["big_goal"]
-      action = data["action"]
-
-      if completed_today and completed_today.get(goal) == action:
-         data["completed"] = True
-      else:
-         data["completed"] = False
-
-      daily_systems_actions += action + ","
+      daily_systems_actions += data["action"] + ","
       daily_systems_data.append(data)
 
    # Create timeline
@@ -146,7 +133,7 @@ def big_goal_data(request, title):
          for daily in daily_systems_data:
            goal = daily["big_goal"]
            action = daily["action"]
-           if goal in completed_on_date and completed_on_date.get(goal) == action:
+           if goal in completed_on_date and action in completed_on_date.get(goal):
               current_date_data["actions"].append(action)
       
       all_dates.append(current_date_data)
@@ -310,7 +297,7 @@ def daily_systems(request):
            big_goal = data["big_goal"]
            action = data["action"]
 
-           if completed_today and completed_today.get(big_goal) == action:
+           if completed_today and action in completed_today.get(big_goal):
               data["completed"] = True
            else:
               data["completed"] = False

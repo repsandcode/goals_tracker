@@ -26,21 +26,30 @@ const bgDailySystems = document.querySelector("#bg-daily-systems").value.split("
 const timeline = document.querySelector("#timeline");
 const monthYear = document.querySelector("#month-year");
 
+
 // COMPLETING A DAILY ACTION
 const allDailySystemBox = document.querySelectorAll(".daily-system-box");
 Array.from(allDailySystemBox).forEach((dailySystem) => {
   dailySystem.addEventListener("click", () => {
     const bigGoal = title.value;
     const action = dailySystem.innerText;
-    const date = dailySystem.parentElement.parentElement.dataset.date || getTodaysDate();
-
-    if (dailySystem.classList.contains("text-decoration-line-through")) {
-      dailySystem.classList.remove("text-decoration-line-through");
-      markIncompleteDailySystem(bigGoal, action, date);
-    } else {
-      dailySystem.classList.add("text-decoration-line-through");
-      markCompleteDailySystem(bigGoal, action, date);
-    }
+    const date = dailySystem.parentElement.parentElement.dataset.date;
+    
+    getAllCompletedDailySystems()
+      .then((completedSystems) => {
+        if (completedSystems && completedSystems.hasOwnProperty(date)) {
+          if (completedSystems[date][bigGoal].includes(action)) {
+            dailySystem.classList.remove("text-decoration-line-through");
+            markIncompleteDailySystem(bigGoal, action, date);
+          } else {
+            dailySystem.classList.add("text-decoration-line-through");
+            markCompleteDailySystem(bigGoal, action, date);
+          }
+        } else {
+          dailySystem.classList.add("text-decoration-line-through");
+          markCompleteDailySystem(bigGoal, action, date);
+        }
+      });
   })
 });
 

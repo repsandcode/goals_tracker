@@ -326,7 +326,7 @@ const markCompleteDailySystem = (bigGoal, dailySystem, date) => {
         "X-CSRFToken": getCookie("csrftoken"),
       },
     })
-      .then((response) => {
+      .then((response) => {        
         response.json();
         console.log("--->", response.status, "<---");
         if (response.ok) {
@@ -372,16 +372,18 @@ const markIncompleteDailySystem = (bigGoal, dailySystem, date) => {
 
 const getAllCompletedDailySystems = () => {
   try {
-    fetch("/all-completed-daily-systems")
+    return fetch("/all-completed-daily-systems")
       .then((res) => {
         if (res.ok) {
           console.log("success! retrieved all completed daily systems");
+          return res.json();
         } else {
           console.log("failed to retrieve all completed daily systems");
+          return null;
         }
-        return res.json();
       })
   } catch (error) {
     console.log(error);
+    return null;
   }
 }

@@ -2,7 +2,7 @@
 Tracker{%endblock %} {% block body %}
 
 <main class="py-5" id="big-goal-page">
-  <!-- Go back to HOME -->
+  {% comment %} Top {% endcomment %}
    <section>
       <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
@@ -22,7 +22,7 @@ Tracker{%endblock %} {% block body %}
       </div>
    </section>
 
-    {% comment %} Main Section {% endcomment %}
+    {% comment %} Timeline - Body {% endcomment %}
     <section class="big-goal-section box-radius">
         <input type="hidden" id="no-edit-title-hidden" value="{{title_unedited}}" />
         <input type="hidden" id="title-hidden" value="{{big_goal.title}}" />
