@@ -106,6 +106,26 @@ html {
 }
 
 /* HOME PAGE - BIG GOALS */
+.page-status {
+  background-color: var(--white-bg);
+  border-radius: 2rem;
+}
+.page-status--box {
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+}
+.page-status--box-off {
+  background-color: var(--white-bg);
+  color: var(--dark-bg);
+  margin: 0 -5px;
+}
+.page-status--box-on {
+  background-color: var(--dark-bg);
+  color: var(--white-bg);
+  z-index: 1;
+}
+
 .big-goals-section {
   padding: 2.5rem;
   background-color: var(--white-bg);
