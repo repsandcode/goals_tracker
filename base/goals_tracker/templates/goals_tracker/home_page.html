@@ -8,12 +8,12 @@
   {% comment %} WELCOME {% endcomment %}
   <section class="d-flex justify-content-between mb-5">
     <div class="align-self-center d-flex box-radius page-status">
-      <a href="{% url 'goals_tracker:index' %}" class="page-status--box page-status--box-on">
+      <div id="show-dashboard" class="page-status--box page-status--box-on">
         <h4 class="fw-light m-0">Dashboard</h4>
-      </a>
-      <a href="{% url 'goals_tracker:big_goals' %}" class="page-status--box page-status--box-off">
+      </div>
+      <div id="show-big-goals" class="page-status--box page-status--box-off">
         <h4 class="fw-light m-0">All Big Goals</h4>
-      </a>
+      </div>
     </div>
 
     <div class="text-body-tertiary fs-2">
@@ -21,14 +21,74 @@
     </div>
   </section>
 
-   {% comment %} All Daily Systems {% endcomment %}
-   <section class="box-radius daily-systems mb-5">
-    <div class="mb-5">
-      <h2>All tasks today</h2>
-    </div>
-      
-    <div id="all-daily-systems" class="d-flex flex-wrap gap-4"></div>
+  {% comment %} Dashboard {% endcomment %}
+  <section id="dashboard" class="" >
+    {% comment %} All Daily Actions {% endcomment %}
+    <section class="box-radius daily-systems mb-5">
+      <div class="mb-5">
+        <h2>All tasks today</h2>
+      </div>
+        
+      <div id="all-daily-systems" class="d-flex flex-wrap gap-4"></div>
+    </section>
+  </section>
+
+  {% comment %} All Big Goals {% endcomment %}
+  <section id="big-goals" class="box-radius big-goals-section flex-grow-1" >
+      <div class="d-flex justify-content-between mb-5">
+        <h2>Big Goals</h2>
+        <button class="border bg-transparent py-2 px-3 fs-5 rounded-circle" id="open-big-goal-modal">
+          <i class="bi bi-plus-lg"></i>
+        </button>
+      </div>
+  
+      <div id="big-goal-modal" class="modal">
+        <div class="modal-center">
+          <div class="big-goal-modal-content" id="big-goal-modal-content">
+            {% comment %} Header {% endcomment %}
+            <h3 class="fw-normal mb-5">Create your next Big Goal</h3>
+  
+            {% comment %} Body {% endcomment %}
+            <form id="big-goal-form">
+              {% csrf_token %}
+  
+              <div class="mb-5">
+                <label for="big-goal-title" class="form-label fs-4">Title</label>
+                <input autofocus class="form-control p-4 fs-4 bg-body-tertiary box-radius" type="text"
+                  id="big-goal-title" name="big-goal-title" required />
+              </div>
+  
+              <div class="d-flex mb-5 gap-4 modal-flex-direction">
+                <div class="w-100">
+                  <label for="big-goal-start" class="form-label fs-4">Start</label>
+                  <input class="form-control p-4 fs-4 bg-body-tertiary box-radius" type="date" id="big-goal-start"
+                    name="big-goal-start" required />
+                </div>
+                <div class="w-100">
+                  <label for="big-goal-deadline" class="form-label fs-4">Deadline</label>
+                  <input class="form-control p-4 fs-4 bg-body-tertiary box-radius" type="date" id="big-goal-deadline"
+                    name="big-goal-deadline" required />
+                </div>
+              </div>
+  
+              <div class="mb-5">
+                <label for="big-goal-description" class="form-label fs-4">Description</label>
+                <textarea class="form-control p-4 fs-4 bg-body-tertiary box-radius" id="big-goal-description"
+                  name="big-goal-description" placeholder=""></textarea>
+              </div>
+  
+              <div class="d-flex justify-content-end gap-4">
+                <button type="button" id="close-big-goal-modal"
+                  class="p-4 border-0 bg-transparent fs-4 box-radius">Close</button>
+                <button type="submit" class="p-4 border-0 bg-success-subtle fs-4 box-radius" />Create Big
+                Goal</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+      <div id="all-big-goals" class="row g-4"></div>
   </section>
 </main>
-
 {% endblock %}

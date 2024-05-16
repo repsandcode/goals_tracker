@@ -114,6 +114,7 @@ html {
   text-decoration: none;
   padding: 1rem 2rem;
   border-radius: 2rem;
+  cursor: pointer;
 }
 .page-status--box-off {
   background-color: var(--white-bg);

@@ -2,6 +2,12 @@
 const homePage = document.querySelector("#home-page");
 const bigGoalPage = document.querySelector("#big-goal-page");
 
+// Home SPA
+const showDashboard = document.querySelector("#show-dashboard");
+const showBigGoals = document.querySelector("#show-big-goals");
+const dashboard = document.querySelector("#dashboard");
+const bigGoals = document.querySelector("#big-goals");
+
 // big goals section
 const allBigGoals = document.querySelector("#all-big-goals");
 const bigGoalModal = document.querySelector("#big-goal-modal");
@@ -54,59 +60,86 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // PAGES
 const showHomePage = () => {
-  getAllBigGoals();
-  getAllDailySystems(); 
+  if (dashboard.style.display === "block" || dashboard.style.display === "")  {
+    console.log("first");
+  }
 
-  // create a big goal
-  document
-    .querySelector("#open-big-goal-modal")
-    .addEventListener("click", () => showBigGoalModal());
-  document
-    .querySelector("#close-big-goal-modal")
-    .addEventListener("click", () => hideBigGoalModal());
+  bigGoals.style.display = "none";
+    dashboard.style.display = "block";
+    getAllDailySystems(); 
 
-  const createBigGoal = (event) => {
-    event.preventDefault();
+  showDashboard.addEventListener("click", () => {
+    showDashboard.classList.toggle("page-status--box-off");
+    showDashboard.classList.add("page-status--box-on");
+    showBigGoals.classList.add("page-status--box-off");
+    showBigGoals.classList.toggle("page-status--box-on");
 
-    fetch("/create-big-goal", {
-      method: "POST",
-      body: JSON.stringify({
-        title: bigGoalTitle.value,
-        start: bigGoalStart.value,
-        deadline: bigGoalDeadline.value,
-        description: bigGoalDescription.value,
-      }),
-      credentials: "same-origin",
-      headers: {
-        "X-CSRFToken": getCookie("csrftoken"),
-      },
-    })
-      .then((response) => {
-        response.json();
-        console.log("--->", response.status, "<---");
-        if (response.ok) {
-          console.log("Big Goal created succesfully");
-          window.location.href = "/";
-        }
-        console.log("Failed creating Big Goal");
+    bigGoals.style.display = "none";
+    dashboard.style.display = "block";
+    getAllDailySystems(); 
+  })
+
+  showBigGoals.addEventListener("click", () => {
+    showBigGoals.classList.add("page-status--box-on");
+    showBigGoals.classList.toggle("page-status--box-off");
+    showDashboard.classList.toggle("page-status--box-on");
+    showDashboard.classList.add("page-status--box-off");
+
+    dashboard.style.display = "none";
+    bigGoals.style.display = "block";
+    getAllBigGoals();
+
+    // create a big goal
+    document
+      .querySelector("#open-big-goal-modal")
+      .addEventListener("click", () => showBigGoalModal());
+    document
+      .querySelector("#close-big-goal-modal")
+      .addEventListener("click", () => hideBigGoalModal());
+  
+    const createBigGoal = (event) => {
+      event.preventDefault();
+  
+      fetch("/create-big-goal", {
+        method: "POST",
+        body: JSON.stringify({
+          title: bigGoalTitle.value,
+          start: bigGoalStart.value,
+          deadline: bigGoalDeadline.value,
+          description: bigGoalDescription.value,
+        }),
+        credentials: "same-origin",
+        headers: {
+          "X-CSRFToken": getCookie("csrftoken"),
+        },
       })
-      .catch((error) => {
-        // Handle network errors or exceptions here
-        console.error("Error:", error);
-      });
-  };
-  const showBigGoalModal = () => {
-    bigGoalModal.style.display = "block";
-    // start date
-    bigGoalStart.min = defaultStartDate();
-    bigGoalStart.value = defaultStartDate();
-    // deadline
-    bigGoalDeadline.min = defaultDeadlineDate();
-    document.querySelector("#big-goal-form").onsubmit = createBigGoal;
-  };
-  const hideBigGoalModal = () => {
-    bigGoalModal.style.display = "none";
-  };
+        .then((response) => {
+          response.json();
+          console.log("--->", response.status, "<---");
+          if (response.ok) {
+            console.log("Big Goal created succesfully");
+            window.location.href = "/";
+          }
+          console.log("Failed creating Big Goal");
+        })
+        .catch((error) => {
+          // Handle network errors or exceptions here
+          console.error("Error:", error);
+        });
+    };
+    const showBigGoalModal = () => {
+      bigGoalModal.style.display = "block";
+      // start date
+      bigGoalStart.min = defaultStartDate();
+      bigGoalStart.value = defaultStartDate();
+      // deadline
+      bigGoalDeadline.min = defaultDeadlineDate();
+      document.querySelector("#big-goal-form").onsubmit = createBigGoal;
+    };
+    const hideBigGoalModal = () => {
+      bigGoalModal.style.display = "none";
+    };
+  })
 };
 
 const showBigGoalPage = (title) => {
@@ -186,6 +219,8 @@ const getAllBigGoals = () => {
         return res.json();
       })
       .then((bigGoals) => {
+        allBigGoals.innerHTML = "";
+        
         bigGoals.forEach((data) => {
           const bigGoalBox = document.createElement("div");
           const bigGoalData = data.big_goal;
@@ -270,6 +305,8 @@ const getAllDailySystems = () => {
       })
       .then((dailySystems) => {
         console.log(dailySystems);
+
+        allDailySystems.innerHTML = "";
         
         dailySystems.forEach((daily) => {
           const dailySystemBox = document.createElement("div");
