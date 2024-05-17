@@ -61,15 +61,15 @@ const showTodaysTimelineItem = (currentDate) => {
   const getTodaysTimeline = Array.from(timelineItems).filter(item => item.dataset.date == currentDate);
 
   const currentDateDiv = getTodaysTimeline[0];
-  const timelineHeadDiv = currentDateDiv.children[0];
-  const day = timelineHeadDiv.children[1];
-  
-  currentDateDiv.classList.add("timeline-item-today");
-  timelineHeadDiv.classList.add("timeline-item--head-today");
-  day.classList.add("timeline-item--head-day-on");
-  
   // Scroll the timeline container to the current date div
   if (currentDateDiv) {
+    const timelineHeadDiv = currentDateDiv.children[0];
+    const day = timelineHeadDiv.children[1];
+    
+    currentDateDiv.classList.add("timeline-item-today");
+    timelineHeadDiv.classList.add("timeline-item--head-today");
+    day.classList.add("timeline-item--head-day-on");
+
       // Calculate the scrollLeft position to center the current date div
       const scrollLeftPos = currentDateDiv.offsetLeft - (window.innerWidth / 2) + (currentDateDiv.offsetWidth / 2);
       
