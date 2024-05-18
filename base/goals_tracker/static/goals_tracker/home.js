@@ -60,34 +60,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // PAGES
 const showHomePage = () => {
-  if (dashboard.style.display === "block" || dashboard.style.display === "")  {
-    console.log("first");
-  }
-
-  bigGoals.style.display = "none";
-    dashboard.style.display = "block";
-    getAllDailySystems(); 
-
-  showDashboard.addEventListener("click", () => {
+  const dashboardParty = () => {
     showDashboard.classList.toggle("page-status--box-off");
     showDashboard.classList.add("page-status--box-on");
-    showBigGoals.classList.add("page-status--box-off");
-    showBigGoals.classList.toggle("page-status--box-on");
+    showBigGoals.classList.toggle("page-status--box-off");
+    showBigGoals.classList.remove("page-status--box-on");
 
     bigGoals.style.display = "none";
     dashboard.style.display = "block";
     getAllDailySystems(); 
-  })
+  }
 
-  showBigGoals.addEventListener("click", () => {
+  const bigGoalsParty = () => {
     showBigGoals.classList.add("page-status--box-on");
     showBigGoals.classList.toggle("page-status--box-off");
-    showDashboard.classList.toggle("page-status--box-on");
+    showDashboard.classList.remove("page-status--box-on");
     showDashboard.classList.add("page-status--box-off");
 
     dashboard.style.display = "none";
     bigGoals.style.display = "block";
     getAllBigGoals();
+  }
+
+  dashboardParty();
+
+  showDashboard.addEventListener("click", () => {
+    dashboardParty();
+  })
+
+  showBigGoals.addEventListener("click", () => {
+    bigGoalsParty();
 
     // create a big goal
     document
@@ -118,7 +120,8 @@ const showHomePage = () => {
           console.log("--->", response.status, "<---");
           if (response.ok) {
             console.log("Big Goal created succesfully");
-            window.location.href = "/";
+            bigGoalsParty();
+            hideBigGoalModal();
           }
           console.log("Failed creating Big Goal");
         })
@@ -220,7 +223,7 @@ const getAllBigGoals = () => {
       })
       .then((bigGoals) => {
         allBigGoals.innerHTML = "";
-        
+
         bigGoals.forEach((data) => {
           const bigGoalBox = document.createElement("div");
           const bigGoalData = data.big_goal;
