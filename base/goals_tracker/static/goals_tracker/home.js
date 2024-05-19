@@ -12,6 +12,7 @@ const bigGoals = document.querySelector("#big-goals");
 const allBigGoals = document.querySelector("#all-big-goals");
 const bigGoalModal = document.querySelector("#big-goal-modal");
 const bigGoalModalContent = document.querySelector("#big-goal-modal-content");
+const bigGoalMessage = document.querySelector("#big-goal-message");
 const bigGoalTitle = document.querySelector("#big-goal-title");
 const bigGoalStart = document.querySelector("#big-goal-start");
 const bigGoalDeadline = document.querySelector("#big-goal-deadline");
@@ -19,6 +20,9 @@ const bigGoalDescription = document.querySelector("#big-goal-description");
 
 // daily systems section
 const allDailySystems = document.querySelector("#all-daily-systems");
+
+// global variables
+let allBigGoalsArr = [];
 
 /*************************/
 //    CLICK LISTENER    //
@@ -31,10 +35,12 @@ modalCenters.forEach((modalCenter) => {
     if (event.target === modalCenter) {      
       if (bigGoalModal && bigGoalModal.style.display === "block") {
         bigGoalModal.style.display = "none";
+        bigGoalMessage.innerText = "";
       } 
       
       if (dailySystemModal && dailySystemModal.style.display === "block") {   
         dailySystemModal.style.display = "none";
+        dailySystemMsg.innerText = "";
       }
       
       if (checkpointGoalModal && checkpointGoalModal.style.display === "block") {
@@ -90,7 +96,6 @@ const showHomePage = () => {
 
   showBigGoals.addEventListener("click", () => {
     bigGoalsParty();
-
     // create a big goal
     document
       .querySelector("#open-big-goal-modal")
@@ -101,34 +106,39 @@ const showHomePage = () => {
   
     const createBigGoal = (event) => {
       event.preventDefault();
-  
-      fetch("/create-big-goal", {
-        method: "POST",
-        body: JSON.stringify({
-          title: bigGoalTitle.value,
-          start: bigGoalStart.value,
-          deadline: bigGoalDeadline.value,
-          description: bigGoalDescription.value,
-        }),
-        credentials: "same-origin",
-        headers: {
-          "X-CSRFToken": getCookie("csrftoken"),
-        },
-      })
-        .then((response) => {
-          response.json();
-          console.log("--->", response.status, "<---");
-          if (response.ok) {
-            console.log("Big Goal created succesfully");
-            bigGoalsParty();
-            hideBigGoalModal();
-          }
-          console.log("Failed creating Big Goal");
+
+      if (allBigGoalsArr.includes(bigGoalTitle.value)) {
+        bigGoalMessage.innerText = `"${bigGoalTitle.value}" already exists.`;
+      } else {
+        fetch("/create-big-goal", {
+          method: "POST",
+          body: JSON.stringify({
+            title: bigGoalTitle.value,
+            start: bigGoalStart.value,
+            deadline: bigGoalDeadline.value,
+            description: bigGoalDescription.value,
+          }),
+          credentials: "same-origin",
+          headers: {
+            "X-CSRFToken": getCookie("csrftoken"),
+          },
         })
-        .catch((error) => {
-          // Handle network errors or exceptions here
-          console.error("Error:", error);
-        });
+          .then((response) => {
+            response.json();
+            console.log("--->", response.status, "<---");
+            if (response.ok) {
+              console.log("Big Goal created succesfully");
+              bigGoalsParty();
+              hideBigGoalModal();
+            }
+            console.log("Failed creating Big Goal");
+          })
+          .catch((error) => {
+            // Handle network errors or exceptions here
+            console.error("Error:", error);
+          });
+      }
+
     };
     const showBigGoalModal = () => {
       bigGoalModal.style.display = "block";
@@ -230,6 +240,7 @@ const getAllBigGoals = () => {
           
           const titleUnedited = data.title_unedited;
           const title = bigGoalData.title;
+          allBigGoalsArr.push(title);
           const antiGoals = data.anti_goals;
           const dailySystems = data.daily_systems;
           const checkpointGoals = data.checkpoint_goals;
