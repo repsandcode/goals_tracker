@@ -115,11 +115,11 @@ html {
   padding: 1rem 2rem;
   border-radius: 2rem;
   cursor: pointer;
+  margin: 0 -5px;
 }
 .page-status--box-off {
   background-color: var(--white-bg);
   color: var(--dark-bg);
-  margin: 0 -5px;
 }
 .page-status--box-on {
   background-color: var(--dark-bg);
