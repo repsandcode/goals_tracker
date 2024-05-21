@@ -9,28 +9,6 @@ Tracker{%endblock %} {% block body %}
           <h1 class="fw-normal">{{ big_goal.title }}</h1>
         </div>
 
-        <div>
-          <button id="delete-now-btn" class="delete-now-btn box-radius">Delete now</button>
-        </div>
-      </div>
-
-      <div>
-        {% if big_goal.description %}
-          <p class="fs-4">{{big_goal.description}}</p>
-        {% endif %}
-        <span class="align-self-end">ends in {{ timeline.deadline }}</span>
-      </div>
-   </section>
-
-    {% comment %} Timeline - Body {% endcomment %}
-    <section class="big-goal-section box-radius">
-        <input type="hidden" id="no-edit-title-hidden" value="{{title_unedited}}" />
-        <input type="hidden" id="title-hidden" value="{{big_goal.title}}" />
-        <input type="hidden" id="description-hidden" value="{{big_goal.description}}" />
-        <input type="hidden" id="start-hidden" value="{{timeline.start}}" />
-        <input type="hidden" id="deadline-hidden" value="{{timeline.deadline}}" />
-        <input type="hidden" id="bg-daily-systems" value="{{actions}}" />
-
         <!-- Daily System Modal -->
         <div id="daily-system-modal" class="modal">
           <div class="modal-center">
@@ -80,14 +58,38 @@ Tracker{%endblock %} {% block body %}
         </div>
 
         {% comment %} Header {% endcomment %}
-        <div class="d-flex justify-content-end mb-4">
-          <button
-            class="border bg-transparent p-3 fs-5 box-radius"
-            id="open-daily-system-modal"
-          >
-            <i class="bi bi-plus-lg"></i> Add a Daily Action
-          </button>
+        <div class="d-flex column-gap-3">
+          <div class="d-flex justify-content-end mb-4">
+            <button
+              class="border bg-transparent p-3 fs-5 box-radius"
+              id="open-daily-system-modal"
+            >
+              <i class="bi bi-plus-lg"></i> Add a Daily Action
+            </button>
+          </div>
+
+          <div>
+            <button id="delete-now-btn" class="delete-now-btn box-radius">Delete now</button>
+          </div>
         </div>
+      </div>
+
+      <div>
+        {% if big_goal.description %}
+          <p class="fs-4">{{big_goal.description}}</p>
+        {% endif %}
+        <span class="align-self-end">ends in {{ timeline.deadline }}</span>
+      </div>
+   </section>
+
+    {% comment %} Timeline - Body {% endcomment %}
+    <section class="big-goal-section box-radius">
+        <input type="hidden" id="no-edit-title-hidden" value="{{title_unedited}}" />
+        <input type="hidden" id="title-hidden" value="{{big_goal.title}}" />
+        <input type="hidden" id="description-hidden" value="{{big_goal.description}}" />
+        <input type="hidden" id="start-hidden" value="{{timeline.start}}" />
+        <input type="hidden" id="deadline-hidden" value="{{timeline.deadline}}" />
+        <input type="hidden" id="bg-daily-systems" value="{{actions}}" />
 
         {% comment %} Timeline {% endcomment %}
         <div class="mt-5">
@@ -155,7 +157,9 @@ Tracker{%endblock %} {% block body %}
               </div>
 
               <div class="mb-5">
-                <label for="checkpoint-goal-description" class="form-label fs-4">Description</label>
+                <label for="checkpoint-goal-description" class="form-label fs-4">Description
+                  <span class="optional-field">(optional)</span>
+                </label>
                 <textarea class="form-control p-4 fs-4 bg-body-tertiary box-radius" id="checkpoint-goal-description"
                   name="checkpoint-goal-description" placeholder=""></textarea>
               </div>
