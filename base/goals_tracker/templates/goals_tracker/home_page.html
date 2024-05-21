@@ -55,7 +55,7 @@
               {% csrf_token %}
   
               <div class="mb-5">
-                <label for="big-goal-title" class="form-label fs-4">Title</label>
+                <label for="big-goal-title" class="form-label fs-4">Title</label> 
                 <input autofocus class="form-control p-4 fs-4 bg-body-tertiary box-radius" type="text"
                   id="big-goal-title" name="big-goal-title" required />
               </div>
@@ -74,7 +74,9 @@
               </div>
   
               <div class="mb-5">
-                <label for="big-goal-description" class="form-label fs-4">Description</label>
+                <label for="big-goal-description" class="form-label fs-4">Description
+                  <span class="optional-field">(optional)</span>
+                </label>
                 <textarea class="form-control p-4 fs-4 bg-body-tertiary box-radius" id="big-goal-description"
                   name="big-goal-description" placeholder=""></textarea>
               </div>

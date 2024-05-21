@@ -126,6 +126,11 @@ html {
   color: var(--white-bg);
   z-index: 1;
 }
+.optional-field {
+  font-size: 1.3rem;
+  margin-left: .2rem;
+  color: var(--dark-bg);
+}
 
 .big-goals-section {
   padding: 2.5rem;
