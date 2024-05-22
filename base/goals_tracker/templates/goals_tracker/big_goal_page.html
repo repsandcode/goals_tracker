@@ -4,7 +4,7 @@ Tracker{%endblock %} {% block body %}
 <main class="py-5" id="big-goal-page">
   {% comment %} Top {% endcomment %}
    <section>
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between mb-4">
         <div class="d-flex align-items-center">
           <h1 class="fw-normal">{{ big_goal.title }}</h1>
         </div>
@@ -47,7 +47,7 @@ Tracker{%endblock %} {% block body %}
                   </button>
                   <button
                     type="submit"
-                    class="p-4 border-0 bg-success-subtle fs-4 box-radius"
+                    class="p-4 border-0 fs-4 box-radius submit-modal-bg"
                   >
                     Create Daily System
                   </button>
@@ -58,10 +58,10 @@ Tracker{%endblock %} {% block body %}
         </div>
 
         {% comment %} Header {% endcomment %}
-        <div class="d-flex column-gap-3">
-          <div class="d-flex justify-content-end mb-4">
+        <div class="d-flex align-items-center column-gap-3">
+          <div class="d-flex justify-content-end">
             <button
-              class="border bg-transparent p-3 fs-5 box-radius"
+              class="box-radius add-daily-action-btn"
               id="open-daily-system-modal"
             >
               <i class="bi bi-plus-lg"></i> Add a Daily Action
@@ -69,7 +69,7 @@ Tracker{%endblock %} {% block body %}
           </div>
 
           <div>
-            <button id="delete-now-btn" class="delete-now-btn box-radius">Delete now</button>
+            <button id="delete-now-btn" class="delete-now-btn box-radius">Delete Big Goal</button>
           </div>
         </div>
       </div>

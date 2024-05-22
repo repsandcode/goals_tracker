@@ -5,6 +5,8 @@
   --dark-bg: rgb(36, 37, 41);	
   --gray-bg: rgb(243, 245, 248);	
   --red-bg: rgb(238, 108, 98);
+  --dark-green: #396318;
+  --light-green: #CBD9A7;
   /* add fonts */
 }
 
@@ -57,6 +59,10 @@ html {
   padding: 3rem;
   max-width: 520px;
   width: 100%;
+}
+
+.submit-modal-bg {
+  background-color: var(--light-green);
 }
 
 /* Error message banner */
@@ -122,14 +128,14 @@ html {
   color: var(--dark-bg);
 }
 .page-status--box-on {
-  background-color: var(--dark-bg);
+  background-color: var(--dark-green);
   color: var(--white-bg);
   z-index: 1;
 }
 .optional-field {
   font-size: 1.3rem;
   margin-left: .2rem;
-  color: var(--dark-bg);
+  color: var(--dark-green);
 }
 
 .big-goals-section {
@@ -154,12 +160,20 @@ html {
 }
 
 /* HOME PAGE - DAILY SYSTEMS */
+.add-daily-action-btn, 
 .delete-now-btn {
-  background-color: var(--white-bg);
-  border: 1px solid rgb(230, 71, 71);
-  color: rgb(230, 71, 71);
-  padding: 1rem 1.5rem;
-  font-size: 1rem;
+  padding: 1rem 1.2rem;
+  font-size: 1.2rem;
+}
+.add-daily-action-btn {
+  background-color: var(--light-green);
+  border: 1px solid var(--light-green);
+  color: var(--dark-bg);
+}
+.delete-now-btn {
+  background-color: var(--dark-green);
+  border: 1px solid var(--dark-green);
+  color: var(--white-bg);
 }
 .daily-systems {
   padding: 2.5rem;
@@ -224,8 +238,7 @@ html {
 }
 .timeline-item--head-day-on {
   margin-left: -3px;
-  background-color: var(--red-bg);
-  color: var(--white-bg);
+  background-color: var(--light-green);
 }
 .timeline-item--body {
   display: flex;
