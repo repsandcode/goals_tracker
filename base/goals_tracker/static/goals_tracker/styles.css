@@ -23,6 +23,12 @@ html {
   background-color: var(--body-bg);
 }
 
+input:focus,
+textarea:focus {
+  border-color: var(--light-green) !important;
+  box-shadow: none !important;
+}
+
 /* Global Classes */
 .modal {
   display: none;
