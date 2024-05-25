@@ -170,6 +170,9 @@ textarea:focus {
 .delete-now-btn {
   padding: 1rem 1.2rem;
   font-size: 1.2rem;
+
+  display: flex;
+  column-gap: .6rem;
 }
 .add-icon-btn {
   background-color: var(--light-green);
