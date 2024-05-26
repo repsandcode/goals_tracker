@@ -33,6 +33,10 @@ modalCenters.forEach((modalCenter) => {
   modalCenter.addEventListener('click', (event) => {
 
     if (event.target === modalCenter) {      
+      if (deleteBigGoalModal && deleteBigGoalModal.style.display === "block") {
+        deleteBigGoalModal.style.display = "none";
+      }
+
       if (bigGoalModal && bigGoalModal.style.display === "block") {
         bigGoalModal.style.display = "none";
         bigGoalMessage.innerText = "";

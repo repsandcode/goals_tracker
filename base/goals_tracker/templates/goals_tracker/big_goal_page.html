@@ -9,7 +9,7 @@ Tracker{%endblock %} {% block body %}
           <h1 class="fw-normal">{{ big_goal.title }}</h1>
         </div>
 
-        <!-- Daily System Modal -->
+        <!-- Create Daily System Modal -->
         <div id="daily-system-modal" class="modal">
           <div class="modal-center">
             <div
@@ -57,12 +57,46 @@ Tracker{%endblock %} {% block body %}
           </div>
         </div>
 
+        <!-- Delete Big Goal Modal -->
+        <div id="delete-big-goal-modal" class="modal">
+          <div class="modal-center">
+            <div
+              class="delete-big-goal-modal-content"
+            >
+              {% comment %} Header {% endcomment %}
+              <div class="text-center mb-5">
+                <h3 class="mb-5">
+                  Are you sure you want to delete this Big Goal?
+                </h3>
+                <p class="fw-light fs-4 text-center text-body-secondary">"{{big_goal.title}}"</p>
+              </div>
+
+              <div class="d-flex justify-content-end gap-4">
+                <button
+                  type="button"
+                  id="close-delete-big-goal-modal"
+                  class="w-50 border py-3 fs-5 bg-transparent box-radius"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  id="delete-now-btn"
+                  class="w-50 border py-3 fs-5 delete-now-btn box-radius"
+                >
+                  Delete Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {% comment %} Header {% endcomment %}
         <div class="d-flex align-items-center column-gap-3">
           <button class="add-icon-btn box-radius" id="open-daily-system-modal">
             <i class="bi bi-plus-lg"></i> Add a Daily Action
           </button>
-          <button class="delete-now-btn box-radius" id="delete-now-btn">
+          <button class="delete-big-goal-btn box-radius" id="open-delete-big-goal-modal">
             <i class="bi bi-trash3"></i> Delete Big Goal
           </button>
         </div>
@@ -123,7 +157,7 @@ Tracker{%endblock %} {% block body %}
         </button>
       </div>
 
-      <!-- Checkpoint Goal Modal -->
+      <!-- Create Checkpoint Goal Modal -->
       <div id="checkpoint-goal-modal" class="modal">
         <div class="modal-center">
           <div
@@ -202,7 +236,7 @@ Tracker{%endblock %} {% block body %}
         </button>
       </div>
 
-      <!-- Anti Goal Modal -->
+      <!-- Create Anti Goal Modal -->
       <div id="anti-goal-modal" class="modal">
         <div class="modal-center">
           <div
@@ -252,7 +286,6 @@ Tracker{%endblock %} {% block body %}
         {% endfor %}
       </div>
     </section>
-
 </main>
 
 {% endblock %}

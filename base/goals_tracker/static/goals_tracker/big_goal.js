@@ -25,6 +25,8 @@ const bgDailySystems = document.querySelector("#bg-daily-systems").value.split("
 // timeline
 const timeline = document.querySelector("#timeline");
 const monthYear = document.querySelector("#month-year");
+// delete big goal 
+const deleteBigGoalModal = document.querySelector("#delete-big-goal-modal");
 
 
 // COMPLETING A DAILY ACTION
@@ -82,17 +84,28 @@ showTodaysTimelineItem(getTodaysDate());
 
 
 // DELETE BIG GOAL
-document.querySelector("#delete-now-btn").addEventListener("click", () => {
-  const big_goal = {
-    "title": title.value,
-    "description": description.value,
-    "start": formatDate(startDate.value),
-    "deadline": formatDate(deadlineDate.value),
-  }
-  
-  deleteOldGoal(big_goal);
-})
+document
+  .querySelector("#open-delete-big-goal-modal")
+  .addEventListener("click", () => showDeleteBigGoalModal());
+const showDeleteBigGoalModal = () => {
+  deleteBigGoalModal.style.display = "block";
 
+  document.querySelector("#close-delete-big-goal-modal").addEventListener("click", () => hideDeleteBigGoalModal());
+
+  document.querySelector("#delete-now-btn").addEventListener("click", () => {
+    const big_goal = {
+      "title": title.value,
+      "description": description.value,
+      "start": formatDate(startDate.value),
+      "deadline": formatDate(deadlineDate.value),
+    }
+    
+    deleteOldGoal(big_goal);
+  });
+};
+const hideDeleteBigGoalModal = () => {
+  deleteBigGoalModal.style.display = "none";
+}
 
 // DAILY SYSTEM MODAL
 document

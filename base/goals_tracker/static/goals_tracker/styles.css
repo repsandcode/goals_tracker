@@ -58,13 +58,18 @@ textarea:focus {
 .big-goal-modal-content,
 .daily-system-modal-content,
 .checkpoint-goal-modal-content,
-.anti-goal-modal-content {
+.anti-goal-modal-content,
+.delete-big-goal-modal-content  {
   background-color: #fefefe;
   border: none;
   border-radius: 1.4rem;
-  padding: 3rem;
+  padding: 2.6rem;
   max-width: 520px;
   width: 100%;
+}
+
+.delete-big-goal-modal-content {
+  max-width: 380px;
 }
 
 .submit-modal-bg {
@@ -167,7 +172,7 @@ textarea:focus {
 
 /* HOME PAGE - DAILY SYSTEMS */
 .add-icon-btn, 
-.delete-now-btn {
+.delete-big-goal-btn{
   padding: 1rem 1.2rem;
   font-size: 1.2rem;
 
@@ -179,6 +184,7 @@ textarea:focus {
   border: 1px solid var(--light-green);
   color: var(--dark-bg);
 }
+.delete-big-goal-btn,
 .delete-now-btn {
   background-color: var(--dark-green);
   border: 1px solid var(--dark-green);
