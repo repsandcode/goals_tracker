@@ -156,6 +156,8 @@ textarea:focus {
 .big-goal-box {
   padding: 2rem;
   cursor: pointer;
+  background-color: var(--light-green);
+  color: var(--dark-green);
 }
 .big-goal-box--title {
   margin-bottom: 1rem;

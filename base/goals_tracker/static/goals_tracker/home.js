@@ -270,7 +270,7 @@ const getAllBigGoals = () => {
           bigGoalBox.dataset.title = title.split(" ").join("-");
 
           bigGoalBox.innerHTML = `
-          <div class="big-goal-box box-radius bg-success-subtle">
+          <div class="big-goal-box box-radius">
             <h5 class="big-goal-box--title">${title}</h5>
             <div class="big-goal-box--content">
               <span class=""><i class="bi bi-dot"></i> ${dailySystems.length} daily systems</span>
