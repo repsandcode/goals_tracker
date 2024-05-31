@@ -248,20 +248,22 @@ def big_goal(request, title):
 
 
 # HOME
+def get_user_data(request):
+   if request.method == "GET":
+      return JsonResponse(user_data(request), status=201) 
+
 def user_data(request):
    user = request.user
    user_obj = get_object_or_404(User, username=user.username)
 
    # Serialize only necessary user data
-   user_data = {
+   return {
         'id': user_obj.id,
         'username': user_obj.username,
         'first_name': user_obj.first_name,
         'last_name': user_obj.last_name,
         'email': user_obj.email,
     }
-   
-   return JsonResponse(user_data, status=201) 
 
 def daily_systems(request):
    # get all daily systems
@@ -371,9 +373,8 @@ def big_goals(request):
 
 def index(request):
     if request.user.is_authenticated:
-        return render(request, "goals_tracker/home_page.html", {
-           "username": request.user.username,
-        })
+        home_page = user_data(request)
+        return render(request, "goals_tracker/home_page.html", home_page)
     else:
         return HttpResponseRedirect(reverse("goals_tracker:login"))
 

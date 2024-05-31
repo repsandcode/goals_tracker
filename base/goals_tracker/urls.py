@@ -15,7 +15,7 @@ urlpatterns = [
   path("big-goals", views.big_goals, name="big_goals"),
   path("create-big-goal", views.big_goals, name="create_big_goal"),
   path("delete-old-goal", views.big_goals, name='delete_old_goal'),
-  path("get-user-data", views.user_data, name="get_user_data"),
+  path("get-user-data", views.get_user_data, name="get_user_data"),
 
 
   # big goal page
