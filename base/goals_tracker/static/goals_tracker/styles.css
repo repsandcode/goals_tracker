@@ -142,6 +142,9 @@ textarea:focus {
   background-color: var(--light-green);
   z-index: 1;
 }
+.greeting-text {
+  color: var(--dark-bg);
+}
 .optional-field {
   font-size: 1.3rem;
   margin-left: .2rem;
