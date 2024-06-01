@@ -30,6 +30,10 @@ textarea:focus {
 }
 
 /* Global Classes */
+.app-container {
+  height: 100vh;
+  display: flex;
+}
 .modal {
   display: none;
   position: fixed;
@@ -52,6 +56,50 @@ textarea:focus {
 }
 .box-radius {
   border-radius: 1.4rem;
+}
+
+
+/* HEADER */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  height: 100%;
+  padding: 1.5rem;
+}
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 8rem;
+}
+.profile-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  /* padding: 1rem 1.4rem; */
+  font-size: 1rem;
+  width: 100%;
+}
+.profile-header-dropdown {
+  transform: translate3d(0px, -60px, 0px) !important;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--body-bg);
+}
+.profile-header-dropdown--item {
+  display: flex;
+  align-items: center;
+  padding: .5rem 1rem;
+}
+.profile-header-dropdown--item:is(:focus, :hover) {
+  border-radius: 1rem;
+  background-color: var(--light-green);
 }
 
 /* Custom Modals */
@@ -94,32 +142,6 @@ textarea:focus {
 .error-close {
   margin-left: 10px;
   align-self: center;
-}
-
-/* HEADER */
-.header {
-  height: 90px;
-}
-.profile-btn {
-  display: flex;
-  align-items: center;
-  border: 0;
-  padding: 1rem 1.4rem;
-  font-size: 1rem;
-}
-.profile-header-dropdown {
-  width: 200px;
-  padding: 1rem;
-}
-.profile-header-dropdown--item {
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  padding: .5rem 1rem;
-}
-.profile-header-dropdown--item:is(:focus, :hover) {
-  border-radius: 1rem;
-  background-color: var(--gray-bg);
 }
 
 /* HOME PAGE - BIG GOALS */
