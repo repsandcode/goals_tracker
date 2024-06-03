@@ -17,7 +17,7 @@
     </div>
 
     <div class="greeting-text fs-1">
-      <span id="greetings"></span>, {{ first_name }}
+      <span id="greetings"></span>, {{ first_name|default:username }}
     </div>
   </section>
 
