@@ -1,7 +1,12 @@
-{% extends "goals_tracker/layout.html" %} {% block title %} Home - Goal
-Tracker{%endblock %} {% block body %}
+{% extends "goals_tracker/layout.html" %} 
 
-<main class="py-5" id="big-goal-page">
+{% block title %} 
+{{ big_goal.title }} - Goal Tracker
+{%endblock %} 
+
+{% block body %}
+
+<main id="big-goal-page">
   {% comment %} Top {% endcomment %}
    <section>
       <div class="d-flex justify-content-between mb-4">

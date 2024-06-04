@@ -60,15 +60,16 @@ textarea:focus {
 
 
 /* HEADER */
-.sidebar {
+.app-sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 250px;
+  min-width: 250px;
+  max-width: 300px;
   height: 100%;
   padding: 3rem;
 }
-.sidebar-nav {
+.app-sidebar--nav {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -82,7 +83,6 @@ textarea:focus {
   align-items: center;
   justify-content: space-between;
   border: 0;
-  /* padding: 1rem 1.4rem; */
   font-size: 1rem;
   width: 100%;
 }
@@ -100,6 +100,12 @@ textarea:focus {
 .profile-header-dropdown--item:is(:focus, :hover) {
   border-radius: 1rem;
   background-color: var(--light-green);
+}
+
+/* APP CONTENT */
+.app-content {
+  height: 100%;
+  overflow: scroll;
 }
 
 /* Custom Modals */
@@ -180,7 +186,6 @@ textarea:focus {
 }
 
 .big-goals-section {
-  padding: 2.5rem;
   background-color: var(--white-bg);
 }
 .big-goal-box {
@@ -261,6 +266,7 @@ textarea:focus {
   background-color: transparent;
   overflow: scroll;
   white-space: nowrap;
+  width: 100%;
 }
 .timeline-item {
   display: inline-block;

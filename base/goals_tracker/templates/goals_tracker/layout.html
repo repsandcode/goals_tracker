@@ -21,13 +21,13 @@
 
   <div class="app-container">
     {% block header %}
-    <header class="border sidebar">
+    <header class="app-sidebar border-end">
       <div class="">
         <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
           <p class="display-6 m-0">Goal Tracker</p>
         </a>
 
-        <ul class="sidebar-nav">
+        <ul class="app-sidebar--nav">
           <li class="fs-2"><a href="{% url 'goals_tracker:index' %}"
               class="text-decoration-none text-black">Dashboard</a>
           </li>
@@ -62,7 +62,7 @@
     </header>
     {% endblock %}
 
-    <main class="border flex-grow-1">
+    <main class="flex-grow-1 app-content">
       {% block body %} {% endblock %}
     </main>
   </div>
