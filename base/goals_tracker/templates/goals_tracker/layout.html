@@ -28,17 +28,29 @@
         </a>
 
         <ul class="app-sidebar--nav">
-          <li class="fs-2"><a href="{% url 'goals_tracker:index' %}"
-              class="text-decoration-none text-black">Dashboard</a>
+          <li class="fs-2 fw-light">
+            <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
+              <i class="bi bi-columns-gap"></i>
+              <span class="ms-4">Dashboard</span>
+            </a>
           </li>
-          <li class="fs-2"><a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">All Big
-              Goals</a></li>
-          <li class="fs-2"><a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">Profile</a>
+          <li class="fs-2 fw-light">
+            <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
+              <i class="bi bi-person"></i>
+              <span class="ms-4">Profile</span>
+            </a>
           </li>
         </ul>
       </div>
 
-      <div class="btn-group dropup">
+      <div>
+        <a href="{% url 'goals_tracker:logout' %}" class="text-decoration-none text-black fs-2 fw-light">
+          <i class="bi bi-box-arrow-left"></i>
+          <span class="ms-4">Sign out</span>
+        </a>
+      </div>
+
+      <!-- <div class="btn-group dropup">
         <button type="button" class="dropdown-toggle box-radius profile-btn" data-bs-toggle="dropdown"
           aria-expanded="false">
           <div id="profile-header" class="text-start pe-4 me-4"></div>
@@ -50,15 +62,8 @@
               <span class="ms-4">Profile</span>
             </li>
           </a>
-          <a href="{% url 'goals_tracker:logout' %}" class="text-decoration-none text-dark">
-            <li class="fs-4 profile-header-dropdown--item">
-              <i class="bi bi-box-arrow-right"></i>
-              <span class="ms-4">Sign out</span>
-            </li>
-          </a>
         </ul>
-      </div>
-
+      </div> -->
     </header>
     {% endblock %}
 
