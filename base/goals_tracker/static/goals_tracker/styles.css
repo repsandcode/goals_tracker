@@ -168,6 +168,7 @@ textarea:focus {
   cursor: pointer;
   margin: 0 -5px;
   color: var(--dark-bg);
+  width: 125px;
 }
 .page-status--box-off {
   background-color: var(--white-bg);
