@@ -3,9 +3,9 @@ const homePage = document.querySelector("#home-page");
 const bigGoalPage = document.querySelector("#big-goal-page");
 
 // Home SPA
-const showDashboard = document.querySelector("#show-dashboard");
+const showHome = document.querySelector("#show-home");
 const showBigGoals = document.querySelector("#show-big-goals");
-const dashboard = document.querySelector("#dashboard");
+const home = document.querySelector("#home");
 const bigGoals = document.querySelector("#big-goals");
 
 // big goals section
@@ -70,32 +70,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // PAGES
 const showHomePage = () => {
-  const dashboardParty = () => {
-    showDashboard.classList.toggle("page-status--box-off");
-    showDashboard.classList.add("page-status--box-on");
+  const homeParty = () => {
+    showHome.classList.toggle("page-status--box-off");
+    showHome.classList.add("page-status--box-on");
     showBigGoals.classList.toggle("page-status--box-off");
     showBigGoals.classList.remove("page-status--box-on");
 
     bigGoals.style.display = "none";
-    dashboard.style.display = "block";
+    home.style.display = "block";
     getAllDailySystems(); 
   }
 
   const bigGoalsParty = () => {
     showBigGoals.classList.add("page-status--box-on");
     showBigGoals.classList.toggle("page-status--box-off");
-    showDashboard.classList.remove("page-status--box-on");
-    showDashboard.classList.add("page-status--box-off");
+    showHome.classList.remove("page-status--box-on");
+    showHome.classList.add("page-status--box-off");
 
-    dashboard.style.display = "none";
+    home.style.display = "none";
     bigGoals.style.display = "block";
     getAllBigGoals();
   }
 
-  dashboardParty();
+  homeParty();
 
-  showDashboard.addEventListener("click", () => {
-    dashboardParty();
+  showHome.addEventListener("click", () => {
+    homeParty();
   })
 
   showBigGoals.addEventListener("click", () => {
