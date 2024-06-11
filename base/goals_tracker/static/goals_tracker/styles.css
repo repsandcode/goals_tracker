@@ -78,19 +78,33 @@ img {
 }
 
 .app-sidebar--nav {
-  margin-top: 8rem;
-  padding: 0 3.8rem 0 1.2rem;
+  margin-top: 6rem;
   flex-grow: 1;
-
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.app-sidebar--nav a {
+  padding: .9rem 1.8rem;
+  max-width: 180px;
+  text-decoration: none;
+  color: var(--dark-bg);
+}
+
+.app-sidebar--nav > a:hover {
+  color: var(--light-green);
+}
+
+.app-sidebar--nav-menu > a:hover {
+  background-color: var(--white-bg);
 }
   
 .app-sidebar--nav-menu {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: .5rem;
 }
 
 .profile-btn {

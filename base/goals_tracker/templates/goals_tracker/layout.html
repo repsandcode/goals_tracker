@@ -22,26 +22,26 @@
   <div class="app-container">
     {% block header %}
     <header class="app-sidebar border-end">
-      <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black pe-5">
+      <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
         <img class="logo box-radius" src="{% static 'goals_tracker/images/cover.png' %}" alt="Goal Tracker logo">
       </a>
 
       <div class="app-sidebar--nav">
         <div class="app-sidebar--nav-menu">
-          <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black fs-2 fw-light">
+          <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius">
             <i class="bi bi-columns-gap"></i>
-            <span class="ms-4">Dashboard</span>
+            <span class="ms-3">Dashboard</span>
           </a>
 
-          <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black fs-2 fw-light">
+          <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius">
             <i class="bi bi-person"></i>
-            <span class="ms-4">Profile</span>
+            <span class="ms-3">Profile</span>
           </a>
         </div>
 
-        <a href="{% url 'goals_tracker:logout' %}" class="text-decoration-none text-black fs-2 fw-light">
+        <a href="{% url 'goals_tracker:logout' %}" class="fs-3 fw-light box-radius">
           <i class="bi bi-box-arrow-left"></i>
-          <span class="ms-4">Sign out</span>
+          <span class="ms-3">Log out</span>
         </a>
       </div>
 
@@ -54,7 +54,7 @@
             <a href="{% url 'goals_tracker:logout' %}" class="text-decoration-none text-dark">
               <li class="fs-4 profile-header-dropdown--item">
                 <i class="bi bi-person-circle"></i>
-                <span class="ms-4">Profile</span>
+                <span class="ms-3">Profile</span>
               </li>
             </a>
           </ul>
