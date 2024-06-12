@@ -8,6 +8,10 @@ const showBigGoals = document.querySelector("#show-big-goals");
 const home = document.querySelector("#home");
 const bigGoals = document.querySelector("#big-goals");
 
+// sidebar
+const sidebarDashboard = document.querySelector("#sidebar-dashboard");
+const sidebarProfile = document.querySelector("#sidebar-profile");
+
 // big goals section
 const allBigGoals = document.querySelector("#all-big-goals");
 const bigGoalModal = document.querySelector("#big-goal-modal");
@@ -68,8 +72,17 @@ document.addEventListener("DOMContentLoaded", () => {
   showHomePage(); // home page contents
 });
 
+
+// Update Sidebar Status
+const onSidebarMenuItem = () => {
+  sidebarDashboard.classList.toggle("sidebar-menu-item-on");
+  sidebarProfile.classList.toggle("sidebar-menu-item-on");
+}
+
 // PAGES
 const showHomePage = () => {
+  sidebarDashboard.classList.toggle("sidebar-menu-item-on");
+  
   const homeParty = () => {
     showHome.classList.toggle("page-status--box-off");
     showHome.classList.add("page-status--box-on");

@@ -97,6 +97,7 @@ img {
   color: var(--light-green);
 }
 
+.sidebar-menu-item-on,
 .app-sidebar--nav-menu > a:hover {
   background-color: var(--white-bg);
 }
