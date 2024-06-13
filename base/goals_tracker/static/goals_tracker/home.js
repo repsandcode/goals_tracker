@@ -84,35 +84,35 @@ const showHomePage = () => {
   sidebarDashboard.classList.toggle("sidebar-menu-item-on");
   
   const homeParty = () => {
-    showHome.classList.toggle("page-status--box-off");
-    showHome.classList.add("page-status--box-on");
-    showBigGoals.classList.toggle("page-status--box-off");
-    showBigGoals.classList.remove("page-status--box-on");
+    // showHome.classList.toggle("page-status--box-off");
+    // showHome.classList.add("page-status--box-on");
+    // showBigGoals.classList.toggle("page-status--box-off");
+    // showBigGoals.classList.remove("page-status--box-on");
 
-    bigGoals.style.display = "none";
-    home.style.display = "block";
+    // bigGoals.style.display = "none";
+    // home.style.display = "block";
     getAllDailySystems(); 
   }
 
   const bigGoalsParty = () => {
-    showBigGoals.classList.add("page-status--box-on");
-    showBigGoals.classList.toggle("page-status--box-off");
-    showHome.classList.remove("page-status--box-on");
-    showHome.classList.add("page-status--box-off");
+    // showBigGoals.classList.add("page-status--box-on");
+    // showBigGoals.classList.toggle("page-status--box-off");
+    // showHome.classList.remove("page-status--box-on");
+    // showHome.classList.add("page-status--box-off");
 
-    home.style.display = "none";
-    bigGoals.style.display = "block";
+    // home.style.display = "none";
+    // bigGoals.style.display = "block";
     getAllBigGoals();
   }
 
   homeParty();
 
-  showHome.addEventListener("click", () => {
-    homeParty();
-  })
+  // showHome.addEventListener("click", () => {
+  //   homeParty();
+  // })
 
+  bigGoalsParty();
   showBigGoals.addEventListener("click", () => {
-    bigGoalsParty();
     // create a big goal
     document
       .querySelector("#open-big-goal-modal")
