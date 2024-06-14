@@ -191,7 +191,36 @@ img {
 }
 
 
-/* ALL BIG GOALS */
+/* HOME PAGE - ALL BIG GOALS */
+.home-big-goals {
+  margin-bottom: 6rem;
+}
+.home-big-goals--show {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.big-goal-box {
+  flex-grow: 1;
+  padding: 2rem;
+  min-width: 300px;
+  max-width: 350px;
+  cursor: pointer;
+  background-color: var(--light-green);
+  color: var(--dark-bg);
+}
+.big-goal-box--title {
+  margin-bottom: 1rem;
+}
+.big-goal-box--content {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+.big-goal-box--content > span {
+  font-size: 1rem;
+}
 .page-status {
   background-color: var(--white-bg);
   border-radius: 2rem;
@@ -221,27 +250,6 @@ img {
   color: var(--light-yellow);
 }
 
-.big-goals-section {
-  background-color: var(--white-bg);
-}
-.big-goal-box {
-  padding: 2rem;
-  cursor: pointer;
-  background-color: var(--light-green);
-  color: var(--light-yellow);
-}
-.big-goal-box--title {
-  margin-bottom: 1rem;
-}
-.big-goal-box--content {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-}
-.big-goal-box--content > span {
-  font-size: 1rem;
-}
 
 /* HOME PAGE - DAILY SYSTEMS */
 .add-icon-btn, 
@@ -261,7 +269,7 @@ img {
 .delete-now-btn {
   background-color: var(--light-yellow);
   border: 1px solid var(--light-yellow);
-  color: var(--white-bg);
+  color: var(--dark-bg)
 }
 .daily-systems {
   padding: 2.5rem;

@@ -5,7 +5,7 @@ const bigGoalPage = document.querySelector("#big-goal-page");
 // Home SPA
 const showHome = document.querySelector("#show-home");
 const showBigGoals = document.querySelector("#show-big-goals");
-const home = document.querySelector("#home");
+// const home = document.querySelector("#home");
 const bigGoals = document.querySelector("#big-goals");
 
 // sidebar
@@ -274,16 +274,10 @@ const getAllBigGoals = () => {
             (deadline - currentDate) / (1000 * 60 * 60 * 24)
           );
 
-          bigGoalBox.classList.add(
-            "col-sm-6",
-            "col-md-4",
-            "col-lg-3",
-          );
-
+          bigGoalBox.classList.add("big-goal-box", "box-radius");
           bigGoalBox.dataset.title = title.split(" ").join("-");
 
           bigGoalBox.innerHTML = `
-          <div class="big-goal-box box-radius">
             <h5 class="big-goal-box--title">${title}</h5>
             <div class="big-goal-box--content">
               <span class=""><i class="bi bi-dot"></i> ${dailySystems.length} daily systems</span>
@@ -297,7 +291,6 @@ const getAllBigGoals = () => {
                 }
               </span>
             </div>
-          </div>
           `;
 
           allBigGoals.append(bigGoalBox);
