@@ -22,9 +22,9 @@
   </section>
 
   {% comment %} HOME {% endcomment %}
-  <div class="my-5">
+  <div class="home-main">
     {% comment %} All Big Goals {% endcomment %}
-    <section id="big-goals" class="box-radius home-big-goals">
+    <section id="home-big-goals" class="box-radius home-big-goals">
       <div class="d-flex justify-content-between mb-5">
         <h2 class="fw-normal">Big Goals</h2>
         <button class="add-icon-btn box-radius" id="open-big-goal-modal">
@@ -86,14 +86,14 @@
     </section>
 
     {% comment %} All Daily Actions {% endcomment %}
-    <section class="box-radius home-daily-actions mb-5">
+    <section id="home-daily-actions" class="box-radius home-daily-actions">
       <div class="mb-5">
         <h2 class="fw-normal">All tasks today</h2>
       </div>
         
       <div id="all-daily-systems" class="d-flex flex-wrap gap-4"></div>
     </section>
-  </section>
+  </div>
 
 </main>
 {% endblock %}

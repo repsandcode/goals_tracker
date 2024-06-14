@@ -65,9 +65,28 @@ img {
 .box-radius {
   border-radius: 1.4rem;
 }
+.add-icon-btn, 
+.delete-big-goal-btn{
+  padding: 1rem 1.2rem;
+  font-size: 1.2rem;
+
+  display: flex;
+  column-gap: .6rem;
+}
+.add-icon-btn {
+  background-color: var(--light-green);
+  border: 1px solid var(--light-green);
+  color: var(--dark-bg);
+}
+.delete-big-goal-btn,
+.delete-now-btn {
+  background-color: var(--light-yellow);
+  border: 1px solid var(--light-yellow);
+  color: var(--dark-bg)
+}
 
 
-/* HEADER */
+/* APP SIDEBAR */
 .app-sidebar {
   display: flex;
   flex-direction: column;
@@ -76,7 +95,6 @@ img {
   height: 100%;
   padding: 3rem 0 3rem 3.5rem;
 }
-
 .app-sidebar--nav {
   margin-top: 6rem;
   flex-grow: 1;
@@ -85,29 +103,25 @@ img {
   flex-direction: column;
   justify-content: space-between;
 }
-
 .app-sidebar--nav a {
   padding: .9rem 1.8rem;
   max-width: 180px;
   text-decoration: none;
   color: var(--dark-bg);
 }
-
 .app-sidebar--nav > a:hover {
   color: var(--light-green);
 }
-
 .sidebar-menu-item-on,
 .app-sidebar--nav-menu > a:hover {
   background-color: var(--white-bg);
 }
-  
 .app-sidebar--nav-menu {
   display: flex;
   flex-direction: column;
   gap: .5rem;
 }
-
+/* 
 .profile-btn {
   display: flex;
   align-items: center;
@@ -130,7 +144,8 @@ img {
 .profile-header-dropdown--item:is(:focus, :hover) {
   border-radius: 1rem;
   background-color: var(--light-green);
-}
+} */
+
 
 /* APP CONTENT */
 .app-content {
@@ -180,6 +195,7 @@ img {
   align-self: center;
 }
 
+
 /* HOME PAGE */
 .home {
   padding: 3rem 4rem;
@@ -189,11 +205,42 @@ img {
   justify-content: space-between;
   margin-bottom: 6rem;
 }
+.home-main {
+  margin: 6rem 0;
+}
+.greeting-text {
+  color: var(--dark-bg);
+}
+.optional-field {
+  font-size: 1.3rem;
+  margin-left: .2rem;
+  color: var(--light-yellow);
+}
+/* .page-status {
+  background-color: var(--white-bg);
+  border-radius: 2rem;
+}
+.page-status--box {
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  margin: 0 -5px;
+  color: var(--dark-bg);
+  width: 125px;
+}
+.page-status--box-off {
+  background-color: var(--white-bg);
+}
+.page-status--box-on {
+  background-color: var(--light-green);
+  z-index: 1;
+} */
 
 
 /* HOME PAGE - ALL BIG GOALS */
 .home-big-goals {
-  margin-bottom: 6rem;
+  /* margin-bottom: 6rem; */
 }
 .home-big-goals--show {
   display: flex;
@@ -221,55 +268,11 @@ img {
 .big-goal-box--content > span {
   font-size: 1rem;
 }
-.page-status {
-  background-color: var(--white-bg);
-  border-radius: 2rem;
-}
-.page-status--box {
-  text-decoration: none;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
-  cursor: pointer;
-  margin: 0 -5px;
-  color: var(--dark-bg);
-  width: 125px;
-}
-.page-status--box-off {
-  background-color: var(--white-bg);
-}
-.page-status--box-on {
-  background-color: var(--light-green);
-  z-index: 1;
-}
-.greeting-text {
-  color: var(--dark-bg);
-}
-.optional-field {
-  font-size: 1.3rem;
-  margin-left: .2rem;
-  color: var(--light-yellow);
-}
 
 
 /* HOME PAGE - DAILY SYSTEMS */
-.add-icon-btn, 
-.delete-big-goal-btn{
-  padding: 1rem 1.2rem;
-  font-size: 1.2rem;
-
-  display: flex;
-  column-gap: .6rem;
-}
-.add-icon-btn {
-  background-color: var(--light-green);
-  border: 1px solid var(--light-green);
-  color: var(--dark-bg);
-}
-.delete-big-goal-btn,
-.delete-now-btn {
-  background-color: var(--light-yellow);
-  border: 1px solid var(--light-yellow);
-  color: var(--dark-bg)
+.home-daily-actions {
+  margin-top: 6rem;
 }
 .daily-systems {
   padding: 2.5rem;
