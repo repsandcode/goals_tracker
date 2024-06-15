@@ -1,12 +1,12 @@
+// Home SPA
+// const showHome = document.querySelector("#show-home");
+// const showBigGoals = document.querySelector("#show-big-goals");
+// const home = document.querySelector("#home");
+// const bigGoals = document.querySelector("#big-goals");
+
 // pages
 const homePage = document.querySelector("#home-page");
 const bigGoalPage = document.querySelector("#big-goal-page");
-
-// Home SPA
-const showHome = document.querySelector("#show-home");
-const showBigGoals = document.querySelector("#show-big-goals");
-// const home = document.querySelector("#home");
-const bigGoals = document.querySelector("#big-goals");
 
 // sidebar
 const sidebarDashboard = document.querySelector("#sidebar-dashboard");
@@ -83,93 +83,94 @@ const onSidebarMenuItem = () => {
 const showHomePage = () => {
   sidebarDashboard.classList.toggle("sidebar-menu-item-on");
   
-  const homeParty = () => {
-    // showHome.classList.toggle("page-status--box-off");
-    // showHome.classList.add("page-status--box-on");
-    // showBigGoals.classList.toggle("page-status--box-off");
-    // showBigGoals.classList.remove("page-status--box-on");
+  // const homeParty = () => {
+  //   showHome.classList.toggle("page-status--box-off");
+  //   showHome.classList.add("page-status--box-on");
+  //   showBigGoals.classList.toggle("page-status--box-off");
+  //   showBigGoals.classList.remove("page-status--box-on");
 
-    // bigGoals.style.display = "none";
-    // home.style.display = "block";
-    getAllDailySystems(); 
-  }
+  //   bigGoals.style.display = "none";
+  //   home.style.display = "block";
+  //   getAllDailySystems(); 
+  // }
 
-  const bigGoalsParty = () => {
-    // showBigGoals.classList.add("page-status--box-on");
-    // showBigGoals.classList.toggle("page-status--box-off");
-    // showHome.classList.remove("page-status--box-on");
-    // showHome.classList.add("page-status--box-off");
+  // const bigGoalsParty = () => {
+  //   showBigGoals.classList.add("page-status--box-on");
+  //   showBigGoals.classList.toggle("page-status--box-off");
+  //   showHome.classList.remove("page-status--box-on");
+  //   showHome.classList.add("page-status--box-off");
 
-    // home.style.display = "none";
-    // bigGoals.style.display = "block";
-    getAllBigGoals();
-  }
+  //   home.style.display = "none";
+  //   bigGoals.style.display = "block";
+  //   getAllBigGoals();
+  // }
 
-  homeParty();
+  // homeParty();
 
   // showHome.addEventListener("click", () => {
   //   homeParty();
   // })
 
-  bigGoalsParty();
-  showBigGoals.addEventListener("click", () => {
-    // create a big goal
-    document
-      .querySelector("#open-big-goal-modal")
-      .addEventListener("click", () => showBigGoalModal());
-    document
-      .querySelector("#close-big-goal-modal")
-      .addEventListener("click", () => hideBigGoalModal());
-  
-    const createBigGoal = (event) => {
-      event.preventDefault();
+  // bigGoalsParty();
 
-      if (allBigGoalsArr.includes(bigGoalTitle.value)) {
-        bigGoalMessage.innerText = `"${bigGoalTitle.value}" already exists.`;
-      } else {
-        fetch("/create-big-goal", {
-          method: "POST",
-          body: JSON.stringify({
-            title: bigGoalTitle.value,
-            start: bigGoalStart.value,
-            deadline: bigGoalDeadline.value,
-            description: bigGoalDescription.value,
-          }),
-          credentials: "same-origin",
-          headers: {
-            "X-CSRFToken": getCookie("csrftoken"),
-          },
+  getAllDailySystems(); 
+  getAllBigGoals();
+  // create a big goal
+  document
+    .querySelector("#open-big-goal-modal")
+    .addEventListener("click", () => showBigGoalModal());
+  document
+    .querySelector("#close-big-goal-modal")
+    .addEventListener("click", () => hideBigGoalModal());
+
+  const createBigGoal = (event) => {
+    event.preventDefault();
+
+    if (allBigGoalsArr.includes(bigGoalTitle.value)) {
+      bigGoalMessage.innerText = `"${bigGoalTitle.value}" already exists.`;
+    } else {
+      fetch("/create-big-goal", {
+        method: "POST",
+        body: JSON.stringify({
+          title: bigGoalTitle.value,
+          start: bigGoalStart.value,
+          deadline: bigGoalDeadline.value,
+          description: bigGoalDescription.value,
+        }),
+        credentials: "same-origin",
+        headers: {
+          "X-CSRFToken": getCookie("csrftoken"),
+        },
+      })
+        .then((response) => {
+          response.json();
+          console.log("--->", response.status, "<---");
+          if (response.ok) {
+            console.log("Big Goal created succesfully");
+            bigGoalsParty();
+            hideBigGoalModal();
+          }
+          console.log("Failed creating Big Goal");
         })
-          .then((response) => {
-            response.json();
-            console.log("--->", response.status, "<---");
-            if (response.ok) {
-              console.log("Big Goal created succesfully");
-              bigGoalsParty();
-              hideBigGoalModal();
-            }
-            console.log("Failed creating Big Goal");
-          })
-          .catch((error) => {
-            // Handle network errors or exceptions here
-            console.error("Error:", error);
-          });
-      }
+        .catch((error) => {
+          // Handle network errors or exceptions here
+          console.error("Error:", error);
+        });
+    }
 
-    };
-    const showBigGoalModal = () => {
-      bigGoalModal.style.display = "block";
-      // start date
-      bigGoalStart.min = defaultStartDate();
-      bigGoalStart.value = defaultStartDate();
-      // deadline
-      bigGoalDeadline.min = defaultDeadlineDate();
-      document.querySelector("#big-goal-form").onsubmit = createBigGoal;
-    };
-    const hideBigGoalModal = () => {
-      bigGoalModal.style.display = "none";
-    };
-  })
+  };
+  const showBigGoalModal = () => {
+    bigGoalModal.style.display = "block";
+    // start date
+    bigGoalStart.min = defaultStartDate();
+    bigGoalStart.value = defaultStartDate();
+    // deadline
+    bigGoalDeadline.min = defaultDeadlineDate();
+    document.querySelector("#big-goal-form").onsubmit = createBigGoal;
+  };
+  const hideBigGoalModal = () => {
+    bigGoalModal.style.display = "none";
+  };
 };
 
 const showBigGoalPage = (title) => {
@@ -302,8 +303,8 @@ const getAllBigGoals = () => {
       })
       .then(() => {
         const bigGoalBox = document.querySelectorAll(".big-goal-box");
-        Array.from(bigGoalBox).forEach((bigGoal) => {      
-          const bigGoalTitle = bigGoal.parentElement.dataset.title
+        Array.from(bigGoalBox).forEach((bigGoal) => {           
+          const bigGoalTitle = bigGoal.dataset.title
           bigGoal.addEventListener("click", () => {
             showBigGoalPage(bigGoalTitle);
           });
