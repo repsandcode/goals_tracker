@@ -16,11 +16,19 @@ const addGreeting = () => {
 const defaultStartDate = () => {
   const today = new Date();
 
-  // Format today's date as YYYY-MM-DD
-  const formattedToday = today.toISOString().split("T")[0];
+  // Get the date parts
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based, so add 1
+  const day = String(today.getDate()).padStart(2, '0');
 
-  return formattedToday;
+  // Format the date as YYYY-MM-DD
+  const formattedDate = `${year}-${month}-${day}`;
+
+  return formattedDate;
 };
+
+console.log(defaultStartDate());
+
 
 const defaultDeadlineDate = () => {
   const tomorrow = new Date();
