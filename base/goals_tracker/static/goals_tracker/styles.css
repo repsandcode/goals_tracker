@@ -253,7 +253,7 @@ img {
   min-width: 280px;
   max-width: 350px;
   cursor: pointer;
-  background-color: var(--light-green);
+  background-color: var(--white-bg);
   color: var(--dark-bg);
 }
 .big-goal-box--title {
@@ -267,6 +267,12 @@ img {
 }
 .big-goal-box--content > span {
   font-size: 1rem;
+}
+.big-goal-box--content-tags {
+
+}
+.big-goal-box--content-tag {
+  
 }
 
 

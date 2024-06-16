@@ -147,7 +147,7 @@ const showHomePage = () => {
           console.log("--->", response.status, "<---");
           if (response.ok) {
             console.log("Big Goal created succesfully");
-            bigGoalsParty();
+            // bigGoalsParty();
             hideBigGoalModal();
           }
           console.log("Failed creating Big Goal");
@@ -279,18 +279,20 @@ const getAllBigGoals = () => {
           bigGoalBox.dataset.title = title.split(" ").join("-");
 
           bigGoalBox.innerHTML = `
-            <h5 class="big-goal-box--title">${title}</h5>
+            <h2 class="big-goal-box--title fw-normal">${title}</h2>
             <div class="big-goal-box--content">
-              <span class=""><i class="bi bi-dot"></i> ${dailySystems.length} daily systems</span>
-              <span class=""><i class="bi bi-dot"></i> ${checkpointGoals.length} checkpoint goals</span>
-              <span class=""><i class="bi bi-dot"></i> ${antiGoals.length} anti goals</span>
-              <span class=""><i class="bi bi-dot"></i> 
+              <p class="m-0 fs-4 fw-normal">Due date: ${timeline.deadline} 
                 ${
                   currentDate <= deadline 
                   ? `${daysLeftBeforeDeadline} days left`
                   : `<span class="text-danger">Auto-delete in ${daysLeftAfterDeadline} days</span> `
                 }
-              </span>
+              </p>
+              <div class="big-goal-box--content-tags">
+                <span class="big-goal-box--content-tag">${dailySystems.length} daily systems</span>
+                <span class="big-goal-box--content-tag">${checkpointGoals.length} checkpoint goals</span>
+                <span class="big-goal-box--content-tag">${antiGoals.length} anti goals</span>
+              </div>
             </div>
           `;
 
