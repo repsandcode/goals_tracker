@@ -34,22 +34,6 @@ class BigGoal(BaseModel):
             "deadline": self.deadline.strftime("%Y-%m-%d"),
         }
 
-class CheckpointGoal(BaseModel):
-    big_goal = models.ForeignKey(BigGoal, on_delete=models.CASCADE)
-    date = models.DateField(default=date.today)
-
-    def __str__(self):
-        return self.title
-    
-    def serialize(self):
-        return {
-            "id": self.id,
-            "big_goal": self.big_goal.title,
-            "title": self.title,
-            "description": self.description,
-            "date": self.date,
-        }
-
 class DailySystem(models.Model):
     big_goal = models.ForeignKey(BigGoal, on_delete=models.CASCADE)
     action = models.CharField(max_length=300)
@@ -81,16 +65,3 @@ class DailySystemCheckIn(models.Model):
             "date": self.date,
         }
     
-class AntiGoal(models.Model):
-    big_goal = models.ForeignKey(BigGoal, on_delete=models.CASCADE)
-    description = models.TextField()
-
-    def __str__(self):
-        return self.description
-    
-    def serialize(self):
-        return {
-            "id": self.id,
-            "big_goal": self.big_goal.title,
-            "description": self.description,
-        }

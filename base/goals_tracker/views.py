@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta, datetime, date
 
-from .models import User, BigGoal, CheckpointGoal, DailySystem, AntiGoal, DailySystemCheckIn
+from .models import User, BigGoal, DailySystem, DailySystemCheckIn
 
 # GLOBAL FUNCTION
 def all_completed_daily_systems(request):
@@ -144,80 +144,16 @@ def big_goal_data(request, title):
       "all_dates": all_dates,
    }
 
-   # Retrieve related Checkpoint Goals
-   checkpoint_goals = CheckpointGoal.objects.filter(big_goal=big_goal)
-   checkpoint_goals_data = []
-   for cp_goal in checkpoint_goals:
-      data = cp_goal.serialize()
-      checkpoint_goals_data.append(data)
-
-   # Retrieve related Anti-Goals
-   anti_goals = AntiGoal.objects.filter(big_goal=big_goal)
-   anti_goals_data = []
-   for anti_goal in anti_goals:
-      data = anti_goal.serialize()
-      anti_goals_data.append(data)  
-
    return {
       "title_unedited": title,
       "big_goal": big_goal_data,
       "timeline": timeline,
-      "checkpoint_goals": checkpoint_goals_data,
       "daily_systems": daily_systems_data,
-      "anti_goals": anti_goals_data,
       "actions": daily_systems_actions,
    }
 
 
 # BIG GOAL PAGE
-def anti_goal(request, title):
-   # create daily system
-   if request.method == "POST":
-      data = json.loads(request.body)
-      print(data)
-      print(title)
-
-      # get contents from Daily System Form submission
-      big_goal = data.get("bigGoal", "")
-      description = data.get("description", "")
-
-      big_goal = get_object_or_404(BigGoal, user=request.user, title=big_goal)
-
-      # insert contents to the DailySystem Model
-      anti_goal = AntiGoal(
-         big_goal = big_goal,
-         description = description,
-      ) 
-      anti_goal.save()
-
-      return JsonResponse({"message": "Anti Goal created successfully."}, status=201)
-
-def checkpoint_goal(request, title):
-   # create checkpoint goal
-   if request.method == "POST":
-      data = json.loads(request.body)
-      print(data)
-      print(title)
-
-      # get contents from Checkpoint Goal Form submission
-      big_goal = data.get("bigGoal", "")
-      cp_goal = data.get("checkpointGoal", "")
-      description = data.get("description", "")
-      date = data.get("date", "")
-
-      big_goal = get_object_or_404(BigGoal, user=request.user, title=big_goal)
-
-      # insert contents to the CheckpointGoal Model
-      checkpoint_goal = CheckpointGoal(
-         big_goal = big_goal,
-         title = cp_goal,
-         description = description,
-         date = date,
-      )
-      checkpoint_goal.save()
-
-      return JsonResponse({"message": "Checkpoint Goal created successfully."}, status=201)
-
 def daily_system(request, title):
    # create daily system
    if request.method == "POST":

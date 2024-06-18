@@ -17,13 +17,9 @@ urlpatterns = [
   path("delete-old-goal", views.big_goals, name='delete_old_goal'),
   path("get-user-data", views.get_user_data, name="get_user_data"),
 
-
   # big goal page
   path("big-goal/<str:title>", views.big_goal, name="big_goal"),
-  path("big-goal/<str:title>/create-checkpoint-goal", views.checkpoint_goal, name="create_checkpoint_goal"),
   path("big-goal/<str:title>/create-daily-system", views.daily_system, name="create_daily_system"),
-  path("big-goal/<str:title>/create-anti-goal", views.anti_goal, name="create_anti_goal"),
-
 
   # complete a daily action
   path("all-completed-daily-systems", views.all_completed_daily_systems, name="all_completed_daily_systems"),

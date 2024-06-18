@@ -46,14 +46,6 @@ modalCenters.forEach((modalCenter) => {
         dailySystemModal.style.display = "none";
         dailySystemMsg.innerText = "";
       }
-      
-      if (checkpointGoalModal && checkpointGoalModal.style.display === "block") {
-        checkpointGoalModal.style.display = "none";
-      }
-      
-      if (antiGoalModal && antiGoalModal.style.display === "block") {
-        antiGoalModal.style.display = "none";
-      }
 
       if (deleteBigGoalModal && deleteBigGoalModal.style.display === "block") {
         deleteBigGoalModal.style.display = "none";
@@ -259,9 +251,7 @@ const getAllBigGoals = () => {
           const titleUnedited = data.title_unedited;
           const title = bigGoalData.title;
           allBigGoalsArr.push(title);
-          const antiGoals = data.anti_goals;
           const dailySystems = data.daily_systems;
-          const checkpointGoals = data.checkpoint_goals;
           
           const timeline = data.timeline;
           const currentDate = new Date();
@@ -290,8 +280,6 @@ const getAllBigGoals = () => {
               </p>
               <div class="big-goal-box--content-tags">
                 <span class="big-goal-box--content-tag">${dailySystems.length} daily systems</span>
-                <span class="big-goal-box--content-tag">${checkpointGoals.length} checkpoint goals</span>
-                <span class="big-goal-box--content-tag">${antiGoals.length} anti goals</span>
               </div>
             </div>
           `;
