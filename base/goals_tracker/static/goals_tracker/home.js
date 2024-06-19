@@ -271,10 +271,10 @@ const getAllBigGoals = () => {
           bigGoalBox.innerHTML = `
             <h2 class="big-goal-box--title fw-normal">${title}</h2>
             <div class="big-goal-box--content">
-              <p class="m-0 fs-4 fw-normal">Due date: ${timeline.deadline} 
+              <p class="m-0 fs-4 fw-normal">
                 ${
                   currentDate <= deadline 
-                  ? `${daysLeftBeforeDeadline} days left`
+                  ? `Due date: ${timeline.deadline} ${daysLeftBeforeDeadline} days left`
                   : `<span class="text-danger">Auto-delete in ${daysLeftAfterDeadline} days</span> `
                 }
               </p>
