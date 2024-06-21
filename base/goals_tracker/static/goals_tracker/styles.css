@@ -271,12 +271,16 @@ img {
 .big-goal-box--content-tags {
   margin-top: 1.4rem;
   display: flex;
-  gap: 1rem;
+  gap: .5rem;
 }
-.big-goal-box--content-tag {
-  padding: .5rem 1.8rem;
+.big-goal-box--content-tag,
+.big-goal-box--content-tag-red {
+  padding: .5rem 1.5rem;
   background-color: var(--light-yellow);
   width: auto;
+}
+.big-goal-box--content-tag-red {
+  background-color: var(--red-bg);
 }
 
 

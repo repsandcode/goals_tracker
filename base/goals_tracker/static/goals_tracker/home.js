@@ -273,13 +273,16 @@ const getAllBigGoals = () => {
             <h2 class="big-goal-box--title fw-normal">${title}</h2>
             <div class="big-goal-box--content">
               <p class="m-0 fs-5 fw-normal">
-                ${
-                  currentDate <= deadline 
-                  ? `Due date: ${timeline.deadline} ${daysLeftBeforeDeadline} days left`
-                  : `Past due date: <span class="text-danger">auto-delete in ${daysLeftAfterDeadline} days</span> `
-                }
+                Due date: ${timeline.deadline}
               </p>
               <div class="big-goal-box--content-tags">
+                <div class="big-goal-box--content-tag-red box-radius fs-5">
+                  ${
+                    currentDate <= deadline 
+                    ? ` ${daysLeftBeforeDeadline} days left`
+                    : `auto-delete in ${daysLeftAfterDeadline} days`
+                  }
+                </div>
                 <div class="big-goal-box--content-tag box-radius fs-5">${dailySystems.length} daily systems</div>
               </div>
             </div>
