@@ -141,6 +141,7 @@ const showHomePage = () => {
             console.log("Big Goal created succesfully");
             // bigGoalsParty();
             hideBigGoalModal();
+            showHomePage();
           }
           console.log("Failed creating Big Goal");
         })
