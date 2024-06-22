@@ -330,6 +330,14 @@ const getAllDailySystems = () => {
         console.log(dailySystems);
 
         allDailySystems.innerHTML = "";
+
+        if (dailySystems.length < 1) {
+          const noDailySystemsMessage = document.createElement("h5");
+          noDailySystemsMessage.classList.add("m-0", "fw-normal");
+          noDailySystemsMessage.textContent = "No daily systems";
+          allDailySystems.appendChild(noDailySystemsMessage);
+          return;
+        }
         
         dailySystems.forEach((daily) => {
           const dailySystemBox = document.createElement("div");

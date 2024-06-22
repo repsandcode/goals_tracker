@@ -199,6 +199,7 @@ img {
 /* HOME PAGE */
 .home {
   padding: 3rem 4rem;
+  height: 100%;
 }
 .home-welcome {
   display: flex;
@@ -207,6 +208,8 @@ img {
 }
 .home-main {
   margin: 6rem 0;
+  display: flex;
+  gap: 3rem;
 }
 .greeting-text {
   color: var(--dark-bg);
@@ -241,6 +244,7 @@ img {
 /* HOME PAGE - ALL BIG GOALS */
 .home-big-goals {
   /* margin-bottom: 6rem; */
+  flex-grow: 1;
 }
 .home-big-goals--show {
   display: flex;
@@ -290,7 +294,11 @@ img {
 
 /* HOME PAGE - DAILY SYSTEMS */
 .home-daily-actions {
-  margin-top: 6rem;
+  /* margin-top: 6rem; */
+  background-color: var(--white-bg);
+  min-width: 25rem;
+  width: 35rem;
+  padding: 1rem 1.5rem;
 }
 .daily-systems {
   padding: 2.5rem;
