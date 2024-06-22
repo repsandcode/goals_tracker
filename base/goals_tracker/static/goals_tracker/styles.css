@@ -270,16 +270,20 @@ img {
 }
 .big-goal-box--content-tags {
   margin-top: 1.4rem;
-  display: flex;
-  gap: .5rem;
 }
-.big-goal-box--content-tag,
-.big-goal-box--content-tag-red {
+.big-goal-box--content-tag {
+  display: inline-block;
   padding: .5rem 1.5rem;
-  background-color: var(--light-yellow);
   width: auto;
+  overflow: hidden;
 }
-.big-goal-box--content-tag-red {
+.big-goal-box--content-tag.green {
+  background-color: var(--light-green);
+}
+.big-goal-box--content-tag.yellow {
+  background-color: var(--light-yellow);
+}
+.big-goal-box--content-tag.red {
   background-color: var(--red-bg);
 }
 
