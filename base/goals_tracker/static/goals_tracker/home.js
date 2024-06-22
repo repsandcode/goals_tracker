@@ -270,23 +270,25 @@ const getAllBigGoals = () => {
             (deadline - currentDate) / (1000 * 60 * 60 * 24)
           );
 
-          bigGoalBox.classList.add("big-goal-box", "box-radius");
+          bigGoalBox.classList.add("col", "col-lg-6", "col-xxl-4");
           bigGoalBox.dataset.title = title.split(" ").join("-");
 
           bigGoalBox.innerHTML = `
-            <h2 class="big-goal-box--title fw-normal">${title}</h2>
-            <div class="big-goal-box--content">
-              <p class="m-0 fs-5 fw-normal">
-                Due date: ${timeline.deadline}
-              </p>
-              <div class="big-goal-box--content-tags">
-                <div class="big-goal-box--content-tag yellow box-radius fs-5">${dailySystems.length} daily systems</div>
-                <div class="big-goal-box--content-tag ${currentDate <= deadline ? `green` : `red`} box-radius fs-5">
-                  ${
-                    currentDate <= deadline 
-                    ? `${daysLeftBeforeDeadline} days left`
-                    : `auto-delete in ${daysLeftAfterDeadline} days`
-                  }
+            <div class="big-goal-box box-radius">
+              <h2 class="big-goal-box--title fw-normal">${title}</h2>
+              <div class="big-goal-box--content">
+                <p class="m-0 fs-5 fw-normal">
+                  Due date: ${timeline.deadline}
+                </p>
+                <div class="big-goal-box--content-tags">
+                  <div class="big-goal-box--content-tag yellow box-radius fs-5">${dailySystems.length} daily systems</div>
+                  <div class="big-goal-box--content-tag ${currentDate <= deadline ? `green` : `red`} box-radius fs-5">
+                    ${
+                      currentDate <= deadline 
+                      ? `${daysLeftBeforeDeadline} days left`
+                      : `auto-delete in ${daysLeftAfterDeadline} days`
+                    }
+                  </div>
                 </div>
               </div>
             </div>

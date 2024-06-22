@@ -246,16 +246,16 @@ img {
   /* margin-bottom: 6rem; */
   flex-grow: 1;
 }
-.home-big-goals--show {
-  display: flex;
-  flex-wrap: wrap;
+/* .home-big-goals--show {
+  display: grid;
   gap: 2rem;
-}
+  grid-template-columns: 1fr;
+} */
 .big-goal-box {
-  flex-grow: 1;
-  padding: 2rem;
+  /* flex-grow: 1;
   min-width: 280px;
-  max-width: 350px;
+  max-width: 350px; */
+  padding: 2rem;
   cursor: pointer;
   background-color: var(--white-bg);
   color: var(--dark-bg);
