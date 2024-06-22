@@ -118,8 +118,12 @@ const showHomePage = () => {
   const createBigGoal = (event) => {
     event.preventDefault();
 
+    const invalidPattern = /^[^\s]*[\/.][^\s]*$/; // Matches strings without spaces but containing slash or period
+
     if (allBigGoalsArr.includes(bigGoalTitle.value)) {
       bigGoalMessage.innerText = `"${bigGoalTitle.value}" already exists.`;
+    } else if (invalidPattern.test(bigGoalTitle.value)) {
+      bigGoalMessage.innerText = `Title cannot contain slashes or periods without spaces.`;
     } else {
       fetch("/create-big-goal", {
         method: "POST",
