@@ -270,7 +270,7 @@ const getAllBigGoals = () => {
             (deadline - currentDate) / (1000 * 60 * 60 * 24)
           );
 
-          bigGoalBox.classList.add("col", "col-lg-6", "col-xxl-4");
+          bigGoalBox.classList.add("col-12", "col-xl-6");
           bigGoalBox.dataset.title = title.split(" ").join("-");
 
           bigGoalBox.innerHTML = `

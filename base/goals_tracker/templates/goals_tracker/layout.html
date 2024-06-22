@@ -21,7 +21,11 @@
 
   <div class="app-container">
     {% block header %}
-    <header class="app-sidebar border-end">
+    <header class="app-sidebar border-end" id="sidebar">
+      <button id="sidebar-toggle" class="sidebar-toggle">
+        <i class="bi bi-list"></i> <!-- This is a bootstrap icon for the menu -->
+      </button>
+
       <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
         <img class="logo box-radius" src="{% static 'goals_tracker/images/cover.png' %}" alt="Goal Tracker logo">
       </a>
@@ -44,21 +48,6 @@
           <span class="ms-3">Log out</span>
         </a>
       </div>
-
-      <!-- <div class="btn-group dropup">
-          <button type="button" class="dropdown-toggle box-radius profile-btn" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <div id="profile-header" class="text-start pe-4 me-4"></div>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end box-radius profile-header-dropdown">
-            <a href="{% url 'goals_tracker:logout' %}" class="text-decoration-none text-dark">
-              <li class="fs-4 profile-header-dropdown--item">
-                <i class="bi bi-person-circle"></i>
-                <span class="ms-3">Profile</span>
-              </li>
-            </a>
-          </ul>
-        </div> -->
     </header>
     {% endblock %}
 
