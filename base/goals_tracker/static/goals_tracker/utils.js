@@ -27,9 +27,6 @@ const defaultStartDate = () => {
   return formattedDate;
 };
 
-console.log(defaultStartDate());
-
-
 const defaultDeadlineDate = () => {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -80,6 +77,17 @@ const getTodaysDate = () => {
   
   return formattedDate;
 }
+
+const getCurrentMonthAndYear = () => {
+  // Get today's date
+  const today = new Date();
+
+  // Get the month name and year
+  const options = { month: 'long', year: 'numeric' };
+  const formattedDate = today.toLocaleString('en-US', options);
+
+  return formattedDate.split(" ");
+};
 
 // Attach the function to the window object
 window.addGreeting = addGreeting;

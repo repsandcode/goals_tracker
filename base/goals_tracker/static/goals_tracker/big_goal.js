@@ -18,6 +18,10 @@ const monthYear = document.querySelector("#month-year");
 const deleteBigGoalModal = document.querySelector("#delete-big-goal-modal");
 
 
+// SHOW CURRENT MONTH
+monthYear.innerHTML = `<h1>${getCurrentMonthAndYear()[0]} <span class="fw-normal">${getCurrentMonthAndYear()[1]}</span></h1>`
+
+
 // COMPLETING A DAILY ACTION
 const allDailySystemBox = document.querySelectorAll(".daily-system-box");
 Array.from(allDailySystemBox).forEach((dailySystem) => {
@@ -52,17 +56,20 @@ const showTodaysTimelineItem = (currentDate) => {
   const getTodaysTimeline = Array.from(timelineItems).filter(item => item.dataset.date == currentDate);
 
   const currentDateDiv = getTodaysTimeline[0];
+  
   // Scroll the timeline container to the current date div
   if (currentDateDiv) {
     const timelineHeadDiv = currentDateDiv.children[0];
+    const timelineBodyDiv = currentDateDiv.children[1];
     const day = timelineHeadDiv.children[1];
     
-    currentDateDiv.classList.add("timeline-item-today");
+    currentDateDiv.classList.add("timeline-item--today");
     timelineHeadDiv.classList.add("timeline-item--head-today");
+    timelineBodyDiv.classList.add("timeline-item--body-today");
     day.classList.add("timeline-item--head-day-on");
 
       // Calculate the scrollLeft position to center the current date div
-      const scrollLeftPos = currentDateDiv.offsetLeft - (window.innerWidth / 2) + (currentDateDiv.offsetWidth / 2);
+      const scrollLeftPos = currentDateDiv.offsetLeft - (window.innerWidth / 3.63) + (currentDateDiv.offsetWidth / 2);
       
       // Scroll the timeline container
       timeline.scrollLeft = scrollLeftPos;

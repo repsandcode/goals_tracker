@@ -7,6 +7,7 @@
   --red-bg: rgb(238, 108, 98);
   --light-yellow: #E4E87D;
   --light-green: #6FD7A6;
+  --border-green: #9cccb2;
   /* add fonts */
 }
 
@@ -67,11 +68,11 @@ img {
 }
 .add-icon-btn, 
 .delete-big-goal-btn{
-  padding: 1rem 1.2rem;
-  font-size: 1.2rem;
-
+  padding: 1rem 2rem;
   display: flex;
   column-gap: .6rem;
+  min-width: 18rem;
+  justify-content: space-between;
 }
 .add-icon-btn {
   background-color: var(--light-green);
@@ -80,9 +81,49 @@ img {
 }
 .delete-big-goal-btn,
 .delete-now-btn {
-  background-color: var(--light-yellow);
-  border: 1px solid var(--light-yellow);
-  color: var(--dark-bg)
+  background-color: var(--red-bg);
+  border: 1px solid var(--red-bg);
+  color: var(--white-bg)
+}
+
+
+/* Custom Modals */
+.big-goal-modal-content,
+.daily-system-modal-content,
+.delete-big-goal-modal-content  {
+  background-color: #fefefe;
+  border: none;
+  border-radius: 1.4rem;
+  padding: 2.6rem;
+  max-width: 520px;
+  width: 100%;
+}
+.delete-big-goal-modal-content {
+  max-width: 360px;
+}
+
+.submit-modal-bg {
+  background-color: var(--light-green);
+}
+
+/* Error message banner */
+.error-banner {
+  position: fixed;
+  top: 1rem;
+  right: 0;
+  width: 350px;
+  z-index: 1000;
+}
+.error-alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.error-close {
+  margin-left: 10px;
+  align-self: center;
 }
 
 
@@ -153,48 +194,6 @@ img {
   overflow: scroll;
 }
 
-/* Custom Modals */
-.big-goal-modal-content,
-.daily-system-modal-content,
-.checkpoint-goal-modal-content,
-.anti-goal-modal-content,
-.delete-big-goal-modal-content  {
-  background-color: #fefefe;
-  border: none;
-  border-radius: 1.4rem;
-  padding: 2.6rem;
-  max-width: 520px;
-  width: 100%;
-}
-
-.delete-big-goal-modal-content {
-  max-width: 380px;
-}
-
-.submit-modal-bg {
-  background-color: var(--light-green);
-}
-
-/* Error message banner */
-.error-banner {
-  position: fixed;
-  top: 1rem;
-  right: 0;
-  width: 350px;
-  z-index: 1000;
-}
-.error-alert {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  border-radius: 10px;
-}
-.error-close {
-  margin-left: 10px;
-  align-self: center;
-}
-
 
 /* HOME PAGE */
 .home {
@@ -240,21 +239,12 @@ img {
   z-index: 1;
 } */
 
-
 /* HOME PAGE - ALL BIG GOALS */
 .home-big-goals {
   /* margin-bottom: 6rem; */
   flex-grow: 1;
 }
-/* .home-big-goals--show {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: 1fr;
-} */
 .big-goal-box {
-  /* flex-grow: 1;
-  min-width: 280px;
-  max-width: 350px; */
   padding: 2rem;
   cursor: pointer;
   background-color: var(--white-bg);
@@ -291,7 +281,6 @@ img {
   background-color: var(--red-bg);
 }
 
-
 /* HOME PAGE - DAILY SYSTEMS */
 .home-daily-actions {
   /* margin-top: 6rem; */
@@ -312,40 +301,25 @@ img {
   cursor: pointer;
 }
 
+
 /* BIG GOAL PAGE */
-.big-goal-section,
-.daily-systems-section,
-.checkpoint-goals-section,
-.anti-goals-section {
-  padding: 2rem;
-  background-color: var(--white-bg);
-}
-
-.big-goal-section {
-}
-
-.checkpoint-goals-section {
-}
-.checkpoint-goal-box {
-  background-color: var(--gray-bg);
-  padding: 1.2rem;
-}
-
-.anti-goals-section {
+.timeline-section{
+  /* background-color: var(--white-bg); */
+  /* padding: 2rem; */
 }
 
 /* Custom CSS for the timeline */
 .timeline {
-  background-color: transparent;
   overflow: scroll;
   white-space: nowrap;
   width: 100%;
+  padding: 1.6rem 0;
 }
 .timeline-item {
   display: inline-block;
   opacity: 0.6;
 }
-.timeline-item-today {
+.timeline-item--today {
   opacity: 1;
 }
 .timeline-item--head {
@@ -372,12 +346,18 @@ img {
   row-gap: .8rem;
 
   width: 21rem;
-  height: 38rem;
-  background-color: var(--gray-bg);
-  border-radius: 1rem;
+  height: 33rem;
+  border-radius: 1.4rem;
   overflow: scroll;
   padding: 1.4rem;
+  border: 1px solid var(--white-bg);
+  background-color: var(--white-bg);
 }
+.timeline-item--body-today {
+  border: .2rem solid var(--light-green);
+  /* background-color: var(--light-green); */
+}
+
 
 /* MEDIA QUERIES */
 @media screen and (min-width: 450px) {
