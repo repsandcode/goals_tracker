@@ -240,35 +240,33 @@ const getAllBigGoals = () => {
     fetch("/big-goals")
       .then((res) => {
         if (res.ok) {
-          console.log("success! retrieved all big goals");
+          console.log("Success! Retrieved all big goals");
         } else {
-          console.log("failed to retrieve all big goals");
+          console.log("Failed to retrieve all big goals");
         }
         return res.json();
       })
       .then((bigGoals) => {
         allBigGoals.innerHTML = "";
+        const currentDate = new Date();
 
         bigGoals.forEach((data) => {
           const bigGoalBox = document.createElement("div");
           const bigGoalData = data.big_goal;
           
-          const titleUnedited = data.title_unedited;
           const title = bigGoalData.title;
           allBigGoalsArr.push(title);
           const dailySystems = data.daily_systems;
-          
+
           const timeline = data.timeline;
-          const currentDate = new Date();
+          const startDate = new Date(timeline.start);
           const deadline = new Date(timeline.deadline);
-          const thirty_after_deadline = new Date(deadline);
-          thirty_after_deadline.setDate(deadline.getDate() + 30);
-          const daysLeftAfterDeadline = Math.ceil(
-            (thirty_after_deadline - currentDate) / (1000 * 60 * 60 * 24)
-          );
-          const daysLeftBeforeDeadline = Math.ceil(
-            (deadline - currentDate) / (1000 * 60 * 60 * 24)
-          );
+          const tenAfterDeadline = new Date(deadline);
+          tenAfterDeadline.setDate(deadline.getDate() + 10);
+
+          const daysLeftAfterDeadline = Math.ceil((tenAfterDeadline - currentDate) / (1000 * 60 * 60 * 24));
+          const daysLeftBeforeDeadline = Math.ceil((deadline - currentDate) / (1000 * 60 * 60 * 24));
+          const daysLeftBeforeStartDate = Math.ceil((startDate - currentDate) / (1000 * 60 * 60 * 24));
 
           bigGoalBox.classList.add("col-12", "col-xl-6");
           bigGoalBox.dataset.title = title.split(" ").join("-");
@@ -277,16 +275,18 @@ const getAllBigGoals = () => {
             <div class="big-goal-box box-radius">
               <h2 class="big-goal-box--title fw-normal">${title}</h2>
               <div class="big-goal-box--content">
-                <p class="m-0 fs-5 fw-normal">
-                  Due date: ${timeline.deadline}
-                </p>
+                <p class="m-0 fs-5 fw-normal">Due date: ${timeline.deadline}</p>
                 <div class="big-goal-box--content-tags">
                   <div class="big-goal-box--content-tag yellow box-radius fs-5">${dailySystems.length} daily systems</div>
-                  <div class="big-goal-box--content-tag ${currentDate <= deadline ? `green` : `red`} box-radius fs-5">
+                  <div class="big-goal-box--content-tag ${currentDate <= deadline ? 'green' : 'red'} box-radius fs-5">
                     ${
-                      currentDate <= deadline 
-                      ? `${daysLeftBeforeDeadline} days left`
-                      : `auto-delete in ${daysLeftAfterDeadline} days`
+                      currentDate <= startDate
+                        ? daysLeftBeforeStartDate + " days before start"
+                        : currentDate <= deadline
+                          ? daysLeftBeforeDeadline === 1
+                            ? daysLeftBeforeDeadline + " day left"
+                            : daysLeftBeforeDeadline + " days left"
+                          : "auto-delete in " + daysLeftAfterDeadline + " days"
                     }
                   </div>
                 </div>
@@ -296,21 +296,25 @@ const getAllBigGoals = () => {
 
           allBigGoals.append(bigGoalBox);
 
-          if (currentDate >= thirty_after_deadline) {
+          if (currentDate >= tenAfterDeadline) {
             deleteOldGoal(bigGoalData);
           }
         });
+
+        return document.querySelectorAll(".big-goal-box");
       })
-      .then(() => {
-        const bigGoalBox = document.querySelectorAll(".big-goal-box");
-        Array.from(bigGoalBox).forEach((bigGoal) => {           
-          const bigGoalTitle = bigGoal.parentElement.dataset.title
+      .then(function (bigGoalBoxes) {
+        Array.from(bigGoalBoxes).forEach(function (bigGoal) {
+          const bigGoalTitle = bigGoal.parentElement.dataset.title;
           console.log(bigGoal, bigGoalTitle);
-          
-          bigGoal.addEventListener("click", () => {
+
+          bigGoal.addEventListener("click", function () {
             showBigGoalPage(bigGoalTitle);
           });
         });
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   } catch (error) {
     console.log(error);
