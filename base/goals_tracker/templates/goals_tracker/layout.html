@@ -21,32 +21,59 @@
 
   <div class="app-container">
     {% block header %}
-    <header class="app-sidebar border-end" id="sidebar">
-      <button id="sidebar-toggle" class="sidebar-toggle">
-        <i class="bi bi-list"></i> <!-- This is a bootstrap icon for the menu -->
-      </button>
+    <header>
+      <div class="main-sidebar border-end" id="main-sidebar">
+        <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
+          <img class="logo box-radius" src="{% static 'goals_tracker/images/cover.png' %}" alt="Goal Tracker logo">
+        </a>
 
-      <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
-        <img class="logo box-radius" src="{% static 'goals_tracker/images/cover.png' %}" alt="Goal Tracker logo">
-      </a>
+        <div class="main-sidebar--nav">
+          <div class="main-sidebar--nav-menu">
+            <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius" id="main-sidebar-dashboard">
+              <i class="bi bi-columns-gap"></i>
+              <span class="ms-3">Dashboard</span>
+            </a>
 
-      <div class="app-sidebar--nav">
-        <div class="app-sidebar--nav-menu">
-          <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius" id="sidebar-dashboard">
-            <i class="bi bi-columns-gap"></i>
-            <span class="ms-3">Dashboard</span>
-          </a>
+            <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius" id="main-sidebar-profile">
+              <i class="bi bi-person"></i>
+              <span class="ms-3">Profile</span>
+            </a>
+          </div>
 
-          <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius" id="sidebar-profile">
-            <i class="bi bi-person"></i>
-            <span class="ms-3">Profile</span>
+          <a href="{% url 'goals_tracker:logout' %}" class="fs-3 fw-light box-radius">
+            <i class="bi bi-box-arrow-left"></i>
+            <span class="ms-3">Log out</span>
           </a>
         </div>
+      </div>
 
-        <a href="{% url 'goals_tracker:logout' %}" class="fs-3 fw-light box-radius">
-          <i class="bi bi-box-arrow-left"></i>
-          <span class="ms-3">Log out</span>
+      <div class="mobile-sidebar" id="mobile-sidebar">
+        <button id="mobile-sidebar-toggle" class="sidebar-toggle">
+          <i class="bi bi-list"></i> <!-- This is a bootstrap icon for the menu -->
+        </button>
+
+        <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
+          <img class="logo box-radius" src="{% static 'goals_tracker/images/cover.png' %}" alt="Goal Tracker logo">
         </a>
+
+        <div class="mobile-sidebar--nav">
+          <div class="mobile-sidebar--nav-menu">
+            <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius" id="mobile-sidebar-dashboard">
+              <i class="bi bi-columns-gap"></i>
+              <span class="ms-3">Dashboard</span>
+            </a>
+
+            <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius" id="mobile-sidebar-profile">
+              <i class="bi bi-person"></i>
+              <span class="ms-3">Profile</span>
+            </a>
+          </div>
+
+          <a href="{% url 'goals_tracker:logout' %}" class="fs-3 fw-light box-radius">
+            <i class="bi bi-box-arrow-left"></i>
+            <span class="ms-3">Log out</span>
+          </a>
+        </div>
       </div>
     </header>
     {% endblock %}
