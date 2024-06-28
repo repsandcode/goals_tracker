@@ -38,6 +38,7 @@ img {
 .app-container {
   height: 100vh;
   display: flex;
+  flex-direction: column-reverse;
 }
 .logo {
   width: 100%;
@@ -130,37 +131,29 @@ img {
 /* MOBILE SIDEBAR */
 .mobile-sidebar {
   display: flex;
-  flex-direction: column;
-  min-width: 250px;
-  max-width: 300px;
-  height: 100%;
-  padding: 3rem 0 3rem 3.5rem;
+  justify-content: center;
+  width: 100%;
 }
 .mobile-sidebar--nav {
-  margin-top: 6rem;
-  flex-grow: 1;
-  
+  background-color: var(--white-bg);
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  gap: 1rem;
+
+  width: 100%;
+  max-width: 400px;
+  border-radius: 4rem;
+  padding: 1rem;
 }
-.mobile-sidebar--nav a {
-  padding: .9rem 1.8rem;
-  max-width: 180px;
+.mobile-sidebar--nav-item {
   text-decoration: none;
   color: var(--dark-bg);
-}
-.mobile-sidebar--nav > a:hover {
-  color: var(--light-green);
-}
-.sidebar-menu-item-on,
-.mobile-sidebar--nav-menu > a:hover {
-  background-color: var(--white-bg);
-}
-.mobile-sidebar--nav-menu {
+
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  text-align: center;
+}
+.mobile-sidebar--nav-item:hover {
+  color: var(--light-green);
 }
 
 /* MAIN SIDEBAR */
@@ -200,10 +193,9 @@ img {
   overflow: scroll;
 }
 
-
 /* HOME PAGE */
 .home {
-  padding: 3rem 4rem;
+  padding: 3rem 1.5rem;
   height: 100%;
 }
 .home-welcome {
@@ -372,9 +364,17 @@ img {
   }
 }
 
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 1050px) {
+  .app-container {
+    flex-direction: row;
+  }
+
   .mobile-sidebar {
     display: none;
+  }
+
+  .home {
+    padding: 3rem 4rem;
   }
 
   .main-sidebar {

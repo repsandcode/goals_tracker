@@ -48,28 +48,24 @@
       </div>
 
       <div class="mobile-sidebar" id="mobile-sidebar">
-        <button id="mobile-sidebar-toggle" class="sidebar-toggle">
-          <i class="bi bi-list"></i> <!-- This is a bootstrap icon for the menu -->
-        </button>
-
-        <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
+        {% comment %} <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
           <img class="logo box-radius" src="{% static 'goals_tracker/images/cover.png' %}" alt="Goal Tracker logo">
-        </a>
+        </a> {% endcomment %}
 
-        <div class="mobile-sidebar--nav">
-          <div class="mobile-sidebar--nav-menu">
-            <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius" id="mobile-sidebar-dashboard">
-              <i class="bi bi-columns-gap"></i>
-              <span class="ms-3">Dashboard</span>
-            </a>
+        <div class="mobile-sidebar--nav" id="mobile-sidebar-nav">
+          <a href="{% url 'goals_tracker:index' %}" class="mobile-sidebar--nav-item fs-3 fw-light box-radius"
+            id="mobile-sidebar-dashboard">
+            <i class="bi bi-columns-gap"></i>
+            <span class="ms-3">Dashboard</span>
+          </a>
 
-            <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius" id="mobile-sidebar-profile">
-              <i class="bi bi-person"></i>
-              <span class="ms-3">Profile</span>
-            </a>
-          </div>
+          <a href="{% url 'goals_tracker:index' %}" class="mobile-sidebar--nav-item fs-3 fw-light box-radius"
+            id="mobile-sidebar-profile">
+            <i class="bi bi-person"></i>
+            <span class="ms-3">Profile</span>
+          </a>
 
-          <a href="{% url 'goals_tracker:logout' %}" class="fs-3 fw-light box-radius">
+          <a href="{% url 'goals_tracker:logout' %}" class="mobile-sidebar--nav-item fs-3 fw-light box-radius">
             <i class="bi bi-box-arrow-left"></i>
             <span class="ms-3">Log out</span>
           </a>
