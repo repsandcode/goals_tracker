@@ -260,6 +260,9 @@ img {
 .big-goal-box--content > span {
   font-size: 1rem;
 }
+.big-goal-box--content .red {
+  color: var(--red-bg);
+}
 .big-goal-box--content-tags {
   margin-top: 1.4rem;
 }
