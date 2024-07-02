@@ -247,6 +247,8 @@ img {
   cursor: pointer;
   background-color: var(--white-bg);
   color: var(--dark-bg);
+  max-height: 25rem;
+  height: 100%;
 }
 .big-goal-box--title {
   margin-bottom: 1rem;
