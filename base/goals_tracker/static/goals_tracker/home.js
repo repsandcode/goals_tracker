@@ -279,7 +279,7 @@ const getAllBigGoals = () => {
               <div class="big-goal-box--content">
                 <p class="m-0 fs-5 fw-normal ${currentDate > deadline? 'red':''}">Due date: ${timeline.deadline}</p>
                 <div class="big-goal-box--content-tags">
-                <div class="big-goal-box--content-tag yellow box-radius fs-5">${timeline.all_dates.length} ${timeline.all_dates.length === 1? "day" : "days"}</div>
+                  <div class="big-goal-box--content-tag yellow box-radius fs-5">${timeline.all_dates.length} ${timeline.all_dates.length === 1? "day" : "days"}</div>
                   <div class="big-goal-box--content-tag yellow box-radius fs-5">${dailySystems.length} ${dailySystems.length === 1? "daily system" : "daily systems"}</div>
                   <div class="big-goal-box--content-tag ${currentDate <= deadline ? 'green' : 'red'} box-radius fs-5">
                     ${
