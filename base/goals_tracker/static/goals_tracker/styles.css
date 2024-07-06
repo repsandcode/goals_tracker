@@ -137,12 +137,12 @@ img {
 .mobile-sidebar--nav {
   background-color: var(--white-bg);
   display: flex;
-  gap: 1rem;
 
   width: 100%;
-  max-width: 400px;
-  border-radius: 4rem;
-  padding: 1rem;
+  max-width: 350px;
+  border-radius: 5rem;
+  padding: 1rem 3rem;
+  margin: 1rem 0;
 }
 .mobile-sidebar--nav-item {
   text-decoration: none;
@@ -151,6 +151,7 @@ img {
   display: flex;
   flex-direction: column;
   text-align: center;
+  width: 33.3333%;
 }
 .mobile-sidebar--nav-item:hover {
   color: var(--light-green);
