@@ -290,21 +290,24 @@ img {
 /* HOME PAGE - DAILY SYSTEMS */
 .home-daily-actions {
   /* margin-top: 6rem; */
-  background-color: var(--white-bg);
+  background-color: transparent;
+  border: .2rem solid var(--light-green);
   min-width: 25rem;
-  width: 35rem;
-  padding: 1rem 1.5rem;
+  width: 30rem;
+  padding: 1.75rem 2rem;
 }
 .daily-systems {
   padding: 2.5rem;
   background-color: var(--white-bg);
 }
-.daily-system-box,
-.checkpoint-goal-box,
-.anti-goal-box {
-  background-color: var(--gray-bg);
-  padding: 1.2rem;
+.daily-system-box {
   cursor: pointer;
+  background-color: var(--white-bg);
+  padding: 2rem 1.5rem;
+}
+.daily-system-box-check {
+  color: var(--light-green);
+  text-decoration: line-through;
 }
 
 

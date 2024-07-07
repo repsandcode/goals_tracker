@@ -352,16 +352,16 @@ const getAllDailySystems = () => {
         
         dailySystems.forEach((daily) => {
           const dailySystemBox = document.createElement("div");
-          const classesToAdd = ["bg-dark-subtle", "box-radius", "daily-system-box"];
+          const classesToAdd = ["daily-system-box", "box-radius"];
 
           if (daily.completed) {
-            classesToAdd.push("text-decoration-line-through");
-          } 
+            classesToAdd.push("daily-system-box-check");
+          }
 
           dailySystemBox.classList.add(...classesToAdd);
           dailySystemBox.dataset.bigGoal = daily.big_goal;
           dailySystemBox.innerHTML = `
-            <h5 class="m-0 fw-normal">${daily.action}</h5>
+            <h4 class="m-0 fw-normal">${daily.action}</h4>
           `;
 
           allDailySystems.append(dailySystemBox);
@@ -376,12 +376,12 @@ const getAllDailySystems = () => {
           const action = dailySystem.innerText;
           
           dailySystem.addEventListener("click", () => {
-            if (dailySystem.classList.contains("text-decoration-line-through")) {
+            if (dailySystem.classList.contains("daily-system-box-check")) {
               markIncompleteDailySystem(bigGoal, action, dateToday);
-              dailySystem.classList.remove("text-decoration-line-through");
+              dailySystem.classList.remove("daily-system-box-check");
             } else {
               markCompleteDailySystem(bigGoal, action, dateToday);
-              dailySystem.classList.add("text-decoration-line-through");
+              dailySystem.classList.add("daily-system-box-check");
             }
           })
         });
