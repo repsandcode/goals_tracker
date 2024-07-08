@@ -293,8 +293,8 @@ img {
   background-color: transparent;
   border: .2rem solid var(--light-green);
   min-width: 25rem;
-  width: 30rem;
   padding: 1.75rem 2rem;
+  width: auto;
 }
 .daily-systems {
   padding: 2.5rem;
