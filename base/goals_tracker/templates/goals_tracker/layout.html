@@ -21,22 +21,22 @@
 
   <div class="app-container">
     {% block header %}
-    <header>
-      <div class="main-sidebar border-end" id="main-sidebar">
+    <header class="d-flex align-items-center justify-content-center">
+      <div class="main-sidebar" id="main-sidebar">
         <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
           <img class="logo box-radius" src="{% static 'goals_tracker/images/cover.png' %}" alt="Goal Tracker logo">
         </a>
 
         <div class="main-sidebar--nav">
           <div class="main-sidebar--nav-menu">
-            <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius" id="main-sidebar-dashboard">
+            <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius d-flex gap-3" id="main-sidebar-dashboard">
               <i class="bi bi-columns-gap"></i>
-              <span class="ms-3">Dashboard</span>
+              <span class="">Dashboard</span>
             </a>
 
-            <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius" id="main-sidebar-profile">
+            <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius d-flex gap-3" id="main-sidebar-profile">
               <i class="bi bi-person"></i>
-              <span class="ms-3">Profile</span>
+              <span class="">Profile</span>
             </a>
           </div>
 

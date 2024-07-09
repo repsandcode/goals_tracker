@@ -397,10 +397,13 @@ img {
   .main-sidebar {
     display: flex;
     flex-direction: column;
-    min-width: 250px;
+    /* min-width: 250px; */
+    background-color: var(--white-bg);
+    border-radius: 3rem;
     max-width: 300px;
-    height: 100%;
-    padding: 3rem 0 3rem 3.5rem;
+    height: 90%;
+    margin: auto 1.5rem;
+    padding: 2rem 2.5rem;
   }
   .main-sidebar--nav {
     margin-top: 6rem;
