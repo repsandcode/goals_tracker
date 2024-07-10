@@ -189,26 +189,24 @@ img {
 
 
 /* APP CONTENT */
-.app-content {
+/* .app-content {
   height: 100%;
   overflow: scroll;
-}
+} */
 
 /* HOME PAGE */
 .home {
-  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column-reverse;
   height: 100%;
+  width: 100%;
+  gap: 1.5rem;
+  margin: 0 1.5rem;
 }
 .home-welcome {
   display: flex;
   justify-content: space-between;
   margin-bottom: 6rem;
-}
-.home-main {
-  margin: 6rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 3.3rem;
 }
 .greeting-text {
   color: var(--dark-bg);
@@ -241,13 +239,18 @@ img {
 
 /* HOME PAGE - ALL BIG GOALS */
 .home-big-goals {
-  /* margin-bottom: 6rem; */
-  flex-grow: 1;
+  height: 90%;
+  align-self: center;
+
+  background-color: var(--white-bg);
+  border-radius: 3rem;
+  padding: 2rem 2.5rem;
+  width: 100%;
 }
 .big-goal-box {
   padding: 2rem;
   cursor: pointer;
-  background-color: var(--white-bg);
+  background-color: var(--gray-bg);
   color: var(--dark-bg);
   max-height: 25rem;
   height: 100%;
@@ -290,11 +293,14 @@ img {
 /* HOME PAGE - DAILY SYSTEMS */
 .home-daily-actions {
   /* margin-top: 6rem; */
-  background-color: transparent;
+  background-color: var(--white-bg);
   border: .2rem solid var(--light-green);
-  min-width: 25rem;
-  padding: 1.75rem 2rem;
-  width: auto;
+  border-radius: 3rem;
+
+  width: 25rem;
+  padding: 2rem 2.5rem;
+  height: 90%;
+  align-self: center;
 }
 .daily-systems {
   padding: 2.5rem;
@@ -376,7 +382,7 @@ img {
 }
 
 @media screen and (min-width: 950px) {
-  .home-main {
+  .home {
     flex-direction: row;
   }
 }
@@ -391,7 +397,7 @@ img {
   }
 
   .home {
-    padding: 3rem 4rem;
+    /* padding: 3rem 4rem; */
   }
 
   .main-sidebar {
@@ -402,7 +408,7 @@ img {
     border-radius: 3rem;
     max-width: 300px;
     height: 90%;
-    margin: auto 1.5rem;
+    margin-left: 1.5rem;
     padding: 2rem 2.5rem;
   }
   .main-sidebar--nav {

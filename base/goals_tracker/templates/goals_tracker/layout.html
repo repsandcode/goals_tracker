@@ -73,10 +73,8 @@
       </div>
     </header>
     {% endblock %}
-
-    <main class="flex-grow-1 app-content">
-      {% block body %} {% endblock %}
-    </main>
+    
+    {% block body %} {% endblock %}
   </div>
 
   <script src="{% static 'goals_tracker/utils.js' %}"></script>
