@@ -69,7 +69,7 @@ const showTodaysTimelineItem = (currentDate) => {
     day.classList.add("timeline-item--head-day-on");
 
       // Calculate the scrollLeft position to center the current date div
-      const scrollLeftPos = currentDateDiv.offsetLeft - (window.innerWidth / 3.63) + (currentDateDiv.offsetWidth / 2);
+      const scrollLeftPos = currentDateDiv.offsetLeft - (window.innerWidth / 3) + (currentDateDiv.offsetWidth / 2);
       
       // Scroll the timeline container
       timeline.scrollLeft = scrollLeftPos;

@@ -142,7 +142,7 @@ img {
   max-width: 350px;
   border-radius: 5rem;
   padding: 1rem 3rem;
-  margin-bottom: 1.5rem;
+  margin: 1rem 0;
 }
 .mobile-sidebar--nav-item {
   text-decoration: none;
@@ -319,9 +319,24 @@ img {
 
 
 /* BIG GOAL PAGE */
+.big-goal {
+  padding: 1.5rem;
+  height: 100%;
+  overflow: scroll;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 .timeline-section{
-  /* background-color: var(--white-bg); */
-  /* padding: 2rem; */
+  background-color: var(--white-bg);
+  border-radius: 3rem;
+  padding: 2rem 2.5rem;
+}
+.goal-details-section {
+  background-color: var(--white-bg);
+  border-radius: 3rem;
+  padding: 2rem 2.5rem;
 }
 
 /* Custom CSS for the timeline */
