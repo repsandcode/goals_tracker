@@ -319,8 +319,15 @@ img {
 
 
 /* BIG GOAL PAGE */
-.big-goal {
+.big-goal-page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
   padding: 1.5rem;
+  overflow: scroll;
+}
+.big-goal-content {
   height: 100%;
   overflow: scroll;
 
@@ -421,6 +428,14 @@ img {
 
   .home {
     /* padding: 3rem 4rem; */
+  }
+
+  .big-goal-page {
+    padding: 0 1.5rem;
+  }
+
+  .big-goal-content {
+    height: 90%;
   }
 
   .main-sidebar {
