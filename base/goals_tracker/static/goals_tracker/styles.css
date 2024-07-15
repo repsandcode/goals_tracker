@@ -40,6 +40,22 @@ img {
   display: flex;
   flex-direction: column-reverse;
 }
+.btn-color {
+  background-color: var(--light-green);
+}
+.btn-color:hover {
+  background-color: var(--light-green);
+  color: var(--white-bg);
+}
+.span-yellow {
+  color: var(--light-yellow);
+}
+.span-green {
+  color: var(--light-green);
+}
+.span-red {
+  color: var(--red-bg);
+}
 .logo {
   width: 100%;
   max-width: 180px;
@@ -125,6 +141,16 @@ img {
 .error-close {
   margin-left: 10px;
   align-self: center;
+}
+
+/* LOGIN - REGISTER PAGES */
+.login-page {
+  background-color: var(--body-bg);
+}
+.login-container {
+  background-color: var(--white-bg);
+  padding: 3rem;
+  border-radius: .5rem;
 }
 
 
