@@ -73,7 +73,7 @@ const onSidebarMenuItem = () => {
 
 // PAGES
 const showHomePage = () => {
-  mainSidebarDashboard.classList.toggle("sidebar-menu-item-on");
+  // mainSidebarDashboard.classList.toggle("sidebar-menu-item-on");
   
   // const homeParty = () => {
   //   showHome.classList.toggle("page-status--box-off");
@@ -192,11 +192,13 @@ const getUserData = () => {
       .then((user) => {
         console.log(user);
         const profile_header = document.querySelector("#profile-header");
-        profile_header.innerHTML = 
-          `
-            <p class="mb-0 fs-4">${user.first_name !== "" ? `${user.first_name} ${user.last_name}` : user.username}</p>
-            <p class="mb-0 fw-light fs-6">${user.email}</p>
-          `;
+        if (profile_header) {
+          profile_header.innerHTML = 
+            `
+              <p class="mb-0 fs-4">${user.first_name !== "" ? `${user.first_name} ${user.last_name}` : user.username}</p>
+              <p class="mb-0 fw-light fs-6">${user.email}</p>
+            `;
+        }
       })
   } catch (error) {
     console.log(error);

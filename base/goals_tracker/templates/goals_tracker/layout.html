@@ -22,7 +22,7 @@
   <div class="app-container">
     {% block header %}
     <header class="d-flex align-items-center justify-content-center">
-      <div class="main-sidebar" id="main-sidebar">
+      {% comment %} <div class="main-sidebar" id="main-sidebar">
         <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
           <img class="logo box-radius" src="{% static 'goals_tracker/images/cover.png' %}" alt="Goal Tracker logo">
         </a>
@@ -45,7 +45,7 @@
             <span class="ms-3">Log out</span>
           </a>
         </div>
-      </div>
+      </div> {% endcomment %}
 
       <div class="mobile-sidebar" id="mobile-sidebar">
         {% comment %} <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">

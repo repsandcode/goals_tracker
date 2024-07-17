@@ -10,7 +10,7 @@ const title = document.querySelector("#title-hidden");
 const description = document.querySelector("#description-hidden");
 const startDate = document.querySelector("#start-hidden");
 const deadlineDate = document.querySelector("#deadline-hidden");
-const bgDailySystems = document.querySelector("#bg-daily-systems").value.split(",");
+const bgDailySystems = document.querySelector("#bg-daily-systems")?.value.split(",");
 // timeline
 const timeline = document.querySelector("#timeline");
 const monthYear = document.querySelector("#month-year");
@@ -19,7 +19,9 @@ const deleteBigGoalModal = document.querySelector("#delete-big-goal-modal");
 
 
 // SHOW CURRENT MONTH
-monthYear.innerHTML = `<h1>${getCurrentMonthAndYear()[0]} <span class="fw-normal">${getCurrentMonthAndYear()[1]}</span></h1>`
+if (monthYear) {
+  monthYear.innerHTML = `<h1>${getCurrentMonthAndYear()[0]} <span class="fw-normal">${getCurrentMonthAndYear()[1]}</span></h1>`
+}
 
 
 // COMPLETING A DAILY ACTION
@@ -81,7 +83,7 @@ showTodaysTimelineItem(getTodaysDate());
 // DELETE BIG GOAL
 document
   .querySelector("#open-delete-big-goal-modal")
-  .addEventListener("click", () => showDeleteBigGoalModal());
+  ?.addEventListener("click", () => showDeleteBigGoalModal());
 const showDeleteBigGoalModal = () => {
   deleteBigGoalModal.style.display = "block";
 
@@ -106,10 +108,10 @@ const hideDeleteBigGoalModal = () => {
 // DAILY SYSTEM MODAL
 document
   .querySelector("#open-daily-system-modal")
-  .addEventListener("click", () => showDailySystemModal());
+  ?.addEventListener("click", () => showDailySystemModal());
 document
   .querySelector("#close-daily-system-modal")
-  .addEventListener("click", () => hideDailySystemModal());
+  ?.addEventListener("click", () => hideDailySystemModal());
 
 const showDailySystemModal = () => {
   dailySystemModal.style.display = "block";
