@@ -249,6 +249,8 @@ const getAllBigGoals = () => {
         return res.json();
       })
       .then((bigGoals) => {
+        console.log(bigGoals, "ALL BIG GOALS");
+        
         allBigGoals.innerHTML = "";
         const currentDate = new Date();
 
@@ -340,7 +342,7 @@ const getAllDailySystems = () => {
         return res.json();
       })
       .then((dailySystems) => {
-        console.log(dailySystems);
+        console.log(dailySystems, "ALL DAILY SYSTEMS");
 
         allDailySystems.innerHTML = "";
 
