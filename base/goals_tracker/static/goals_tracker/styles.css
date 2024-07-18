@@ -271,7 +271,7 @@ img {
 
   background-color: var(--white-bg);
   border-radius: 3rem;
-  padding: 2rem 2.5rem;
+  padding: 3rem 2.5rem;
   width: 100%;
 }
 .big-goal-box {
@@ -325,7 +325,7 @@ img {
   border-radius: 3rem;
 
   width: 100%;
-  padding: 2rem 2.5rem;
+  padding: 3rem 2.5rem;
   height: 90%;
   align-self: center;
 }
