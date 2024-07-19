@@ -77,7 +77,7 @@ const showTodaysTimelineItem = (currentDate) => {
       timeline.scrollLeft = scrollLeftPos;
   }
 }
-showTodaysTimelineItem(getTodaysDate());
+showTodaysTimelineItem(getTodayHyphened());
 
 
 // DELETE BIG GOAL

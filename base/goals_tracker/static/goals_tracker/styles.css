@@ -230,9 +230,7 @@ img {
   padding: 1.5rem;
   overflow: scroll;
 }
-.home-welcome {
-  display: flex;
-  justify-content: space-between;
+.home-profile {
   margin-bottom: 6rem;
 }
 .greeting-text {

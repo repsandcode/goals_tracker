@@ -69,13 +69,28 @@ const checkDateIfToday = (strDate) => {
   return formattedDate === providedDateString;
 }
 
-const getTodaysDate = () => {
+const getTodayHyphened = () => {
   const today = new Date();
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const formattedDate =  days[today.getDay()] + "-" + (months[(today.getMonth())]) +  "-" + ("0" + today.getDate()).slice(-2) + "-" + today.getFullYear();
   
   return formattedDate;
+}
+
+const getTodayArrayed = () => {
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const today = new Date();
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(today);
+
+  // Split the formatted date string into an array
+  const dateParts = formattedDate.split(', ');
+
+  // If you need the day of the month separately
+  const dayMonthParts = dateParts[1].split(' ');
+  const resultArray = [dateParts[0], dayMonthParts[1], dayMonthParts[0], dateParts[2]];
+
+  return resultArray; // e.g., ["Tuesday", "1", "August", "2023"]
 }
 
 const getCurrentMonthAndYear = () => {

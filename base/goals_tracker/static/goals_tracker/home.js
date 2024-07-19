@@ -60,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // AUTOMATIC RENDERINGS //
   /***********************/
   getUserData();
-  addGreeting(); // user greetings
   showHomePage(); // home page contents
 });
 
@@ -73,38 +72,7 @@ const onSidebarMenuItem = () => {
 
 // PAGES
 const showHomePage = () => {
-  // mainSidebarDashboard.classList.toggle("sidebar-menu-item-on");
-  
-  // const homeParty = () => {
-  //   showHome.classList.toggle("page-status--box-off");
-  //   showHome.classList.add("page-status--box-on");
-  //   showBigGoals.classList.toggle("page-status--box-off");
-  //   showBigGoals.classList.remove("page-status--box-on");
-
-  //   bigGoals.style.display = "none";
-  //   home.style.display = "block";
-  //   getAllDailySystems(); 
-  // }
-
-  // const bigGoalsParty = () => {
-  //   showBigGoals.classList.add("page-status--box-on");
-  //   showBigGoals.classList.toggle("page-status--box-off");
-  //   showHome.classList.remove("page-status--box-on");
-  //   showHome.classList.add("page-status--box-off");
-
-  //   home.style.display = "none";
-  //   bigGoals.style.display = "block";
-  //   getAllBigGoals();
-  // }
-
-  // homeParty();
-
-  // showHome.addEventListener("click", () => {
-  //   homeParty();
-  // })
-
-  // bigGoalsParty();
-
+  addGreeting(); // user greetings
   getAllDailySystems(); 
   getAllBigGoals();
   // create a big goal
@@ -154,7 +122,6 @@ const showHomePage = () => {
           console.error("Error:", error);
         });
     }
-
   };
   const showBigGoalModal = () => {
     bigGoalModal.style.display = "block";
@@ -330,7 +297,7 @@ const getAllBigGoals = () => {
 
 const getAllDailySystems = () => {
   try {
-    allDailySystems.dataset.today = getTodaysDate();
+    allDailySystems.dataset.today = getTodayHyphened();
 
     fetch("/daily-systems")
       .then((res) => {

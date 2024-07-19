@@ -8,9 +8,15 @@
   {% comment %} All Big Goals {% endcomment %}
   <section id="home-big-goals" class="box-radius home-big-goals">
     {% comment %} WELCOME {% endcomment %}
-    <div class="home-welcome">
-      <div class="greeting-text display-4">
-        <span id="greetings"></span>, {{ first_name|default:username }}!
+    <div class="home-profile">
+      <div class="display-4">
+        <div class="home-profile--greeting">
+          <span id="greetings"></span>, <span class="span-green">{{ first_name|default:username }}</span>
+        </div>
+        <div class="home-profile--date" id="date-today"></div>
+      </div>
+
+      <div>
       </div>
     </div>
 
