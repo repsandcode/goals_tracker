@@ -13,6 +13,18 @@ const addGreeting = () => {
   document.querySelector("#greetings").textContent = greeting;
 };
 
+const addDateToday = () => {
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const today = new Date();
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(today);
+  const dateParts = formattedDate.split(', ');
+  const dayMonthParts = dateParts[1].split(' ');
+  // const resultArray = [dateParts[0], dayMonthParts[1], dayMonthParts[0], dateParts[2]];
+  
+  document.querySelector("#date-today").innerHTML = 
+  `${dayMonthParts[0]} ${dayMonthParts[1]}, <span class="d-block fs-2">${dateParts[0]}</span>`
+}
+
 const defaultStartDate = () => {
   const today = new Date();
 
@@ -76,21 +88,6 @@ const getTodayHyphened = () => {
   const formattedDate =  days[today.getDay()] + "-" + (months[(today.getMonth())]) +  "-" + ("0" + today.getDate()).slice(-2) + "-" + today.getFullYear();
   
   return formattedDate;
-}
-
-const getTodayArrayed = () => {
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const today = new Date();
-  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(today);
-
-  // Split the formatted date string into an array
-  const dateParts = formattedDate.split(', ');
-
-  // If you need the day of the month separately
-  const dayMonthParts = dateParts[1].split(' ');
-  const resultArray = [dateParts[0], dayMonthParts[1], dayMonthParts[0], dateParts[2]];
-
-  return resultArray; // e.g., ["Tuesday", "1", "August", "2023"]
 }
 
 const getCurrentMonthAndYear = () => {

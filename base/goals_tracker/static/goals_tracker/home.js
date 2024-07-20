@@ -73,8 +73,10 @@ const onSidebarMenuItem = () => {
 // PAGES
 const showHomePage = () => {
   addGreeting(); // user greetings
+  addDateToday(); // date today
   getAllDailySystems(); 
   getAllBigGoals();
+
   // create a big goal
   document
     .querySelector("#open-big-goal-modal")
