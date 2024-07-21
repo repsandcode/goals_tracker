@@ -233,6 +233,16 @@ img {
 .home-profile {
   margin-bottom: 6rem;
 }
+.home-profile--date {
+  display: flex;
+  align-items: end;
+  gap: .4rem;
+}
+.home-profile--date-day {
+  font-weight: 300;
+  font-size: 3rem;
+  color: var(--dark-bg);
+}
 .greeting-text {
   color: var(--dark-bg);
 }
