@@ -165,8 +165,8 @@ const getUserData = () => {
           profile_header.innerHTML = 
             `
               <p class="mb-0 fs-4">${user.first_name !== "" ? `${user.first_name} ${user.last_name}` : user.username}</p>
-              <p class="mb-0 fw-light fs-6">${user.email}</p>
-            `;
+              `;
+              // <p class="mb-0 fw-light fs-6">${user.email}</p>
         }
       })
   } catch (error) {

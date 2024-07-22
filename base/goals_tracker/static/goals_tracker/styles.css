@@ -56,10 +56,6 @@ img {
 .span-red {
   color: var(--red-bg);
 }
-.logo {
-  width: 100%;
-  max-width: 180px;
-}
 .modal {
   display: none;
   position: fixed;
@@ -222,12 +218,15 @@ img {
 
 /* HOME PAGE */
 .home {
-  display: flex;
-  flex-direction: column-reverse;
   height: 100%;
   width: 100%;
-  gap: 1.5rem;
   padding: 1.5rem;
+  overflow: scroll;
+}
+.home-content {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1.5rem;
   overflow: scroll;
 }
 .home-profile {
@@ -439,74 +438,78 @@ img {
 }
 
 @media screen and (min-width: 950px) {
-  .home {
+  .home-content {
     flex-direction: row;
-    padding: 0 1.5rem;
+    padding: 1.5rem;
+    height: 100%;
   }
   .home-big-goals {
-    height: 90%;
+    height: 100%;
   }
   .home-daily-actions {
     width: 40rem;
+    height: 100%;
+  }
+
+  .big-goal-page {
+    height: 100%;
+  }
+  .big-goal-content{
+    padding: 1.5rem;
   }
 }
 
 @media screen and (min-width: 1250px) {
   .app-container {
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .mobile-sidebar {
     display: none;
   }
+  .main-sidebar {
+    display: flex;
+    /* flex-direction: row; */
+    /* min-width: 250px; */
+    background-color: var(--white-bg);
+    border-radius: 3rem;
+    width: 100%;
+    /* height: 90%; */
+    margin: 1.5rem;
+    margin-bottom: 0;
+    padding: 2rem 2.5rem;
+  }
+  .main-sidebar--profile {
+    display: flex;
+    gap: 1rem;
+  }
+  .main-sidebar--profile-logo {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+  }
+  .main-sidebar--nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .main-sidebar--nav-logout {
+  }
 
   .home {
-    /* padding: 3rem 4rem; */
+    padding: 0 1.5rem;
+  }
+  .home-content {
+    height: 100%;
+  }
+  .home-big-goals {
+    height: 100%;
   }
 
   .big-goal-page {
     padding: 0 1.5rem;
   }
-
   .big-goal-content {
-    height: 90%;
-  }
-
-  .main-sidebar {
-    display: flex;
-    flex-direction: column;
-    /* min-width: 250px; */
-    background-color: var(--white-bg);
-    border-radius: 3rem;
-    width: 30rem;
-    height: 90%;
-    margin-left: 1.5rem;
-    padding: 2rem 2.5rem;
-  }
-  .main-sidebar--nav {
-    margin-top: 6rem;
-    flex-grow: 1;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .main-sidebar--nav a {
-    padding: .9rem 1.8rem;
-    max-width: 180px;
-    text-decoration: none;
-    color: var(--dark-bg);
-  }
-  .main-sidebar--nav > a:hover {
-    color: var(--light-green);
-  }
-  .sidebar-menu-item-on,
-  .main-sidebar--nav-menu > a:hover {
-    background-color: var(--white-bg);
-  }
-  .main-sidebar--nav-menu {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
+    height: 100%;
   }
 }

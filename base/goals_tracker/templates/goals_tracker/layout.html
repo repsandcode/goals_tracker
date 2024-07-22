@@ -21,31 +21,24 @@
 
   <div class="app-container">
     {% block header %}
-    <header class="d-flex align-items-center justify-content-center">
-      {% comment %} <div class="main-sidebar" id="main-sidebar">
-        <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
-          <img class="logo box-radius" src="{% static 'goals_tracker/images/cover.png' %}" alt="Goal Tracker logo">
-        </a>
+    <header class="d-flex align-items-center justify-content-center p-4 pb-0">
+      <div class="main-sidebar" id="main-sidebar">
+        <div class="main-sidebar--profile">
+          <a href="{% url 'goals_tracker:index' %}">
+            <img class="main-sidebar--profile-logo" src="{% static 'goals_tracker/images/default.png' %}" alt="Goal Tracker logo">
+          </a>
+          <div class="d-flex flex-column justify-content-center" id="profile-header"></div>
+        </div>
 
         <div class="main-sidebar--nav">
-          <div class="main-sidebar--nav-menu">
-            <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius d-flex gap-3" id="main-sidebar-dashboard">
-              <i class="bi bi-columns-gap"></i>
-              <span class="">Dashboard</span>
-            </a>
-
-            <a href="{% url 'goals_tracker:index' %}" class="fs-3 fw-light box-radius d-flex gap-3" id="main-sidebar-profile">
-              <i class="bi bi-person"></i>
-              <span class="">Profile</span>
+          <div class="main-sidebar--nav-logout">
+            <a href="{% url 'goals_tracker:logout' %}" class="fs-3 fw-light box-radius">
+              <i class="bi bi-box-arrow-right"></i>
+              <span class="ms-3">Log out</span>
             </a>
           </div>
-
-          <a href="{% url 'goals_tracker:logout' %}" class="fs-3 fw-light box-radius">
-            <i class="bi bi-box-arrow-left"></i>
-            <span class="ms-3">Log out</span>
-          </a>
         </div>
-      </div> {% endcomment %}
+      </div> 
 
       <div class="mobile-sidebar" id="mobile-sidebar">
         {% comment %} <a href="{% url 'goals_tracker:index' %}" class="text-decoration-none text-black">
