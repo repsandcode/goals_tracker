@@ -477,17 +477,24 @@ img {
     width: 100%;
     margin: 0 1.5rem;
     padding: 1.5rem 0;
+    padding-bottom: 0;
   }
   .main-sidebar--profile {
     display: flex;
     gap: 1.3rem;
+    align-items: center;
     border: 1px solid var(--white-bg);
     border-radius: 3rem;
+    min-width: 15rem;
+    justify-content: space-between;
   }
-  .main-sidebar--profile-logo {
+  .main-sidebar--profile-logo img {
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
+  }
+  .main-sidebar--profile-name {
+    justify-self: flex-end;
   }
   .main-sidebar--nav {
     flex-grow: 1;
@@ -500,9 +507,7 @@ img {
 
     display: flex;
     align-items: center;
-
     padding: 1rem 0;
-
     column-gap: .6rem;
     min-width: 12rem;
     justify-content: space-between;

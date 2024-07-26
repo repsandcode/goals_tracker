@@ -21,19 +21,21 @@
 
   <div class="app-container">
     {% block header %}
-    <header class="d-flex align-items-center justify-content-center p-4 pb-0">
+    <header class="d-flex align-items-center justify-content-center px-4">
       <div class="main-sidebar" id="main-sidebar">
         <div class="main-sidebar--profile">
-          <a href="{% url 'goals_tracker:index' %}">
-            <img class="main-sidebar--profile-logo" src="{% static 'goals_tracker/images/default.png' %}" alt="Goal Tracker logo">
-          </a>
-          <div class="d-flex flex-column justify-content-center pe-5" id="profile-header"></div>
+          <div class="main-sidebar--profile-logo">
+            <a href="{% url 'goals_tracker:index' %}">
+              <img src="{% static 'goals_tracker/images/default.png' %}" alt="Goal Tracker logo">
+            </a>
+          </div>
+          <div class="main-sidebar--profile-name fs-3 fw-light" id="profile-header"></div>
         </div>
 
         <div class="main-sidebar--nav">
           <a href="{% url 'goals_tracker:logout' %}" class="main-sidebar--nav-logout fs-3 fw-light box-radius">
             <i class="bi bi-box-arrow-right"></i>
-            <span class="ms-3">Log out</span>
+            <span>Log out</span>
           </a>
         </div>
       </div> 
