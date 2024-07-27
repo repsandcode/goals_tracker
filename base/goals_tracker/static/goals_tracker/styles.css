@@ -488,7 +488,8 @@ img {
     min-width: 15rem;
     justify-content: space-between;
   }
-  .main-sidebar--profile-logo img {
+  .main-sidebar--profile-logo img,
+  .main-sidebar--nav-logout {
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
@@ -503,14 +504,15 @@ img {
   }
   .main-sidebar--nav-logout {
     text-decoration: none;
+    border: 1px solid var(--white-bg);
     color: var(--dark-bg);
 
     display: flex;
     align-items: center;
-    padding: 1rem 0;
+    justify-content: center;
+    /* padding: 1rem;
     column-gap: .6rem;
-    min-width: 12rem;
-    justify-content: space-between;
+    min-width: 15rem; */
   }
 
   .home {
