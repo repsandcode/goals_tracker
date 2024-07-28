@@ -514,6 +514,10 @@ img {
     column-gap: .6rem;
     min-width: 15rem; */
   }
+  .main-sidebar--nav-logout:hover {
+    border-color: var(--red-bg);
+    color: var(--red-bg);
+  }
 
   .home {
     padding: 0 1.5rem;
