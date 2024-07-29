@@ -485,8 +485,14 @@ img {
     align-items: center;
     border: 1px solid var(--white-bg);
     border-radius: 3rem;
+    color: var(--dark-bg);
     min-width: 15rem;
     justify-content: space-between;
+  }
+  .main-sidebar--profile:hover {
+    border-color: var(--light-green);
+    color: var(--light-green);
+    cursor: pointer;
   }
   .main-sidebar--profile-logo img,
   .main-sidebar--nav-logout {
@@ -510,9 +516,6 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* padding: 1rem;
-    column-gap: .6rem;
-    min-width: 15rem; */
   }
   .main-sidebar--nav-logout:hover {
     border-color: var(--red-bg);
