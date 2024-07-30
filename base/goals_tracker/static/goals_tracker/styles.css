@@ -161,11 +161,11 @@ img {
   background-color: var(--white-bg);
   display: flex;
 
-  width: 100%;
-  max-width: 350px;
+  width: auto;
   border-radius: 5rem;
   padding: 1rem 3rem;
   margin: 1rem 0;
+  gap: 5rem;
 }
 .mobile-sidebar--nav-item {
   text-decoration: none;
@@ -174,7 +174,6 @@ img {
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: 33.3333%;
 }
 .mobile-sidebar--nav-item:hover {
   color: var(--light-green);

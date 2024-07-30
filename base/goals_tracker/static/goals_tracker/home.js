@@ -73,7 +73,7 @@ const onSidebarMenuItem = () => {
 // PAGES
 const showHomePage = () => {
   addGreeting(); // user greetings
-  addDateToday(); // date today
+  // addDateToday(); // date today
   getAllDailySystems(); 
   getAllBigGoals();
 
