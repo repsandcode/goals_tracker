@@ -33,7 +33,12 @@
         </div>
 
         <div class="main-sidebar--nav">
-          <a href="{% url 'goals_tracker:logout' %}" class="main-sidebar--nav-logout fs-3 fw-light box-radius">
+          <a href="{% url 'goals_tracker:index' %}" class="main-sidebar--nav-dashboard fs-3 fw-light">
+            <i class="bi bi-columns-gap"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="{% url 'goals_tracker:logout' %}" class="main-sidebar--nav-logout fs-3 fw-light">
             <i class="bi bi-box-arrow-right"></i>
             {% comment %} <span>Log out</span> {% endcomment %}
           </a>

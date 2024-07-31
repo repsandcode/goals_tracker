@@ -374,7 +374,8 @@ img {
   padding: 2rem 2.5rem;
 }
 .goal-details-section {
-  background-color: var(--white-bg);
+  /* background-color: var(--white-bg); */
+  border: 1px solid var(--white-bg);
   border-radius: 3rem;
   padding: 2rem 2.5rem;
 }
@@ -488,7 +489,8 @@ img {
     min-width: 15rem;
     justify-content: space-between;
   }
-  .main-sidebar--profile:hover {
+  .main-sidebar--profile:hover,
+  .main-sidebar--nav-dashboard:hover {
     border-color: var(--light-green);
     color: var(--light-green);
     cursor: pointer;
@@ -506,6 +508,19 @@ img {
     flex-grow: 1;
     display: flex;
     justify-content: flex-end;
+    gap: 1.5rem;
+  }
+  .main-sidebar--nav-dashboard {
+    text-decoration: none;
+    border: 1px solid var(--white-bg);
+    border-radius: 3rem;
+    color: var(--dark-bg);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 2rem;
   }
   .main-sidebar--nav-logout {
     text-decoration: none;
