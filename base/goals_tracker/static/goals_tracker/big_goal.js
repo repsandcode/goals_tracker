@@ -31,10 +31,21 @@ Array.from(allDailySystemBox).forEach((dailySystem) => {
     const bigGoal = title.value;
     const action = dailySystem.innerText;
     const date = dailySystem.parentElement.parentElement.dataset.date;
+    const dateToday = getTodayHyphened();
     
     getAllCompletedDailySystems()
       .then((completedSystems) => {
+        console.log(completedSystems);
+        
+        // Check if the date is today
+        if (date !== dateToday) {
+          alert("Completing goals that are not today is disabled. Focus on today first.");
+          return;
+        }
+
+        // Check if completedSystems exists and has the property for the given date
         if (completedSystems && completedSystems.hasOwnProperty(date)) {
+          // Check if the action is already marked as completed
           if (completedSystems[date][bigGoal].includes(action)) {
             dailySystem.classList.remove("text-decoration-line-through");
             markIncompleteDailySystem(bigGoal, action, date);
@@ -46,6 +57,9 @@ Array.from(allDailySystemBox).forEach((dailySystem) => {
           dailySystem.classList.add("text-decoration-line-through");
           markCompleteDailySystem(bigGoal, action, date);
         }
+      })
+      .catch((error) => {
+        console.error("Error fetching completed daily systems:", error);
       });
   })
 });
