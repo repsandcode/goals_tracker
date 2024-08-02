@@ -85,7 +85,9 @@ img {
   padding: 1rem 2rem;
   display: flex;
   column-gap: .6rem;
-  min-width: 18rem;
+  /* min-width: 16rem; */
+  width: 100%;
+  max-width: 18rem;
   justify-content: space-between;
 }
 .add-icon-btn {
