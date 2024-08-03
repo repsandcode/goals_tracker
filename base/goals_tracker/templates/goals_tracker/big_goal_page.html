@@ -11,7 +11,7 @@
   <div class="big-goal-content"> 
     {% comment %} Details {% endcomment %}
     <section class="goal-details-section">
-      <div class="d-flex align-items-center justify-content-between">
+      <div class="big-goal-content--headers">
         <h1 class="">{{ big_goal.title }}</h1>
 
         <!-- Delete Big Goal Modal -->
@@ -61,7 +61,7 @@
       <input type="hidden" id="deadline-hidden" value="{{timeline.deadline}}" />
       <input type="hidden" id="bg-daily-systems" value="{{actions}}" />
 
-      <div class="d-flex justify-content-between">
+      <div class="big-goal-content--headers">
         <div id="month-year"></div>
         <!-- Create Daily System Modal -->
         <div id="daily-system-modal" class="modal">
