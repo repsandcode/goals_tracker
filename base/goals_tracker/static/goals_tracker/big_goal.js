@@ -47,14 +47,14 @@ Array.from(allDailySystemBox).forEach((dailySystem) => {
         if (completedSystems && completedSystems.hasOwnProperty(date)) {
           // Check if the action is already marked as completed
           if (completedSystems[date][bigGoal].includes(action)) {
-            dailySystem.classList.remove("text-decoration-line-through");
+            dailySystem.classList.remove("daily-system-box-check");
             markIncompleteDailySystem(bigGoal, action, date);
           } else {
-            dailySystem.classList.add("text-decoration-line-through");
+            dailySystem.classList.add("daily-system-box-check");
             markCompleteDailySystem(bigGoal, action, date);
           }
         } else {
-          dailySystem.classList.add("text-decoration-line-through");
+          dailySystem.classList.add("daily-system-box-check");
           markCompleteDailySystem(bigGoal, action, date);
         }
       })
