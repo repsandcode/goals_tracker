@@ -170,8 +170,8 @@ img {
 
   width: auto;
   border-radius: 5rem;
-  padding: 1rem 3rem;
-  margin: 1rem 0;
+  padding: 1rem 5rem;
+  margin: .5rem 0;
   gap: 5rem;
 }
 .mobile-sidebar--nav-item {
