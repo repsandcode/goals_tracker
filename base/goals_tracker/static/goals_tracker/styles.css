@@ -185,6 +185,9 @@ img {
 .mobile-sidebar--nav-item:hover {
   color: var(--light-green);
 }
+.mobile-sidebar--nav-item.logout:hover {
+  color: var(--red-bg);
+}
 
 /* MAIN SIDEBAR */
 .main-sidebar {
