@@ -3,7 +3,6 @@ from django.db import models
 from datetime import date
 
 class User(AbstractUser):
-  bio = models.TextField(blank=True)
   points = models.IntegerField(default=0)
   
   def __str__(self):
