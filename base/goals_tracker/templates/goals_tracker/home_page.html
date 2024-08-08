@@ -10,14 +10,13 @@
     <section id="home-big-goals" class="box-radius home-big-goals">
       {% comment %} WELCOME {% endcomment %}
       <div class="home-profile">
-        <div class="display-4 d-flex justify-content-between">
-          <div class="home-profile--greeting">
-            <span id="greetings"></span>, <span class="span-green">{{ first_name|default:username }}</span>
-          </div>
-          <div class="home-profile--date" id="date-today"></div>
+        <div class="home-profile--greeting display-4">
+          <span id="greetings"></span>, <span class="span-green">{{ first_name|default:username }}</span>
         </div>
 
-        <div class="">
+        <div class="home-profile--date" id="date-today"></div>
+
+        <div class="home-profile-stats">
           <h1 class="fw-normal m-0 align-self-center">Current Stats</h1>
           <div></div>
           <ul>

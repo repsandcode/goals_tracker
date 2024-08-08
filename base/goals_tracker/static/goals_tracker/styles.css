@@ -252,6 +252,9 @@ img {
   font-size: 3rem;
   color: var(--dark-bg);
 }
+.home-profile--greeting {
+  margin-bottom: 6rem;
+}
 .greeting-text {
   color: var(--dark-bg);
 }
