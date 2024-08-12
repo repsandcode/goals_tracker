@@ -105,6 +105,11 @@ img {
   justify-content: space-between;
   align-items: center;
 }
+.optional-field {
+  font-size: 1.3rem;
+  margin-left: .2rem;
+  color: var(--red-bg);
+}
 
 
 
@@ -239,6 +244,8 @@ img {
   gap: 1.5rem;
   overflow: scroll;
 }
+
+/* HOME PAGE - profile section */
 .home-profile {
   margin-bottom: 6rem;
 }
@@ -258,31 +265,6 @@ img {
 .greeting-text {
   color: var(--dark-bg);
 }
-.optional-field {
-  font-size: 1.3rem;
-  margin-left: .2rem;
-  color: var(--light-yellow);
-}
-/* .page-status {
-  background-color: var(--white-bg);
-  border-radius: 2rem;
-}
-.page-status--box {
-  text-decoration: none;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
-  cursor: pointer;
-  margin: 0 -5px;
-  color: var(--dark-bg);
-  width: 125px;
-}
-.page-status--box-off {
-  background-color: var(--white-bg);
-}
-.page-status--box-on {
-  background-color: var(--light-green);
-  z-index: 1;
-} */
 
 /* HOME PAGE - ALL BIG GOALS */
 .home-big-goals {
