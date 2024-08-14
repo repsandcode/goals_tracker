@@ -17,16 +17,10 @@
         <div class="home-profile--date" id="date-today"></div>
 
         <div class="home-profile--stats">
-          <div class="home-profile--stats-points">
-            <h1 class="fw-normal m-0 align-self-center">Total points</h1> <span></span>
-          </div>
-          <div class="home-profile--stats-goals">
-            <h1 class="fw-normal m-0 align-self-center">Big Goals</h1> <span></span>
-          </div>
-          <div class="home-profile--stats-ranks">
-            <h1 class="fw-normal m-0 align-self-center">My ranks</h1><span></span>
-          </div>  
+          <span class="m-0 align-self-center" id="total-points"></span>
+          <span class="m-0 align-self-center" id="current-rank"></span>
         </div>
+
         <ul>
           <li>1 point = 1 daily actions</li>
           <li>3 points = 1 day all actions completed</li>
@@ -98,10 +92,7 @@
 
     {% comment %} All Daily Actions {% endcomment %}
     <section id="home-daily-actions" class="box-radius home-daily-actions">
-      <div class="display-6 fw-normal mb-5">
-        Tasks today <span></span>
-      </div>
-
+      <div class="display-6 fw-normal mb-5">Tasks today</div>
       <div id="all-daily-systems" class="d-flex flex-wrap flex-column gap-4"></div>
     </section>
   </div>

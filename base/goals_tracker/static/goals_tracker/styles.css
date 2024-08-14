@@ -266,26 +266,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-}
-.home-profile--stats-points,
-.home-profile--stats-goals,
-.home-profile--stats-ranks {
-  border-radius: 3rem;
-  padding: 3rem;
-  background-color: transparent;
-  border: .2rem solid;
-  flex-grow: 1;
-  flex-wrap: wrap;
-  min-width: 30%;
-}
-.home-profile--stats-points {
-  border-color: var(--light-green);
-}
-.home-profile--stats-goals {
-  border-color: var(--light-yellow);
-}
-.home-profile--stats-ranks {
-  border-color: var(--red-bg);
+  background-color: var(--light-yellow);
 }
 
 /* HOME PAGE - ALL BIG GOALS */
