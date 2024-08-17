@@ -112,11 +112,11 @@
           </div>
           <div class="timeline-item--body">
             {% for system in daily_systems %}
-            <div class="box-radius daily-system-box" data-big-goal={{system.big_goal}}>
+            <div class="daily-system-box box-radius" data-big-goal={{system.big_goal}}>
               {% if system.action in date.actions %}
-              <p class="fs-5 m-0 daily-system-box-check"> {{ system.action }} </p>
+              <h5 class="m-0 daily-system-box-check position-relative">{{ system.action }}</h5>
               {% else %}
-              <p class="fs-5 m-0"> {{ system.action }} </p>
+              <h5 class="m-0 position-relative">{{ system.action }}</h5>
               {% endif %}
             </div>
             {% endfor %}
