@@ -339,8 +339,14 @@ img {
   cursor: pointer;
   background-color: var(--body-bg);
   padding: 1.5rem;
+  position: relative;
 }
-.daily-system-box-check {
+.daily-system-box--text {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+.daily-system-box--check {
   color: var(--light-green);
   text-decoration: line-through;
 }
@@ -385,6 +391,7 @@ img {
 .timeline-item {
   display: inline-block;
   opacity: 0.6;
+  width: 21rem;
 }
 .timeline-item--today {
   opacity: 1;
@@ -411,11 +418,8 @@ img {
   display: flex;
   flex-direction: column;
   row-gap: .8rem;
-
-  width: 21rem;
   height: 33rem;
   border-radius: 1.4rem;
-  overflow: scroll;
   padding: 1.4rem;
   border: 1px solid var(--white-bg);
   background-color: var(--white-bg);

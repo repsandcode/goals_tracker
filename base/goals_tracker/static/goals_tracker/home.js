@@ -328,13 +328,13 @@ const getAllDailySystems = () => {
           const classesToAdd = ["daily-system-box", "box-radius"];
 
           if (daily.completed) {
-            classesToAdd.push("daily-system-box-check");
+            classesToAdd.push("daily-system-box--check");
           }
 
           dailySystemBox.classList.add(...classesToAdd);
           dailySystemBox.dataset.bigGoal = daily.big_goal;
           dailySystemBox.innerHTML = `
-            <h4 class="m-0 fw-normal">${daily.action}</h4>
+            <h4 class="m-0 fw-normal daily-system-box--text">${daily.action}</h4>
           `;
 
           allDailySystems.append(dailySystemBox);
@@ -349,12 +349,12 @@ const getAllDailySystems = () => {
           const action = dailySystem.innerText;
           
           dailySystem.addEventListener("click", () => {
-            if (dailySystem.classList.contains("daily-system-box-check")) {
+            if (dailySystem.classList.contains("daily-system-box--check")) {
               markIncompleteDailySystem(bigGoal, action, dateToday);
-              dailySystem.classList.remove("daily-system-box-check");
+              dailySystem.classList.remove("daily-system-box--check");
             } else {
               markCompleteDailySystem(bigGoal, action, dateToday);
-              dailySystem.classList.add("daily-system-box-check");
+              dailySystem.classList.add("daily-system-box--check");
             }
           })
         });
