@@ -1,6 +1,8 @@
 import json
 
 from collections import defaultdict
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, get_object_or_404
@@ -358,6 +360,12 @@ def register(request):
         
         # Dictionary to hold error messages
         errors = {}
+
+        # Validate email format
+        try:
+            validate_email(email)
+        except ValidationError:
+            errors["email"] = "Invalid email format."
 
         # Check if email is taken
         if User.objects.filter(email=email).exists():
