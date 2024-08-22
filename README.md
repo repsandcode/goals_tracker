@@ -1,5 +1,4 @@
 # goals_tracker
-
 <!--
 Your README.md file should be minimally multiple paragraphs in length, and should provide a comprehensive documentation of what you did and, if applicable, why you did it.
 
@@ -9,15 +8,13 @@ This section alone should consist of several paragraphs, before you even begin t
 -->
 
 ### Distinctiveness and Complexity
-
 <!-- Why you believe your project satisfies the distinctiveness and complexity requirements, mentioned above. -->
 
 ### What is in each file
-
 <!-- What’s contained in each file you created. -->
 
 ### How to run
-
 <!-- How to run your application. -->
-
-Check the requirements.txt file for any python packages to install before running
+1. Go to the folder
+2. Enter `cd base`
+3. Then enter `python manage.py runserver`
