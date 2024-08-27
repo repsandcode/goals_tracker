@@ -13,17 +13,10 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
-class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
-
 class BigGoal(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     start = models.DateField(default=date.today)
     deadline = models.DateField()
-    categories = models.ManyToManyField(Category, related_name='goals')
 
     def __str__(self):
         return self.title
@@ -33,7 +26,6 @@ class BigGoal(BaseModel):
             "id": self.id,
             "title": self.title,
             "user": self.user.username,
-            "categories": self.categories,
             "description": self.description,
             "start": self.start.strftime("%Y-%m-%d"),
             "deadline": self.deadline.strftime("%Y-%m-%d"),
