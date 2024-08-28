@@ -131,13 +131,13 @@ def big_goal_data(request, title):
 
       if current_date in completed_daily_systems_data:
          completed_on_date = completed_daily_systems_data[current_date]
-         
+
          for daily in daily_systems_data:
-           goal = daily["big_goal"]
-           action = daily["action"]
-           if goal in completed_on_date and action in completed_on_date.get(goal):
-              current_date_data["actions"].append(action)
-      
+            goal = daily["big_goal"]
+            action = daily["action"]
+            if goal in completed_on_date and action in completed_on_date.get(goal):
+               current_date_data["actions"].append(action)
+        
       all_dates.append(current_date_data)
 
    timeline = {
@@ -146,12 +146,18 @@ def big_goal_data(request, title):
       "all_dates": all_dates,
    }
 
+   # Calculate percentage completion
+   total_days = (end_date - start_date).days
+   days_elapsed = (date.today() - start_date.date()).days
+   percentage_completion = max(0, min((days_elapsed / total_days) * 100, 100))
+
    return {
       "title_unedited": title,
       "big_goal": big_goal_data,
       "timeline": timeline,
       "daily_systems": daily_systems_data,
       "actions": daily_systems_actions,
+      "percentage_completion": percentage_completion,
    }
 
 
