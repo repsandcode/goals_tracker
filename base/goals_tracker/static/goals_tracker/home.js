@@ -232,6 +232,7 @@ const getAllBigGoals = () => {
           const title = bigGoalData.title;
           allBigGoalsArr.push(title);
           const dailySystems = data.daily_systems;
+          const percentage_completion = data.percentage_completion;
 
           const timeline = data.timeline;
           const startDate = new Date(timeline.start);
@@ -247,27 +248,40 @@ const getAllBigGoals = () => {
           bigGoalBox.dataset.title = title.split(" ").join("-");
 
           bigGoalBox.innerHTML = `
-            <div class="big-goal-box box-radius">
-              <h2 class="big-goal-box--title fw-normal">${title}</h2>
-              <div class="big-goal-box--content">
-                <p class="m-0 fs-5 fw-normal ${currentDate > deadline? 'red':''}">Due date: ${timeline.deadline}</p>
-                <div class="big-goal-box--content-tags">
-                  <div class="big-goal-box--content-tag yellow box-radius fs-5">${timeline.all_dates.length} ${timeline.all_dates.length === 1? "day" : "days"}</div>
-                  <div class="big-goal-box--content-tag yellow box-radius fs-5">${dailySystems.length} ${dailySystems.length === 1? "daily system" : "daily systems"}</div>
-                  <div class="big-goal-box--content-tag ${currentDate <= deadline ? 'green' : 'red'} box-radius fs-5">
-                    ${
-                      currentDate <= startDate
-                        ? daysLeftBeforeStartDate + " days before start"
-                        : currentDate <= deadline
-                          ? daysLeftBeforeDeadline === 1
-                            ? daysLeftBeforeDeadline + " day left"
-                            : daysLeftBeforeDeadline + " days left"
-                          : "auto-delete in " + daysLeftAfterDeadline + " days"
-                    }
+              <div class="big-goal-box box-radius">
+                <h2 class="big-goal-box--title fw-normal">${title}</h2>
+                <div class="big-goal-box--content">
+                  <p class="m-0 fs-5 fw-normal ${currentDate > deadline ? 'red' : ''}">
+                    Due date: ${timeline.deadline}
+                  </p>
+                  
+                  <div class="big-goal-box--progress">
+                    <div class="progress-bar" role="progressbar" style="width: ${percentage_completion}%;" aria-valuenow="${percentage_completion}" aria-valuemin="0" aria-valuemax="100">
+                      ${percentage_completion}%
+                    </div>
+                  </div>
+                  
+                  <div class="big-goal-box--content-tags">
+                    <div class="big-goal-box--content-tag yellow box-radius fs-5">
+                      ${timeline.all_dates.length} ${timeline.all_dates.length === 1 ? "day" : "days"}
+                    </div>
+                    <div class="big-goal-box--content-tag yellow box-radius fs-5">
+                      ${dailySystems.length} ${dailySystems.length === 1 ? "daily system" : "daily systems"}
+                    </div>
+                    <div class="big-goal-box--content-tag ${currentDate <= deadline ? 'green' : 'red'} box-radius fs-5">
+                      ${
+                        currentDate <= startDate
+                          ? daysLeftBeforeStartDate + " days before start"
+                          : currentDate <= deadline
+                            ? daysLeftBeforeDeadline === 1
+                              ? daysLeftBeforeDeadline + " day left"
+                              : daysLeftBeforeDeadline + " days left"
+                            : "auto-delete in " + daysLeftAfterDeadline + " days"
+                      }
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
           `;
 
           allBigGoals.append(bigGoalBox);
