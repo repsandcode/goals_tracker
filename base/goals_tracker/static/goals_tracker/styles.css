@@ -277,6 +277,7 @@ img {
 
   background-color: var(--white-bg);
   border-radius: 3rem;
+  box-shadow: var(--box-shadow);
   padding: 3rem 2.5rem;
   width: 100%;
 }
@@ -288,7 +289,6 @@ img {
   color: var(--dark-bg);
   max-height: 25rem;
   height: 100%;
-  box-shadow: var(--box-shadow);
 }
 /* Title styling */
 .big-goal-box--title {
@@ -354,6 +354,7 @@ img {
   background-color: var(--white-bg);
   border: .2rem solid var(--light-green);
   border-radius: 3rem;
+  box-shadow: var(--box-shadow);
 
   width: 100%;
   padding: 3rem 2.5rem;
