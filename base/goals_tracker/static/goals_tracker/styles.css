@@ -285,7 +285,8 @@ img {
 .big-goal-box {
   padding: 2rem;
   cursor: pointer;
-  background-color: var(--body-bg);
+  border: 1px solid var(--body-bg);
+  box-shadow: var(--box-shadow);
   color: var(--dark-bg);
   max-height: 25rem;
   height: 100%;
@@ -307,7 +308,7 @@ img {
   margin-top: 1rem;
 }
 .big-goal-box--progress-bar {
-  background-color: var(--dark-bg); /* Light grey background for progress bar */
+  background-color: var(--gray-bg); /* Light grey background for progress bar */
   border-radius: 6rem;
   overflow: hidden;
 }
@@ -318,7 +319,7 @@ img {
   transition: width 2.4s ease;
 }
 .big-goal-box--progress-percentage {
-  font-size: 0.75rem;
+  font-size: 1.5rem;
 }
 /* Red text for overdue goals */
 .big-goal-box--content .red {
