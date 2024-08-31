@@ -288,12 +288,13 @@ img {
   border: 1px solid var(--body-bg);
   box-shadow: var(--box-shadow);
   color: var(--dark-bg);
-  max-height: 25rem;
   height: 100%;
 }
 /* Title styling */
 .big-goal-box--title {
-  margin-bottom: 1rem;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
 }
 /* Content container for the big goal box */
 .big-goal-box--content {
@@ -305,7 +306,7 @@ img {
 }
 /* Progress bar container styling */
 .big-goal-box--progress {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 .big-goal-box--progress-bar {
   background-color: var(--gray-bg); /* Light grey background for progress bar */
@@ -319,32 +320,38 @@ img {
   transition: width 2.4s ease;
 }
 .big-goal-box--progress-percentage {
+  padding: 0;
+  margin: 0;
+  margin-top: .25rem;
   font-size: 1.5rem;
 }
+/* Tags container */
+.big-goal-box--tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  gap: 0.5rem;
+  /* height: 100%; */
+}
 /* Red text for overdue goals */
-.big-goal-box--content .red {
+.big-goal-box--tags .red {
   color: var(--red-bg);
 }
-/* Tags container */
-.big-goal-box--content-tags {
-  display: flex;
-  gap: 0.5rem;
-}
 /* Individual tag styling */
-.big-goal-box--content-tag {
+.big-goal-box--tag {
   display: inline-block;
   padding: 0.5rem 1.5rem;
   border-radius: 20px;
   font-size: 1rem;
 }
 /* Color variations for tags */
-.big-goal-box--content-tag.green {
+.big-goal-box--tag.green {
   background-color: var(--light-green);
 }
-.big-goal-box--content-tag.yellow {
+.big-goal-box--tag.yellow {
   background-color: var(--light-yellow);
 }
-.big-goal-box--content-tag.red {
+.big-goal-box--tag.red {
   background-color: var(--red-bg);
   color: var(--white-bg);
 }
