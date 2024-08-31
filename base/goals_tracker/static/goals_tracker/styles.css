@@ -308,28 +308,43 @@ img {
 .big-goal-box--progress {
   margin-top: 2rem;
 }
+.big-goal-box--progress-heading {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+}
+.big-goal-box--progress-status {
+  font-weight: 400;
+  color: var(--dark-bg);
+}
+.big-goal-box--progress-percentage {
+  font-weight: 200;
+  margin: 0;
+  margin-top: .25rem;
+  padding: 0;
+}
 .big-goal-box--progress-bar {
   background-color: var(--gray-bg); /* Light grey background for progress bar */
   border-radius: 6rem;
+  margin-top: .5rem;
   overflow: hidden;
 }
 .big-goal-box--progress-bar-completion {
-  background-color: var(--light-green); /* Set your desired primary color */
   border-radius: 6rem;
   height: .75rem;
   transition: width 2.4s ease;
 }
-.big-goal-box--progress-percentage {
-  padding: 0;
-  margin: 0;
-  margin-top: .25rem;
-  font-size: 1.5rem;
+.big-goal-box--progress-bar-completion.green {
+  background-color: var(--light-green);
+}
+.big-goal-box--progress-bar-completion.yellow {
+  background-color: var(--light-yellow);
 }
 /* Tags container */
 .big-goal-box--tags {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   gap: 0.5rem;
   /* height: 100%; */
 }
@@ -340,9 +355,8 @@ img {
 /* Individual tag styling */
 .big-goal-box--tag {
   display: inline-block;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1.75rem;
   border-radius: 20px;
-  font-size: 1rem;
 }
 /* Color variations for tags */
 .big-goal-box--tag.green {

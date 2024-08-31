@@ -192,10 +192,10 @@ const deleteOldGoal = (goal) => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log("Big Goal deleted successfully");
+          console.log(`${goal.title} ... deleted successfully`);
           window.location.href = "/";
         } else {
-          console.error("Failed to delete Big Goal");
+          console.error(`Failed to delete ... ${goal.title}`);
         }
       })
       .catch((error) => {
@@ -237,10 +237,10 @@ const getAllBigGoals = () => {
           const timeline = data.timeline;
           const startDate = new Date(timeline.start);
           const deadline = new Date(timeline.deadline);
-          const tenAfterDeadline = new Date(deadline);
-          tenAfterDeadline.setDate(deadline.getDate() + 10);
+          const fiveAfterDeadline = new Date(deadline);
+          fiveAfterDeadline.setDate(deadline.getDate() + 5);
 
-          const daysLeftAfterDeadline = Math.ceil((tenAfterDeadline - currentDate) / (1000 * 60 * 60 * 24));
+          const daysLeftAfterDeadline = Math.ceil((fiveAfterDeadline - currentDate) / (1000 * 60 * 60 * 24));
           const daysLeftBeforeDeadline = Math.ceil((deadline - currentDate) / (1000 * 60 * 60 * 24));
           const daysLeftBeforeStartDate = Math.ceil((startDate - currentDate) / (1000 * 60 * 60 * 24));
 
@@ -252,10 +252,15 @@ const getAllBigGoals = () => {
                 <h2 class="big-goal-box--title text-truncate">${title}</h2>
 
                 <div class="big-goal-box--progress">
-                  <div class="big-goal-box--progress-bar">
-                    <div class="big-goal-box--progress-bar-completion" role="progressbar" style="width: ${percentage_completion}%;" aria-valuenow="${percentage_completion}" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="big-goal-box--progress-heading">
+                    <span class="big-goal-box--progress-status">
+                       ${currentDate <= deadline ? 'In Progress...' : 'Big Goal Complete!'}
+                    </span>
+                    <span class="big-goal-box--progress-percentage">${percentage_completion}%</span>
                   </div>
-                  <p class="big-goal-box--progress-percentage">${percentage_completion}%</p>
+                  <div class="big-goal-box--progress-bar">
+                    <div class="big-goal-box--progress-bar-completion ${currentDate <= deadline ? 'yellow' : 'green'}" role="progressbar" style="width: ${percentage_completion}%;" aria-valuenow="${percentage_completion}" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
                 </div>
 
                 
@@ -283,7 +288,7 @@ const getAllBigGoals = () => {
 
           allBigGoals.append(bigGoalBox);
 
-          if (currentDate >= tenAfterDeadline) {
+          if (currentDate >= fiveAfterDeadline) {
             deleteOldGoal(bigGoalData);
           }
         });
