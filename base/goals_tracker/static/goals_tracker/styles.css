@@ -305,19 +305,19 @@ img {
 /* Progress bar container styling */
 .big-goal-box--progress {
   margin-top: 1rem;
-  background-color: #e9ecef; /* Light grey background for progress bar */
-  border-radius: 5px;
+}
+.big-goal-box--progress-bar {
+  background-color: var(--dark-bg); /* Light grey background for progress bar */
+  border-radius: 6rem;
   overflow: hidden;
 }
-/* Progress bar itself */
-.progress-bar {
+.big-goal-box--progress-bar-completion {
   background-color: var(--light-green); /* Set your desired primary color */
-  height: 1rem;
+  border-radius: 6rem;
+  height: .75rem;
   transition: width 2.4s ease;
-  padding: 2rem 0;
-  text-align: center;
-  color: var(--white-bg);
-  line-height: 1rem;
+}
+.big-goal-box--progress-percentage {
   font-size: 0.75rem;
 }
 /* Red text for overdue goals */

@@ -256,9 +256,10 @@ const getAllBigGoals = () => {
                   </p>
                   
                   <div class="big-goal-box--progress">
-                    <div class="progress-bar" role="progressbar" style="width: ${percentage_completion}%;" aria-valuenow="${percentage_completion}" aria-valuemin="0" aria-valuemax="100">
-                      ${percentage_completion}%
+                    <div class="big-goal-box--progress-bar">
+                      <div class="big-goal-box--progress-bar-completion" role="progressbar" style="width: ${percentage_completion}%;" aria-valuenow="${percentage_completion}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
+                    <p class="big-goal-box--progress-percentage">${percentage_completion}%</p>
                   </div>
                   
                   <div class="big-goal-box--content-tags">

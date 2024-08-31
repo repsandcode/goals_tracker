@@ -149,7 +149,7 @@ def big_goal_data(request, title):
    # Calculate percentage completion
    total_days = (end_date - start_date).days
    days_elapsed = (date.today() - start_date.date()).days
-   percentage_completion = max(0, min((days_elapsed / total_days) * 100, 100))
+   percentage_completion = round(max(0, min((days_elapsed / total_days) * 100, 100)), 1)
 
    return {
       "title_unedited": title,
