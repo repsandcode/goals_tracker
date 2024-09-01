@@ -244,8 +244,8 @@ img {
 }
 .home-content {
   display: flex;
-  flex-direction: column-reverse;
-  gap: 1.5rem;
+  flex-direction: column;
+  gap: 2.5rem;
   overflow: scroll;
 }
 
@@ -489,25 +489,12 @@ img {
   }
 }
 
-@media screen and (min-width: 950px) {
-  .home-content {
-    flex-direction: row;
-    padding: 1.5rem;
-    height: 100%;
-  }
-  .home-big-goals {
-    height: 100%;
-  }
-  .home-daily-actions {
-    width: 40rem;
-    height: 100%;
-  }
-
-  .big-goal-page {
-    height: 100%;
-  }
-  .big-goal-content{
-    padding: 1.5rem;
+@media screen and (min-width: 850px) {
+  .home, .big-goal-page {
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 1.5rem;
   }
 }
 
@@ -591,16 +578,22 @@ img {
     padding: 0 1.5rem;
   }
   .home-content {
+    flex-direction: row;
+    padding: 1.5rem;
     height: 100%;
   }
   .home-big-goals {
     height: 100%;
   }
+  .home-daily-actions {
+    width: 40rem;
+    height: 100%;
+  }
 
   .big-goal-page {
-    padding: 0 1.5rem;
-  }
-  .big-goal-content {
     height: 100%;
+  }
+  .big-goal-content{
+    padding: 1.5rem;
   }
 }

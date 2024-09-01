@@ -244,7 +244,7 @@ const getAllBigGoals = () => {
           const daysLeftBeforeDeadline = Math.ceil((deadline - currentDate) / (1000 * 60 * 60 * 24));
           const daysLeftBeforeStartDate = Math.ceil((startDate - currentDate) / (1000 * 60 * 60 * 24));
 
-          bigGoalBox.classList.add("col-12", "col-sm-6");
+          bigGoalBox.classList.add("col-12", "col-md-6", "col-xxl-4");
           bigGoalBox.dataset.title = title.split(" ").join("-");
 
           bigGoalBox.innerHTML = `
