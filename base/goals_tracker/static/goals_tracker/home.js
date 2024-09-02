@@ -342,15 +342,18 @@ const getAllDailySystems = () => {
         dailySystems.forEach((daily) => {
           const dailySystemBox = document.createElement("div");
           const classesToAdd = ["daily-system-box", "box-radius"];
+          let checkBoxToAdd = `<i class="bi bi-circle"></i>`
 
           if (daily.completed) {
             classesToAdd.push("daily-system-box--check");
+            checkBoxToAdd = `<i class="bi bi-check-circle"></i>`;
           }
 
           dailySystemBox.classList.add(...classesToAdd);
           dailySystemBox.dataset.bigGoal = daily.big_goal;
           dailySystemBox.innerHTML = `
-            <h4 class="m-0 fw-normal daily-system-box--text">${daily.action}</h4>
+            <span class="daily-system-box--checkbox">${checkBoxToAdd}</span>
+            <p class="m-0 fw-normal daily-system-box--text">${daily.action}</p>
           `;
 
           allDailySystems.append(dailySystemBox);
@@ -361,16 +364,26 @@ const getAllDailySystems = () => {
         const dateToday = allDailySystems.dataset.today;
 
         Array.from(allDailySystemBox).forEach((dailySystem) => {
-          const bigGoal = dailySystem.dataset.bigGoal;
-          const action = dailySystem.innerText;
           
           dailySystem.addEventListener("click", () => {
+            const bigGoal = dailySystem.dataset.bigGoal;
+            const action = dailySystem.lastElementChild.innerText;
+            const checkBox = dailySystem.firstElementChild.firstChild;
+            
             if (dailySystem.classList.contains("daily-system-box--check")) {
               markIncompleteDailySystem(bigGoal, action, dateToday);
               dailySystem.classList.remove("daily-system-box--check");
             } else {
               markCompleteDailySystem(bigGoal, action, dateToday);
               dailySystem.classList.add("daily-system-box--check");
+            }
+
+            if (checkBox.classList.contains("bi-check-circle")) {
+              checkBox.classList.remove("bi-check-circle");
+              checkBox.classList.add("bi-circle"); 
+            } else {
+              checkBox.classList.remove("bi-circle");
+              checkBox.classList.add("bi-check-circle"); 
             }
           })
         });

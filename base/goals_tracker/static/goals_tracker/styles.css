@@ -382,21 +382,32 @@ img {
   padding: 3rem 2.5rem;
   height: 90%;
   align-self: center;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 .daily-systems {
   padding: 2.5rem;
   background-color: var(--white-bg);
 }
 .daily-system-box {
-  cursor: pointer;
-  background-color: var(--body-bg);
-  padding: 1.5rem;
+  display: flex;
   position: relative;
+  align-items: center; 
+  gap: 2.5rem;
+}
+.daily-system-box--checkbox {
+  font-size: 2.2rem;
+  cursor: pointer;
 }
 .daily-system-box--text {
+  cursor: pointer;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
+  font-size: 1.5rem;
+  line-height: 1.5;
 }
 .daily-system-box--check {
   color: var(--light-green);
@@ -586,8 +597,10 @@ img {
     height: 100%;
   }
   .home-daily-actions {
-    width: 40rem;
+    width: 48rem;
     height: 100%;
+
+    gap: 6rem;
   }
 
   .big-goal-page {
