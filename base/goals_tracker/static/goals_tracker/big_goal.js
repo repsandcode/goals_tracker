@@ -28,8 +28,11 @@ if (monthYear) {
 const allDailySystemBox = document.querySelectorAll(".daily-system-box");
 Array.from(allDailySystemBox).forEach((dailySystem) => {
   dailySystem.addEventListener("click", () => {
+    const checkBox = dailySystem.firstElementChild.firstChild;
+    const dailyAction = dailySystem.lastElementChild;
+    const actionText = dailyAction.innerText;
     const bigGoal = title.value;
-    const action = dailySystem.innerText;
+
     const date = dailySystem.parentElement.parentElement.dataset.date;
     const dateToday = getTodayHyphened();
     
@@ -46,16 +49,28 @@ Array.from(allDailySystemBox).forEach((dailySystem) => {
         // Check if completedSystems exists and has the property for the given date
         if (completedSystems && completedSystems.hasOwnProperty(date)) {
           // Check if the action is already marked as completed
-          if (completedSystems[date][bigGoal].includes(action)) {
-            dailySystem.classList.remove("daily-system-box--check");
-            markIncompleteDailySystem(bigGoal, action, date);
+          if (completedSystems[date][bigGoal].includes(actionText)) {
+            checkBox.classList.remove("daily-system-box--check");
+            dailyAction.classList.remove("daily-system-box--check");
+            
+            checkBox.classList.remove("bi-check-circle");
+            checkBox.classList.add("bi-circle"); 
+            markIncompleteDailySystem(bigGoal, actionText, date);
           } else {
-            dailySystem.classList.add("daily-system-box--check");
-            markCompleteDailySystem(bigGoal, action, date);
+            checkBox.classList.add("daily-system-box--check");
+            dailyAction.classList.add("daily-system-box--check");
+
+            checkBox.classList.remove("bi-circle");
+            checkBox.classList.add("bi-check-circle"); 
+            markCompleteDailySystem(bigGoal, actionText, date);
           }
         } else {
-          dailySystem.classList.add("daily-system-box--check");
-          markCompleteDailySystem(bigGoal, action, date);
+          checkBox.classList.add("daily-system-box--check");
+          dailyAction.classList.add("daily-system-box--check");
+
+          checkBox.classList.remove("bi-circle");
+          checkBox.classList.add("bi-check-circle"); 
+          markCompleteDailySystem(bigGoal, actionText, date);
         }
       })
       .catch((error) => {

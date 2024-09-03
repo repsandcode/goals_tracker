@@ -395,7 +395,7 @@ img {
   display: flex;
   position: relative;
   align-items: center; 
-  gap: 2.5rem;
+  gap: 1.8rem;
 }
 .daily-system-box--checkbox {
   font-size: 2.2rem;
@@ -454,7 +454,7 @@ img {
 .timeline-item {
   display: inline-block;
   opacity: 0.6;
-  width: 21rem;
+  width: 24rem;
 }
 .timeline-item--today {
   opacity: 1;
@@ -484,7 +484,7 @@ img {
   height: 33rem;
   border-radius: 1.4rem;
   padding: 1.4rem;
-  border: 1px solid var(--white-bg);
+  border: 2px solid var(--gray-bg);
   background-color: var(--white-bg);
 }
 .timeline-item--body-today {

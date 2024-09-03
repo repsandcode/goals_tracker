@@ -114,8 +114,10 @@
             {% for system in daily_systems %}
             <div class="daily-system-box box-radius" data-big-goal={{system.big_goal}}>
               {% if system.action in date.actions %}
+              <span class="daily-system-box--checkbox daily-system-box--check"><i class="bi bi-check-circle"></i></span>
               <h5 class="m-0 fw-normal daily-system-box--text daily-system-box--check">{{ system.action }}</h5>
               {% else %}
+              <span class="daily-system-box--checkbox"><i class="bi bi-circle"></i></span>
               <h5 class="m-0 fw-normal daily-system-box--text">{{ system.action }}</h5>
               {% endif %}
             </div>
