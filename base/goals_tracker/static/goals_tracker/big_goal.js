@@ -20,6 +20,7 @@ const deleteBigGoalModal = document.querySelector("#delete-big-goal-modal");
 
 // SHOW CURRENT MONTH
 if (monthYear) {
+  monthYear.classList.add("mb-3");
   monthYear.innerHTML = `<h1>${getCurrentMonthAndYear()[0]} <span class="fw-normal">${getCurrentMonthAndYear()[1]}</span></h1>`
 }
 
