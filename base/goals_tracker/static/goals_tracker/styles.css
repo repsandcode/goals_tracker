@@ -109,6 +109,7 @@ img {
 }
 .delete-icon-btn {
   color: var(--red-bg);
+  cursor: pointer;
 }
 .big-goal-content--headers {
   display: flex;
