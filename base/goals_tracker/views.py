@@ -216,7 +216,7 @@ def daily_systems(request):
 
         container = []
         # Retrieve all Big Goals of the user
-        big_goals_queryset = BigGoal.objects.filter(user=user).order_by("-start")
+        big_goals_queryset = BigGoal.objects.filter(user=user)
         for big_goal in big_goals_queryset:
            deadline = big_goal.deadline
            if deadline > date.today():
