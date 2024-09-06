@@ -216,7 +216,7 @@ def daily_systems(request):
 
         container = []
         # Retrieve all Big Goals of the user
-        big_goals_queryset = BigGoal.objects.filter(user=user)
+        big_goals_queryset = BigGoal.objects.filter(user=user).order_by("-start")
         for big_goal in big_goals_queryset:
            deadline = big_goal.deadline
            if deadline > date.today():
@@ -226,7 +226,7 @@ def daily_systems(request):
             for action in big_goal_actions:
                container.append(action)
 
-        container.reverse()
+      #   container.reverse()
 
         completed_daily_systems_content = all_completed_daily_systems(request).content.decode('utf-8')
         completed_daily_systems_data = json.loads(completed_daily_systems_content)
