@@ -107,7 +107,7 @@ img {
   border: 1px solid var(--red-bg);
   color: var(--white-bg);
 }
-.delete-icon-btn {
+.delete-icon-btn, .daily-system-box--delete-icon {
   color: var(--red-bg);
   cursor: pointer;
 }

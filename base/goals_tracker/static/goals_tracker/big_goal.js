@@ -16,6 +16,55 @@ const timeline = document.querySelector("#timeline");
 const monthYear = document.querySelector("#month-year");
 // delete big goal 
 const deleteBigGoalModal = document.querySelector("#delete-big-goal-modal");
+// delete daily system
+const deleteDailySystemModal = document.querySelector("delete-daily-system-modal");
+
+
+// DELETING A DAILY ACTION
+const dailySystemDeleteIcon = document.querySelectorAll(".daily-system-box--delete-icon");
+Array.from(dailySystemDeleteIcon).forEach((deleteIcon) => {
+  deleteIcon.addEventListener("click", () => {
+    const dailySystemText = deleteIcon.previousElementSibling.innerText;
+    const deleteText = 
+    `Are you sure you want to delete this Daily System?
+"${dailySystemText}"`;
+    console.log(deleteIcon, dailySystemText);
+    if (confirm(deleteText)) {
+      console.log(`Deleting "${dailySystemText}" ...`);
+      deleteDailySystem(title, dailySystemText);
+    } else {
+      console.log(`Retain "${dailySystemText}"...`);
+    }
+  })
+});
+const deleteDailySystem = (bigGoal, dailySystem) => {
+  try {
+    fetch("/delete-daily-system", {
+      method: "DELETE",
+      body: JSON.stringify({
+        big_goal: bigGoal,
+        action: dailySystem,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCookie("csrftoken"), // Ensure to include CSRF token
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log(`${dailySystem} of ${bigGoal} ... deleted successfully`);
+          window.location.href = "/";
+        } else {
+          console.error(`Failed to delete ... ${dailySystem} of ${bigGoal}`);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 
 // SHOW CURRENT MONTH
