@@ -53,7 +53,7 @@ const deleteDailySystem = (bigGoal, dailySystem) => {
       .then((response) => {
         if (response.ok) {
           console.log(`${dailySystem} of ${bigGoal} ... deleted successfully`);
-          window.location.href = "/";
+          window.location.href = "/big-goal/";
         } else {
           console.error(`Failed to delete ... ${dailySystem} of ${bigGoal}`);
         }
