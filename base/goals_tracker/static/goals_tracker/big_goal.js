@@ -24,24 +24,28 @@ const deleteDailySystemModal = document.querySelector("delete-daily-system-modal
 const dailySystemDeleteIcon = document.querySelectorAll(".daily-system-box--delete-icon");
 Array.from(dailySystemDeleteIcon).forEach((deleteIcon) => {
   deleteIcon.addEventListener("click", () => {
+    const dailySystemId = parseInt(deleteIcon.parentElement.dataset.dailySystemId);
     const dailySystemText = deleteIcon.previousElementSibling.innerText;
     const deleteText = 
     `Are you sure you want to delete this Daily System?
 "${dailySystemText}"`;
+
     console.log(deleteIcon, dailySystemText);
+
     if (confirm(deleteText)) {
       console.log(`Deleting "${dailySystemText}" ...`);
-      deleteDailySystem(title, dailySystemText);
+      deleteDailySystem(title.value, dailySystemText, dailySystemId);
     } else {
       console.log(`Retain "${dailySystemText}"...`);
     }
   })
 });
-const deleteDailySystem = (bigGoal, dailySystem) => {
+const deleteDailySystem = (bigGoal, dailySystem, id) => {
   try {
-    fetch("/delete-daily-system", {
+    fetch(`/big-goal/${uneditedTitle.value}/delete-daily-system`, {
       method: "DELETE",
       body: JSON.stringify({
+        id: id,
         big_goal: bigGoal,
         action: dailySystem,
       }),

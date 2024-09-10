@@ -20,6 +20,7 @@ urlpatterns = [
   # big goal page
   path("big-goal/<str:title>", views.big_goal, name="big_goal"),
   path("big-goal/<str:title>/create-daily-system", views.daily_system, name="create_daily_system"),
+  path("big-goal/<str:title>/delete-daily-system", views.daily_system, name="delete_daily_system"),
 
   # complete a daily action
   path("all-completed-daily-systems", views.all_completed_daily_systems, name="all_completed_daily_systems"),

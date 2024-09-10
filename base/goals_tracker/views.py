@@ -163,6 +163,27 @@ def big_goal_data(request, title):
 
 # BIG GOAL PAGE
 def daily_system(request, title):
+   # delete daily system
+   if request.method == "DELETE":
+      data = json.loads(request.body)
+
+      id = int(data.get("id", 0))
+      big_goal = data.get("big_goal", "")
+      action = data.get("action", "")
+
+      print(data)
+
+      try: 
+         big_goal_instance = get_object_or_404(BigGoal, user=request.user, title=big_goal)
+         daily_system = get_object_or_404(DailySystem, id=id, big_goal=big_goal_instance, action=action)
+         daily_system.delete()
+         return JsonResponse({'message': 'Daily System deleted successfully'})
+      except Http404:
+         return JsonResponse({'message': 'Daily System not found'}, status=404)
+      except Exception as e:
+         return JsonResponse({'message': f'An error occurred: {str(e)}'}, status=500)
+
+
    # create daily system
    if request.method == "POST":
       data = json.loads(request.body)
