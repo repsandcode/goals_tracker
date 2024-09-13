@@ -12,7 +12,7 @@
     {% comment %} Details {% endcomment %}
     <section class="goal-details-section">
       <div class="big-goal-content--headers">
-        <h1 class="">{{ big_goal.title }}</h1>
+        <h1 class="fw-normal m-0 align-self-center">{{ big_goal.title }}</h1>
 
         <!-- Delete Big Goal Modal -->
         <div id="delete-big-goal-modal" class="modal">
@@ -39,9 +39,9 @@
           </div>
         </div>
     
-        <button class="delete-big-goal-btn box-radius fs-5" id="open-delete-big-goal-modal">
+        <button class="delete-big-goal-btn fs-5" id="open-delete-big-goal-modal">
           <i class="bi bi-trash3"></i> 
-          <span>Delete Big Goal</span>
+          <span class="toggle-text">Delete Big Goal</span>
         </button>
       </div>
 
@@ -52,7 +52,7 @@
 
     <section class="goal-details-section">
       <div class="big-goal-content--headers">
-        <h1 class="">Daily Actions</h1>
+        <h1 class="fw-normal m-0 align-self-center">Daily Actions</h1>
 
         <!-- Create Daily System Modal -->
         <div id="daily-system-modal" class="modal">
@@ -86,9 +86,9 @@
           </div>
         </div>
 
-        <button class="add-daily-goal-btn box-radius fs-5" id="open-daily-system-modal">
+        <button class="add-daily-goal-btn fs-5" id="open-daily-system-modal">
           <i class="bi bi-plus-lg"></i>
-          <span>Add a Daily Action</span>
+          <span class="toggle-text">Add Daily Action</span>
         </button>
       </div>
 
