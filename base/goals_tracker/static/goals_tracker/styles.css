@@ -255,6 +255,10 @@ img {
 }
 .home-profile {
   margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  gap: 1.5rem;
 }
 .home-content {
   display: flex;
@@ -268,12 +272,8 @@ img {
 }
 .home-profile--date {
   display: flex;
-  align-items: end;
-  gap: .4rem;
-}
-.home-profile--date-day {
+  gap: 1.5rem;
   font-weight: 300;
-  font-size: 3rem;
   color: var(--dark-bg);
 }
 .home-profile--stats {
@@ -644,6 +644,7 @@ img {
   }
 
   .home-profile {
+    margin-top: 0;
     padding: 0 1.5rem;
   }
   .home-content {

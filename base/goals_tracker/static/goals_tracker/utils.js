@@ -22,7 +22,7 @@ const addDateToday = () => {
   // const resultArray = [dateParts[0], dayMonthParts[1], dayMonthParts[0], dateParts[2]];
   
   document.querySelector("#date-today").innerHTML = 
-  `<span class="home-profile--date-day">${dateParts[0]}</span> ${dayMonthParts[0]} ${dayMonthParts[1]}`
+  `<i class="bi bi-calendar"></i> <span>${dateParts[0]}, ${dayMonthParts[0]} ${dayMonthParts[1]}</span>`
 }
 
 const defaultStartDate = () => {
