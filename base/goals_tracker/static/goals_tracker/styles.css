@@ -248,17 +248,23 @@ img {
   width: 100%;
   padding: 1.5rem;
   overflow: scroll;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.home-profile {
+  margin-top: 1.5rem;
 }
 .home-content {
   display: flex;
   flex-direction: column-reverse;
   gap: 2.5rem;
-  overflow: scroll;
 }
 
 /* HOME PAGE - profile section */
 .home-profile--greeting {
-  margin-bottom: 6rem;
+  /* margin-bottom: 6rem; */
 }
 .home-profile--date {
   display: flex;
@@ -637,12 +643,12 @@ img {
     color: var(--red-bg);
   }
 
-  .home {
+  .home-profile {
     padding: 0 1.5rem;
   }
   .home-content {
     flex-direction: row;
-    padding: 1.5rem;
+    padding: 0 1.5rem;
     height: 100%;
   }
   .home-big-goals {

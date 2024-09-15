@@ -5,82 +5,83 @@
 {% block body %}
 
 <main class="home" id="home-page">
-  {% comment %} All Big Goals {% endcomment %}
-  <div class="home-content">
-    <section id="home-big-goals" class="box-radius home-big-goals">
-      {% comment %} WELCOME {% endcomment %}
-      <div class="home-profile">
-        <div class="home-profile--greeting display-4">
-          <span id="greetings"></span>, <span class="span-green">{{ first_name|default:username }}</span>
+    {% comment %} Heading {% endcomment %}
+    <section class="home-profile">
+      <div class="home-profile--greeting display-4">
+        <span id="greetings"></span>, <span class="span-green">{{ first_name|default:username }}</span>
+      </div>
+        
+      <div class="home-profile--date" id="date-today"></div>
+    </section>
+    
+    {% comment %} Body {% endcomment %}
+    <section class="home-content">
+      {% comment %} Big Goals {% endcomment %}
+      <section id="home-big-goals" class="box-radius home-big-goals">
+        <div class="d-flex justify-content-between mb-5">
+          <h1 class="fw-normal m-0 align-self-center">Big Goals</h1>
+          <button class="add-big-goal-btn fs-5" id="open-big-goal-modal">
+            <i class="bi bi-plus-lg"></i>
+            <span class="toggle-text">Add a Big Goal</span>
+          </button>
         </div>
 
-        <div class="home-profile--date" id="date-today"></div>
-      </div>
+        <div id="big-goal-modal" class="modal">
+          <div class="modal-center">
+            <div class="big-goal-modal-content" id="big-goal-modal-content">
+              {% comment %} Header {% endcomment %}
+              <h3 class="fw-normal mb-5">Create your next Big Goal</h3>
 
-      <div class="d-flex justify-content-between mb-5">
-        <h1 class="fw-normal m-0 align-self-center">Big Goals</h1>
-        <button class="add-big-goal-btn fs-5" id="open-big-goal-modal">
-          <i class="bi bi-plus-lg"></i>
-          <span class="toggle-text">Add a Big Goal</span>
-        </button>
-      </div>
+              <span id="big-goal-message" class="text-danger fs-5 fw-light"></span>
 
-      <div id="big-goal-modal" class="modal">
-        <div class="modal-center">
-          <div class="big-goal-modal-content" id="big-goal-modal-content">
-            {% comment %} Header {% endcomment %}
-            <h3 class="fw-normal mb-5">Create your next Big Goal</h3>
-
-            <span id="big-goal-message" class="text-danger fs-5 fw-light"></span>
-
-            {% comment %} Body {% endcomment %}
-            <form id="big-goal-form">
-              {% csrf_token %}
-              <div class="mb-5">
-                <label for="big-goal-title" class="form-label fs-4">Title</label>
-                <input autofocus class="form-control p-4 fs-4 bg-body-tertiary box-radius" type="text"
-                  id="big-goal-title" name="big-goal-title" required />
-              </div>
-
-              <div class="d-flex mb-5 gap-4 modal-flex-direction">
-                <div class="w-100">
-                  <label for="big-goal-start" class="form-label fs-4">Start</label>
-                  <input class="form-control p-4 fs-4 bg-body-tertiary box-radius" type="date" id="big-goal-start"
-                    name="big-goal-start" required />
+              {% comment %} Body {% endcomment %}
+              <form id="big-goal-form">
+                {% csrf_token %}
+                <div class="mb-5">
+                  <label for="big-goal-title" class="form-label fs-4">Title</label>
+                  <input autofocus class="form-control p-4 fs-4 bg-body-tertiary box-radius" type="text"
+                    id="big-goal-title" name="big-goal-title" required />
                 </div>
-                <div class="w-100">
-                  <label for="big-goal-deadline" class="form-label fs-4">Deadline</label>
-                  <input class="form-control p-4 fs-4 bg-body-tertiary box-radius" type="date" id="big-goal-deadline"
-                    name="big-goal-deadline" required />
+
+                <div class="d-flex mb-5 gap-4 modal-flex-direction">
+                  <div class="w-100">
+                    <label for="big-goal-start" class="form-label fs-4">Start</label>
+                    <input class="form-control p-4 fs-4 bg-body-tertiary box-radius" type="date" id="big-goal-start"
+                      name="big-goal-start" required />
+                  </div>
+                  <div class="w-100">
+                    <label for="big-goal-deadline" class="form-label fs-4">Deadline</label>
+                    <input class="form-control p-4 fs-4 bg-body-tertiary box-radius" type="date" id="big-goal-deadline"
+                      name="big-goal-deadline" required />
+                  </div>
                 </div>
-              </div>
 
-              <div class="mb-5">
-                <label for="big-goal-description" class="form-label fs-4">Description
-                  <span class="optional-field">(optional)</span>
-                </label>
-                <textarea class="form-control p-4 fs-4 bg-body-tertiary box-radius" id="big-goal-description"
-                  name="big-goal-description" placeholder=""></textarea>
-              </div>
+                <div class="mb-5">
+                  <label for="big-goal-description" class="form-label fs-4">Description
+                    <span class="optional-field">(optional)</span>
+                  </label>
+                  <textarea class="form-control p-4 fs-4 bg-body-tertiary box-radius" id="big-goal-description"
+                    name="big-goal-description" placeholder=""></textarea>
+                </div>
 
-              <div class="d-flex justify-content-end gap-4">
-                <button type="button" id="close-big-goal-modal"
-                  class="p-4 border-0 bg-transparent fs-4 box-radius">Close</button>
-                <button type="submit" class="p-4 border-0 submit-modal-bg fs-4 box-radius" />Create Big
-                Goal</button>
-              </div>
-            </form>
+                <div class="d-flex justify-content-end gap-4">
+                  <button type="button" id="close-big-goal-modal"
+                    class="p-4 border-0 bg-transparent fs-4 box-radius">Close</button>
+                  <button type="submit" class="p-4 border-0 submit-modal-bg fs-4 box-radius" />Create Big
+                  Goal</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div id="all-big-goals" class="row g-5"></div>
-    </section>
-
-    {% comment %} All Daily Actions {% endcomment %}
-    <section id="home-daily-actions" class="box-radius home-daily-actions">
-      <h1 class="fw-normal m-0">Complete your tasks today!</h1>
-      <div id="all-daily-systems" class="d-flex flex-wrap flex-column gap-4"></div>
+        <div id="all-big-goals" class="row g-5"></div>
+      </section>
+      {% comment %} All Daily Actions {% endcomment %}
+      <section id="home-daily-actions" class="box-radius home-daily-actions">
+        <h1 class="fw-normal m-0">Complete your tasks today!</h1>
+        <div id="all-daily-systems" class="d-flex flex-wrap flex-column gap-4"></div>
+      </section>
     </section>
   </div>
 </main>
