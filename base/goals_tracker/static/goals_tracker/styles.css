@@ -656,10 +656,8 @@ img {
     height: 100%;
   }
   .home-daily-actions {
-    width: 48rem;
+    width: 50rem;
     height: 100%;
-
-    gap: 6rem;
   }
 
   .big-goal-page {
