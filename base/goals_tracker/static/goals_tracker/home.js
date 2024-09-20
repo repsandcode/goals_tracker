@@ -159,7 +159,7 @@ const getUserData = () => {
         return res.json();
       })
       .then((user) => {
-        console.log(user);
+        // console.log(user);
         const profile_header = document.querySelector("#profile-header");
         if (profile_header) {
           profile_header.innerHTML = 
@@ -218,94 +218,103 @@ const getAllBigGoals = () => {
         return res.json();
       })
       .then((bigGoals) => {
-        console.log(bigGoals, "ALL BIG GOALS");
+        // console.log(bigGoals, "ALL BIG GOALS");
         
         allBigGoals.innerHTML = "";
-        const currentDate = new Date();
 
-        bigGoals.forEach((data) => {
-          console.log(data);
-          
-          const bigGoalBox = document.createElement("div");
-          const bigGoalData = data.big_goal;
-          
-          const title = bigGoalData.title;
-          allBigGoalsArr.push(title);
-          const dailySystems = data.daily_systems;
-          const percentage_completion = data.percentage_completion;
-
-          const timeline = data.timeline;
-          const startDate = new Date(timeline.start);
-          const deadline = new Date(timeline.deadline);
-          const fiveAfterDeadline = new Date(deadline);
-          fiveAfterDeadline.setDate(deadline.getDate() + 5);
-
-          const daysLeftAfterDeadline = Math.ceil((fiveAfterDeadline - currentDate) / (1000 * 60 * 60 * 24));
-          const daysLeftBeforeDeadline = Math.ceil((deadline - currentDate) / (1000 * 60 * 60 * 24));
-          const daysLeftBeforeStartDate = Math.ceil((startDate - currentDate) / (1000 * 60 * 60 * 24));
-
-          bigGoalBox.classList.add("col-12", "col-md-6", "col-xxl-4");
-          bigGoalBox.dataset.title = title.split(" ").join("-");
-
-          bigGoalBox.innerHTML = `
-              <div class="big-goal-box box-radius">
-                <h2 class="big-goal-box--title text-truncate">${title}</h2>
-
-                <div class="big-goal-box--progress">
-                  <div class="big-goal-box--progress-heading">
-                    <span class="big-goal-box--progress-status">
-                       ${currentDate <= deadline ? 'In Progress...' : 'Big Goal Complete!'}
-                    </span>
-                    <span class="big-goal-box--progress-percentage">${percentage_completion}%</span>
+        if (bigGoals.length < 1) {
+          const noBigGoalsMessage = document.createElement("h5");
+          noBigGoalsMessage.classList.add("m-0", "mt-5", "fw-normal");
+          noBigGoalsMessage.textContent = "What is your Big Goal? Add it here.";
+          allBigGoals.append(noBigGoalsMessage);
+          return;
+        } else {
+          bigGoals.forEach((data) => {
+            const currentDate = new Date();
+            // console.log(data);
+            
+            const bigGoalBox = document.createElement("div");
+            const bigGoalData = data.big_goal;
+            
+            const title = bigGoalData.title;
+            allBigGoalsArr.push(title);
+            const dailySystems = data.daily_systems;
+            const percentage_completion = data.percentage_completion;
+  
+            const timeline = data.timeline;
+            const startDate = new Date(timeline.start);
+            const deadline = new Date(timeline.deadline);
+            const fiveAfterDeadline = new Date(deadline);
+            fiveAfterDeadline.setDate(deadline.getDate() + 5);
+  
+            const daysLeftAfterDeadline = Math.ceil((fiveAfterDeadline - currentDate) / (1000 * 60 * 60 * 24));
+            const daysLeftBeforeDeadline = Math.ceil((deadline - currentDate) / (1000 * 60 * 60 * 24));
+            const daysLeftBeforeStartDate = Math.ceil((startDate - currentDate) / (1000 * 60 * 60 * 24));
+  
+            bigGoalBox.classList.add("col-12", "col-md-6", "col-xxl-4");
+            bigGoalBox.dataset.title = title.split(" ").join("-");
+  
+            bigGoalBox.innerHTML = `
+                <div class="big-goal-box box-radius">
+                  <h2 class="big-goal-box--title text-truncate">${title}</h2>
+  
+                  <div class="big-goal-box--progress">
+                    <div class="big-goal-box--progress-heading">
+                      <span class="big-goal-box--progress-status">
+                         ${currentDate <= deadline ? 'In Progress...' : 'Big Goal Complete!'}
+                      </span>
+                      <span class="big-goal-box--progress-percentage">${percentage_completion}%</span>
+                    </div>
+                    <div class="big-goal-box--progress-bar">
+                      <div class="big-goal-box--progress-bar-completion ${currentDate <= deadline ? 'yellow' : 'green'}" role="progressbar" style="width: ${percentage_completion}%;" aria-valuenow="${percentage_completion}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                   </div>
-                  <div class="big-goal-box--progress-bar">
-                    <div class="big-goal-box--progress-bar-completion ${currentDate <= deadline ? 'yellow' : 'green'}" role="progressbar" style="width: ${percentage_completion}%;" aria-valuenow="${percentage_completion}" aria-valuemin="0" aria-valuemax="100"></div>
+  
+                  
+                  <div class="big-goal-box--tags">
+                    <div class="big-goal-box--tag yellow box-radius fs-5">
+                      ${timeline.all_dates.length} ${timeline.all_dates.length === 1 ? "day" : "days"}
+                    </div>
+                    <div class="big-goal-box--tag yellow box-radius fs-5">
+                      ${dailySystems.length} ${dailySystems.length === 1 ? "daily system" : "daily systems"}
+                    </div>
+                    <div class="big-goal-box--tag ${currentDate <= deadline ? 'green' : 'red'} box-radius fs-5">
+                      ${
+                        currentDate <= startDate
+                          ? daysLeftBeforeStartDate + " days before start"
+                          : currentDate <= deadline
+                            ? daysLeftBeforeDeadline === 1
+                              ? daysLeftBeforeDeadline + " day left"
+                              : daysLeftBeforeDeadline + " days left"
+                            : "auto-delete in " + daysLeftAfterDeadline + " days"
+                      }
+                    </div>
                   </div>
                 </div>
+            `;
+  
+            allBigGoals.append(bigGoalBox);
+  
+            if (currentDate >= fiveAfterDeadline) {
+              deleteOldGoal(bigGoalData);
+            }
+          });
+        }
 
-                
-                <div class="big-goal-box--tags">
-                  <div class="big-goal-box--tag yellow box-radius fs-5">
-                    ${timeline.all_dates.length} ${timeline.all_dates.length === 1 ? "day" : "days"}
-                  </div>
-                  <div class="big-goal-box--tag yellow box-radius fs-5">
-                    ${dailySystems.length} ${dailySystems.length === 1 ? "daily system" : "daily systems"}
-                  </div>
-                  <div class="big-goal-box--tag ${currentDate <= deadline ? 'green' : 'red'} box-radius fs-5">
-                    ${
-                      currentDate <= startDate
-                        ? daysLeftBeforeStartDate + " days before start"
-                        : currentDate <= deadline
-                          ? daysLeftBeforeDeadline === 1
-                            ? daysLeftBeforeDeadline + " day left"
-                            : daysLeftBeforeDeadline + " days left"
-                          : "auto-delete in " + daysLeftAfterDeadline + " days"
-                    }
-                  </div>
-                </div>
-              </div>
-          `;
-
-          allBigGoals.append(bigGoalBox);
-
-          if (currentDate >= fiveAfterDeadline) {
-            deleteOldGoal(bigGoalData);
-          }
-        });
-
+        // return this so it can be used at the bottom
         return document.querySelectorAll(".big-goal-box");
       })
-      .then(function (bigGoalBoxes) {
-        Array.from(bigGoalBoxes).forEach(function (bigGoal) {
+      .then((bigGoalBoxes) => {      
+        bigGoalBoxes && Array.from(bigGoalBoxes).forEach((bigGoal) => {
           const bigGoalTitle = bigGoal.parentElement.dataset.title;
           console.log(bigGoal, bigGoalTitle);
 
-          bigGoal.addEventListener("click", function () {
+          bigGoal.addEventListener("click",() => {
             showBigGoalPage(bigGoalTitle);
           });
         });
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   } catch (error) {
@@ -327,7 +336,7 @@ const getAllDailySystems = () => {
         return res.json();
       })
       .then((dailySystems) => {
-        console.log(dailySystems, "ALL DAILY SYSTEMS");
+        // console.log(dailySystems, "ALL DAILY SYSTEMS");
 
         allDailySystems.innerHTML = "";
 
