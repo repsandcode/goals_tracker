@@ -22,9 +22,6 @@ const bigGoalStart = document.querySelector("#big-goal-start");
 const bigGoalDeadline = document.querySelector("#big-goal-deadline");
 const bigGoalDescription = document.querySelector("#big-goal-description");
 
-// daily systems section
-const allDailySystems = document.querySelector("#all-daily-systems");
-
 // global variables
 let allBigGoalsArr = [];
 
@@ -35,7 +32,7 @@ const modalCenters = document.querySelectorAll(".modal-center");
 // when the user clicks anywhere outside of the modal or its child elements, close it    
 modalCenters.forEach((modalCenter) => {
   modalCenter.addEventListener('click', (event) => {
-
+    
     if (event.target === modalCenter) {      
       if (bigGoalModal && bigGoalModal.style.display === "block") {
         bigGoalModal.style.display = "none";
@@ -46,7 +43,7 @@ modalCenters.forEach((modalCenter) => {
         dailySystemModal.style.display = "none";
         dailySystemMsg.innerText = "";
       }
-
+      
       if (deleteBigGoalModal && deleteBigGoalModal.style.display === "block") {
         deleteBigGoalModal.style.display = "none";
       }
@@ -59,9 +56,13 @@ document.addEventListener("DOMContentLoaded", () => {
   /*************************/
   // AUTOMATIC RENDERINGS //
   /***********************/
-  getUserData();
-  showHomePage(); // home page contents
+  const atHomePage = window.location.pathname === "/";
+  if (atHomePage) {
+    getUserData();
+    showHomePage(); // home page contents
+  }
 });
+
 
 
 // Update Sidebar Status
@@ -78,12 +79,12 @@ const showHomePage = () => {
   getAllBigGoals();
 
   // create a big goal
-  document
-    .querySelector("#open-big-goal-modal")
-    .addEventListener("click", () => showBigGoalModal());
-  document
-    .querySelector("#close-big-goal-modal")
-    .addEventListener("click", () => hideBigGoalModal());
+  const openBigGoalModal = document.querySelector("#open-big-goal-modal");
+  const closeBigGoalModal = document.querySelector("#close-big-goal-modal");
+  if (openBigGoalModal || closeBigGoalModal) {
+    openBigGoalModal.addEventListener("click", () => showBigGoalModal());
+    closeBigGoalModal.addEventListener("click", () => hideBigGoalModal());
+  }
 
   const createBigGoal = (event) => {
     event.preventDefault();
@@ -211,9 +212,9 @@ const getAllBigGoals = () => {
     fetch("/big-goals")
       .then((res) => {
         if (res.ok) {
-          console.log("Success! Retrieved all big goals");
+          console.log("success! retrieved all big goals");
         } else {
-          console.log("Failed to retrieve all big goals");
+          console.log("failed to retrieve all big goals");
         }
         return res.json();
       })
@@ -225,7 +226,7 @@ const getAllBigGoals = () => {
         if (bigGoals.length < 1) {
           const noBigGoalsMessage = document.createElement("h5");
           noBigGoalsMessage.classList.add("m-0", "mt-5", "fw-normal");
-          noBigGoalsMessage.textContent = "What is your Big Goal? Add it here.";
+          noBigGoalsMessage.textContent = "What is your Big Goal? Add it now.";
           allBigGoals.append(noBigGoalsMessage);
           return;
         } else {
@@ -324,7 +325,9 @@ const getAllBigGoals = () => {
 
 const getAllDailySystems = () => {
   try {
-    allDailySystems.dataset.today = getTodayHyphened();
+    // daily systems section
+    const allDailySystems = document.querySelector("#all-daily-systems");
+    if (allDailySystems) allDailySystems.dataset.today = getTodayHyphened();
 
     fetch("/daily-systems")
       .then((res) => {
@@ -373,7 +376,6 @@ const getAllDailySystems = () => {
         const dateToday = allDailySystems.dataset.today;
 
         Array.from(allDailySystemBox).forEach((dailySystem) => {
-          
           dailySystem.addEventListener("click", () => {
             const bigGoal = dailySystem.dataset.bigGoal;
             const action = dailySystem.lastElementChild.innerText;

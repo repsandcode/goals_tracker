@@ -1,7 +1,7 @@
 const addGreeting = () => {
   const currentHour = new Date().getHours();
   let greeting = "";
-
+  
   if (currentHour >= 6 && currentHour < 12) {
     greeting = "Good morning";
   } else if (currentHour >= 12 && currentHour < 18) {
@@ -9,8 +9,9 @@ const addGreeting = () => {
   } else {
     greeting = "Good evening";
   }
-
-  document.querySelector("#greetings").textContent = greeting;
+  
+  const greetingElement = document.querySelector("#greetings");
+  if (greetingElement) greetingElement.textContent = greeting;
 };
 
 const addDateToday = () => {
@@ -21,8 +22,10 @@ const addDateToday = () => {
   const dayMonthParts = dateParts[1].split(' ');
   // const resultArray = [dateParts[0], dayMonthParts[1], dayMonthParts[0], dateParts[2]];
   
-  document.querySelector("#date-today").innerHTML = 
-  `<i class="bi bi-calendar"></i> <span>${dateParts[0]}, ${dayMonthParts[0]} ${dayMonthParts[1]}</span>`
+  const dateTodayElement = document.querySelector("#date-today");
+  if (dateTodayElement) { 
+    dateTodayElement.innerHTML = `<i class="bi bi-calendar"></i> <span>${dateParts[0]}, ${dayMonthParts[0]} ${dayMonthParts[1]}</span>`
+  }
 }
 
 const defaultStartDate = () => {
