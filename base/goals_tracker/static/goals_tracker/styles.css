@@ -439,6 +439,7 @@ img {
 }
 .big-goal-content {
   height: 100%;
+  width: 100%;
   overflow: scroll;
 
   display: flex;
@@ -529,10 +530,6 @@ img {
 /* MEDIA QUERIES */
 @media screen and (min-width: 450px) {
   .modal-flex-direction {
-    flex-direction: row;
-  }
-
-  .big-goal-content--headers {
     flex-direction: row;
   }
 
