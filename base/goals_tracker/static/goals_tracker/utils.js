@@ -104,6 +104,21 @@ const getCurrentMonthAndYear = () => {
   return formattedDate.split(" ");
 };
 
+const compareTodayToDeadline = (current, dueDate) => {
+  // Compare year, month, and day without the time portion
+  if (
+    current.getFullYear() === dueDate.getFullYear() &&
+    current.getMonth() === dueDate.getMonth() &&
+    current.getDate() === dueDate.getDate()
+  ) {
+    return "Deadline today!";
+  } else if (current < dueDate) {
+    return "In Progress...";
+  } else {
+    return "Big Goal Complete!";
+  }
+}
+
 // Attach the function to the window object
 window.addGreeting = addGreeting;
 window.defaultStartDate = defaultStartDate;

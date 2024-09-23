@@ -232,6 +232,7 @@ const getAllBigGoals = () => {
         } else {
           bigGoals.forEach((data) => {
             const currentDate = new Date();
+            // currentDate.setHours(0, 0, 0, 0);
             // console.log(data);
             
             const bigGoalBox = document.createElement("div");
@@ -245,6 +246,9 @@ const getAllBigGoals = () => {
             const timeline = data.timeline;
             const startDate = new Date(timeline.start);
             const deadline = new Date(timeline.deadline);
+            // deadline.setHours(0, 0, 0, 0);
+            // console.log(currentDate, deadline);
+
             const fiveAfterDeadline = new Date(deadline);
             fiveAfterDeadline.setDate(deadline.getDate() + 5);
   
@@ -262,7 +266,7 @@ const getAllBigGoals = () => {
                   <div class="big-goal-box--progress">
                     <div class="big-goal-box--progress-heading">
                       <span class="big-goal-box--progress-status">
-                         ${currentDate <= deadline ? 'In Progress...' : 'Big Goal Complete!'}
+                         ${compareTodayToDeadline(currentDate, deadline)}
                       </span>
                       <span class="big-goal-box--progress-percentage">${percentage_completion}%</span>
                     </div>
