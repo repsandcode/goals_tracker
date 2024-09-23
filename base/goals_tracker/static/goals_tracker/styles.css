@@ -112,7 +112,9 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+}
+.big-goal-content--headers > h1 {
+  width: 81%;
 }
 .optional-field {
   font-size: 1.3rem;
