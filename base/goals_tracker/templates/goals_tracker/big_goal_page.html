@@ -52,7 +52,13 @@
 
     <section class="goal-details-section">
       <div class="big-goal-content--headers">
-        <h1 class="fw-normal m-0 align-self-center">Daily Actions</h1>
+        <h2 class="fw-normal m-0 align-self-center">
+          {% if daily_systems %}
+            Daily Actions
+          {% else %}
+            Start adding your daily actions!
+          {% endif %}
+        </h1>
 
         <!-- Create Daily System Modal -->
         <div id="daily-system-modal" class="modal">
@@ -92,14 +98,16 @@
         </button>
       </div>
 
-      <div class="big-goal-content--daily-systems">
-        {% for system in daily_systems %}
-          <div class="big-goal-content--daily-system" data-daily-system-id={{system.id}}>
-            <span class="daily-system-box--text">{{system.action}}</span>
-            <span class="daily-system-box--delete-icon fs-5"><i class="bi bi-trash3"></i></span>
-          </div>
-        {% endfor %}
-      </div>
+      {% if daily_systems %}
+        <div class="big-goal-content--daily-systems">
+          {% for system in daily_systems %}
+            <div class="big-goal-content--daily-system" data-daily-system-id={{system.id}}>
+              <span class="daily-system-box--text">{{system.action}}</span>
+              <span class="daily-system-box--delete-icon fs-5"><i class="bi bi-trash3"></i></span>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
     </section>
 
     <section class="timeline-section box-radius">
