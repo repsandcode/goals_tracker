@@ -479,6 +479,9 @@ img {
   border-radius: 3rem;
   padding: 2rem 2.5rem;
 }
+.goal-details-section.big-goal {
+  border: none;
+}
 
 /* Custom CSS for the timeline */
 .timeline {
