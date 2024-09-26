@@ -50,6 +50,42 @@
       {% endif %}
     </section>
 
+    <section class="timeline-section box-radius">
+      <input type="hidden" id="no-edit-title-hidden" value="{{title_unedited}}" />
+      <input type="hidden" id="title-hidden" value="{{big_goal.title}}" />
+      <input type="hidden" id="description-hidden" value="{{big_goal.description}}" />
+      <input type="hidden" id="start-hidden" value="{{timeline.start}}" />
+      <input type="hidden" id="deadline-hidden" value="{{timeline.deadline}}" />
+      <input type="hidden" id="bg-daily-systems" value="{{actions}}" />
+
+      <div id="month-year"></div>
+
+      {% comment %} Timeline {% endcomment %}
+      <div class="timeline" id="timeline">
+        {% for date in timeline.all_dates %}
+        <div class="timeline-item" data-date={{date.current}}>
+          <div class="timeline-item--head">
+            <span class="m-0">{{ date.current|slice:":3" }}</span>
+            <span class="timeline-item--head-day">{{ date.current|slice:"8:10" }}</span>
+          </div>
+          <div class="timeline-item--body">
+            {% for system in daily_systems %}
+            <div class="daily-system-box box-radius" data-big-goal={{system.big_goal}}>
+              {% if system.action in date.actions %}
+              <span class="daily-system-box--checkbox daily-system-box--check"><i class="bi bi-check-circle"></i></span>
+              <h5 class="m-0 fw-normal daily-system-box--text daily-system-box--check">{{ system.action }}</h5>
+              {% else %}
+              <span class="daily-system-box--checkbox"><i class="bi bi-circle"></i></span>
+              <h5 class="m-0 fw-normal daily-system-box--text">{{ system.action }}</h5>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
     <section class="goal-details-section">
       <div class="big-goal-content--headers">
         <h2 class="fw-normal m-0 align-self-center">
@@ -108,42 +144,6 @@
           {% endfor %}
         </div>
       {% endif %}
-    </section>
-
-    <section class="timeline-section box-radius">
-      <input type="hidden" id="no-edit-title-hidden" value="{{title_unedited}}" />
-      <input type="hidden" id="title-hidden" value="{{big_goal.title}}" />
-      <input type="hidden" id="description-hidden" value="{{big_goal.description}}" />
-      <input type="hidden" id="start-hidden" value="{{timeline.start}}" />
-      <input type="hidden" id="deadline-hidden" value="{{timeline.deadline}}" />
-      <input type="hidden" id="bg-daily-systems" value="{{actions}}" />
-
-      <div id="month-year"></div>
-
-      {% comment %} Timeline {% endcomment %}
-      <div class="timeline" id="timeline">
-        {% for date in timeline.all_dates %}
-        <div class="timeline-item" data-date={{date.current}}>
-          <div class="timeline-item--head">
-            <span class="m-0">{{ date.current|slice:":3" }}</span>
-            <span class="timeline-item--head-day">{{ date.current|slice:"8:10" }}</span>
-          </div>
-          <div class="timeline-item--body">
-            {% for system in daily_systems %}
-            <div class="daily-system-box box-radius" data-big-goal={{system.big_goal}}>
-              {% if system.action in date.actions %}
-              <span class="daily-system-box--checkbox daily-system-box--check"><i class="bi bi-check-circle"></i></span>
-              <h5 class="m-0 fw-normal daily-system-box--text daily-system-box--check">{{ system.action }}</h5>
-              {% else %}
-              <span class="daily-system-box--checkbox"><i class="bi bi-circle"></i></span>
-              <h5 class="m-0 fw-normal daily-system-box--text">{{ system.action }}</h5>
-              {% endif %}
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-        {% endfor %}
-      </div>
     </section>
   </div>
 </main>
