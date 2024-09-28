@@ -96,7 +96,9 @@ Array.from(allDailySystemBox).forEach((dailySystem) => {
         
         // Check if the date is today
         if (date !== dateToday) {
-          alert("Completing goals that are not today is disabled. Focus on today first.");
+          alert(
+          `Completing non-today goals is disabled. 
+Focus on today first.`);
           return;
         }
 
