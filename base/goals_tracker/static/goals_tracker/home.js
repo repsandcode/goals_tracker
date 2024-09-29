@@ -56,9 +56,16 @@ document.addEventListener("DOMContentLoaded", () => {
   /*************************/
   // AUTOMATIC RENDERINGS //
   /***********************/
-  const atHomePage = window.location.pathname === "/";
-  if (atHomePage) {
-    getUserData();
+  const currentPath = window.location.pathname;
+
+  if (currentPath === "/login" || currentPath === "/register") {
+    return;
+  }
+   
+  // Fetch user data for pages other than login
+  getUserData();
+
+  if (currentPath === "/") {
     showHomePage(); // home page contents
   }
 });
