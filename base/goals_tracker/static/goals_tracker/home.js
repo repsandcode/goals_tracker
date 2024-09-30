@@ -231,7 +231,7 @@ const getAllBigGoals = () => {
         allBigGoals.innerHTML = "";
 
         if (bigGoals.length < 1) {
-          const noBigGoalsMessage = document.createElement("h5");
+          const noBigGoalsMessage = document.createElement("h4");
           noBigGoalsMessage.classList.add("m-0", "mt-5", "fw-normal");
           noBigGoalsMessage.textContent = "What is your Big Goal? Add it now.";
           allBigGoals.append(noBigGoalsMessage);
@@ -355,9 +355,9 @@ const getAllDailySystems = () => {
         allDailySystems.innerHTML = "";
 
         if (dailySystems.length < 1) {
-          const noDailySystemsMessage = document.createElement("h5");
+          const noDailySystemsMessage = document.createElement("h4");
           noDailySystemsMessage.classList.add("m-0", "fw-normal");
-          noDailySystemsMessage.textContent = "No daily systems";
+          noDailySystemsMessage.textContent = "No tasks yet. Add a Big Goal first!";
           allDailySystems.appendChild(noDailySystemsMessage);
           return;
         }
