@@ -357,7 +357,7 @@ const getAllDailySystems = () => {
         if (dailySystems.length < 1) {
           const noDailySystemsMessage = document.createElement("h4");
           noDailySystemsMessage.classList.add("m-0", "fw-normal");
-          noDailySystemsMessage.textContent = "No tasks yet. Add a Big Goal first!";
+          noDailySystemsMessage.textContent = "No tasks yet. Add a Big Goal first.";
           allDailySystems.appendChild(noDailySystemsMessage);
           return;
         }
