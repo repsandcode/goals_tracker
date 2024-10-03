@@ -356,8 +356,10 @@ const getAllDailySystems = () => {
 
         if (dailySystems.length < 1) {
           const noDailySystemsMessage = document.createElement("h4");
-          noDailySystemsMessage.classList.add("m-0", "fw-normal");
-          noDailySystemsMessage.textContent = "No tasks yet. Add a Big Goal first.";
+          noDailySystemsMessage.classList.add("m-0", "fw-normal", "lh-base");
+          noDailySystemsMessage.innerText = `No tasks yet. 
+
+          Once you’ve created at least one Big Goal, any tasks or “actions” you add to it will automatically appear here.`;
           allDailySystems.appendChild(noDailySystemsMessage);
           return;
         }
