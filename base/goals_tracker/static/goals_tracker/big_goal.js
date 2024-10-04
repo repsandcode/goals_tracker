@@ -27,7 +27,7 @@ Array.from(dailySystemDeleteIcon).forEach((deleteIcon) => {
     const dailySystemId = parseInt(deleteIcon.parentElement.dataset.dailySystemId);
     const dailySystemText = deleteIcon.previousElementSibling.innerText;
     const deleteText = 
-    `Are you sure you want to delete this Daily System?
+    `Are you sure you want to delete this Daily Action?
 "${dailySystemText}"`;
 
     console.log(deleteIcon, dailySystemText);

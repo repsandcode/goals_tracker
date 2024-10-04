@@ -285,10 +285,10 @@ const getAllBigGoals = () => {
                   
                   <div class="big-goal-box--tags">
                     <div class="big-goal-box--tag yellow box-radius fs-5">
-                      ${timeline.all_dates.length} ${timeline.all_dates.length === 1 ? "day" : "days"}
+                      ${timeline.all_dates.length} ${timeline.all_dates.length === 1 ? "day" : "days"} total
                     </div>
                     <div class="big-goal-box--tag yellow box-radius fs-5">
-                      ${dailySystems.length} ${dailySystems.length === 1 ? "daily system" : "daily systems"}
+                      ${dailySystems.length} ${dailySystems.length === 1 ? "daily action" : "daily actions"}
                     </div>
                     <div class="big-goal-box--tag ${currentDate <= deadline ? 'green' : 'red'} box-radius fs-5">
                       ${
