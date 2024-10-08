@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%vdo43)snh6kidybv5o0fk9s7_y2f!@lus#=x4i53^obcm63=e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['goalstracker.fly.dev']
 
 
 # Application definition
