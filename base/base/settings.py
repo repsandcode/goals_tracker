@@ -31,6 +31,10 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = False
 
 ALLOWED_HOSTS = ['goalstracker.fly.dev']
+# Fly.io automatically provides HTTPS, but ensure Django is aware by setting:
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 
 # Application definition
