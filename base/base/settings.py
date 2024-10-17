@@ -65,10 +65,21 @@ WSGI_APPLICATION = 'base.wsgi.application'
 
 AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'goals_tracker',  # The database name you created
+        'USER': 'admin_gt',  # The PostgreSQL user you created
+        'PASSWORD': 'admin_gt',  # The PostgreSQL user password
+        'HOST': '127.0.0.1',  # Or your server's IP address if deploying to production
+        'PORT': '5432',  # Default PostgreSQL port
     }
 }
 
