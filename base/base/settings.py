@@ -1,15 +1,15 @@
 from pathlib import Path
-import environ
+import environ, os
 
 env = environ.Env(
     DEBUG = (bool, False),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Initialise environment variables
-environ.Env.read_env(BASE_DIR / '.env')
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Secret Key
 SECRET_KEY = env('SECRET_KEY')
@@ -65,21 +65,14 @@ WSGI_APPLICATION = 'base.wsgi.application'
 
 AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'goals_tracker',  # The database name you created
-        'USER': 'admin_gt',  # The PostgreSQL user you created
-        'PASSWORD': 'admin_gt',  # The PostgreSQL user password
-        'HOST': '127.0.0.1',  # Or your server's IP address if deploying to production
-        'PORT': '5432',  # Default PostgreSQL port
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST', default='127.0.0.1'),
+        'PORT': env('DB_PORT', default='5432'),
     }
 }
 
