@@ -17,6 +17,8 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
+print(DEBUG, BASE_DIR)
+
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.fly.dev']
 
 CSRF_TRUSTED_ORIGINS = ['https://*.fly.dev']

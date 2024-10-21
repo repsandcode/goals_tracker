@@ -247,15 +247,12 @@ def daily_systems(request):
             for action in big_goal_actions:
                container.append(action)
 
-      #   container.reverse()
-
         completed_daily_systems_content = all_completed_daily_systems(request).content.decode('utf-8')
         completed_daily_systems_data = json.loads(completed_daily_systems_content)
         today = date.today().strftime('%a-%b-%d-%Y')
-        completed_today = 0
+        completed_today = completed_daily_systems_data.get(today, {})
 
-        if today in completed_daily_systems_data:
-           completed_today = completed_daily_systems_data[today]
+        print(completed_today)
 
         # Serialize queryset into JSON format
         daily_systems = []
@@ -264,7 +261,12 @@ def daily_systems(request):
            big_goal = data["big_goal"]
            action = data["action"]
 
-           if completed_today and action in completed_today.get(big_goal):
+           print(completed_today.get(big_goal))
+
+           big_goal_in_completed_today = completed_today.get(big_goal, {})
+           action_in_completed_today = big_goal_in_completed_today and action in big_goal_in_completed_today
+
+           if completed_today and action_in_completed_today:
               data["completed"] = True
            else:
               data["completed"] = False
