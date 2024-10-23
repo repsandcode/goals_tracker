@@ -14,13 +14,13 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /code
 
 WORKDIR /code
+COPY . /code
 
 COPY requirements.txt /tmp/requirements.txt
 RUN set -ex && \
     pip install --upgrade pip && \
     pip install -r /tmp/requirements.txt && \
     rm -rf /root/.cache/
-COPY . /code
 
 ENV SECRET_KEY "IgH6mXSu41i3qXzDaTLwMHKBRSM77iLUukCLx7g8673GcglFoF"
 RUN python manage.py collectstatic --noinput
