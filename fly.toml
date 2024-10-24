@@ -29,5 +29,5 @@ console_command = '/code/manage.py shell'
   cpus = 1
 
 [[statics]]
-  guest_path = '/code/staticfiles'
+  guest_path = '/base/staticfiles'
   url_prefix = '/static/'

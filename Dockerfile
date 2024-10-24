@@ -11,10 +11,10 @@ RUN apt-get update && apt-get install -y \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /code
+RUN mkdir -p /base
 
-WORKDIR /code
-COPY . /code
+WORKDIR /base
+COPY . /base
 
 COPY requirements.txt /tmp/requirements.txt
 RUN set -ex && \
@@ -27,4 +27,4 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
-CMD ["gunicorn","--bind",":8000","--workers","2","base.wsgi"]
+CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "base.wsgi:application"]
