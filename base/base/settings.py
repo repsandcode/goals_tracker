@@ -1,27 +1,26 @@
 from pathlib import Path
-import environ, os
+import environ
+from django.core.management.utils import get_random_secret_key
 
 env = environ.Env(
     DEBUG = (bool, False),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Initialise environment variables
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+environ.Env.read_env(BASE_DIR, '.env')
 
 # Secret Key
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env.str('SECRET_KEY', default=get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-print(DEBUG, BASE_DIR)
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.fly.dev', 'goals-tracker.fly.dev']
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.fly.dev']
-
-CSRF_TRUSTED_ORIGINS = ['https://*.fly.dev']
+CSRF_TRUSTED_ORIGINS = ['https://goals-tracker.fly.dev']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -31,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'goals_tracker',
     'goals_tracker.apps.GoalsTrackerConfig',
 ]
 
@@ -68,14 +68,15 @@ WSGI_APPLICATION = 'base.wsgi.application'
 AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST', default='127.0.0.1'),
-        'PORT': env('DB_PORT', default='5432'),
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': env('DB_NAME'),
+    #     'USER': env('DB_USER'),
+    #     'PASSWORD': env('DB_PASSWORD'),
+    #     'HOST': env('DB_HOST', default='127.0.0.1'),
+    #     'PORT': env('DB_PORT', default='5432'),
+    # }
+    'default': env.db('DATABASE_URL', default='postgres://admin_gt:admin_gt@127.0.0.1:5432/goals_tracker')
 }
 
 AUTH_USER_MODEL = "goals_tracker.User"
@@ -93,7 +94,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
