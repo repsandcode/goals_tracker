@@ -9,6 +9,16 @@ This section alone should consist of several paragraphs, before you even begin t
 
 ### Distinctiveness and Complexity
 <!-- Why you believe your project satisfies the distinctiveness and complexity requirements, mentioned above. -->
+This project is distict from the previous ones - not a Social Network app nor an E-Commerce site. 
+This project utilizes more than one Model (4 in total). The app relies heavily on JavaScript (pure vanilla), and is completely mobile-responsive.
+
+Reaching your goals shouldn't be complicated or messy. Just focus on what's important, and you'll get there.
+This app was designed for that, and great amount of time was spent on its UI/UX. From the Home page to the timeline in the Big Goal page, the user must feel at ease.
+
+I created the app to be more complex than my previous submissions. 
+I have worked hard to make the app run smoothly on the Frontend, allowing users to have a better experience reaching their goals. 
+
+
 #### Goal Tracker
 - Your timeline to your goals.
 
