@@ -16,7 +16,6 @@ urlpatterns = [
   path("create-big-goal", views.big_goals, name="create_big_goal"),
   path("delete-old-goal", views.big_goals, name='delete_old_goal'),
   path("get-user-data", views.get_user_data, name="get_user_data"),
-  path("save_fcm_token", views.save_fcm_token, name='save_fcm_token'),
 
   # big goal page
   path("big-goal/<str:title>", views.big_goal, name="big_goal"),
