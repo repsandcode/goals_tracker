@@ -14,7 +14,7 @@ This project focuses on the consistency of showing up daily to check those goals
 
 ## Distinctiveness and Complexity
 <!-- Why you believe your project satisfies the distinctiveness and complexity requirements, mentioned above. -->
-I developed this app because I could not find a goal/habit tracking app or todo list app that focuses on helping me stick to my goal until it's acommplished. That was my problem - I struggled with reaching my goals. I was inconsistent. Part of the issue involves the design of the app I want. It must look neat and very user-friendly.
+I developed this app because I could not find a goal/habit tracking app or todo list app that focuses on helping me stick to my goals until I acommplish them. That was my problem - I struggled with reaching my goals. I was inconsistent. Part of the issue involves the design of the app I want. It must look neat and very user-friendly.
 
 I believe that reaching your goals shouldn't be complicated or messy. Just focus on what's important, and you'll get there.
 
