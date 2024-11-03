@@ -18,30 +18,49 @@ I developed this app because I could not find a goal/habit tracking app or todo 
 
 I believe that reaching your goals shouldn't be complicated or messy. Just focus on what's important, and you'll get there.
 
-This project is distinct from the previous ones I made - not a Social Network app nor an E-Commerce site. It utilizes more than one Model (4 in total), relies heavily on vanilla JavaScript to function as smoothly as possible, and works well in all screen sizes.
+This project is distinct from the previous ones I made - not a Social Network app nor an E-Commerce site. It utilizes more than one Model (4 in total), relies heavily on vanilla JavaScript to function smoothly like React, and works well in all screen sizes.
 
-This project is complex because, with UI/UX in mind, it must allow the user to:
-- create and delete big goals
-- determine the status of all of them at home page
-- view and complete daily actions for all big goals at home page
-- visually understand the timeline for each big goal
-- create and delete daily actions
+This project is complex because, with simplicity and UI/UX in mind, it must allow the user to:
+- create and delete "big goals"
+- determine the status of all "big goals" at home page
+- visually understand the timeline for each "big goal"
+- create and delete "daily actions"
+- view and complete "daily actions" for all "big goals" at home page
 - feel secured with user authentication and form validations
 - feel at ease with creating, tracking, and completing goals 
 
-At first, I considered using React for smooth functionality and lesser code. But doing so won't make it complex, so I decided to just use plain vanilla JavaScript. Therefore, a great amount of time was spent on the UI/UX. I looked into a lot of different project entries at Dribbble.com for the design. 
+At first, I considered using React for smooth functionality and lesser code. But doing so won't make it complex, so I decided to simply use plain vanilla JavaScript. Therefore, a great amount of time was spent on the UI/UX. I looked into a lot of different project entries at Dribbble.com for inspiration for the design. 
 
 I used Bootstrap CSS for the structure and customized CSS for the details. All boxes, modals, sections, etc. were coded with the intention to make the user feel home. I implemented 3 JavaScript files: home.js, big_goal.js, and utils.js. All three files work together to ensure smooth functionality with all requests made by the user, making it more React-like. 
 
-All requests made from the client are all handled accordingly in Django. 
+All requests made from the client are all handled accordingly in Django backend. 
 
-The database used is PostgreSQL.
+The database being used is PostgreSQL.
 
-The app is deployed at fly.io
+Goals Tracker is deployed live at fly.io.
 
 
-## What is in each file
+## Files and directories
 <!-- What’s contained in each file you created. -->
+- goals_tracker
+  - static
+    - goals_tracker
+      - images
+      - big_goal.js
+      - home.js
+      - styles.css
+      - utils.js
+  - templates/goals_tracker
+    - big_goal_page.html
+    - home_page.html
+    - layout.html
+    - login.html
+    - register.html
+  - admin.py
+  - models.py
+  - urls.py
+  - views.py
+
 
 
 ## How to run the app
