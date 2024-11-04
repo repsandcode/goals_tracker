@@ -42,25 +42,24 @@ Goals Tracker is deployed live at fly.io.
 
 ## Files and directories
 <!-- What’s contained in each file you created. -->
-- goals_tracker
-  - static
-    - goals_tracker
-      - images
-      - big_goal.js
-      - home.js
-      - styles.css
-      - utils.js
+- goals_tracker - main Django app directory 
+  - static/goals_tracker 
+    - images - folder that contains vector and png images
+    - `big_goal.js` - js code to handle requests for the big goal page (`big_goal_page.html`)
+    - `home.js` - js code to handle requests for the home page (`home_page.html`)
+    - `styles.css` - contains all customized css
+    - `utils.js` - contains all customized javascript functions
   - templates/goals_tracker
-    - big_goal_page.html
-    - home_page.html
-    - layout.html
-    - login.html
-    - register.html
-  - admin.py
-  - models.py
-  - urls.py
-  - views.py
-
+    - `big_goal_page.html` - template to show each big goal; includes the code for the timeline 
+    - `home_page.html` - template to show the user dashboard and daily tasks
+    - `layout.html` - main template; layout structure
+    - `login.html` - template with the login form
+    - `register.html` - template with the register form
+  - `admin.py` - models are registered here
+  - `models.py` contains the models in the project. User extends the default AbstractUser model. BigGoal 
+  - `urls.py` contains all application URLs.
+  - `views.py` contains all the necessary and customized application views.
+- `requirements.txt` contains requirements for the application to run.
 
 
 ## How to run the app
