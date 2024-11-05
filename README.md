@@ -42,23 +42,23 @@ Goals Tracker is deployed live at fly.io.
 
 ## Files and directories
 <!-- What’s contained in each file you created. -->
-- goals_tracker - main Django app directory 
-  - static/goals_tracker 
-    - images - folder that contains vector and png images
-    - `big_goal.js` - js code to handle requests for the big goal page (`big_goal_page.html`)
-    - `home.js` - js code to handle requests for the home page (`home_page.html`)
-    - `styles.css` - contains all customized css
-    - `utils.js` - contains all customized javascript functions
-  - templates/goals_tracker
-    - `big_goal_page.html` - template to show each big goal; includes the code for the timeline 
-    - `home_page.html` - template to show the user dashboard and daily tasks
-    - `layout.html` - main template; layout structure
-    - `login.html` - template with the login form
-    - `register.html` - template with the register form
-  - `admin.py` - models are registered here
-  - `models.py` contains the models in the project. User extends the default AbstractUser model. BigGoal 
-  - `urls.py` contains all application URLs.
-  - `views.py` contains all the necessary and customized application views.
+- `goals_tracker`: main Django app directory 
+  - `static/goals_tracker`
+    - `images`: the folder that contains vector and png images
+    - `big_goal.js` handles all requests for the big goal page (`big_goal_page.html`)
+    - `home.js` handles all requests for the home page (`home_page.html`)
+    - `styles.css` contains all customized css
+    - `utils.js` contains all customized javascript functions
+  - `templates/goals_tracker`
+    - `big_goal_page.html`: template to show each big goal; includes the code for the timeline 
+    - `home_page.html`: template to show the user dashboard and daily tasks
+    - `layout.html`: main template; layout structure
+    - `login.html`: template with the login form
+    - `register.html`: template with the register form
+  - `admin.py` registers models with Django admin interface.
+  - `models.py` defines the User, BigGoal, DailySystem, and DailySystemCheckIn models.
+  - `urls.py` contains all application URLs (15 in total).
+  - `views.py` contains all the necessary and customized application views (14 in total).
 - `requirements.txt` contains requirements for the application to run.
 
 
