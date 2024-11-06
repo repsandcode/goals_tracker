@@ -14,30 +14,32 @@ This project focuses on the consistency of showing up daily to check those goals
 
 ## Distinctiveness and Complexity
 <!-- Why you believe your project satisfies the distinctiveness and complexity requirements, mentioned above. -->
-I developed this app because I could not find a goal/habit tracking app or todo list app that focuses on helping me stick to my goals until I acommplish them. That was my problem - I struggled with reaching my goals. I was inconsistent. Part of the issue involves the design of the app I want. It must look neat and very user-friendly.
+I developed this app because I could not find a goal/habit tracking app or todo list app that focuses on helping me stick to my goals until I accomplish them. My problem was inconsistency in reaching my goals, and I needed an app that was both neat and user-friendly to help me stay on track.
 
-I believe that reaching your goals shouldn't be complicated or messy. Just focus on what's important, and you'll get there.
+This project is distinct from my previous ones, as it is neither a Social Network app nor an E-Commerce site. The app utilizes more than one model (four in total) and relies heavily on vanilla JavaScript to ensure smooth functionality, similar to React, while maintaining compatibility across all screen sizes.
 
-This project is distinct from the previous ones I made - not a Social Network app nor an E-Commerce site. It utilizes more than one Model (4 in total), relies heavily on vanilla JavaScript to function smoothly like React, and works well in all screen sizes.
+Goals Tracker helps users manage both big goals and daily tasks, making it different from regular task managers that often focus only on checklists or deadlines. The app is designed to connect big, long-term goals to small, daily actions, helping users track their progress and stay motivated.
 
-This project is complex because, with simplicity and UI/UX in mind, it must allow the user to:
-- create and delete "big goals"
-- determine the status of all "big goals" at home page
-- visually understand the timeline for each "big goal"
-- create and delete "daily actions"
-- view and complete "daily actions" for all "big goals" at home page
-- feel secured with user authentication and form validations
-- feel at ease with creating, tracking, and completing goals 
+The app is complex because it has several connected parts working together. For example, the database includes models for users, big goals, daily tasks, and a system to check off tasks each day. These models are linked together, so when a user updates their daily tasks, their progress toward bigger goals is also updated automatically. Managing these relationships required careful planning to make sure everything stays organized and works correctly.
 
-At first, I considered using React for smooth functionality and lesser code. But doing so won't make it complex, so I decided to simply use plain vanilla JavaScript. Therefore, a great amount of time was spent on the UI/UX. I looked into a lot of different project entries at Dribbble.com for inspiration for the design. 
+What makes the app truly unique is its focus on helping users form good habits. The daily task check-in system encourages users to stay consistent, while tracking progress over time helps them see how their small efforts lead to big results. This approach is inspired by productivity and self-improvement principles, setting the app apart from other projects in the course.
 
-I used Bootstrap CSS for the structure and customized CSS for the details. All boxes, modals, sections, etc. were coded with the intention to make the user feel home. I implemented 3 JavaScript files: home.js, big_goal.js, and utils.js. All three files work together to ensure smooth functionality with all requests made by the user, making it more React-like. 
+Goals Tracker allows users to:
+- Create and delete "big goals"
+- Determine the status of all "big goals" on the home page
+- Visually understand the timeline for each "big goal"
+- Create and delete "daily actions"
+- View and complete "daily actions" for all "big goals" on the home page
+- Feel secure with user authentication and form validations
+- Feel at ease with creating, tracking, and completing goals
 
-All requests made from the client are all handled accordingly in Django backend. 
+Initially, I considered using React for smoother functionality and less code, but I decided to use plain vanilla JavaScript to increase the complexity of the project. A significant amount of time was spent on the UI/UX design, drawing inspiration from various project entries on Dribbble.com.
 
-The database being used is PostgreSQL.
+I used Bootstrap CSS for the structure and customized CSS for the details. All elements, such as boxes, modals, and sections, were coded with the intention of making the user feel at home. The app implements three JavaScript files: `home.js`, `big_goal.js`, and `utils.js`. These files work together to ensure smooth functionality for all user requests, making the app more React-like.
 
-Goals Tracker is deployed live at fly.io.
+All client requests are handled by the Django backend, ensuring robust and secure data management. The app uses PostgreSQL as its database, providing reliable and efficient data storage.
+
+Goals Tracker is deployed live at fly.io, showcasing its functionality and accessibility.
 
 
 ## Files and directories
