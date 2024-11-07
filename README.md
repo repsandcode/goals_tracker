@@ -7,39 +7,39 @@ It documents your project thoroughly, and that distinguishes this project from o
 This section alone should consist of several paragraphs, before you even begin to talk about the documentation of your project.
 -->
 
-Goals Tracker is the app that allows the user to focus on getting things done with ease, without all the clutter. It helps the user be accountable in reaching their goals, by incorporating a timeline based on the start date and end date of each goal. 
-
-This project focuses on the consistency of showing up daily to check those goals. 
+Goals Tracker is the app that allows the user to focus on getting things done with ease, without all the clutter. It helps the user be accountable in reaching their goals, by incorporating a timeline based on the start date and end date of each goal.
 
 
 ## Distinctiveness and Complexity
-<!-- Why you believe your project satisfies the distinctiveness and complexity requirements, mentioned above. -->
-I developed this app because I could not find a goal/habit tracking app or todo list app that focuses on helping me stick to my goals until I accomplish them. My problem was inconsistency in reaching my goals, and I needed an app that was both neat and user-friendly to help me stay on track.
 
-This project is distinct from my previous ones, as it is neither a Social Network app nor an E-Commerce site. The app utilizes more than one model (four in total) and relies heavily on vanilla JavaScript to ensure smooth functionality, similar to React, while maintaining compatibility across all screen sizes.
+I developed `Goals Tracker` because I couldn’t find a goal or habit tracking app that truly helped me stick to my goals until I accomplished them. My biggest struggle was staying consistent, so I needed something neat, user-friendly, and motivating to keep me on track.
 
-Goals Tracker helps users manage both big goals and daily tasks, making it different from regular task managers that often focus only on checklists or deadlines. The app is designed to connect big, long-term goals to small, daily actions, helping users track their progress and stay motivated.
+This project stands out from my previous ones because it’s not a Social Network app or an E-Commerce site. Instead, it’s focused on productivity and self-improvement. The app is built with four interconnected models and relies heavily on vanilla JavaScript to deliver smooth functionality. While I could have used React, I chose plain JavaScript to make the project more challenging and to better demonstrate my skills. It’s also fully responsive, ensuring it works well on all screen sizes.
 
-The app is complex because it has several connected parts working together. For example, the database includes models for users, big goals, daily tasks, and a system to check off tasks each day. These models are linked together, so when a user updates their daily tasks, their progress toward bigger goals is also updated automatically. Managing these relationships required careful planning to make sure everything stays organized and works correctly.
+`Goals Tracker` is different from regular to-do list apps because it connects long-term goals with daily actions. Users can break down big goals into small, daily tasks and track their progress. This design helps users stay motivated by showing how small steps lead to achieving their big dreams.
 
-What makes the app truly unique is its focus on helping users form good habits. The daily task check-in system encourages users to stay consistent, while tracking progress over time helps them see how their small efforts lead to big results. This approach is inspired by productivity and self-improvement principles, setting the app apart from other projects in the course.
+The app has several connected parts working together, making it more complex. For instance, the database has models for users, big goals, daily tasks, and a system to track daily completions. These models are linked so that when a user marks a daily task as complete, it updates their overall progress toward their big goals. This required careful planning to make sure everything runs smoothly.
+
+What makes the app unique is its focus on building good habits. The daily task check-in system encourages users to stay consistent, and the timeline view helps them see how far they’ve come. This approach is inspired by productivity and self-improvement principles, which makes it different from most task management tools.
 
 Goals Tracker allows users to:
-- Create and delete "big goals"
-- Determine the status of all "big goals" on the home page
-- Visually understand the timeline for each "big goal"
-- Create and delete "daily actions"
-- View and complete "daily actions" for all "big goals" on the home page
-- Feel secure with user authentication and form validations
-- Feel at ease with creating, tracking, and completing goals
+	•	Create and delete “big goals.”
+	•	View the status of all “big goals” on the home page.
+	•	See a timeline for each “big goal.”
+	•	Create and delete “daily actions.”
+	•	View and complete “daily actions” linked to their goals.
+	•	Feel secure with user authentication and form validations.
+	•	Enjoy an easy and intuitive experience for managing goals.
 
-Initially, I considered using React for smoother functionality and less code, but I decided to use plain vanilla JavaScript to increase the complexity of the project. A significant amount of time was spent on the UI/UX design, drawing inspiration from various project entries on Dribbble.com.
+A significant amount of effort went into the design and user experience. I used Bootstrap for the structure and custom CSS for styling to create a clean, welcoming interface. The UI was inspired by designs on Dribbble.com and tailored to make users feel comfortable and motivated.
 
-I used Bootstrap CSS for the structure and customized CSS for the details. All elements, such as boxes, modals, and sections, were coded with the intention of making the user feel at home. The app implements three JavaScript files: `home.js`, `big_goal.js`, and `utils.js`. These files work together to ensure smooth functionality for all user requests, making the app more React-like.
+The app’s functionality is powered by three main JavaScript files - `home.js`, `big_goal.js`, and `utils.js` — that handle everything from user interactions to smooth animations. These files work together to deliver a React-like experience, even though I used plain JavaScript.
 
-All client requests are handled by the Django backend, ensuring robust and secure data management. The app uses PostgreSQL as its database, providing reliable and efficient data storage.
+The backend is built with Django, ensuring secure and reliable handling of user data. PostgreSQL serves as the database, providing efficient data storage and management. All client requests are managed by the backend, making the app robust and efficient.
 
-Goals Tracker is deployed live at fly.io, showcasing its functionality and accessibility.
+Finally, Goals Tracker is deployed live on Fly.io, making it accessible and easy to use. It's my first time to deploy a Django app live and I have learned a lot by doing so.
+
+Overall, this app is the result of combining technical skills, design creativity, and a passion for helping people stay consistent with their goals.
 
 
 ## Files and directories
