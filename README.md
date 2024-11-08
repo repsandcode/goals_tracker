@@ -23,13 +23,13 @@ The app has several connected parts working together, making it more complex. Fo
 What makes the app unique is its focus on building good habits. The daily task check-in system encourages users to stay consistent, and the timeline view helps them see how far they’ve come. This approach is inspired by productivity and self-improvement principles, which makes it different from most task management tools.
 
 Goals Tracker allows users to:
-	•	Create and delete “big goals.”
-	•	View the status of all “big goals” on the home page.
-	•	See a timeline for each “big goal.”
-	•	Create and delete “daily actions.”
-	•	View and complete “daily actions” linked to their goals.
-	•	Feel secure with user authentication and form validations.
-	•	Enjoy an easy and intuitive experience for managing goals.
+- Create and delete “big goals.”
+- View the status of all “big goals” on the home page.
+- See a timeline for each “big goal.”
+- Create and delete “daily actions.”
+- View and complete “daily actions” linked to their goals.
+- Feel secure with user authentication and form validations.
+- Enjoy an easy and intuitive experience for managing goals.
 
 A significant amount of effort went into the design and user experience. I used Bootstrap for the structure and custom CSS for styling to create a clean, welcoming interface. The UI was inspired by designs on Dribbble.com and tailored to make users feel comfortable and motivated.
 
