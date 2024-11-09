@@ -66,38 +66,60 @@ Overall, this app is the result of combining technical skills, design creativity
 
 ## How to run the app
 <!-- How to run your application. -->
-1. Go to the folder
-2. Enter `cd base`
-3. Then enter `python manage.py runserver`
+### Prerequisites
 
-The user must begin by creating his personal account using the "Create an account" Form. The user is required to input data into four fields in the form: "username", "email", "password", and "confirm password".
+To set up and run the application, ensure you have the following installed:
+1. Python 3.10 or later
+2. pip (Python package manager)
+3. Virtual environment tool (e.g., venv)
+4. PostgreSQL (Optional: SQLite can be used for local development without PostgreSQL)
 
-After creating an account, the user will be directed instantly to the Home page. There, the user may now create his first "Big Goal" by clicking the "Add a Big Goal" button. The user is required to input a Title, a Start date, and a Deadline date (a Description is optional). 
+### Getting Started
 
-After a successfully creating a Big Goal, the user will automatically notice a "Big Goal" box on the Home page containing key details about his newly created Big Goal. 
+#### 1. Set Up a Virtual Environment
 
-Upon clicking on the "Big Goal" box, the user will automatically be directed to the "Big Goal" page. There, the user may now view the Timeline starting from the Start date and ending with the Deadline date. The user may now also create Daily Actions by clicking the "Add a Daily Action" button. And if the user desires to delete the "Big Goal", the "Delete Big Goal" is included in the "Big Goal" page.
+Set up and activate a virtual environment to isolate dependencies:
 
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
+#### 2. Install Dependencies
 
+Install all the required Python packages:
 
-#### Quick Overview
-The app is fairly easy to use. 
-It has three main components: 
-- Big Goal
-- Daily Action
-- Timeline
+pip install -r requirements.txt
 
-A Big Goal can be any goal the user considers as BIG in that he really wants or needs to make it happen.
+#### 3. Configure the Database
 
-A Daily Action is anything that the user needs to do DAILY to reach his Big Goal.
+The application supports two options for databases:
 
-A timeline is needed here to help the user visualize where he currently is. 
+Option 1: Use PostgreSQL (Recommended)
+	1.	Install PostgreSQL and create a new database.
+	2.	Configure the .env file with your PostgreSQL settings:
 
-#### The Home page
-The Home page consists of three sections: the header, the big goal section, and the "tasks today"
+DATABASE_URL=postgres://<username>:<password>@<host>:<port>/<database>
 
-#### The "Big Goal" page
-The "Big Goal" page consists of ...
+Option 2: Use SQLite (Default)
+	1.	SQLite is the fallback database and requires no additional setup.
+	2.	Modify the .env file with the following:
 
-#### Login/Register page
+DEBUG=True
+SECRET_KEY=your_secret_key
+DATABASE_URL=sqlite:///db.sqlite3
+
+Note: You can use the provided .env.example file as a template.
+
+#### 4. Apply Database Migrations
+
+Set up the database schema by running:
+`python manage.py migrate`
+
+### 5. Run the Development Server
+
+Start the application server:
+
+python manage.py runserver
+
+Visit http://127.0.0.1:8000 to access the application.
