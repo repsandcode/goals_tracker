@@ -76,6 +76,68 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
-</body>
 
+    <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBaMZLh3M63kz--zNpLbv_Iwx_GTEQrigI",
+      authDomain: "goaltracker-a90fb.firebaseapp.com",
+      projectId: "goaltracker-a90fb",
+      storageBucket: "goaltracker-a90fb.firebasestorage.app",
+      messagingSenderId: "453727782397",
+      appId: "1:453727782397:web:2d5f1124b597fecf9d8594",
+      measurementId: "G-CCR60T88JQ"
+    };
+        
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/firebase-messaging-sw.js')
+        .then((registration) => {
+          console.log('Service Worker registered:', registration);
+        })
+        .catch((error) => {
+          console.error('Service Worker registration failed:', error);
+        });
+    }
+  
+    const messaging = firebase.messaging();
+  
+    // Request permission for notifications
+    function requestNotificationPermission() {
+      messaging.requestPermission()
+        .then(() => {
+          console.log('Notification permission granted.');
+          return messaging.getToken();
+        })
+        .then((token) => {
+          console.log('FCM Token:', token);
+          sendTokenToServer(token);
+        })
+        .catch((error) => {
+          console.error('Unable to get permission:', error);
+        });
+    }
+  
+    // Send the token to your Django backend
+    function sendTokenToServer(token) {
+      fetch('/save_fcm_token/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': '{{ csrf_token }}',
+        },
+        body: JSON.stringify({ token: token }),
+      });
+    }
+  
+    requestNotificationPermission();
+  </script>
+</body>
 </html>

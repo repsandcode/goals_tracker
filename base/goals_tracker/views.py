@@ -11,8 +11,20 @@ from django.db import IntegrityError
 from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta, datetime, date
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 from .models import User, BigGoal, DailySystem, DailySystemCheckIn
+
+@csrf_exempt
+def save_fcm_token(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        token = data.get('token')
+        # Save the token to the database (e.g., linked to the user)
+        print(f"FCM Token saved: {token}")
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'failure'}, status=400)
 
 # GLOBAL FUNCTION
 def all_completed_daily_systems(request):
