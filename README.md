@@ -89,19 +89,23 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 Install all the required Python packages:
 
+```bash
 pip install -r requirements.txt
+```
 
 #### 3. Configure the Database
 
 The application supports two options for databases:
 
-Option 1: Use PostgreSQL (Recommended)
+##### Option 1: Use PostgreSQL (Recommended)
 	1.	Install PostgreSQL and create a new database.
-	2.	Configure the .env file with your PostgreSQL settings:
+	2.	Configure the `.env` file with your PostgreSQL settings:
 
+```bash
 DATABASE_URL=postgres://<username>:<password>@<host>:<port>/<database>
+```
 
-Option 2: Use SQLite (Default)
+##### Option 2: Use SQLite (Default)
 	1.	SQLite is the fallback database and requires no additional setup.
 	2.	Modify the .env file with the following:
 
@@ -114,12 +118,16 @@ Note: You can use the provided .env.example file as a template.
 #### 4. Apply Database Migrations
 
 Set up the database schema by running:
-`python manage.py migrate`
+```bash
+python manage.py migrate
+```
 
 ### 5. Run the Development Server
 
 Start the application server:
 
+```bash
 python manage.py runserver
+```
 
 Visit http://127.0.0.1:8000 to access the application.
