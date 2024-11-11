@@ -98,22 +98,22 @@ pip install -r requirements.txt
 The application supports two options for databases:
 
 ##### Option 1: Use PostgreSQL (Recommended)
-	1.	Install PostgreSQL and create a new database.
-	2.	Configure the `.env` file with your PostgreSQL settings:
+1.	Install PostgreSQL and create a new database.
+2.	Configure the `.env` file with your PostgreSQL settings:
 
 ```bash
 DATABASE_URL=postgres://<username>:<password>@<host>:<port>/<database>
 ```
 
 ##### Option 2: Use SQLite (Default)
-	1.	SQLite is the fallback database and requires no additional setup.
-	2.	Modify the .env file with the following:
+1.	SQLite is the fallback database and requires no additional setup.
+2.	Modify the .env file with the following:
 
+```bash
 DEBUG=True
 SECRET_KEY=your_secret_key
 DATABASE_URL=sqlite:///db.sqlite3
-
-Note: You can use the provided .env.example file as a template.
+```
 
 #### 4. Apply Database Migrations
 
